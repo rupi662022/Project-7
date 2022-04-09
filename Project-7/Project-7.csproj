@@ -156,7 +156,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\DataController.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\GatePassController.cs" />
     <Compile Include="Controllers\GmailAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
