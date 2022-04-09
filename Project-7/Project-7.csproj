@@ -282,6 +282,8 @@
     <Content Include="srcc\jsgrid.sort-strategies.js" />
     <Content Include="srcc\jsgrid.validation.js" />
     <Content Include="src\fields\jsgrid.field.js" />
+    <Content Include="src\js\core\app-menu.js" />
+    <Content Include="src\js\core\app.js" />
     <Content Include="test\hebrew.js" />
     <Content Include="test\index.html" />
     <Content Include="test\jsgrid.field.tests.js" />
@@ -306,7 +308,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="src\js\" />
+    <Folder Include="src\js\scripts\" />
     <Folder Include="src\scss\" />
   </ItemGroup>
   <ItemGroup>
