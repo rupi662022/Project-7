@@ -4,10 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using PROJECT_5.Models.DAL;
-using PROJECT_5.Models;
+using Project_7.Models.DAL;
+using Project_7.Models;
 
-namespace PROJECT_5.Controllers
+namespace Project_7.Controllers
 {
     public class UserController : ApiController
     {
