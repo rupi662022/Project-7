@@ -14,10 +14,9 @@ namespace PROJECT_5.Models
         string driverLname;
         string driverPhone;
         string driverLicense;
-        DateTime driverCreateDate;
-        DateTime driverUpdateDate;
+       
 
-        public Driver(int driverID, string transportComany, string driverFname, string driverLname, string driverPhone, string driverLicense, DateTime driverCreateDate, DateTime driverUpdateDate)
+        public Driver(int driverID, string transportComany, string driverFname, string driverLname, string driverPhone, string driverLicense)
         {
             this.driverID = driverID;
             this.transportComany = transportComany;
@@ -25,8 +24,7 @@ namespace PROJECT_5.Models
             this.driverLname = driverLname;
             this.driverPhone = driverPhone;
             this.driverLicense = driverLicense;
-            this.driverCreateDate = driverCreateDate;
-            this.driverUpdateDate = driverUpdateDate;
+  
         }
 
         public int DriverID { get => driverID; set => driverID = value; }
@@ -35,7 +33,39 @@ namespace PROJECT_5.Models
         public string DriverLname { get => driverLname; set => driverLname = value; }
         public string DriverPhone { get => driverPhone; set => driverPhone = value; }
         public string DriverLicense { get => driverLicense; set => driverLicense = value; }
-        public DateTime DriverCreateDate { get => driverCreateDate; set => driverCreateDate = value; }
-        public DateTime DriverUpdateDate { get => driverUpdateDate; set => driverUpdateDate = value; }
+
+
+
+        public Driver()
+        {
+     
+
+        }
+
+        //public int InsertDriver()
+        //{
+        //    //int res = 0;
+        //    DataServices ds = new DataServices();
+        //    return ds.InsertDriver(this);
+        //    //return res;
+        //}
+
+
+
+
+
+        public List<Driver> ReadDrivers()
+        {
+
+            DataServices ds = new DataServices();
+            ds.ReadDrivers();
+        }
+
+
+        //public int UpdateDrivers()
+        //{
+        //    DataServices ds = new DataServices();
+        //    return ds.UpdateDrivers(this);
+        //}
     }
 }
