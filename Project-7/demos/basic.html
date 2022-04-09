@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>jsGrid - Basic Scenario</title>
+    <link rel="stylesheet" type="text/css" href="demos.css" />
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
+    <link rel="stylesheet" type="text/css" href="../css/theme.css" />
+
+    <script src="../external/jquery/jquery-1.8.3.js"></script>
+    <!--<script src="db.js"></script>-->
+
+    <script src="../srcc/jsgrid.core.js"></script>
+    <script src="../srcc/jsgrid.load-indicator.js"></script>
+    <script src="../srcc/jsgrid.load-strategies.js"></script>
+    <script src="../srcc/jsgrid.sort-strategies.js"></script>
+    <script src="../srcc/jsgrid.field.js"></script>
+    <script src="../srcc/fields/jsgrid.field.text.js"></script>
+    <script src="../srcc/fields/jsgrid.field.number.js"></script>
+    <script src="../srcc/fields/jsgrid.field.select.js"></script>
+    <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
+    <script src="../srcc/fields/jsgrid.field.control.js"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+            let transportCompany = "אא";
+            ajaxCall("GET", "../api/GatePass?transportCompany=" + transportCompany, "", getSCB, getECB);
+
+
+            //$('.jsgrid-delete-button').click(function () {
+            //    //checkBox = this.id
+            //    //checkBoxValue = $(this).attr('value')
+            //    //if (checkBoxValue == '-') {
+            //    //    $(this).attr('value', '+')
+            //    //    $('#checkBoxValue').val('+')
+            //    EditRow(item)
+
+            //});
+        });
+            
+        //}
+        function getECB() {
+            alert("cant get company table")
+        }
+
+        function getSCB(GatePasList) {
+            GateList = GatePasList;
+            $("#GatePas").jsGrid({
+                data: GateList,
+                height: "70%",
+                width: "100%",
+                filtering: true,
+                editing: true,
+                inserting: true,
+                sorting: true,
+                paging: true,
+                autoload: true,
+                pageSize: 15,
+                pageButtonCount: 5,
+                deleteConfirm: function (item) {
+                    return "GatePass  \"" + item.Id + "\" will be removed. Are you sure?";
+                },
+                controller: GateList,
+                fields: [
+                    { name: "Id", title: 'קוד גייטפס', type: "text", width: 100 },
+                    { name: "ContainerNum", title: 'מספר מכולה',type: "text", width: 100 },
+                    { name: "ContainerType", title: "סוג מכולה",type: "text", width: 100 },
+                    { name: "TransportCompany", title: "חברת תובלה",type: "text", width: 100 },
+                    { name: "Importer", type: "text", title: "יבואן", width: 100 },
+            /*        { type: "control" }*/
+
+                    //{ name: "ContainerNum", type: "text", width: 50 },
+                    //{ name: "ContainerType", type: "text", width: 50 },
+                    //{ name: "TransportCompany", type: "text", width: 100 },
+                    //{ name: "Importer", type: "text", width: 100 },
+                    //{ name: "note", type: "select", items: GateList.blabla, valueField: "Id", textField: "Name" } ,
+
+
+                    {
+                        type: "control",
+                        modeSwitchButton: false,
+                        editButton: false,
+                        headerTemplate: function () {
+                            return $("<button>").attr("type", "button").text("Add")//מוסיף שורה שלא צריך
+                                .on("click", function () {
+                                    showDetailsDialog("Add", {});
+                                    sendToArchive(item);
+                                });
+                        }
+                    }
+                ]
+            });
+            alert("finish get 2 name to table");
+
+
+        }
+
+     
+
+
+
+        function sendToArchive(item) {
+            console.log(item)
+
+            id = item.Id
+            ajaxCall("PUT", "../api/GatePass?id=" + id, PUTSCB, PUTECB);
+
+
+        }
+
+
+        function PUTSCB() {
+            console.log("Sent to Archive")
+        }
+        function PUTECB() {
+            console.log("Didnt Sent to Archive")
+        }
+
+
+        //function EditRow(item) {
+        //    console.log(item);
+        //}
+
+
+        
+        //$("#detailsDialog").dialog({
+        //    autoOpen: false,
+        //    width: 400,
+        //    close: function () {
+        //        $("#detailsForm").validate().resetForm();
+        //        $("#detailsForm").find(".error").removeClass("error");
+        //    }
+        //});
+
+        //$("#detailsForm").validate({
+        //    rules: {
+        //        id: "required",
+        //        containerNum: "required"
+        //        //containerNum: { required: true, range: [18, 150] },
+        //        //address: { required: true, minlength: 10 },
+        //        //country: "required"
+        //    },
+        //    messages: {
+        //        id: "Please enter id",
+        //        containerNum: "Please enter Container Number",
+        //        //address: "Please enter address (more than 10 chars)",
+        //        //country: "Please select country"
+        //    },
+        //    submitHandler: function () {
+        //        formSubmitHandler();
+        //    }
+        //});
+
+        //alert(deleteItem);
+        ////function UpdateRow(a) {
+        //    alert(a);
+        //}
+
+
+    
+
+
+
+
+    </script>
+
+
+</head>
+<body>
+    <h1>Basic Scenario</h1>
+    <div id="GatePas"></div>
+
+    <!--<div id="jsGrid"></div>-->
+    <!--  <table class="display nowrap" id="GatePas" style=" width:100%">
+        <thead>
+            <tr>
+                <th>GPS_ContainerNum</th>
+                <th>containerType</th>
+                <th>transportCompany</th>
+                <th>importer</th>
+                <!--<th>Married</th>-->
+    <!-- <th></th>
+    </tr>
+    </thead>
+    <!--<tbody id="table-body"></tbody>
+    </table>-->
+
+</body>
+</html>

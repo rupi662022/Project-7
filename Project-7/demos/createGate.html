@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="rtl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template.">
+    <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
+    <meta name="author" content="PIXINVENT">
+    <title>Basic Forms - Robust - Responsive Bootstrap 4 Admin Dashboard Template for Web Application</title>
+    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/custom-rtl.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/colors/palette-gradient.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/style-rtl.css">
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/jquery.min.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            U = JSON.parse(localStorage.getItem('User'));
+            ('.user-name').append(U.UserName)
+       /*     let email = U.UserEmail*/
+        $('.chkbox').click(function () {
+            checkBox = this.id
+            checkBoxValue = $(this).attr('value')
+            if (checkBoxValue == '-') {
+                $(this).attr('value','+')
+            //    $('#checkBoxValue').val('+')
+            }
+            else {
+                $(this).attr('value', '-')
+            //    $('#checkBoxValue').val('-')
+            }
+
+        });
+
+        });
+
+
+        function submitGatePass() {
+
+
+
+            //let email = localStorage["User.Email"];
+
+            var sqlDatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+            let gatePass = {
+                ContainerNum: document.getElementById("ContainerNum").value,
+                ContainerType: document.getElementById("ContType").value,
+                TransportCompany: document.getElementById("TransportCompName").value,
+                Importer: document.getElementById("ImporterName").value,
+                CustomsBroker: document.getElementById("CustomAgentName").value,
+                ShippingCompanyAndLine: document.getElementById("ShippingCompNamePlusLine").value,
+                StorageCertificate: document.getElementById("StorageCertificate").value,
+                CaseNumber: document.getElementById("AccountIDNum").value,
+                Note: document.getElementById("Comments").value,
+                OfficeNote: document.getElementById("OfficeComents").value,
+                GoToRepair: document.getElementById("SendToMaintinance").value,
+                ReturnFromRepair: document.getElementById("ReturnedFromMaintinance").value,
+                UserEmail: document.getElementById("WorkerEmail").value,
+                IsActive: '+',
+                CreatedDate: sqlDatetime
+
+            }
+
+
+            ajaxCall("POST", "../api/GatePass", JSON.stringify(gatePass), postSuccessCB, postErrorCB);
+
+            return false;
+
+
+        }
+
+
+
+
+        function postSuccessCB() {
+            console.log("success");
+        }
+
+        function postErrorCB(err) {
+            alert(err);
+        }
+
+
+
+
+
+    </script>
+</head>
+<body class="vertical-layout vertical-content-menu 2-columns   menu-expanded fixed-navbar" data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
+
+    <!-- fixed-top-->
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
+        <div class="navbar-wrapper">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav flex-row">
+                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="../../../html/rtl/vertical-content-menu-template/index.html">
+                            <!--<img class="brand-logo" alt="robust admin logo" src="../../../app-assets/images/logo/logo-dark-sm.png">-->
+                            <h3 class="brand-text">שי שירותי נמל</h3>
+                        </a>
+                    </li>
+                    <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
+                </ul>
+            </div>
+            <div class="navbar-container content">
+                <div class="collapse navbar-collapse" id="navbar-mobile">
+                    <ul class="nav navbar-nav mr-auto float-left">
+                        <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu">         </i></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav float-right">
+
+                        <li class="dropdown dropdown-user nav-item">
+                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name">   User Name</span></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="login-simple.html"><i class="ft-power"></i> Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-6 col-12 mb-2">
+                    <h2 class="content-header-title">יצירת גייטפס</h2>
+                </div>
+            </div>
+
+            <div class="main-menu menu-static menu-light menu-accordion menu-shadow" data-scroll-to-active="true" style="width:15%">
+                <div class="main-menu-content">
+                    <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                        <li class=" nav-item"><a href="index.html"><i class="fa fa-home"></i><span class="menu-title" data-i18n="nav.dash.main">עמוד הבית</span></a></li>
+                        <li class=" nav-item" style="border: thin solid black;"><a href="#"><i class="fa fa-file-text-o"></i><span class="menu-title" data-i18n="nav.templates.main"><b>יצירת גייטפס</b></span></a></li>
+                        <li class=" nav-item"><a href="#"><i class="fa fa-server"></i><span class="menu-title" data-i18n="nav.page_layouts.main">ניהול גייטפסים</span></a></li>
+                        <li class=" nav-item"><a href="#"><i class="fa fa-car"></i><span class="menu-title" data-i18n="nav.navbars.main">נהגים</span><!--<span class="badge badge badge-success float-right mr-2">New</span>--></a></li>
+                        <li class=" nav-item"><a href="#"><i class="fa fa-users"></i><span class="menu-title" data-i18n="nav.vertical_nav.main">עמילי מכס</span></a></li>
+                        <li class=" nav-item"><a href="#"><i class="icon-equalizer"></i><span class="menu-title" data-i18n="nav.horz_nav.main">Horizontal Nav</span></a></li>
+                        <li class=" nav-item">
+                            <a href="#"><i class="icon-direction"></i><span class="menu-title" data-i18n="nav.page_headers.main">Page Headers</span></a>
+                            <ul class="menu-content">
+                                <li><a class="menu-item" href="headers-breadcrumbs-basic.html" data-i18n="nav.page_headers.headers_breadcrumbs_basic">Breadcrumbs basic</a></li>
+                                <li><a class="menu-item" href="headers-breadcrumbs-top.html" data-i18n="nav.page_headers.headers_breadcrumbs_top">Breadcrumbs top</a></li>
+                                <li><a class="menu-item" href="headers-breadcrumbs-bottom.html" data-i18n="nav.page_headers.headers_breadcrumbs_bottom">Breadcrumbs bottom</a></li>
+                                <li><a class="menu-item" href="headers-breadcrumbs-top-with-description.html" data-i18n="nav.page_headers.headers_breadcrumbs_top_with_description">Breadcrumbs top with desc</a></li>
+                                <li><a class="menu-item" href="headers-breadcrumbs-with-button.html" data-i18n="nav.page_headers.headers_breadcrumbs_with_button">Breadcrumbs with button</a></li>
+                                <li><a class="menu-item" href="headers-breadcrumbs-with-round-button.html" data-i18n="nav.page_headers.headers_breadcrumbs_with_round_button">Breadcrumbs with button 2</a></li>
+                                <li><a class="menu-item" href="headers-breadcrumbs-with-button-group.html" data-i18n="nav.page_headers.headers_breadcrumbs_with_button_group">Breadcrumbs with buttons</a></li>
+                                <li><a class="menu-item" href="headers-breadcrumbs-with-description.html" data-i18n="nav.page_headers.headers_breadcrumbs_breadcrumbs_with_description">Breadcrumbs with desc</a></li>
+                                <li><a class="menu-item" href="headers-breadcrumbs-with-search.html" data-i18n="nav.page_headers.headers_breadcrumbs_breadcrumbs_with_search">Breadcrumbs with search</a></li>
+                                <li><a class="menu-item" href="headers-breadcrumbs-with-stats.html" data-i18n="nav.page_headers.headers_breadcrumbs_breadcrumbs_with_stats">Breadcrumbs with stats</a></li>
+                            </ul>
+                        </li>
+                        <li class=" nav-item">
+                            <a href="#"><i class="icon-social-facebook"></i><span class="menu-title" data-i18n="nav.footers.main">Footers</span></a>
+                            <ul class="menu-content">
+                                <li><a class="menu-item" href="footer-light.html" data-i18n="nav.footers.footer_light">Footer Light</a></li>
+                                <li><a class="menu-item" href="footer-dark.html" data-i18n="nav.footers.footer_dark">Footer Dark</a></li>
+                                <li><a class="menu-item" href="footer-transparent.html" data-i18n="nav.footers.footer_transparent">Footer Transparent</a></li>
+                                <li><a class="menu-item" href="footer-fixed.html" data-i18n="nav.footers.footer_fixed">Footer Fixed</a></li>
+                                <li><a class="menu-item" href="footer-components.html" data-i18n="nav.footers.footer_components">Footer Components</a></li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <!-- Basic form layout section start -->
+                <section id="basic-form-layouts">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div></div>
+                                <div class="card-header">
+
+                                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-content collpase show">
+
+                                    <form class="form form-horizontal">
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control" for="userinput1">מספר מכולה</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" id="ContainerNum" class="form-control border-primary" placeholder="Container Num" name="ContainerNum">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <!--<div class="form-group row">
+                                                        <label class="col-md-3 label-control" for="userinput2">סוג</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
+                                                        </div>
+                                                    </div>-->
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row ">
+                                                        <label class="col-md-3 label-control" for="ContType">יבואן</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" id="ImporterName" class="form-control border-primary" placeholder="Importer Name" name="ImporterName">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control" for="ContType">סוג</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control" for="TransportCompName">חברת תובלה</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" id="TransportCompName" class="form-control border-primary" placeholder="Transport Company" name="TransportCompName" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control" for="AccountIDNum">תיק מספר</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" id="AccountIDNum" class="form-control border-primary" placeholder="AccountIDNum" name="AccountIDNum">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control" for="CustomAgentName">עמיל מכס</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control border-primary" type="text" placeholder="Custom Agen" id="CustomAgentName" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control" for="ShippingCompNamePlusLine">חברת ספנות+קו</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control border-primary" type="text" placeholder="Shipping Company and Line" id="ShippingCompNamePlusLine">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control">תעודת אחסנה</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control border-primary" type="text" placeholder="Storage Certificate" id="StorageCertificate">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control" for="OfficeNotes"> הערות משרד</label>
+                                                        <div class="col-md-9">
+                                                            <textarea id="Comments" rows="5" class="form-control border-primary" name="Comments" placeholder="הערות משרד"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+
+                                                        <label class="col-md-3 label-control " for="SendToMaintinance">יצא לתיקון</label>
+                                                        <div class="col-md-9">
+                                                            <input type="checkbox" VALUE='-' class="chkbox" name="SendToMaintinance" id="SendToMaintinance">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-group row">
+
+                                                        <label class="col-md-3 label-control " for="ReturnedFromMaintinance">חזר מתיקון</label>
+                                                        <div class="col-md-9">
+                                                            <input type="checkbox" VALUE='-' class="chkbox" name="ReturnedFromMaintinance" id="ReturnedFromMaintinance">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control">משתמש</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control border-primary" type="text" placeholder="Worker Email" id="WorkerEmail">
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control" for="Notes">הערות</label>
+                                                        <div class="col-md-9">
+                                                            <textarea id="OfficeComents" rows="5" class="form-control border-primary" name="OfficeComents" placeholder="הערות"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-actions center">
+                                                <button type="button" class="btn btn-warning mr-1">
+                                                    <i class="ft-x"></i> Cancel
+                                                </button>
+                                                <button type="submit" onclick="submitGatePass()" class="btn btn-primary">
+                                                    <i class="fa fa-check-square-o"></i> Save
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- // Basic form layout section end -->
+            </div>
+        </div>
+    </div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="footer footer-static footer-light navbar-border">
+        <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
+    </footer>
+
+    <!-- BEGIN VENDOR JS-->
+    <!--<script src="../../../app-assets/vendors/js/vendors.min.js"></script>-->
+    <script src="../app-assets/vendors/js/vendors.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="../../../app-assets/vendors/js/charts/jquery.sparkline.min.js"></script>
+    <script src="../../../app-assets/vendors/js/ui/headroom.min.js"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN ROBUST JS-->
+    <script src="../../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../../app-assets/js/core/app.js"></script>
+    <!-- END ROBUST JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="../../../app-assets/js/scripts/ui/breadcrumbs-with-stats.js"></script>
+    <!-- END PAGE LEVEL JS-->
+</body>
+</html>

@@ -1,0 +1,349 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template.">
+    <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
+    <meta name="author" content="PIXINVENT">
+
+    <title>jsGrid - Basic Scenario</title>
+
+    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="demos.css" />
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
+    <link rel="stylesheet" type="text/css" href="../css/theme.css" />
+
+    <script src="../external/jquery/jquery-1.8.3.js"></script>
+
+    <script src="../srcc/jsgrid.core.js"></script>
+    <script src="../srcc/jsgrid.load-indicator.js"></script>
+    <script src="../srcc/jsgrid.load-strategies.js"></script>
+    <script src="../srcc/jsgrid.sort-strategies.js"></script>
+    <script src="../srcc/jsgrid.field.js"></script>
+    <script src="../srcc/fields/jsgrid.field.text.js"></script>
+    <script src="../srcc/fields/jsgrid.field.number.js"></script>
+    <script src="../srcc/fields/jsgrid.field.select.js"></script>
+    <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
+    <script src="../srcc/fields/jsgrid.field.control.js"></script>
+
+    <style>
+        #Add {
+            font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
+            font-weight: 300;
+            font-size: 14px;
+            float: right;
+            margin-right: 50px;
+        }
+
+        p, h1, h2, h3, span, td, tr, table {
+            font-family: sans-serif;
+        }
+    </style>
+
+    <script>
+
+        $(document).ready(function () {
+            let transportCompany = "אא";
+            ajaxCall("GET", "../api/GatePass?transportCompany=" + transportCompany, "", getSCB, getECB);
+            if (localStorage.getItem('User') == null) {
+                window.location.href = "login.html";
+            }
+
+            //$('.jsgrid-delete-button').click(function () {
+            //    //checkBox = this.id
+            //    //checkBoxValue = $(this).attr('value')
+            //    //if (checkBoxValue == '-') {
+            //    //    $(this).attr('value', '+')
+            //    //    $('#checkBoxValue').val('+')
+            //    EditRow(item)
+
+            //});
+        });
+
+        //}
+        function getECB() {
+            alert("cant get company table")
+        }
+
+        function getSCB(GatePasList) {
+            GateList = GatePasList;
+            $("#GatePas").jsGrid({
+                data: GateList,
+                height: "70%",
+                width: "100%",
+                filtering: true,
+                editing: true,
+                inserting: true,
+                sorting: true,
+                paging: true,
+                autoload: true,
+                pageSize: 15,
+                pageButtonCount: 5,
+                deleteConfirm: function (item) {
+                    return "GatePass  \"" + item.Id + "\" will be removed. Are you sure?";
+                },
+                controller: GateList,
+                fields: [
+                    { name: "Id", title: 'קוד גייטפס', type: "text", width: 100 },
+                    { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100 },
+                    { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100 },
+                    { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100 },
+                    { name: "Importer", type: "text", title: "יבואן", width: 100 },
+                    /*        { type: "control" }*/
+
+                    //{ name: "ContainerNum", type: "text", width: 50 },
+                    //{ name: "ContainerType", type: "text", width: 50 },
+                    //{ name: "TransportCompany", type: "text", width: 100 },
+                    //{ name: "Importer", type: "text", width: 100 },
+                    //{ name: "note", type: "select", items: GateList.blabla, valueField: "Id", textField: "Name" } ,
+
+
+                    {
+                        type: "control",
+                        modeSwitchButton: false,
+                        editButton: false,
+                        headerTemplate: function () {
+                            return $("<button>").attr("type", "button").text("Add")//מוסיף שורה שלא צריך
+                                .on("click", function () {
+                                    showDetailsDialog("Add", {});
+                                    sendToArchive(item);
+                                });
+                        }
+                    }
+                ]
+            });
+            //alert("finish get 2 name to table");
+
+
+        }
+
+
+
+
+
+        function sendToArchive(item) {
+            console.log(item)
+
+            id = item.Id
+            ajaxCall("PUT", "../api/GatePass?id=" + id, PUTSCB, PUTECB);
+
+
+        }
+
+
+        function PUTSCB() {
+            console.log("Sent to Archive")
+        }
+        function PUTECB() {
+            console.log("Didnt Sent to Archive")
+        }
+
+
+        //function EditRow(item) {
+        //    console.log(item);
+        //}
+
+
+
+        //$("#detailsDialog").dialog({
+        //    autoOpen: false,
+        //    width: 400,
+        //    close: function () {
+        //        $("#detailsForm").validate().resetForm();
+        //        $("#detailsForm").find(".error").removeClass("error");
+        //    }
+        //});
+
+        //$("#detailsForm").validate({
+        //    rules: {
+        //        id: "required",
+        //        containerNum: "required"
+        //        //containerNum: { required: true, range: [18, 150] },
+        //        //address: { required: true, minlength: 10 },
+        //        //country: "required"
+        //    },
+        //    messages: {
+        //        id: "Please enter id",
+        //        containerNum: "Please enter Container Number",
+        //        //address: "Please enter address (more than 10 chars)",
+        //        //country: "Please select country"
+        //    },
+        //    submitHandler: function () {
+        //        formSubmitHandler();
+        //    }
+        //});
+
+        //alert(deleteItem);
+        ////function UpdateRow(a) {
+        //    alert(a);
+        //}
+
+
+
+        function byebye() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        }
+
+
+
+
+    </script>
+
+
+</head>
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+
+    <!-- fixed-top-->
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
+        <div class="navbar-wrapper">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav flex-row">
+                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="../../../html/rtl/vertical-content-menu-template/index.html">
+                            <!--<img class="brand-logo" alt="robust admin logo" src="../../../app-assets/images/logo/logo-dark-sm.png">-->
+                            <h3 class="brand-text">שי שירותי נמל</h3>
+                        </a>
+                    </li>
+                    <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
+                </ul>
+            </div>
+            <div class="navbar-container content">
+                <div class="collapse navbar-collapse" id="navbar-mobile">
+                    <ul class="nav navbar-nav mr-auto float-left">
+                        <li class="dropdown dropdown-user nav-item">
+                            <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav float-right">
+                        <li class="dropdown dropdown-user nav-item">
+                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name" style="font-size:17px">   User Name</span></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="login-simple.html"><i class="ft-power"></i> Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+
+
+    <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-without-dd-arrow navbar-shadow" role="navigation" data-menu="menu-wrapper">
+        <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
+            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="index.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a>
+                </li>
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="createGate.html" data-toggle="dropdown"><i class="icon-note"></i><span data-i18n="nav.templates.main">יצירת גייטפס</span></a>
+                </li>
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <ul class="dropdown-menu" style="width:50%">
+                        <li data-menu="">
+                            <a class="dropdown-item" href="basic - Copy.html"  data-toggle="dropdown"><p>גייטפסים פעילים</p></a>
+                        </li>
+                        <li class="disabled" data-menu="">
+                            <a class="dropdown-item" href="archive.html" style="border:solid 1px gray; background-color:#d5f4e6" data-toggle="dropdown"><p> ארכיון</p></a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a>
+
+                </li>
+                <li class="dropdown mega-dropdown nav-item" data-menu="megamenu">
+                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-user-following"></i><span data-i18n="nav.category.pages">עמילי מכס</span></a>
+
+                </li>
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" style="font-size:18px;" href="#" data-toggle="dropdown"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui">לקוחות</span></a>
+
+                </li>
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms">דשבורד</span></a>
+
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="app-content container center-layout mt-2">
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-6 col-12 mb-2">
+                    <h3 class="content-header-title mb-0">
+                        ניהול גייטפסים
+                    </h3>
+                </div>
+
+            </div>
+            <div class="content-body">
+                <!-- Basic scenario start -->
+                <section id="basic">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Basic Scenario</h4>
+                                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h1>Basic Scenario</h1>
+                                <div> <button id="Add">הוסף גייטפס חדש</button></div>
+                                <div id="GatePas"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer footer-static footer-light navbar-shadow">
+        <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
+    </footer>
+    <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+    <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/jsgrid/jsgrid.min.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/jsgrid/griddata.js"></script>
+    <script src="../../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../../app-assets/js/core/app.js"></script>
+    <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  
+    <script src="../Scripts/GmailFunctions.js"></script>
+
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="js/jsPDF/dist/jspdf.min.js"></script>
+    <script src="FileSaver.js"></script>
+    <script src="../Scripts/Ajax1.js"></script>
+    <script src="../Scripts/Ajax2.js"></script>
+    <script src="../Scripts/APIWITHKEY.js"></script>
+    <script src="../Scripts/TaskAjax.js"></script>
+    <script src="../Scripts/Gmail API Init.js"></script>
+    <script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.iw.IGHhY2ETigM.O/m=debug_error/exm=auth2,client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCPeroE8gK_NXdeawOw-yQ9z6uDXtw/cb=gapi.loaded_1" async=""></script>
+    <script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.iw.IGHhY2ETigM.O/m=auth2,client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCPeroE8gK_NXdeawOw-yQ9z6uDXtw/cb=gapi.loaded_0" async=""></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="../Scripts/Ajax1.js"></script>
+    <title>Gmail API Quickstart</title>
+    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            ajaxCall("GET", "../api/GmailAPI", "", SuccGmailInit, ErrGmailInit);
+        });
+    });
+
+
+    function SuccGmailInit(href) {
+        window.location.replace(href)
+        alert("in suc")
+    }
+
+    function ErrGmailInit(href) {
+
+
+        alert("in error")
+    }
+</script>
