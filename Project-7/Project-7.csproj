@@ -155,9 +155,32 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\GatePassController.cs" />
+    <Compile Include="Controllers\GmailAPIController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OCRController.cs" />
+    <Compile Include="Controllers\TransportCompanyController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\DAL\DataServices.cs" />
+    <Compile Include="Models\DevelopersGuide.cs" />
+    <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\Entry.cs" />
+    <Compile Include="Models\Feed.cs" />
+    <Compile Include="Models\GatePass.cs" />
+    <Compile Include="Models\Link.cs" />
+    <Compile Include="Models\Link2.cs" />
+    <Compile Include="Models\OAuthTokenViewModel.cs" />
+    <Compile Include="Models\OCR.cs" />
+    <Compile Include="Models\Program.cs" />
+    <Compile Include="Models\RequestParameters.cs" />
+    <Compile Include="Models\Root.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Xml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,9 +189,39 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="demos\archive.html" />
+    <Content Include="demos\basic - Copy.html" />
+    <Content Include="demos\basic.html" />
+    <Content Include="demos\createGate.html" />
+    <Content Include="demos\custom-row-renderer.html" />
+    <Content Include="demos\db.js" />
+    <Content Include="demos\demos.css" />
+    <Content Include="demos\driversDemo.html" />
+    <Content Include="demos\login.html" />
+    <Content Include="demos\register.html" />
+    <Content Include="demos\validation.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Pages\archive.html" />
+    <Content Include="Pages\CompanyTable.html" />
+    <Content Include="Pages\CreateExample.html" />
+    <Content Include="Pages\CreateGatePass.html" />
+    <Content Include="Pages\data-manipulation.html" />
+    <Content Include="Pages\demos.css" />
+    <Content Include="Pages\GatePassArchieve.html" />
+    <Content Include="Pages\GatePassCreationPage.html" />
+    <Content Include="Pages\login.html" />
+    <Content Include="Pages\ManageGates.html" />
+    <Content Include="Pages\MyGatePass.html" />
+    <Content Include="Pages\NewGmailInitPage.html" />
+    <Content Include="Pages\Old.html" />
+    <Content Include="Pages\recover-password.html" />
+    <Content Include="Pages\register.html" />
+    <Content Include="Pages\registerUser.html" />
+    <Content Include="Scripts\ajaxCalls.js" />
+    <Content Include="Scripts\ajaxCallsStub.js" />
+    <Content Include="Scripts\ajaxCallsWithKey.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -196,6 +249,44 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="srcc\fields\jsgrid.field.checkbox.js" />
+    <Content Include="srcc\fields\jsgrid.field.control.js" />
+    <Content Include="srcc\fields\jsgrid.field.number.js" />
+    <Content Include="srcc\fields\jsgrid.field.select.js" />
+    <Content Include="srcc\fields\jsgrid.field.text.js" />
+    <Content Include="srcc\fields\jsgrid.field.textarea.js" />
+    <Content Include="srcc\i18n\cs.js" />
+    <Content Include="srcc\i18n\de.js" />
+    <Content Include="srcc\i18n\el.js" />
+    <Content Include="srcc\i18n\es.js" />
+    <Content Include="srcc\i18n\fa.js" />
+    <Content Include="srcc\i18n\fr.js" />
+    <Content Include="srcc\i18n\he.js" />
+    <Content Include="srcc\i18n\it.js" />
+    <Content Include="srcc\i18n\ja.js" />
+    <Content Include="srcc\i18n\ka.js" />
+    <Content Include="srcc\i18n\Ko.js" />
+    <Content Include="srcc\i18n\lt.js" />
+    <Content Include="srcc\i18n\pl.js" />
+    <Content Include="srcc\i18n\pt-br.js" />
+    <Content Include="srcc\i18n\pt.js" />
+    <Content Include="srcc\i18n\ru.js" />
+    <Content Include="srcc\i18n\tr.js" />
+    <Content Include="srcc\i18n\zh-cn.js" />
+    <Content Include="srcc\i18n\zh-tw.js" />
+    <Content Include="srcc\jsgrid.core.js" />
+    <Content Include="srcc\jsgrid.field.js" />
+    <Content Include="srcc\jsgrid.load-indicator.js" />
+    <Content Include="srcc\jsgrid.load-strategies.js" />
+    <Content Include="srcc\jsgrid.sort-strategies.js" />
+    <Content Include="srcc\jsgrid.validation.js" />
+    <Content Include="test\hebrew.js" />
+    <Content Include="test\index.html" />
+    <Content Include="test\jsgrid.field.tests.js" />
+    <Content Include="test\jsgrid.sort-strategies.tests.js" />
+    <Content Include="test\jsgrid.tests.js" />
+    <Content Include="test\jsgrid.validation.tests.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -210,13 +301,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Web1.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="demos\" />
-    <Folder Include="Models\DAL\" />
-    <Folder Include="Pages\" />
+    <Folder Include="src\fields\" />
+    <Folder Include="src\js\" />
+    <Folder Include="src\scss\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
