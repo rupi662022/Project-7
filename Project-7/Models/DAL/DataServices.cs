@@ -412,7 +412,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandNegGatePass(SqlConnection con)
         {
-            string commandStr = "SELECT * FROM SHAY_GatePass";
+            string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_IsActive='-'";
             SqlCommand cmd = createCommand(con, commandStr);
 
             return cmd;
@@ -463,7 +463,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandDrivers(SqlConnection con)
         {
-            string commandStr = "SELECT * FROM SHAY_Driver WHERE GPS_IsActive='-'";
+            string commandStr = "SELECT * FROM SHAY_Driver ";
             SqlCommand cmd = createCommand(con, commandStr);
 
             return cmd;
