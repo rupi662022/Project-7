@@ -64,61 +64,108 @@ namespace Project_7.Models.DAL
                     con.Close();
             }
         }
-        private SqlCommand CreateSelectCommandTableCompany(SqlConnection con, string transportCompany)
-        {
-            string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_TransportCompany =@transportCompany AND GPS_IsActive=N'+'";
-            SqlCommand cmd = createCommand(con, commandStr);
-            cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
-            cmd.Parameters["@transportCompany"].Value = transportCompany;
-            return cmd;
-        }
 
-        /// Read Drivers
-        public List<Driver> ReadDrivers()
-        {
-            SqlConnection con = null;
+        //data set 
+        //private SqlCommand CreateSelectCommandTableCompany(SqlConnection con, string transportCompany)
+        //{
+        //    string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_TransportCompany =@transportCompany AND GPS_IsActive=N'+'";
+        //    SqlCommand cmd = createCommand(con, commandStr);
+        //    cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
+        //    cmd.Parameters["@transportCompany"].Value = transportCompany;
+        //    return cmd;
+        //}
 
-            try
-            {
-                con = Connect("FinalProject");
-                SqlCommand selectCommand = CreateSelectCommandDrivers(con);
-                List<Driver> DriversList = new List<Driver>();
-                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+        ///// Read Drivers
+        ///// 
+        //SqlDataAdapter da;
+        //public DataTable dt;
 
-                while (dataReader.Read())
-                {
-                    Driver driver = new Driver();
-                    driver.DriverID = Convert.ToInt32(dataReader["DRI_DriverId"]);
-                    driver.TransportComany = (string)dataReader["DRI_TransportCompany"];
-                    driver.DriverFname = (string)dataReader["DRI_Fname"];
-                    driver.DriverLname = (string)dataReader["DRI_Lname"];
-                    driver.DriverPhone = (string)dataReader["DRI_PhoneNumber"];
-                    driver.DriverLicense = (string)dataReader["DRI_licenseType"];
+        //public DataTable ReadDrivers()
+        //{
+
+        //    SqlConnection con = null;
+
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+
+        //        string selectString = "SELECT * FROM SHAY_Driver";
+
+        //        da = new SqlDataAdapter(selectString, con);
+
+        //        DataSet ds = new DataSet();
+
+        //        da.Fill(ds);
+
+        //        dt = ds.Tables[0];
+
+        //        return dt;
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        // write to log file
+
+        //        throw new Exception("Error in Read to DataTable", ex);
+        //    }
+
+        //    finally
+        //    {
+        //        if (con != null)
+        //            con.Close();
+        //    }
+        //}
 
 
-                    DriversList.Add(driver);
-                }
-                return DriversList;
-            }
-            catch (Exception ex)
-            {
 
-                throw new Exception("failed in reading of Drivers list", ex);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
-        private SqlCommand CreateSelectCommandDrivers(SqlConnection con)
-        {
-            string commandStr = "SELECT * FROM SHAY_Driver";
-            SqlCommand cmd = createCommand(con, commandStr);
-            //cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
-            //cmd.Parameters["@transportCompany"].Value = transportCompany;
-            return cmd;
-        }
+
+
+
+        //public List<Driver> ReadDrivers()
+        //{
+        //    SqlConnection con = null;
+
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+        //        SqlCommand selectCommand = CreateSelectCommandDrivers(con);
+        //        List<Driver> DriversList = new List<Driver>();
+        //        SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+        //        while (dataReader.Read())
+        //        {
+        //            Driver driver = new Driver();
+        //            driver.DriverID = Convert.ToInt32(dataReader["DRI_DriverId"]);
+        //            driver.TransportComany = (string)dataReader["DRI_TransportCompany"];
+        //            driver.DriverFname = (string)dataReader["DRI_Fname"];
+        //            driver.DriverLname = (string)dataReader["DRI_Lname"];
+        //            driver.DriverPhone = (string)dataReader["DRI_PhoneNumber"];
+        //            driver.DriverLicense = (string)dataReader["DRI_licenseType"];
+
+
+        //            DriversList.Add(driver);
+        //        }
+        //        return DriversList;
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw new Exception("failed in reading of Drivers list", ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //            con.Close();
+        //    }
+        //}
+        //private SqlCommand CreateSelectCommandDrivers(SqlConnection con)
+        //{
+        //    string commandStr = "SELECT * FROM SHAY_Driver";
+        //    SqlCommand cmd = createCommand(con, commandStr);
+        //    //cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
+        //    //cmd.Parameters["@transportCompany"].Value = transportCompany;
+        //    return cmd;
+        //}
 
 
 
