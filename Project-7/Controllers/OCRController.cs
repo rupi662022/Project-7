@@ -4,10 +4,10 @@
 //using System.Net;
 //using System.Net.Http;
 //using System.Web.Http;
-//using PROJECT_5.Models;
+//using Project_7.Models;
 //using IronOcr;
 
-//namespace PROJECT_5.Controllers
+//namespace Project_7.Controllers
 //{
 //    public class OCRController : ApiController
 //    {

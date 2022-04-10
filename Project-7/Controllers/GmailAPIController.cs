@@ -1,4 +1,4 @@
-﻿using PROJECT_5.Models;
+﻿using PROJECT_7.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace PROJECT_5.Controllers
+namespace PROJECT_7.Controllers
 {
     public class GmailAPIController : ApiController
     {
@@ -21,8 +21,6 @@ namespace PROJECT_5.Controllers
         {
             RequestParameters NewLogin = new RequestParameters();
             return NewLogin.CreateHref();
-
-
         }
 
         // POST: api/GmailAPI
