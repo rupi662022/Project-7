@@ -61,7 +61,11 @@ namespace Project_7.Models
         //    ds.ReadDrivers();
         //}
 
-
+        public List<Driver> ReadDrivers()
+        {
+            DataServices ds = new DataServices();
+            return ds.ReadDrivers();
+        }
         //public int UpdateDrivers()
         //{
         //    DataServices ds = new DataServices();

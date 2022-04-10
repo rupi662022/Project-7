@@ -23,7 +23,15 @@ namespace Project_7.Models.DAL
 
         ////בדיקה טבלה
         ///
-        
+
+        SqlConnection Connect(string connectionStringName)
+        {
+            string connectionString = WebConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            return con;
+        }
+
 
 
 
@@ -121,51 +129,55 @@ namespace Project_7.Models.DAL
 
 
 
-        //public List<Driver> ReadDrivers()
-        //{
-        //    SqlConnection con = null;
+        public List<Driver> ReadDrivers()
+        {
+            SqlConnection con = null;
 
-        //    try
-        //    {
-        //        con = Connect("FinalProject");
-        //        SqlCommand selectCommand = CreateSelectCommandDrivers(con);
-        //        List<Driver> DriversList = new List<Driver>();
-        //        SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandDrivers(con);
+                List<Driver> DriversList = new List<Driver>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-        //        while (dataReader.Read())
-        //        {
-        //            Driver driver = new Driver();
-        //            driver.DriverID = Convert.ToInt32(dataReader["DRI_DriverId"]);
-        //            driver.TransportComany = (string)dataReader["DRI_TransportCompany"];
-        //            driver.DriverFname = (string)dataReader["DRI_Fname"];
-        //            driver.DriverLname = (string)dataReader["DRI_Lname"];
-        //            driver.DriverPhone = (string)dataReader["DRI_PhoneNumber"];
-        //            driver.DriverLicense = (string)dataReader["DRI_licenseType"];
+                while (dataReader.Read())
+                {
+                    Driver d = new Driver();
+                    d.DriverID = Convert.ToInt32(dataReader["DRI_DriverId"]);
+                    d.TransportComany = (string)dataReader["DRI_TransportCompany"];
+                    d.DriverFname = (string)dataReader["DRI_Fname"];
+                    d.DriverLname = (string)dataReader["DRI_Lname"];
+                    d.DriverPhone = (string)dataReader["DRI_PhoneNumber"];
+                    d.DriverLicense = (string)dataReader["DRI_licenseType"];
 
 
-        //            DriversList.Add(driver);
-        //        }
-        //        return DriversList;
-        //    }
-        //    catch (Exception ex)
-        //    {
+                    DriversList.Add(d);
+                }
+                return DriversList;
+            }
+            catch (Exception ex)
+            {
 
-        //        throw new Exception("failed in reading of Drivers list", ex);
-        //    }
-        //    finally
-        //    {
-        //        if (con != null)
-        //            con.Close();
-        //    }
-        //}
-        //private SqlCommand CreateSelectCommandDrivers(SqlConnection con)
-        //{
-        //    string commandStr = "SELECT * FROM SHAY_Driver";
-        //    SqlCommand cmd = createCommand(con, commandStr);
-        //    //cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
-        //    //cmd.Parameters["@transportCompany"].Value = transportCompany;
-        //    return cmd;
-        //}
+                throw new Exception("failed in reading of Drivers list", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandDrivers(SqlConnection con)
+        {
+            string commandStr = "SELECT * FROM SHAY_Driver";
+            SqlCommand cmd = createCommand(con, commandStr);
+            //SqlCommand command = new SqlCommand(commandStr, con);
+            //command.CommandType = System.Data.CommandType.Text;
+            //command.CommandTimeout = 30;
+            //return command;
+            //cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
+            //cmd.Parameters["@transportCompany"].Value = transportCompany;
+            return cmd;
+        }
 
 
 
@@ -201,14 +213,6 @@ namespace Project_7.Models.DAL
 
 
 
-
-        SqlConnection Connect(string connectionStringName)
-        {
-            string connectionString = WebConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
-            SqlConnection con = new SqlConnection(connectionString);
-            con.Open();
-            return con;
-        }
 
 
 
