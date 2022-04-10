@@ -170,12 +170,7 @@ namespace Project_7.Models.DAL
         {
             string commandStr = "SELECT * FROM SHAY_Driver";
             SqlCommand cmd = createCommand(con, commandStr);
-            //SqlCommand command = new SqlCommand(commandStr, con);
-            //command.CommandType = System.Data.CommandType.Text;
-            //command.CommandTimeout = 30;
-            //return command;
-            //cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
-            //cmd.Parameters["@transportCompany"].Value = transportCompany;
+  
             return cmd;
         }
 
@@ -185,9 +180,100 @@ namespace Project_7.Models.DAL
 
 
 
+        public int InsertGatePass(Driver d)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("NewDriver", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@DriverId", d.DriverID);
+                        cmd.Parameters.AddWithValue("@TransportCompany", d.TransportComany);
+                        cmd.Parameters.AddWithValue("@FirstName", d.DriverFname);
+                        cmd.Parameters.AddWithValue("@LastName", d.DriverLname);
+                        cmd.Parameters.AddWithValue("@PhoneNumber", d.DriverPhone);
+                        cmd.Parameters.AddWithValue("@LicenceType", d.DriverLicense);
 
 
 
+
+                        numEffected = cmd.ExecuteNonQuery();
+
+                    //if (result.Equals(1))
+                    //{
+                    //    res = 1;
+
+                    //}
+                    //return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
+
+
+
+
+        public int UpdateGatePass(Driver d)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("UpdateDriver", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DriverId", d.DriverID);
+                    cmd.Parameters.AddWithValue("@TransportCompany", d.TransportComany);
+                    cmd.Parameters.AddWithValue("@FirstName", d.DriverFname);
+                    cmd.Parameters.AddWithValue("@LastName", d.DriverLname);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", d.DriverPhone);
+                    cmd.Parameters.AddWithValue("@LicenceType", d.DriverLicense);
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+                    //if (result.Equals(1))
+                    //{
+                    //    res = 1;
+
+                    //}
+                    //return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
 
 
         //public List<User> ReadUsers()

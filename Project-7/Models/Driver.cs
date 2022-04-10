@@ -60,6 +60,11 @@ namespace Project_7.Models
         //    DataServices ds = new DataServices();
         //    ds.ReadDrivers();
         //}
+        public int UpdateGatePass()
+        {
+            DataServices ds = new DataServices();
+            return ds.UpdateDrivers(this);
+        }
 
         public List<Driver> ReadDrivers()
         {

@@ -23,6 +23,12 @@ namespace Project_7.Controllers
             return "value";
         }
 
+        public HttpResponseMessage Put([FromBody] Driver d)
+        {
+            d.UpdateDrivers();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
         //public List<Driver> Get()
         //{
         //    Driver driver = new Driver();
