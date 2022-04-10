@@ -48,18 +48,18 @@ namespace Project_7.Models
         //    DataServices ds = new DataServices();
         //    return ds.InsertDriver(this);
         //    //return res;
+        ////}
+
+
+
+
+
+        //public List<Driver> ReadDrivers()
+        //{
+
+        //    DataServices ds = new DataServices();
+        //    ds.ReadDrivers();
         //}
-
-
-
-
-
-        public List<Driver> ReadDrivers()
-        {
-
-            DataServices ds = new DataServices();
-            ds.ReadDrivers();
-        }
 
 
         //public int UpdateDrivers()

@@ -12,16 +12,30 @@
     <link href="../css/jquery-ui.structure.css" rel="stylesheet" />
     <script src="../external/jquery/jquery-1.8.3.js"></script>
     <script src="../css/jquery-ui.js"></script>
-    <script src="../srcc/jsgrid.core.js"></script>
-    <script src="../srcc/jsgrid.load-indicator.js"></script>
-    <script src="../srcc/jsgrid.load-strategies.js"></script>
-    <script src="../srcc/jsgrid.sort-strategies.js"></script>
-    <script src="../srcc/jsgrid.field.js"></script>
-    <script src="../srcc/fields/jsgrid.field.text.js"></script>
-    <script src="../srcc/fields/jsgrid.field.number.js"></script>
-    <script src="../srcc/fields/jsgrid.field.select.js"></script>
-    <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
-    <script src="../srcc/fields/jsgrid.field.control.js"></script>
+    <!--<script src="../src1/jsgrid.core.js"></script>
+    <script src="../src1/jsgrid.load-indicator.js"></script>
+    <script src="../src1/jsgrid.load-strategies.js"></script>
+    <script src="../src1/jsgrid.sort-strategies.js"></script>
+    <script src="../src1/jsgrid.field.js"></script>
+    <script src="../src1/fields/jsgrid.field.text.js"></script>
+    <script src="../src1/fields/jsgrid.field.number.js"></script>
+    <script src="../src1/fields/jsgrid.field.select.js"></script>
+    <script src="../src1/fields/jsgrid.field.checkbox.js"></script>
+    <script src="../src1/fields/jsgrid.field.control.js"></script>-->
+
+    <script src="../src1/fields/jsgrid.field.text.js"></script>
+    <script src="../src1/fields/jsgrid.field.textarea.js"></script>
+    <script src="../src1/fields/jsgrid.field.select.js"></script>
+    <script src="../src1/fields/jsgrid.field.number.js"></script>
+    <script src="../src1/fields/jsgrid.field.control.js"></script>
+    <script src="../src1/fields/jsgrid.field.checkbox.js"></script>
+    <script src="../src1/jsgrid.core.js"></script>
+    <script src="../src1/jsgrid.field.js"></script>
+    <script src="../src1/jsgrid.load-indicator.js"></script>
+    <script src="../src1/jsgrid.load-strategies.js"></script>
+    <script src="../src1/jsgrid.sort-strategies.js"></script>
+    <script src="../src1/jsgrid.validation.js"></script>
+
 
     <style>
         #Add {
@@ -53,14 +67,14 @@
 
         $(document).ready(function () {
             let transportCompany = "אא";
-            
+
             //Create New GatePass
             $('#Add').on("click", function () {
                 window.location.href = "basic.html";
             });
 
 
-  
+
             //end of set Date
 
             $.ajax({
@@ -76,7 +90,7 @@
                 };
 
                 MyDateField.prototype = new jsGrid.Field({
-                    css: "datepicker",
+             /*       css: "datepicker",*/
                     //align: "center",
 
                     sorter: function (date1, date2) {
@@ -118,7 +132,7 @@
                     sorter: true,
                     paging: true,
                     autoload: true,
-                    
+
                     pageSize: 15,
                     pageButtonCount: 7,
                     deleteConfirm: function (item) {
@@ -180,7 +194,7 @@
                         //},
 
                         { name: "Importer", type: "text", title: "יבואן", width: 100, align: "center", },
-                        { name: "CreatedDate", title: "תאריך יצירה", type:"date", width: 100, filtering:true,align: "center" },
+                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, filtering: true, align: "center" },
 
                         {
                             type: "control",
@@ -238,7 +252,7 @@
     <h1>ניהול גייטפסים</h1>
     <div> <button id="Add">הוסף גייטפס חדש</button></div>
     <div dir="rtl" id="GatePas"></div>
-    <p>Date: <input type="text" id="datepicker"></p>
+    <!--<p>Date: <input type="text" id="datepicker"></p>-->
     <!--<div id="jsGrid"></div>-->
     <!--  <table class="display nowrap" id="GatePas" style=" width:100%">
         <thead>

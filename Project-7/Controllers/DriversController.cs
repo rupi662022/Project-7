@@ -10,12 +10,12 @@ namespace Project_7.Controllers
 {
     public class DriversController : ApiController
     {
-        // GET: api/Drivers
-        public IEnumerable<Driver> Get()
-        {
-            Driver driver = new Driver();
-            return driver.ReadDrivers();
-        }
+        //// GET: api/Drivers
+        //public IEnumerable<Driver> Get()
+        //{
+        //    Driver driver = new Driver();
+        //    return driver.ReadDrivers();
+        //}
 
         // GET: api/Drivers/5
         public string Get(int id)

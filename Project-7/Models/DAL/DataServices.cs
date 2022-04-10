@@ -66,14 +66,14 @@ namespace Project_7.Models.DAL
         }
 
         //data set 
-        //private SqlCommand CreateSelectCommandTableCompany(SqlConnection con, string transportCompany)
-        //{
-        //    string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_TransportCompany =@transportCompany AND GPS_IsActive=N'+'";
-        //    SqlCommand cmd = createCommand(con, commandStr);
-        //    cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
-        //    cmd.Parameters["@transportCompany"].Value = transportCompany;
-        //    return cmd;
-        //}
+        private SqlCommand CreateSelectCommandTableCompany(SqlConnection con, string transportCompany)
+        {
+            string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_TransportCompany =@transportCompany AND GPS_IsActive=N'+'";
+            SqlCommand cmd = createCommand(con, commandStr);
+            cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
+            cmd.Parameters["@transportCompany"].Value = transportCompany;
+            return cmd;
+        }
 
         ///// Read Drivers
         ///// 
