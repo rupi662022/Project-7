@@ -211,7 +211,7 @@ namespace Project_7.Models.DAL
 
 
 
-  
+
 
 
         public int InsertDriver(Driver d)
@@ -364,6 +364,66 @@ namespace Project_7.Models.DAL
         //    command.CommandTimeout = 30;
         //    return command;
         //}
+
+
+
+
+
+
+
+        //טבלה גייטפס- ארכיון
+
+        public List<GatePass> ReadNegativGatePass()
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandNegGatePass(con);
+                List<GatePass> GatePassList = new List<GatePass>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dataReader.Read())
+                {
+                    GatePass g = new GatePass();
+
+                    g.Id = Convert.ToInt32(dataReader["GPS_Id"]);
+                    g.ContainerNum = (string)dataReader["GPS_ContainerNum"];
+                    g.ContainerType = (string)dataReader["GPS_ContainerType"];
+                    g.TransportCompany = (string)dataReader["GPS_TransportCompany"];
+                    g.Importer = (string)dataReader["GPS_Importer"];
+                    g.CreatedDate = Convert.ToDateTime(dataReader["GPS_CreatedDate"]);
+
+                    GatePassList.Add(g);
+                }
+                return GatePassList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of Negetive GatePass list", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandNegGatePass(SqlConnection con)
+        {
+            string commandStr = "SELECT * FROM SHAY_GatePass";
+            SqlCommand cmd = createCommand(con, commandStr);
+
+            return cmd;
+        }
+
+
+
+
+
+
+        //טבלה נהגים
         public List<Driver> ReadDrivers()
         {
             SqlConnection con = null;
@@ -403,7 +463,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandDrivers(SqlConnection con)
         {
-            string commandStr = "SELECT * FROM SHAY_Driver";
+            string commandStr = "SELECT * FROM SHAY_Driver WHERE GPS_IsActive='-'";
             SqlCommand cmd = createCommand(con, commandStr);
 
             return cmd;
@@ -453,7 +513,7 @@ namespace Project_7.Models.DAL
             return numEffected;
         }
 
-      
+
 
 
         //public int UpdateGatePass(GatePass g)
@@ -541,7 +601,7 @@ namespace Project_7.Models.DAL
 
         //SEND GATEPASS TO ARCHIVE
 
-        public void SendGateToArchive( int id)
+        public void SendGateToArchive(int id)
         {
             SqlConnection con = null;
 
@@ -569,7 +629,7 @@ namespace Project_7.Models.DAL
             SqlCommand cmd = createCommand(con, commandStr);
             cmd.Parameters.Add("@Id", SqlDbType.Int);
             cmd.Parameters["@Id"].Value = id;
-   
+
             return cmd;
         }
 
@@ -638,10 +698,10 @@ namespace Project_7.Models.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@UserID", user.UserID);
-                        cmd.Parameters.AddWithValue("@UserName", user.UserName);
-                        cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
-                         cmd.Parameters.AddWithValue("@UserPassword", user.UserPassword);
+                    cmd.Parameters.AddWithValue("@UserID", user.UserID);
+                    cmd.Parameters.AddWithValue("@UserName", user.UserName);
+                    cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
+                    cmd.Parameters.AddWithValue("@UserPassword", user.UserPassword);
                     cmd.Parameters.AddWithValue("@UserCompany", user.UserCompany);
 
                     //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
@@ -650,13 +710,13 @@ namespace Project_7.Models.DAL
                     //var result = returnParameter.Value;
                     numEffected = cmd.ExecuteNonQuery();
 
-                        //if (result.Equals(1))
-                        //{
-                        //    res = 1;
+                    //if (result.Equals(1))
+                    //{
+                    //    res = 1;
 
-                        //}
-                        //return res;
-                    
+                    //}
+                    //return res;
+
                 }
             }
             catch (Exception ex)

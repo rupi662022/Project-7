@@ -65,7 +65,7 @@
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
-                url: "../api/Drivers",
+                url: "../api/GatePass",
                 data: "json"
 
             }).done(function (data) {
@@ -87,19 +87,19 @@
                     pageSize: 15,
                     pageButtonCount: 7,
                     deleteConfirm: function (item) {
-                        return "?ימחק. האם אתה בטוח \"" + item.Id + "\" נהג ";
+                        return "?ימחק. האם אתה בטוח \"" + item.Id + "\" גייטפס ";
                     },
                     controller: {
 
                         loadData: function (filter) {
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
-                                return (!filter.DriverID || item.DriverID.indexOf(filter.DriverID) > -1)
-                                    && (!filter.TransportComany || item.TransportComany.indexOf(filter.TransportComany) > -1)
-                                    && (!filter.DriverFname || item.DriverFname.indexOf(filter.DriverFname) > -1)
-                                    && (!filter.DriverLname || item.DriverLname.indexOf(filter.DriverLname) > -1)
-                                    && (!filter.DriverPhone || item.DriverPhone.indexOf(filter.DriverPhone) > -1)
-                                    && (!filter.DriverLicense || item.DriverLicense.indexOf(filter.DriverLicense) > -1);
+                                return (!filter.Id || item.Id.indexOf(filter.Id) > -1)
+                                    && (!filter.ContainerNum || item.ContainerNum.indexOf(filter.ContainerNum) > -1)
+                                    && (!filter.ContainerType || item.ContainerType.indexOf(filter.ContainerType) > -1)
+                                    && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1)
+                                    && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1)
+                                    && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
                             });
                         },
                         updateItem: function (item) {
@@ -118,12 +118,12 @@
                         }
                     },
                     fields: [
-                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", },
-                        { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center", },
-                        { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center", },
-                        { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center", },
-                        { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center", },
-                        { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center", },
+                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center", },
+                        { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100, align: "center", },
+                        { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100, align: "center", },
+                        { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100, align: "center", },
+                        { name: "Importer", type: "text", title: "יבואן", width: 100, align: "center", },
+                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, filtering: true, align: "center" },
                         {
                             type: "control",
                         },
