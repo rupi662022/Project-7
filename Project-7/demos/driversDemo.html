@@ -55,23 +55,23 @@
     <script>
 
 
-    
-            $(document).ready(function () {
-  
+
+        $(document).ready(function () {
+
             //end of set Date
 
             $.ajax({
                 type: "GET",
-            contentType: "application/json; charset=utf-8",
+                contentType: "application/json; charset=utf-8",
                 url: "../api/Drivers",
-            data: "json"
+                data: "json"
             }).done(function (data) {
 
 
 
-                    $("#GatePas").jsGrid({
+                $("#GatePas").jsGrid({
 
-                        height: "70%",
+                    height: "70%",
                     width: "100%",
                     filtering: true,
                     editing: true,
@@ -101,19 +101,19 @@
                             });
 
                         },
-                    updateItem: function (item) {
+                        updateItem: function (item) {
                             return $.ajax({
-                        type: "PUT",
-                       url: "../api/Drivers",
-                    data: item
+                                type: "PUT",
+                                url: "../api/Drivers",
+                                data: item
                             });
 
                         },
-                    deleteItem: function (item) {
+                        deleteItem: function (item) {
                             return $.ajax({
-                        type: "PUT",
-                       url: "../api/Drivers";
-                    data: item
+                                type: "PUT",
+                                url: "../api/Drivers";
+                                data: item
                             });
 
                         }
@@ -125,14 +125,14 @@
                         { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center", },
                         { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center", },
                         { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center", },
-                            //{ name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, filtering: true, align: "center" },
+                        //{ name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, filtering: true, align: "center" },
 
-                            {
-                                type: "control",
+                        {
+                            type: "control",
 
-                            },
+                        },
 
-                
+
 
 
                     ]
