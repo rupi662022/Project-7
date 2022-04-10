@@ -42,25 +42,18 @@ namespace Project_7.Models
 
         }
 
-        //public int InsertDriver()
-        //{
-        //    //int res = 0;
-        //    DataServices ds = new DataServices();
-        //    return ds.InsertDriver(this);
-        //    //return res;
-        ////}
+        public int InsertDriver()
+        {
+      
+            DataServices ds = new DataServices();
+            return ds.InsertDriver(this);
+
+        }
 
 
 
 
-
-        //public List<Driver> ReadDrivers()
-        //{
-
-        //    DataServices ds = new DataServices();
-        //    ds.ReadDrivers();
-        //}
-        public int UpdateGatePass()
+        public int UpdateDrivers()
         {
             DataServices ds = new DataServices();
             return ds.UpdateDrivers(this);

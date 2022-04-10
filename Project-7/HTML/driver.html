@@ -81,14 +81,14 @@
                     width: "100%",
                     filtering: true,
                     editing: true,
-                    /*inserting: true,*/
+                    inserting: true,
                     sorting: true,
                     sorter: true,
                     paging: true,
                     autoload: true,
 
                     pageSize: 15,
-                    pageButtonCount: 7,
+                    pageButtonCount: 5,
                     deleteConfirm: function (item) {
                         return "?ימחק. האם אתה בטוח \"" + item.Id + "\" נהג ";
                     },
@@ -115,15 +115,16 @@
                             });
 
                         },
-                    deleteItem: function (item) {
-                            return $.ajax({
-                        type: "PUT",
-                       url: "../api/Drivers",
+                        insertItem: function (item) {
+                        return $.ajax({
+                        type: "POST",
+                         url: "../api/Drivers",
                          data: item
                             });
 
-                        }
-                    },
+                            }
+                        },
+
                     fields: [
                         { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", },
                         { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center", },
@@ -131,7 +132,7 @@
                         { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center", },
                         { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center", },
                         { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center", },
-                            //{ name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, filtering: true, align: "center" },
+                         
 
                             {
                                 type: "control",
