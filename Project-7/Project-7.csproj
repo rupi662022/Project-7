@@ -197,7 +197,7 @@
     <Content Include="demos\custom-row-renderer.html" />
     <Content Include="demos\db.js" />
     <Content Include="demos\demos.css" />
-    <Content Include="demos\driver.html" />
+    <Content Include="HTML\driver.html" />
     <Content Include="demos\driversDemo.html" />
     <Content Include="demos\login.html" />
     <Content Include="demos\register.html" />

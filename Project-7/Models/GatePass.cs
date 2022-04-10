@@ -80,10 +80,10 @@ namespace Project_7.Models
 
         public int InsertGatePass()
         {
-            //int res = 0;
+           
             DataServices ds = new DataServices();
             return ds.InsertGatePass(this);
-            //return res;
+           
         }
 
         ////בדיקה לטבלה  [HttpGet]
