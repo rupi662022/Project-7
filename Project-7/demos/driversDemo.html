@@ -46,13 +46,6 @@
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
 
     <style>
-        #Add {
-            font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
-            font-weight: 300;
-            font-size: 14px;
-            float: right;
-            margin-right: 50px;
-        }
 
         p, h1, h2, h3, span, td, tr, table {
             font-family: sans-serif;
@@ -61,68 +54,93 @@
 
     <script>
 
-        $(document).ready(function () {
 
-            if (localStorage.getItem('User') == null) {
-                window.location.href = "login.html";
-            }
+    
+            $(document).ready(function () {
+  
+            //end of set Date
 
-            //$('.jsgrid-delete-button').click(function () {
-            //    //checkBox = this.id
-            //    //checkBoxValue = $(this).attr('value')
-            //    //if (checkBoxValue == '-') {
-            //    //    $(this).attr('value', '+')
-            //    //    $('#checkBoxValue').val('+')
-            //    EditRow(item)
-
-            //});
-        });
-
-        //}
-        function getECB() {
-            alert("cant get company table")
-        }
+            $.ajax({
+                type: "GET",
+            contentType: "application/json; charset=utf-8",
+                url: "../api/Drivers",
+            data: "json"
+            }).done(function (data) {
 
 
 
+                    $("#GatePas").jsGrid({
+
+                        height: "70%",
+                    width: "100%",
+                    filtering: true,
+                    editing: true,
+                    /*inserting: true,*/
+                    sorting: true,
+                    sorter: true,
+                    paging: true,
+                    autoload: true,
+
+                    pageSize: 15,
+                    pageButtonCount: 7,
+                    deleteConfirm: function (item) {
+                        return "?ימחק. האם אתה בטוח \"" + item.Id + "\" נהג ";
+                    },
+                    controller: {
+
+                        loadData: function (filter) {
+                            return $.grep(data, function (item) {
+                                // client-side filtering below (be sure conditions are correct)
+                                return (!filter.Id || item.Id.indexOf(filter.Id) > -1)
+                                    && (!filter.ContainerNum || item.ContainerNum.indexOf(filter.ContainerNum) > -1)
+                                    && (!filter.ContainerType || item.ContainerType.indexOf(filter.ContainerType) > -1)
+                                    && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1)
+                                    && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1)
+                                    && (!filter.Note || item.Note.indexOf(filter.Note) > -1)
+                                    && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
+                            });
+
+                        },
+                    updateItem: function (item) {
+                            return $.ajax({
+                        type: "PUT",
+                       url: "../api/Drivers",
+                    data: item
+                            });
+
+                        },
+                    deleteItem: function (item) {
+                            return $.ajax({
+                        type: "PUT",
+                    url: "../api/Drivers
+                    data: item
+                            });
+
+                        }
+                    },
+                    fields: [
+                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", },
+                        { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center", },
+                        { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center", },
+                        { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center", },
+                        { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center", },
+                        { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center", },
+                            //{ name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, filtering: true, align: "center" },
+
+                            {
+                                type: "control",
+
+                            },
+
+                
 
 
+                    ]
+                });
 
+            });
 
-        function sendToArchive(item) {
-            console.log(item)
-
-            id = item.Id
-            ajaxCall("PUT", "../api/GatePass?id=" + id, PUTSCB, PUTECB);
-
-
-        }
-
-
-        function PUTSCB() {
-            console.log("Sent to Archive")
-        }
-        function PUTECB() {
-            console.log("Didnt Sent to Archive")
-        }
-
-
-        //function EditRow(item) {
-        //    console.log(item);
-        //}
-
-
-
-        //$("#detailsDialog").dialog({
-        //    autoOpen: false,
-        //    width: 400,
-
-
-
-        function byebye() {
-            localStorage.clear();
-            window.location.href = "login.html";
-        }
+        })
 
 
 
