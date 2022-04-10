@@ -286,6 +286,10 @@
     <Content Include="src\fields\jsgrid.field.js" />
     <Content Include="src\js\core\app-menu.js" />
     <Content Include="src\js\core\app.js" />
+    <Content Include="src\js\core\libraries\bootstrap.min-old.js" />
+    <Content Include="src\js\core\libraries\bootstrap.min.js" />
+    <Content Include="src\js\core\libraries\jquery.min-old.js" />
+    <Content Include="src\js\core\libraries\jquery.min.js" />
     <Content Include="test\hebrew.js" />
     <Content Include="test\index.html" />
     <Content Include="test\jsgrid.field.tests.js" />
