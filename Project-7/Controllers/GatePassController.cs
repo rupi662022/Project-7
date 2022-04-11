@@ -19,7 +19,7 @@ namespace Project_7.Controllers
         }
         public IEnumerable<GatePass> Get()
         {
-            Driver gatePass = new GatePass();
+            GatePass gatePass = new GatePass();
             return gatePass.ReadNegativGatePass();
         }
 
