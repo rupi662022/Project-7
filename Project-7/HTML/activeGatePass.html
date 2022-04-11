@@ -47,7 +47,6 @@
 
     <style>
 
-
         p, h1, h2, h3, span, td, tr, table {
             font-family: sans-serif;
         }
@@ -59,7 +58,6 @@
 
     <script>
 
-
         $(document).ready(function () {
 
             //end of set Date
@@ -67,10 +65,11 @@
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
-                url: "../api/Drivers",
+                url: "../api/GatePass",
                 data: "json"
 
             }).done(function (data) {
+
 
 
                 $("#GatePas").jsGrid({
@@ -79,74 +78,60 @@
                     width: "100%",
                     filtering: true,
                     editing: true,
-                    inserting: true,
+                    /*inserting: true,*/
                     sorting: true,
                     sorter: true,
                     paging: true,
                     autoload: true,
 
                     pageSize: 15,
-                    pageButtonCount: 5,
+                    pageButtonCount: 7,
                     deleteConfirm: function (item) {
-                        return "?ימחק. האם אתה בטוח \"" + item.Id + "\" נהג ";
+                        return "?ימחק. האם אתה בטוח \"" + item.Id + "\" גייטפס ";
                     },
                     controller: {
 
                         loadData: function (filter) {
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
-                                return (!filter.DriverID || item.DriverID.indexOf(filter.DriverID) > -1)
-                                    && (!filter.TransportComany || item.TransportComany.indexOf(filter.TransportComany) > -1)
-                                    && (!filter.DriverFname || item.DriverFname.indexOf(filter.DriverFname) > -1)
-                                    && (!filter.DriverLname || item.DriverLname.indexOf(filter.DriverLname) > -1)
-                                    && (!filter.DriverPhone || item.DriverPhone.indexOf(filter.DriverPhone) > -1)
-                                    && (!filter.DriverLicense || item.DriverLicense.indexOf(filter.DriverLicense) > -1);
-
+                                return (!filter.Id || item.Id.indexOf(filter.Id) > -1)
+                                    && (!filter.ContainerNum || item.ContainerNum.indexOf(filter.ContainerNum) > -1)
+                                    && (!filter.ContainerType || item.ContainerType.indexOf(filter.ContainerType) > -1)
+                                    && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1)
+                                    && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1)
+                                    && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
                             });
-
                         },
                         updateItem: function (item) {
                             return $.ajax({
                                 type: "PUT",
-                                url: "../api/Drivers",
+                                url: "../api/GatePass",
                                 data: item
                             });
-
                         },
-                        insertItem: function (item) {
+                        deleteItem: function (item) {
                             return $.ajax({
-                                type: "POST",
-                                url: "../api/Drivers",
+                                type: "PUT",
+                                url: "../api/GatePass",
                                 data: item
                             });
-
                         }
                     },
-
                     fields: [
-                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", },
-                        { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center", },
-                        { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center", },
-                        { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center", },
-                        { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center", },
-                        { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center", },
-
+                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center", },
+                        { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100, align: "center", },
+                        { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100, align: "center", },
+                        { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100, align: "center", },
+                        { name: "Importer", type: "text", title: "יבואן", width: 100, align: "center", },
+                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, filtering: true, align: "center" },
                         {
                             type: "control",
-
                         },
-
                     ]
                 });
 
             });
-
-            //function byebye() {
-            //    localStorage.clear();
-            //    window.location.href = "login.html";
-            //}
         })
-
 
     </script>
     <script>
@@ -180,9 +165,7 @@
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
                     <ul class="nav navbar-nav mr-auto float-left">
-                        <li class="dropdown dropdown-user nav-item">
-                            <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
-                        </li>
+                        <li class="dropdown dropdown-user nav-item"><button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button></li>
                     </ul>
                     <ul class="nav navbar-nav float-right">
                         <li class="dropdown dropdown-user nav-item">
@@ -204,16 +187,16 @@
     <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-without-dd-arrow navbar-shadow" role="navigation" data-menu="menu-wrapper">
         <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="gatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
                 <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
                     <ul class="dropdown-menu" style="width:50%">
-                        <li data-menu=""><a class="dropdown-item" href="basic - Copy.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
-                        <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>ארכיון</p></a></li>
+                        <li data-menu=""><a class="dropdown-item" href="activeGatePass.html" style="border:solid 1px gray; background-color:#d5f4e6" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
+                        <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray ;" data-toggle="dropdown"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="driversPage.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
                 <!--<li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> עמילי מכס</span></a></li>-->
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> לקוחות</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms"> דשבורד</span></a></li>
@@ -226,7 +209,7 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-12 col-12 mb-2">
-                    <h3 class="content-header-title mb-0" style="margin-right:50%"><b> נהגים</b></h3>
+                    <h3 class="content-header-title mb-0" style="margin-right:50%"><b> גייטפסים פעילים</b></h3>
                 </div>
 
             </div>
@@ -236,6 +219,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
+
 
                                 <div id="GatePas"></div>
 

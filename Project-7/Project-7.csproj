@@ -199,6 +199,7 @@
     <Content Include="demos\custom-row-renderer.html" />
     <Content Include="demos\db.js" />
     <Content Include="demos\demos.css" />
+    <Content Include="HTML\activeGatePass.html" />
     <Content Include="HTML\driver.html" />
     <Content Include="demos\driversDemo.html" />
     <Content Include="demos\login.html" />
@@ -211,7 +212,6 @@
     <Content Include="HTML\CreatGatePass.html" />
     <Content Include="HTML\db.js" />
     <Content Include="HTML\demos.css" />
-    <Content Include="HTML\driversPage.html" />
     <Content Include="HTML\gatePass.html" />
     <Content Include="HTML\home.html" />
     <Content Include="HTML\transportComp.html" />
