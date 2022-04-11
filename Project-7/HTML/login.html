@@ -30,7 +30,7 @@
         $(document).ready(function () {
             $("#logId").submit(CeckUser)
             if (localStorage.getItem('User')) {
-                window.location.href = "archivePage.html";
+                window.location.href = "driver.html";
             }
 
         })
@@ -53,7 +53,12 @@
         function Sucse(U) {
             console.log(U);
             if (U.UserPassword == password) {
-                window.location.href = "archive.html";
+                if (U.UserID < 3) {
+                    window.location.href = "archivePage.html";
+                }
+                else {
+                    window.location.href = "driver.html";
+                }
                 localSave(U);
             }
             else {
@@ -74,7 +79,7 @@
 
 
 
-        function byebye() {
+        function disConnect() {
             localStorage.clear();
             window.location.href = "login.html";
         }
@@ -137,7 +142,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="" style="margin-right:100px">
-                                        <button onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
+                                        <button onclick="disConnect()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
                                     </div>
                                 </div>
                             </div>

@@ -4,16 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Project_7.Models;
 
 namespace PROJECT_7.Controllers
 {
     public class TransportCompanyController : ApiController
     {
         // GET: api/TransportCompany
-        public IEnumerable<string> Get()
+        public IEnumerable<TransportCompany> Get()
         {
-            return new string[] { "value1", "value2" };
+            TransportCompany tCompany = new TransportCompany();
+            return tCompany.ReadTransportCompany();
         }
+
 
         // GET: api/TransportCompany/5
         public string Get(int id)

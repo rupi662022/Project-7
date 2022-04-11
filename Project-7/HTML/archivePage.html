@@ -134,6 +134,14 @@
         })
 
     </script>
+    <script>
+
+        function byebye() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        }
+
+    </script>
 
 
 </head>
@@ -148,8 +156,7 @@
                     <li class="nav-item">
                         <a class="navbar-brand" href="../../../html/rtl/vertical-content-menu-template/index.html">
                             <!--<img class="brand-logo" alt="robust admin logo" src="../../../app-assets/images/logo/logo-dark-sm.png">-->
-                            <h3 class="brand-text">שי שירותי נמל</h3>
-                        </a>
+                            <h3 class="brand-text">שי שירותי נמל</h3></a>
                     </li>
                     <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
                 </ul>
@@ -157,9 +164,7 @@
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
                     <ul class="nav navbar-nav mr-auto float-left">
-                        <li class="dropdown dropdown-user nav-item">
-                            <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
-                        </li>
+                        <li class="dropdown dropdown-user nav-item"><button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button></li>
                     </ul>
                     <ul class="nav navbar-nav float-right">
                         <li class="dropdown dropdown-user nav-item">
@@ -181,19 +186,18 @@
     <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-without-dd-arrow navbar-shadow" role="navigation" data-menu="menu-wrapper">
         <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
-                <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="gatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
+                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
                     <ul class="dropdown-menu" style="width:50%">
                         <li data-menu=""><a class="dropdown-item" href="basic - Copy.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
-                        <li class="active" data-menu=""><a class="dropdown-item" href="archive.html" style="border:solid 1px gray;" data-toggle="dropdown"><p> ארכיון</p></a></li>
+                        <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray ; background-color:#d5f4e6" data-toggle="dropdown"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="driversPage.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
-                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages">עמילי מכס</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui">לקוחות</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms">דשבורד</span></a></li>
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
+                <!--<li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> עמילי מכס</span></a></li>-->
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> לקוחות</span></a></li>
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms"> דשבורד</span></a></li>
 
             </ul>
         </div>
@@ -202,10 +206,8 @@
     <div class="app-content container center-layout mt-2">
         <div class="content-wrapper">
             <div class="content-header row">
-                <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title mb-0">
-                        נהגים
-                    </h3>
+                <div class="content-header-left col-md-12 col-12 mb-2">
+                    <h3 class="content-header-title mb-0" style="margin-right:50%"><b> ארכיון</b></h3>
                 </div>
 
             </div>
@@ -215,18 +217,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <!--<div class="card-header">
-                                    <h4 class="card-title"></h4>-->
-                                <!--<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                                <div class="heading-elements">
-                                    <ul class="list-inline mb-0">
-                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                    </ul>
-                                </div>-->
-                                <!--<--><!--/div>-->
+
 
                                 <div id="GatePas"></div>
 
