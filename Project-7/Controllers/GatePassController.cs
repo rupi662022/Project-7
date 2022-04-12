@@ -17,19 +17,22 @@ namespace Project_7.Controllers
             g.InsertGatePass();
             return Request.CreateResponse(HttpStatusCode.Created);
         }
+
+        [HttpGet]
+        [Route("api/GatePass/isActive")]
+        public IEnumerable<GatePass> Get(string isActive)
+        {
+            GatePass gatePass = new GatePass();
+            return gatePass.ReadNegativGatePass(isActive);
+        }
+
+
+
         public IEnumerable<GatePass> Get()
         {
             GatePass gatePass = new GatePass();
-            return gatePass.ReadNegativGatePass();
+            return gatePass.ReadgatePass();
         }
-
-        //בדיקה לטבלה
-        public List<GatePass> Get(string transportCompany)
-        {
-            GatePass gatePass = new GatePass();
-            return gatePass.ReadgatePass(transportCompany);
-        }
-
         //public List<GatePass> Get()
         //{
         //    GatePass gatePass = new GatePass();

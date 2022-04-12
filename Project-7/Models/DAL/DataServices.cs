@@ -35,20 +35,20 @@ namespace Project_7.Models.DAL
 
         //יצירת טבלה לפי חברת הובלה
 
-        public List<GatePass> ReadgatePass(string TransportCompany)
+        public List<GatePass> ReadgatePass()
         {
             SqlConnection con = null;
 
             try
             {
                 con = Connect("FinalProject");
-                SqlCommand selectCommand = CreateSelectCommandTableCompany(con, TransportCompany);
+                SqlCommand selectCommand = CreateSelectCommandGatePass(con);
                 List<GatePass> gatePassList = new List<GatePass>();
                 SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
                 while (dataReader.Read())
                 {
-                    GatePass a = new GatePass();
+                    GatePass a =new GatePass();
                     a.Id = Convert.ToInt32(dataReader["GPS_Id"]);
                     a.ContainerNum = (string)dataReader["GPS_ContainerNum"];
                     a.ContainerType = (string)dataReader["GPS_ContainerType"];
@@ -74,12 +74,11 @@ namespace Project_7.Models.DAL
         }
 
         //data set 
-        private SqlCommand CreateSelectCommandTableCompany(SqlConnection con, string transportCompany)
+        private SqlCommand CreateSelectCommandGatePass(SqlConnection con)
         {
-            string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_TransportCompany =@transportCompany AND GPS_IsActive=N'+'";
+            string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_IsActive=N'+'";
             SqlCommand cmd = createCommand(con, commandStr);
-            cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
-            cmd.Parameters["@transportCompany"].Value = transportCompany;
+ 
             return cmd;
         }
 
@@ -267,14 +266,14 @@ namespace Project_7.Models.DAL
 
         //טבלה גייטפס- ארכיון
 
-        public List<GatePass> ReadNegativGatePass()
+        public List<GatePass> ReadNegativGatePass(string isActive)
         {
             SqlConnection con = null;
 
             try
             {
                 con = Connect("FinalProject");
-                SqlCommand selectCommand = CreateSelectCommandNegGatePass(con);
+                SqlCommand selectCommand = CreateSelectCommandNegGatePass(con, isActive);
                 List<GatePass> GatePassList = new List<GatePass>();
                 SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
@@ -304,11 +303,12 @@ namespace Project_7.Models.DAL
                     con.Close();
             }
         }
-        private SqlCommand CreateSelectCommandNegGatePass(SqlConnection con)
+        private SqlCommand CreateSelectCommandNegGatePass(SqlConnection con,string isActive)
         {
-            string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_IsActive='-'";
+            string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_IsActive=@isActive";
             SqlCommand cmd = createCommand(con, commandStr);
-
+            cmd.Parameters.Add("@isActive", SqlDbType.NVarChar);
+            cmd.Parameters["@isActive"].Value = isActive;
             return cmd;
         }
 
@@ -317,7 +317,7 @@ namespace Project_7.Models.DAL
 
 
 
-        //טבלה נהגים
+        //Driver Actions
         public List<Driver> ReadDrivers()
         {
             SqlConnection con = null;
@@ -630,6 +630,135 @@ namespace Project_7.Models.DAL
 
 
 
+
+
+        ///Custom Brokers Actions
+
+
+        //Read
+        public List<CustomsBroker> ReadBrokers()
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandCustomsBroker(con);
+                List<CustomsBroker> CustomsBrokerList = new List<CustomsBroker>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dataReader.Read())
+                {
+                    CustomsBroker b = new CustomsBroker();
+                    b.Id = Convert.ToInt32(dataReader["CSB_Id"]);
+                    b.BrokerName = (string)dataReader["CSB_BrokerName"];
+                    b.Adress = (string)dataReader["CSB_Adress"];
+                    b.PhoneNumber = (string)dataReader["CSB_PhoneNumber"];
+                    b.Fax = (string)dataReader["CSB_FAX"];
+
+
+
+                    CustomsBrokerList.Add(b);
+                }
+                return CustomsBrokerList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of Customs Brokers list", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandCustomsBroker(SqlConnection con)
+        {
+            string commandStr = "SELECT * from SHAY_CustomsBroker ";
+            SqlCommand cmd = createCommand(con, commandStr);
+
+            return cmd;
+        }
+
+   ///Update
+
+        public int UpdateBroker(CustomsBroker b)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("UpdateCustomsBroker", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", b.Id);
+                    cmd.Parameters.AddWithValue("@BrokerName", b.BrokerName);
+                    cmd.Parameters.AddWithValue("@Adress", b.Adress);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", b.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@Fax", b.Fax);
+             
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
+
+        //insert
+
+        public int InsertBroker(CustomsBroker b)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("NewCustomsBroker", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@BrokerName", b.BrokerName);
+                    cmd.Parameters.AddWithValue("@Adress", b.Adress);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", b.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@Fax", b.Fax);
+
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
 
 
 

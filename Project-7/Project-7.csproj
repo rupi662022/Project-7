@@ -156,6 +156,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\BrokersController.cs" />
     <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\GatePassController.cs" />
     <Compile Include="Controllers\GmailAPIController.cs" />
@@ -167,6 +168,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\CustomsBroker.cs" />
     <Compile Include="Models\TransportCompany.cs" />
     <Compile Include="Models\DAL\DataServices.cs" />
     <Compile Include="Models\DevelopersGuide.cs" />
@@ -200,6 +202,7 @@
     <Content Include="demos\db.js" />
     <Content Include="demos\demos.css" />
     <Content Include="HTML\activeGatePass.html" />
+    <Content Include="HTML\CustomBrokers.html" />
     <Content Include="HTML\driver.html" />
     <Content Include="demos\driversDemo.html" />
     <Content Include="demos\login.html" />
@@ -210,12 +213,27 @@
     <Content Include="Global.asax" />
     <Content Include="HTML\archivePage.html" />
     <Content Include="HTML\CreatGatePass.html" />
-    <Content Include="HTML\db.js" />
     <Content Include="HTML\demos.css" />
     <Content Include="HTML\gatePass.html" />
     <Content Include="HTML\home.html" />
     <Content Include="HTML\transportComp.html" />
     <Content Include="HTML\login.html" />
+    <Content Include="jquery-ui-1.13.1.custom\external\jquery\jquery.js" />
+    <Content Include="jquery-ui-1.13.1.custom\images\ui-icons_444444_256x240.png" />
+    <Content Include="jquery-ui-1.13.1.custom\images\ui-icons_555555_256x240.png" />
+    <Content Include="jquery-ui-1.13.1.custom\images\ui-icons_777620_256x240.png" />
+    <Content Include="jquery-ui-1.13.1.custom\images\ui-icons_777777_256x240.png" />
+    <Content Include="jquery-ui-1.13.1.custom\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="jquery-ui-1.13.1.custom\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="jquery-ui-1.13.1.custom\jquery-ui.css" />
+    <Content Include="jquery-ui-1.13.1.custom\jquery-ui.js" />
+    <Content Include="jquery-ui-1.13.1.custom\jquery-ui.min.css" />
+    <Content Include="jquery-ui-1.13.1.custom\jquery-ui.min.js" />
+    <Content Include="jquery-ui-1.13.1.custom\jquery-ui.structure.css" />
+    <Content Include="jquery-ui-1.13.1.custom\jquery-ui.structure.min.css" />
+    <Content Include="jquery-ui-1.13.1.custom\jquery-ui.theme.css" />
+    <Content Include="jquery-ui-1.13.1.custom\jquery-ui.theme.min.css" />
+    <Content Include="jquery-ui-1.13.1.custom\LICENSE.txt" />
     <Content Include="Pages\archive.html" />
     <Content Include="Pages\CompanyTable.html" />
     <Content Include="Pages\CreateExample.html" />
@@ -257,6 +275,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="client_secret.json" />
     <Content Include="client_secret_79174569678-adeuegbvh6bn963o9c9666e3da9k80hu.apps.googleusercontent.com %281%29.json" />
+    <Content Include="jquery-ui-1.13.1.custom\package.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

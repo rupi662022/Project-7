@@ -86,21 +86,21 @@ namespace Project_7.Models
            
         }
 
-        public List<GatePass> ReadNegativGatePass()
+        //הבא את הגייטפסים הלא פעילים-בארכיון
+
+        public List<GatePass> ReadNegativGatePass(string isActive)
         {
             DataServices ds = new DataServices();
-            return ds.ReadNegativGatePass();
+            return ds.ReadNegativGatePass(isActive);
         }
 
 
-        ////בדיקה לטבלה  [HttpGet]
-        //[Route("api/''/''")]
-        public List<GatePass> ReadgatePass(string transportCompany)
+        //הבא את הגייטפסים הפעילים
+        public List<GatePass> ReadgatePass()
         {
             DataServices ds = new DataServices();
-            return ds.ReadgatePass(transportCompany);
+            return ds.ReadgatePass();
         }
-
 
         //שליחה לארכיון במידה וביצענו מחיקה
         public void SendGateToArchive(int id)

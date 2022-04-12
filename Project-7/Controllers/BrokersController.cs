@@ -8,13 +8,13 @@ using Project_7.Models;
 
 namespace Project_7.Controllers
 {
-    public class DriversController : ApiController
+    public class BrokersController : ApiController
     {
         //// GET: api/Drivers
-        public IEnumerable<Driver> Get()
+        public IEnumerable<CustomsBroker> Get()
         {
-            Driver driver = new Driver();
-            return driver.ReadDrivers();
+            CustomsBroker b = new CustomsBroker();
+            return b.ReadBrokers();
         }
 
         // GET: api/Drivers/5
@@ -25,22 +25,30 @@ namespace Project_7.Controllers
 
 
 
-        public HttpResponseMessage Post([FromBody] Driver d)
+        public HttpResponseMessage Post([FromBody] CustomsBroker b)
         {
-            d.InsertDriver();
+            b.InsertBroker();
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
 
 
 
-        public HttpResponseMessage Put([FromBody] Driver d)
+        public HttpResponseMessage Put([FromBody] CustomsBroker b)
         {
-            d.UpdateDrivers();
+            b.UpdateBroker();
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
 
+
+
+
+        //public List<Driver> Get()
+        //{
+        //    Driver driver = new Driver();
+        //    return driver.ReadDrivers();
+        //}
 
         // POST: api/Drivers
         public void Post([FromBody]string value)

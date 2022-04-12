@@ -61,16 +61,51 @@
         $(document).ready(function () {
 
             //end of set Date
-
+            let isActive = "-";
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
-                url: "../api/GatePass",
+                url: "../api/GatePass/isActive?isActive=" + isActive,
                 data: "json"
 
             }).done(function (data) {
 
 
+                ///Date to string function
+                var MyDateField = function (config) {
+                    jsGrid.Field.call(this, config);
+                };
+
+                MyDateField.prototype = new jsGrid.Field({
+                    /*       css: "datepicker",*/
+                    //align: "center",
+
+                    sorter: function (date1, date2) {
+                        return new Date(date1) - new Date(date2);
+                    },
+
+                    itemTemplate: function (value) {
+                        return new Date(value).toDateString();
+                    },
+                    //insertTemplate: function (value) {
+                    //    return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+                    //},
+
+                    //editTemplate: function (value) {
+                    //    return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+                    //},
+
+                    //insertValue: function () {
+                    //    return this._insertPicker.datepicker("getDate").toISOString();
+                    //},
+
+                    //editValue: function () {
+                    //    return this._editPicker.datepicker("getDate").toISOString();
+                    //}
+
+
+                });
+                jsGrid.fields.date = MyDateField;
 
                 $("#GatePas").jsGrid({
 
@@ -78,7 +113,6 @@
                     width: "100%",
                     filtering: true,
                     editing: true,
-                    /*inserting: true,*/
                     sorting: true,
                     sorter: true,
                     paging: true,
@@ -87,7 +121,7 @@
                     pageSize: 15,
                     pageButtonCount: 7,
                     deleteConfirm: function (item) {
-                        return "?ימחק. האם אתה בטוח \"" + item.Id + "\" גייטפס ";
+                        return "?ימחק לצמיתות. האם אתה בטוח \"" + item.Id + "\" גייטפס ";
                     },
                     controller: {
 
@@ -109,16 +143,16 @@
                                 data: item
                             });
                         },
-                        deleteItem: function (item) {
-                            return $.ajax({
-                                type: "PUT",
-                                url: "../api/GatePass",
-                                data: item
-                            });
-                        }
+                        //deleteItem: function (item) {
+                        //    return $.ajax({
+                        //        type: "PUT",
+                        //        url: "../api/GatePass",
+                        //        data: item
+                        //    });
+                        //}
                     },
                     fields: [
-                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center", },
+                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center",editing:false },
                         { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100, align: "center", },
                         { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100, align: "center", },
                         { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100, align: "center", },

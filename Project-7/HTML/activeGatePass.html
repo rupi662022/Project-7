@@ -33,7 +33,9 @@
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
 
     <script src="../external/jquery/jquery-1.8.3.js"></script>
-
+    <link href="../jquery-ui-1.13.1.custom/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="../jquery-ui-1.13.1.custom/jquery-ui.structure.css" rel="stylesheet" />
+    <script src="../jquery-ui-1.13.1.custom/jquery-ui.js"></script>
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -54,13 +56,39 @@
         .card {
             height: 1000px;
         }
+
+        #Add {
+            background-color: #3bafda;
+            font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
+            font-weight: 300;
+            font-size: 14px;
+            float: right;
+            margin-right: 50px;
+            margin-bottom: 10PX;
+            color: #fff;
+            border-color: #3bafda;
+            min-width: 8.5rem;
+        }
+
+
+        .my-custom-button {
+            background-image: url('../css/google-docs.png');
+            width: 16px;
+            height: 16px;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 
     <script>
 
         $(document).ready(function () {
 
-            //end of set Date
+            //Create New GatePass
+            $('#Add').on("click", function () {
+                window.location.href = "GatePass.html";
+            });
+    
 
             $.ajax({
                 type: "GET",
@@ -70,7 +98,41 @@
 
             }).done(function (data) {
 
+                ///Date to string function
+                var MyDateField = function (config) {
+                    jsGrid.Field.call(this, config);
+                };
 
+                MyDateField.prototype = new jsGrid.Field({
+                    /*       css: "datepicker",*/
+                    //align: "center",
+
+                    sorter: function (date1, date2) {
+                        return new Date(date1) - new Date(date2);
+                    },
+
+                    itemTemplate: function (value) {
+                        return new Date(value).toDateString();
+                    },
+                    //insertTemplate: function (value) {
+                    //    return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+                    //},
+
+                    //editTemplate: function (value) {
+                    //    return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+                    //},
+
+                    //insertValue: function () {
+                    //    return this._insertPicker.datepicker("getDate").toISOString();
+                    //},
+
+                    //editValue: function () {
+                    //    return this._editPicker.datepicker("getDate").toISOString();
+                    //}
+
+
+                });
+                jsGrid.fields.date = MyDateField;
 
                 $("#GatePas").jsGrid({
 
@@ -118,7 +180,7 @@
                         }
                     },
                     fields: [
-                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center", },
+                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center", editing: false },
                         { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100, align: "center", },
                         { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100, align: "center", },
                         { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100, align: "center", },
