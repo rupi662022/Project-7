@@ -44,6 +44,7 @@
 
 
         $(document).ready(function () {
+            $("#myGateForm").submit(submitGatePass)
             U = JSON.parse(localStorage.getItem('User'));
             ('.user-name').append(U.UserName)
             $('.chkbox').click(function () {
@@ -187,7 +188,7 @@
                                 </div>
                                 <div class="card-content collpase show">
 
-                                    <form class="form form-horizontal">
+                                    <form class="form form-horizontal" id="myGateForm">
                                         <div class="form-body">
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -327,7 +328,7 @@
                                                 <button type="button" class="btn btn-warning mr-1">
                                                     <i class="ft-x"></i> Cancel
                                                 </button>
-                                                <button type="submit" onclick="submitGatePass()" class="btn btn-primary">
+                                                <button type="submit"  class="btn btn-primary">
                                                     <i class="fa fa-check-square-o"></i> Save
                                                 </button>
                                             </div>
