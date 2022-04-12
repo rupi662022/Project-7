@@ -41,7 +41,8 @@
 			let userFull = $("#userFull").val();
 			let email = $("#email").val();
 			let password = $("#password").val();
-			let companyName = $("#userType").val();
+            let companyName = $("#userType").val();
+
 
 			let adduser = {
 				UserID: userNum,
@@ -49,6 +50,7 @@
 				UserEmail: email,
 				UserPassword: password,
                 userCompany: companyName,
+                userType:"C"
 			}
 
 			ajaxCall("POST", "../api/User", JSON.stringify(adduser), postSCB, postECB);
