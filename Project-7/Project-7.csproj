@@ -207,7 +207,7 @@
     <Content Include="HTML\driver.html" />
     <Content Include="demos\driversDemo.html" />
     <Content Include="demos\login.html" />
-    <Content Include="HTML\register.html" />
+    <Content Include="demos\register.html" />
     <Content Include="demos\validation.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -217,6 +217,7 @@
     <Content Include="HTML\demos.css" />
     <Content Include="HTML\gatePass.html" />
     <Content Include="HTML\home.html" />
+    <Content Include="HTML\registerU.html" />
     <Content Include="HTML\transportComp.html" />
     <Content Include="HTML\login.html" />
     <Content Include="jquery-ui-1.13.1.custom\external\jquery\jquery.js" />
