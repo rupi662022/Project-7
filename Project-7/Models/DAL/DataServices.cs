@@ -279,7 +279,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandNegGatePass(SqlConnection con, string isActive)
         {
-            string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_IsActive=@N'+'";
+            string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_IsActive=@isActive";
             SqlCommand cmd = createCommand(con, commandStr);
             cmd.Parameters.Add("@isActive", SqlDbType.NVarChar);
             cmd.Parameters["@isActive"].Value = isActive;
