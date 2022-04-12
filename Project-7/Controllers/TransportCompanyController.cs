@@ -24,6 +24,15 @@ namespace PROJECT_7.Controllers
             return "value";
         }
 
+
+
+        public HttpResponseMessage Put([FromBody]TransportCompany t)
+        {
+            t.UpdateTransportComany();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
+
         // POST: api/TransportCompany
         public void Post([FromBody]string value)
         {

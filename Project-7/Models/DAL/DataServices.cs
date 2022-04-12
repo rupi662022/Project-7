@@ -858,7 +858,7 @@ namespace Project_7.Models.DAL
 
         ///Update
 
-        public int UpdateCompany(TransportCompany t)
+        public int UpdateTransportComany(TransportCompany t)
         {
             //int res = 0;
             SqlConnection con = null;
