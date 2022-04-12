@@ -186,6 +186,8 @@
     <Compile Include="Models\Root.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Xml.cs" />
+    <Compile Include="OCR\Class1.cs" />
+    <Compile Include="OCR\DefaultController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +239,7 @@
     <Content Include="jquery-ui-1.13.1.custom\jquery-ui.theme.css" />
     <Content Include="jquery-ui-1.13.1.custom\jquery-ui.theme.min.css" />
     <Content Include="jquery-ui-1.13.1.custom\LICENSE.txt" />
+    <Content Include="OCR\HTMLOCR.html" />
     <Content Include="Pages\archive.html" />
     <Content Include="Pages\CompanyTable.html" />
     <Content Include="Pages\CreateExample.html" />

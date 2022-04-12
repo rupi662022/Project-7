@@ -1,0 +1,282 @@
+﻿<html>
+<head>
+    <style type="text/css">
+
+
+        #container1 {
+            margin: 0,auto;
+            background-color: aqua;
+            width: 2000px;
+            height: 500px;
+            display: flex;
+        }
+
+        .msg {
+            width: 20%;
+            height: 100%;
+            border: 2px solid black;
+            text-align: center;
+            font: 12px;
+        }
+    </style>
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="js/jsPDF/dist/jspdf.min.js"></script>
+    <script src="FileSaver.js"></script>
+    <script src="../Scripts/Ajax1.js"></script>
+    <script src="../Scripts/Ajax2.js"></script>
+    <script src="../Scripts/APIWITHKEY.js"></script>
+    <script src="../Scripts/TaskAjax.js"></script>
+    <script src="../Scripts/Gmail API Init.js"></script>
+    <script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.iw.IGHhY2ETigM.O/m=debug_error/exm=auth2,client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCPeroE8gK_NXdeawOw-yQ9z6uDXtw/cb=gapi.loaded_1" async=""></script>
+    <script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.iw.IGHhY2ETigM.O/m=auth2,client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCPeroE8gK_NXdeawOw-yQ9z6uDXtw/cb=gapi.loaded_0" async=""></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="../Scripts/Ajax1.js"></script>
+    <title>Gmail API Quickstart</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <p>Gmail API Quickstart</p>
+
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize_button" style="display: none;">Authorize</button>
+    <button id="signout_button" style="display: none;">Sign Out</button>
+
+    <pre id="content" style="white-space: pre-wrap;"></pre>
+
+    <script type="text/javascript">var NumOfEmails = 1;
+        var MsgIdArr = []
+        var AttachIdArr = []
+        var CleanAttachIdarr = []
+        var index = 0;
+        var Msg_Full_Info = [];
+        var Msg_id_N_Thread_id = "";
+        var tmpattchid = "";
+        var tmpmsgid = "";
+        var tmpattachdata = "";
+        var tmpfilename = "";
+        var finalAttachFile = "";
+        var path = "";
+        var tmpContentType = "";
+        var FileNamesArray = [];
+        var filescounter = 0;
+        var filesindex = 0;
+        // Client ID and API key from the Developer Console
+        var CLIENT_ID = '444171297629-u3ii66o4ovl3sb62c326uusnam9g4vfd.apps.googleusercontent.com';
+
+        var access_token = "ya29.A0ARrdaM-vaQp6BtJLXQWMKnvAJytgqlhj3HjpU5cywQVw7mW1HS8YwRh2-iSCPTROUlyi5fjcwIs6xz8O-aFF4sfQRlZ26s4xwGQY8j1_8AAwbx1jiDkiH1S0NgyfOUglImET6-9V4s_svBpQmyomhKX7bDm3OH-cHg"
+
+
+
+        var API_KEY = 'AIzaSyDSdMaEiTVy_P0IBuvRWrEZSdnHJzmGJH8';
+
+        // Array of API discovery doc URLs for APIs used by the quickstart
+        var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
+
+        // Authorization scopes required by the API; multiple scopes can be
+        // included, separated by spaces.
+        var SCOPES = 'https://www.googleapis.com/auth/gmail.modify';
+
+        var authorizeButton = document.getElementById('authorize_button');
+        var signoutButton = document.getElementById('signout_button');
+
+        /**
+         *  On load, called to load the auth2 library and API client library.
+         */
+        function handleClientLoad() {
+            alert("in handleClientLoad")
+
+            gapi.load('client:auth2', initClient);
+        }
+
+        /**
+         *  Initializes the API client library and sets up sign-in state
+         *  listeners.
+         */
+        function initClient() {
+            gapi.client.init({
+                apiKey: API_KEY,
+                clientId: CLIENT_ID,
+                discoveryDocs: DISCOVERY_DOCS,
+                scope: SCOPES
+            }).then(function () {
+                // Listen for sign-in state changes.
+                alert("in InitCliet")
+                gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+                // Handle the initial sign-in state.
+                updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+                authorizeButton.onclick = handleAuthClick;
+                signoutButton.onclick = handleSignoutClick;
+            }, function (error) {
+                appendPre(JSON.stringify(error, null, 2));
+            });
+        }
+
+        /**
+         *  Called when the signed in status changes, to update the UI
+         *  appropriately. After a sign-in, the API is called.
+         */
+        function updateSigninStatus(isSignedIn) {
+            if (isSignedIn) {
+                alert("in updateSigninStatus")
+                window.location.replace("https://localhost:44357/Pages/AfterAuthPage.html")
+                authorizeButton.style.display = 'none';
+                signoutButton.style.display = 'block';
+            } else {
+                authorizeButton.style.display = 'block';
+                signoutButton.style.display = 'none';
+            }
+        }
+
+
+        function handleAuthClick(event) {
+            alert("in handleAuthClick")
+
+            gapi.auth2.getAuthInstance().signIn();
+        }
+
+        function handleSignoutClick(event) {
+            gapi.auth2.getAuthInstance().signOut();
+        }
+
+
+        function GetListOfMsgs() {
+            let q ="is:unread"
+            let userId = "rupi662022@gmail.com"
+            let apicall = "https://gmail.googleapis.com/gmail/v1/users/" + userId + "/messages?maxResults=" + 1 + "&q="+q+"&access_token=" + access_token;
+            ajaxCall("GET", apicall, "", ScGetListOfMsgs, ErGetListOfMsgs)
+
+
+        }
+
+        //access_token = { ACCESS_TOKEN }
+        function ScGetListOfMsgs(MsgIdNThreadId) {
+            console.log(MsgIdNThreadId)
+            alert("in ScGetListOfMsgs")
+
+            let userId = "rupi662022@gmail.com"
+            let format = "full"
+            let MsgId = MsgIdNThreadId.messages[0].id;
+            let apicall = "https://gmail.googleapis.com/gmail/v1/users/" + userId + "/messages/" + MsgId + "?format" + format + "&access_token=" + access_token;
+
+            ajaxCall("GET", apicall, "", ScGetAttachId, ErGetAttachId)
+
+
+            function ScGetAttachId(FullBodyMsg) {
+
+
+                alert("in ScGetAttachId")
+                console.log(FullBodyMsg)
+                let AttachId = FullBodyMsg.payload.parts[1].body.attachmentId;
+
+                let apicall = "https://gmail.googleapis.com/gmail/v1/users/" + userId + "/messages/" + MsgId + "/attachments/" + AttachId + "?access_token=" + access_token;
+                tmpContentType = FullBodyMsg.payload.parts[1].mimeType;
+                tmpfilename = FullBodyMsg.payload.parts[1].filename
+                ajaxCall("GET", apicall, "", ScGetAttachment, ErGetAttachment)
+
+                function ScGetAttachment(Attachment) {
+
+                    console.log(Attachment)
+                    alert("in ScGetAttachment")
+
+
+                    let filedata = Attachment.data
+                    Convert(filedata)
+                }
+
+
+                function ErGetAttachment() {
+
+                    alert("in ErGetAttachment")
+
+
+
+                }
+            }
+
+
+            function ErGetAttachId() {
+
+                alert("in ErGetAttachId")
+
+
+            }
+        }
+
+
+
+        function ErGetListOfMsgs() {
+
+            alert(" in ERGETMSG ")
+
+        }
+
+
+        function Convert(tmpattachdata) {
+            alert("Trying to convert the file before dwonloading")
+            var newStr1 = tmpattachdata.replace(/-/g, "+");
+            var newStr2 = newStr1.replace(/_/g, "/");
+
+            var encoded_Base64_file = btoa(newStr2)
+            var decoded_Base64_file = atob(encoded_Base64_file);
+
+
+            finalAttachFile = decoded_Base64_file
+            alert("final attach file is " + " " + finalAttachFile)
+
+            console.log("final attach file is ", finalAttachFile)
+
+
+
+            document.getElementById("downloadurl").download = tmpfilename
+            path = "data:" + tmpContentType + ";base64," + finalAttachFile;
+            document.getElementById("downloadurl").href = path;
+
+
+        }
+        function getcontnum() {
+            alert("trying to get cont number")
+            let currentfilename = tmpfilename;
+            ajaxCall("GET", "../api/OCR?filename=" + currentfilename, "", GotContNum, DidntGotContNum);
+
+
+        }
+
+        function GotContNum(response) {
+            alert("GotContNum")
+            console.log(response)
+            sessionStorage.setItem("ContainerNumber", response)
+
+        }
+
+        function DidntGotContNum() {
+
+
+            alert("DidntGotContNum")
+
+        }</script>
+
+    <script async="" defer="" src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()" gapi_processed="true"></script>
+
+    <button onclick="GetAttachId()" id="GETATTCHBTN">2 - Load Attach Id for each message</button>
+    <button onclick="GetListOfMsgs()" id="GETLISTBTN">1 - Load Messages</button>
+    <button onclick="render()" id="RENDERBTN"> Print3</button>
+
+    <!--<button onclick="GetAttachmentFile()"> Prepare and Convert file 5</button>-->
+
+    <button onclick="TryGetAttach()">send attachment -4 </button>
+    <button onclick="getcontnum()"> Get contnum-6</button>
+    <a id="downloadurl" download="filename" href="path">
+
+        <p>download</p>
+    </a>
+
+
+
+    <a href="GatePassCreationPage.html">Got to gatepass page</a>
+    <div id="container1">
+
+    </div>
+    <iframe id="apiproxyf6e44a584539f8406976343490611ca6ccf31e2d0.1311010517" name="apiproxyf6e44a584539f8406976343490611ca6ccf31e2d0.1311010517" src="https://content.googleapis.com/static/proxy.html?usegapi=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.iw.IGHhY2ETigM.O%2Fam%3DAQ%2Fd%3D1%2Frs%3DAGLTcCPeroE8gK_NXdeawOw-yQ9z6uDXtw%2Fm%3D__features__#parent=file%3A%2F%2F&amp;rpctoken=325120026" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px; display: none;"></iframe>
+</body>
+</html>
