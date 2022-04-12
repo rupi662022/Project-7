@@ -317,6 +317,67 @@ namespace Project_7.Models.DAL
 
 
 
+
+        //הגייטפסים שלי
+
+        public List<GatePass> ReadMygatePass(string userType, string transportCompany)
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandMyGatePass(con, userType, transportCompany);
+                List<GatePass> MyGatePassList = new List<GatePass>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dataReader.Read())
+                {
+                    GatePass g = new GatePass();
+
+                    g.Id = Convert.ToInt32(dataReader["GPS_Id"]);
+                    g.ContainerNum = (string)dataReader["GPS_ContainerNum"];
+                    g.ContainerType = (string)dataReader["GPS_ContainerType"];
+                    g.TransportCompany = (string)dataReader["GPS_TransportCompany"];
+                    g.Importer = (string)dataReader["GPS_Importer"];
+                    g.CreatedDate = Convert.ToDateTime(dataReader["GPS_CreatedDate"]);
+
+                    MyGatePassList.Add(g);
+                }
+                return MyGatePassList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of my GatePass list", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con,string userType, string transportCompany)
+        {
+            string commandStr = "select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_User U on T.TPC_CompanyName = U.USR_Company WHERE GPS_IsActive = '+' AND USR_Type = @userType AND GPS_TransportCompany = @transportCompany";
+                                         
+                           
+            SqlCommand cmd = createCommand(con, commandStr);
+            cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
+            cmd.Parameters["@transportCompany"].Value = transportCompany;
+            cmd.Parameters.Add("@userType", SqlDbType.NVarChar);
+            cmd.Parameters["@userType"].Value = userType;
+            return cmd;
+        }
+
+
+
+
+
+
+
+
+
         //Driver Actions
         public List<Driver> ReadDrivers()
         {
@@ -520,6 +581,7 @@ namespace Project_7.Models.DAL
                     cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
                     cmd.Parameters.AddWithValue("@UserPassword", user.UserPassword);
                     cmd.Parameters.AddWithValue("@UserCompany", user.UserCompany);
+                    cmd.Parameters.AddWithValue("@UserType", user.UserType);
 
                     //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
                     //returnParameter.Direction = ParameterDirection.ReturnValue;

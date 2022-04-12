@@ -13,16 +13,18 @@ namespace Project_7.Models
         string userEmail;
         string userPassword;
         string userCompany;
+        string userType;
 
         public User() { }
 
-        public User(int userID, string userName, string userEmail, string userPassword, string userCompany)
+        public User(int userID, string userName, string userEmail, string userPassword, string userCompany, string userType)
         {
             UserID = userID;
             UserName = userName;
             UserEmail = userEmail;
             UserPassword = userPassword;
             UserCompany = userCompany;
+            UserType = userType;
         }
 
         public int UserID { get => userID; set => userID = value; }
@@ -30,6 +32,7 @@ namespace Project_7.Models
         public string UserEmail { get => userEmail; set => userEmail = value; }
         public string UserPassword { get => userPassword; set => userPassword = value; }
         public string UserCompany { get => userCompany; set => userCompany = value; }
+        public string UserType { get => userType; set => userType = value; }
 
         //public User(string userEmail, string userPassword)
         //{

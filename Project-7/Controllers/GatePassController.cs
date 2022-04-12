@@ -26,7 +26,13 @@ namespace Project_7.Controllers
             return gatePass.ReadNegativGatePass(isActive);
         }
 
-
+        [HttpGet]
+        [Route("api/GatePass/{isActive}/{transportCompany}")]
+        public IEnumerable<GatePass> Get(string userType, string transportCompany)
+        {
+            GatePass gatePass = new GatePass();
+            return gatePass.ReadMygatePass(userType, transportCompany);
+        }
 
         public IEnumerable<GatePass> Get()
         {

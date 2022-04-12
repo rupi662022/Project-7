@@ -109,13 +109,23 @@ namespace Project_7.Models
             ds.SendGateToArchive(id);
         }
 
+       
+
 
         public int UpdateGatePass()
         {
             DataServices ds = new DataServices();
             return ds.UpdateGatePass(this);
         }
-   
+
+
+        // הבא את הגייטפסים הפעילים שלי
+        public List<GatePass> ReadMygatePass(string userType, string transportCompany) 
+        {
+            DataServices ds = new DataServices();
+            return ds.ReadMygatePass(userType, transportCompany);
+        }
+
         //public List<GatePass> ReadgatePassList()
         //{
         //    DataServices ds = new DataServices();

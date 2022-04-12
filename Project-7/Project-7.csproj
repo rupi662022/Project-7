@@ -201,6 +201,7 @@
     <Content Include="demos\custom-row-renderer.html" />
     <Content Include="demos\db.js" />
     <Content Include="demos\demos.css" />
+    <Content Include="HTML\MyGatePass.html" />
     <Content Include="HTML\activeGatePass.html" />
     <Content Include="HTML\CustomBrokers.html" />
     <Content Include="HTML\driver.html" />
