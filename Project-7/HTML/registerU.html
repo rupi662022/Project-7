@@ -23,53 +23,56 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/colors/palette-gradient.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/pages/login-register.css">
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style-rtl.css">
-
-
+    <style>
+        p, h1, h2, h3, span, td, tr, table {
+            font-family: sans-serif;
+        }
+    </style>
     <script>
 
-		$(document).ready(function () {
-			$("#myForm").submit(submitUser)
+        $(document).ready(function () {
+            $("#myForm").submit(submitUser)
             //if (localStorage.getItem('User')) {
             //    window.location.href = "ManageGates.html";
             //}
 
-		})
+        })
 
 
-		function submitUser() {
-			let userNum = $("#userNum").val();
-			let userFull = $("#userFull").val();
-			let email = $("#email").val();
-			let password = $("#password").val();
+        function submitUser() {
+            let userNum = $("#userNum").val();
+            let userFull = $("#userFull").val();
+            let email = $("#email").val();
+            let password = $("#password").val();
             let companyName = $("#userCompany").val();
 
 
-			let adduser = {
-				UserID: userNum,
-				UserName: userFull,
-				UserEmail: email,
-				UserPassword: password,
+            let adduser = {
+                UserID: userNum,
+                UserName: userFull,
+                UserEmail: email,
+                UserPassword: password,
                 userCompany: companyName,
-                userType:"C"
-			}
+                userType: "C"
+            }
 
-			ajaxCall("POST", "../api/User", JSON.stringify(adduser), postSCB, postECB);
-			document.getElementById("myForm").reset();
-			return false;
+            ajaxCall("POST", "../api/User", JSON.stringify(adduser), postSCB, postECB);
+            //document.getElementById("myForm").reset();
+            return false;
 
-		}
+        }
 
-		function postSCB(status) {
-			console.log(status);
-			alert("Registration successfully");
-			window.location.href = "login.html";
-		}
+        function postSCB(status) {
+            window.location.href = "login.html";
+            console.log(status);
+            alert("Registration successfully");
+        }
 
-		function postECB(err) {
-			console.log(err);
-			alert("Please Try Registration Again");
-			window.location.href = "registerU.html";
-		}
+        function postECB(err) {
+            console.log(err);
+            alert("Please Try Registration Again");
+            window.location.href = "registerU.html";
+        }
     </script>
 
 </head>
@@ -166,7 +169,7 @@
                                             <div class="row">
                                                 <div class="col-12 col-sm-8 col-md-8">
                                                     <!--<input type="submit" class="btn btn-danger btn-lg btn-block" value="התחבר" required />-->
-                                                    <button onclick="submitUser()" type="submit" class="btn btn-info btn-lg btn-block"> הירשם</button>
+                                                    <button type="submit" class="btn btn-info btn-lg btn-block"> הירשם</button>
                                                 </div>
                                                 <div class="">
                                                     <br />

@@ -62,7 +62,6 @@
         .jsgrid-grid-body {
             height: 400px;
         }
-
     </style>
 
     <script>
@@ -79,11 +78,11 @@
                 data: "json"
 
             }).done(function (data) {
-          /*      $("#jsGrid").jsGrid("option", "inserting", true);*/
+                /*      $("#jsGrid").jsGrid("option", "inserting", true);*/
 
-                    $("#GatePas").jsGrid({
-                    
-                     height: "70%",
+                $("#GatePas").jsGrid({
+
+                    height: "70%",
                     width: "100%",
                     filtering: true,
                     editing: true,
@@ -108,8 +107,6 @@
                                     && (!filter.Adress || item.Adress.indexOf(filter.Adress) > -1)
                                     && (!filter.PhoneNumber || item.PhoneNumber.indexOf(filter.PhoneNumber) > -1)
                                     && (!filter.Fax || item.Fax.indexOf(filter.Fax) > -1)
-                           
-
                             });
 
                         },
@@ -131,26 +128,18 @@
                         }
                     },
 
-                        fields: [
-                            { name: "Id", title: 'מזהה', type: "text", width: 100, sorting: false, align: "center", editing: false, inserting:false },
+                    fields: [
+                        { name: "Id", title: 'מזהה', type: "text", width: 100, sorting: false, align: "center", editing: false, inserting: false },
                         { name: "BrokerName", title: 'עמיל מכס', type: "text", width: 100, align: "center", },
                         { name: "Adress", title: "כתובת", type: "text", width: 100, align: "center", },
                         { name: "PhoneNumber", title: "מספר טלפון", type: "text", width: 100, align: "center", },
                         { name: "Fax", type: "text", title: "פקס", width: 100, align: "center", },
-                 
 
-            
-
-                            {
-                                type: "control",
-
-                            },
-
-         
-
-                        ]
+                        {
+                            type: "control",
+                        },
+                    ]
                 });
-
             });
 
             //function byebye() {
@@ -219,8 +208,8 @@
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="gatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
                 <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#" ><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
-                    <ul class="dropdown-menu" style="width:50%">
+                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <ul class="dropdown-menu">
                         <li data-menu=""><a class="dropdown-item" href="MyGatePass.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
                         <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>ארכיון</p></a></li>
                     </ul>
@@ -263,13 +252,13 @@
     <footer class="footer footer-static footer-light navbar-shadow">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
     </footer>
-    <!--<script src="../../../app-assets/vendors/js/vendors.min.js"></script>
-    <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>-->
-    <!--<script src="../../../app-assets/vendors/js/tables/jsgrid/jsgrid.min.js"></script>
+    <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+    <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/jsgrid/jsgrid.min.js"></script>
     <script src="../../../app-assets/vendors/js/tables/jsgrid/griddata.js"></script>
-    <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js"></script>-->
-    <!--<script src="../../../app-assets/js/core/app-menu.js"></script>
-    <script src="../../../app-assets/js/core/app.js"></script>-->
+    <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js"></script>
+    <script src="../../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../../app-assets/js/core/app.js"></script>
 
 </body>
 </html>
