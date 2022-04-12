@@ -86,6 +86,13 @@ namespace Project_7.Models
            
         }
 
+        public List<GatePass> ReadNegativGatePass()
+        {
+            DataServices ds = new DataServices();
+            return ds.ReadNegativGatePass();
+        }
+
+
         ////בדיקה לטבלה  [HttpGet]
         //[Route("api/''/''")]
         public List<GatePass> ReadgatePass(string transportCompany)

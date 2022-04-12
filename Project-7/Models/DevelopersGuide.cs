@@ -30,7 +30,7 @@
 //            UserCredential credential;
 
 //            using (var stream =
-//                new FileStream("C:\\Users\\USER\\Documents\\GitHub\\Project-5\\PROJECT_5\\client_secret_79174569678-adeuegbvh6bn963o9c9666e3da9k80hu.apps.googleusercontent.com (1).json", FileMode.Open, FileAccess.Read))
+//                new FileStream("C:\\Users\\USER\\Documents\\GitHub\\Project-5\\Project_7\\client_secret_79174569678-adeuegbvh6bn963o9c9666e3da9k80hu.apps.googleusercontent.com (1).json", FileMode.Open, FileAccess.Read))
 //            {
 //                // The file token.json stores the user's access and refresh tokens, and is created
 //                // automatically when the authorization flow completes for the first time.

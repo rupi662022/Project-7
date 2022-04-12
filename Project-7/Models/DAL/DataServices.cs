@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Web.Configuration;
-using PROJECT_5.Models;
+using Project_7.Models;
 using System.Data;
 
 
@@ -33,7 +33,7 @@ namespace Project_7.Models.DAL
         }
 
 
-
+        //יצירת טבלה לפי חברת הובלה
 
         public List<GatePass> ReadgatePass(string TransportCompany)
         {
@@ -85,6 +85,8 @@ namespace Project_7.Models.DAL
 
 
 
+
+        //יצירת גייטפס
         public int InsertGatePass(GatePass g)
         {
             //int res = 0;
@@ -211,7 +213,7 @@ namespace Project_7.Models.DAL
 
 
 
-  
+
 
 
         public int InsertDriver(Driver d)
@@ -256,6 +258,623 @@ namespace Project_7.Models.DAL
             }
             return numEffected;
         }
+
+
+
+
+
+
+
+        //טבלה גייטפס- ארכיון
+
+        public List<GatePass> ReadNegativGatePass()
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandNegGatePass(con);
+                List<GatePass> GatePassList = new List<GatePass>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dataReader.Read())
+                {
+                    GatePass g = new GatePass();
+
+                    g.Id = Convert.ToInt32(dataReader["GPS_Id"]);
+                    g.ContainerNum = (string)dataReader["GPS_ContainerNum"];
+                    g.ContainerType = (string)dataReader["GPS_ContainerType"];
+                    g.TransportCompany = (string)dataReader["GPS_TransportCompany"];
+                    g.Importer = (string)dataReader["GPS_Importer"];
+                    g.CreatedDate = Convert.ToDateTime(dataReader["GPS_CreatedDate"]);
+
+                    GatePassList.Add(g);
+                }
+                return GatePassList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of Negetive GatePass list", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandNegGatePass(SqlConnection con)
+        {
+            string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_IsActive='-'";
+            SqlCommand cmd = createCommand(con, commandStr);
+
+            return cmd;
+        }
+
+
+
+
+
+
+        //טבלה נהגים
+        public List<Driver> ReadDrivers()
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandDrivers(con);
+                List<Driver> DriversList = new List<Driver>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dataReader.Read())
+                {
+                    Driver d = new Driver();
+                    d.DriverID = Convert.ToInt32(dataReader["DRI_DriverId"]);
+                    d.TransportComany = (string)dataReader["DRI_TransportCompany"];
+                    d.DriverFname = (string)dataReader["DRI_Fname"];
+                    d.DriverLname = (string)dataReader["DRI_Lname"];
+                    d.DriverPhone = (string)dataReader["DRI_PhoneNumber"];
+                    d.DriverLicense = (string)dataReader["DRI_licenseType"];
+
+
+                    DriversList.Add(d);
+                }
+                return DriversList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of Drivers list", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandDrivers(SqlConnection con)
+        {
+            string commandStr = "SELECT * FROM SHAY_Driver ";
+            SqlCommand cmd = createCommand(con, commandStr);
+
+            return cmd;
+        }
+
+
+
+
+        //טבלה חברות הובלה
+        public List<TransportCompany> ReadTransportCompany()
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandTransportCompany(con);
+                List<TransportCompany> TransportCompanyList = new List<TransportCompany>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dataReader.Read())
+                {
+                    TransportCompany t = new TransportCompany();
+
+                    t.CompanyId = Convert.ToInt32(dataReader["TPC_Id"]);
+                    t.CompanyName = (string)dataReader["TPC_CompanyName"];
+                    t.CompanyAdress = (string)dataReader["TPC_Adress"];
+                    t.CompanyFax = (string)dataReader["TPC_Fax"];
+                    t.CompanyPhone = (string)dataReader["TPC_PhoneNumber"];
+
+
+                    TransportCompanyList.Add(t);
+                }
+                return TransportCompanyList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of TransportCompany List", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandTransportCompany(SqlConnection con)
+        {
+            string commandStr = "SELECT * FROM SHAY_TransportCompany ";
+            SqlCommand cmd = createCommand(con, commandStr);
+
+            return cmd;
+        }
+
+
+
+
+
+
+
+
+        public int UpdateDrivers(Driver d)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("UpdateDriver", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DriverId", d.DriverID);
+                    cmd.Parameters.AddWithValue("@TransportCompany", d.TransportComany);
+                    cmd.Parameters.AddWithValue("@FirstName", d.DriverFname);
+                    cmd.Parameters.AddWithValue("@LastName", d.DriverLname);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", d.DriverPhone);
+                    cmd.Parameters.AddWithValue("@LicenceType", d.DriverLicense);
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+                    //if (result.Equals(1))
+                    //{
+                    //    res = 1;
+
+                    //}
+                    //return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
+
+
+
+
+        //SEND GATEPASS TO ARCHIVE
+
+        public void SendGateToArchive(int id)
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = createSelectCommandSendGateToArchive(con, id);
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of artical", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+
+        private SqlCommand createSelectCommandSendGateToArchive(SqlConnection con, int id)
+        {
+            string commandStr = "UPDATE SHAY_GatePass SET GPS_IsActive=N'-' Where GPS_Id=@Id and GPS_IsActive<>N'-'";
+            SqlCommand cmd = createCommand(con, commandStr);
+            cmd.Parameters.Add("@Id", SqlDbType.Int);
+            cmd.Parameters["@Id"].Value = id;
+
+            return cmd;
+        }
+
+
+
+
+
+        public int InsertUser(User user)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("NewUser", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@UserID", user.UserID);
+                    cmd.Parameters.AddWithValue("@UserName", user.UserName);
+                    cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
+                    cmd.Parameters.AddWithValue("@UserPassword", user.UserPassword);
+                    cmd.Parameters.AddWithValue("@UserCompany", user.UserCompany);
+
+                    //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
+                    //returnParameter.Direction = ParameterDirection.ReturnValue;
+                    //cmd.ExecuteNonQuery();
+                    //var result = returnParameter.Value;
+                    numEffected = cmd.ExecuteNonQuery();
+
+                    //if (result.Equals(1))
+                    //{
+                    //    res = 1;
+
+                    //}
+                    //return res;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
+
+
+
+
+
+
+
+        //כניסה לאתר
+
+        public User ReadUser(string userEmail)
+        {
+
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandUser(con, userEmail);
+
+                SqlDataReader dr = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                User u = new User();
+
+                while (dr.Read())
+                {
+
+
+                    u.UserID = Convert.ToInt32(dr["USR_Id"]);
+                    u.UserEmail = (string)dr["USR_Email"];
+                    u.UserPassword = (string)dr["USR_Password"];
+                    u.UserName = (string)dr["USR_UserName"];
+                    u.UserCompany = (string)dr["USR_Company"];
+
+
+                }
+                dr.Close();
+
+                return u;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of Users", ex);
+            }
+            finally
+            {
+
+                if (con != null)
+                    con.Close();
+            }
+
+        }
+        private SqlCommand CreateSelectCommandUser(SqlConnection con, string userEmail)
+        {
+            string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email=@email ";
+            SqlCommand cmd = createCommand(con, commandStr);
+            //cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.Add("@email", SqlDbType.NVarChar);
+            cmd.Parameters["@email"].Value = userEmail;
+            //cmd.Parameters.Add("@password", SqlDbType.VarChar);
+            //cmd.Parameters["@password"].Value = userPassword;
+            return cmd;
+        }
+
+
+
+
+        SqlCommand createCommand(SqlConnection con, string CommandSTR)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = CommandSTR;
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandTimeout = 5;
+            return cmd;
+        }
+
+
+
+
+
+
+
+        //public int UpdateGatePass(GatePass g)
+        //{
+        //    SqlConnection con = null;
+        //    int numEffected = 0;
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+        //        SqlCommand selectCommand = createSelectCommandUpdateGate(con,g);
+        //        SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw new Exception("failed in Updating", ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //            con.Close();
+        //    }
+        //    return numEffected;
+        //}
+
+        //private SqlCommand createSelectCommandUpdateGate(SqlConnection con, GatePass g)
+        //{
+        //    string commandStr = "UPDATE SHAY_GatePass SET GPS_TransportCompany=@TransportCompany Where GPS_Id=@Id and GPS_IsActive<>N'-'";
+        //    SqlCommand cmd = createCommand(con, commandStr);
+        //    cmd.Parameters.Add("@Id", SqlDbType.Int);
+        //    cmd.Parameters["@Id"].Value = g.Id;
+        //    cmd.Parameters.Add("@Company", SqlDbType.NVarChar);
+        //    cmd.Parameters["@TransportCompany"].Value=g.TransportCompany;
+
+        //    return cmd;
+        //}
+
+
+        //SEND GATEPASS TO ARCHIVE PROC TRY
+
+        //public int SendGateToArchive(int id)
+        //{
+        //    //int res = 0;
+        //    SqlConnection con = null;
+        //    int numEffected = 0;
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+        //        using (SqlCommand cmd = new SqlCommand("SendGateToArchive", con))
+        //        {
+        //            cmd.CommandType = CommandType.StoredProcedure;
+        //            cmd.Parameters.AddWithValue("@Id", g.Id);
+        //            cmd.Parameters.AddWithValue("@IsActive", g.IsActive);
+
+
+        //            //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
+        //            //returnParameter.Direction = ParameterDirection.ReturnValue;
+        //            //cmd.ExecuteNonQuery();
+        //            //var result = returnParameter.Value;
+        //            numEffected = cmd.ExecuteNonQuery();
+
+        //            //if (result.Equals(1))
+        //            //{
+        //            //    res = 1;
+
+        //            //}
+        //            //return res;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // write to log
+        //        throw (ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+        //    return numEffected;
+        //}
+
+
+
+        //עדכון גייטפס
+
+        //public int UpdateGatePass(GatePass g)
+        //{
+        //    //int res = 0;
+        //    SqlConnection con = null;
+        //    int numEffected = 0;
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+        //        using (SqlCommand cmd = new SqlCommand("UpdateGatePass", con))
+        //        {
+        //            cmd.CommandType = CommandType.StoredProcedure;
+
+        //            cmd.Parameters.AddWithValue("@ContainerNum", g.ContainerNum);
+        //            cmd.Parameters.AddWithValue("@IsActive", g.IsActive);
+        //            cmd.Parameters.AddWithValue("@CreatedDate", g.CreatedDate);
+
+        //            //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
+        //            //returnParameter.Direction = ParameterDirection.ReturnValue;
+        //            //cmd.ExecuteNonQuery();
+        //            //var result = returnParameter.Value;
+        //            numEffected = cmd.ExecuteNonQuery();
+
+        //            //if (result.Equals(1))
+        //            //{
+        //            //    res = 1;
+
+        //            //}
+        //            //return res;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // write to log
+        //        throw (ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+        //    return numEffected;
+        //}
+
+
+
+
+
+
+
+        //   public int logInUsr(User user)------test for Procedure
+        //   {
+        //       //List<GatePass> Users = new List<GatePass>();
+        //       SqlConnection con = null;
+        //       int res = 0;
+
+        //       try
+        //       {
+        //           con = Connect("FinalProject");
+
+        //           using (SqlCommand cmd = new SqlCommand("CheckUser", con))
+        //           {
+        //               cmd.CommandType = CommandType.StoredProcedure;
+
+        //               cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
+        //               cmd.Parameters.AddWithValue("@UserPassword", user.UserPassword);
+        //               var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
+        //               returnParameter.Direction = ParameterDirection.ReturnValue;
+        //               cmd.ExecuteNonQuery();
+
+        //               using (SqlDataReader dr = cmd.ExecuteReader())
+        //               {
+        //                   var result = returnParameter.Value;
+        //                   if (result.Equals(1))
+        //                   {
+        //                       while (dr.Read())
+        //                       {
+        //                           if (dr["USR_UserName"] != DBNull.Value)
+        //                           {
+        //                               user.UserID = Convert.ToInt32(dr["USR_Id"]);
+        //                               user.UserName = (string)dr["USR_UserName"];
+        //                               user.UserEmail = (string)dr["USR_Email"];
+        //                               user.UserPassword = (string)dr["USR_Password"];
+        //                               user.UserType = (string)dr["USR_Type"];
+        //                               res = 1;
+        //                           }
+        //                       }
+
+        //                   }
+        //               }
+
+        //           }
+        //           return res;
+        //       }
+
+        //       catch (Exception ex)
+        //       {
+        //           throw (ex);
+        //       }
+        //       finally
+        //       {
+        //           if (con != null)
+        //           {
+        //               con.Close();
+        //           }
+        //       }
+        //}
+
+
+
+
+
+
+        ///// Read Drivers
+        ///// 
+        //SqlDataAdapter da;
+        //public DataTable dt;
+
+        //public DataTable ReadDrivers()
+        //{
+
+        //    SqlConnection con = null;
+
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+
+        //        string selectString = "SELECT * FROM SHAY_Driver";
+
+        //        da = new SqlDataAdapter(selectString, con);
+
+        //        DataSet ds = new DataSet();
+
+        //        da.Fill(ds);
+
+        //        dt = ds.Tables[0];
+
+        //        return dt;
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        // write to log file
+
+        //        throw new Exception("Error in Read to DataTable", ex);
+        //    }
+
+        //    finally
+        //    {
+        //        if (con != null)
+        //            con.Close();
+        //    }
+        //}
+
 
 
 
@@ -364,499 +983,6 @@ namespace Project_7.Models.DAL
         //    command.CommandTimeout = 30;
         //    return command;
         //}
-        public List<Driver> ReadDrivers()
-        {
-            SqlConnection con = null;
-
-            try
-            {
-                con = Connect("FinalProject");
-                SqlCommand selectCommand = CreateSelectCommandDrivers(con);
-                List<Driver> DriversList = new List<Driver>();
-                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-                while (dataReader.Read())
-                {
-                    Driver d = new Driver();
-                    d.DriverID = Convert.ToInt32(dataReader["DRI_DriverId"]);
-                    d.TransportComany = (string)dataReader["DRI_TransportCompany"];
-                    d.DriverFname = (string)dataReader["DRI_Fname"];
-                    d.DriverLname = (string)dataReader["DRI_Lname"];
-                    d.DriverPhone = (string)dataReader["DRI_PhoneNumber"];
-                    d.DriverLicense = (string)dataReader["DRI_licenseType"];
-
-
-                    DriversList.Add(d);
-                }
-                return DriversList;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("failed in reading of Drivers list", ex);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
-        private SqlCommand CreateSelectCommandDrivers(SqlConnection con)
-        {
-            string commandStr = "SELECT * FROM SHAY_Driver";
-            SqlCommand cmd = createCommand(con, commandStr);
-
-            return cmd;
-        }
-
-
-        public int UpdateDrivers(Driver d)
-        {
-            //int res = 0;
-            SqlConnection con = null;
-            int numEffected = 0;
-            try
-            {
-                con = Connect("FinalProject");
-                using (SqlCommand cmd = new SqlCommand("UpdateDriver", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@DriverId", d.DriverID);
-                    cmd.Parameters.AddWithValue("@TransportCompany", d.TransportComany);
-                    cmd.Parameters.AddWithValue("@FirstName", d.DriverFname);
-                    cmd.Parameters.AddWithValue("@LastName", d.DriverLname);
-                    cmd.Parameters.AddWithValue("@PhoneNumber", d.DriverPhone);
-                    cmd.Parameters.AddWithValue("@LicenceType", d.DriverLicense);
-
-                    numEffected = cmd.ExecuteNonQuery();
-
-                    //if (result.Equals(1))
-                    //{
-                    //    res = 1;
-
-                    //}
-                    //return res;
-                }
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
-            return numEffected;
-        }
-
-      
-
-
-        //public int UpdateGatePass(GatePass g)
-        //{
-        //    SqlConnection con = null;
-        //    int numEffected = 0;
-        //    try
-        //    {
-        //        con = Connect("FinalProject");
-        //        SqlCommand selectCommand = createSelectCommandUpdateGate(con,g);
-        //        SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw new Exception("failed in Updating", ex);
-        //    }
-        //    finally
-        //    {
-        //        if (con != null)
-        //            con.Close();
-        //    }
-        //    return numEffected;
-        //}
-
-        //private SqlCommand createSelectCommandUpdateGate(SqlConnection con, GatePass g)
-        //{
-        //    string commandStr = "UPDATE SHAY_GatePass SET GPS_TransportCompany=@TransportCompany Where GPS_Id=@Id and GPS_IsActive<>N'-'";
-        //    SqlCommand cmd = createCommand(con, commandStr);
-        //    cmd.Parameters.Add("@Id", SqlDbType.Int);
-        //    cmd.Parameters["@Id"].Value = g.Id;
-        //    cmd.Parameters.Add("@Company", SqlDbType.NVarChar);
-        //    cmd.Parameters["@TransportCompany"].Value=g.TransportCompany;
-
-        //    return cmd;
-        //}
-
-
-        //SEND GATEPASS TO ARCHIVE PROC TRY
-
-        //public int SendGateToArchive(int id)
-        //{
-        //    //int res = 0;
-        //    SqlConnection con = null;
-        //    int numEffected = 0;
-        //    try
-        //    {
-        //        con = Connect("FinalProject");
-        //        using (SqlCommand cmd = new SqlCommand("SendGateToArchive", con))
-        //        {
-        //            cmd.CommandType = CommandType.StoredProcedure;
-        //            cmd.Parameters.AddWithValue("@Id", g.Id);
-        //            cmd.Parameters.AddWithValue("@IsActive", g.IsActive);
-
-
-        //            //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
-        //            //returnParameter.Direction = ParameterDirection.ReturnValue;
-        //            //cmd.ExecuteNonQuery();
-        //            //var result = returnParameter.Value;
-        //            numEffected = cmd.ExecuteNonQuery();
-
-        //            //if (result.Equals(1))
-        //            //{
-        //            //    res = 1;
-
-        //            //}
-        //            //return res;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // write to log
-        //        throw (ex);
-        //    }
-        //    finally
-        //    {
-        //        if (con != null)
-        //        {
-        //            con.Close();
-        //        }
-        //    }
-        //    return numEffected;
-        //}
-
-
-        //SEND GATEPASS TO ARCHIVE
-
-        public void SendGateToArchive( int id)
-        {
-            SqlConnection con = null;
-
-            try
-            {
-                con = Connect("FinalProject");
-                SqlCommand selectCommand = createSelectCommandSendGateToArchive(con, id);
-                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("failed in reading of artical", ex);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
-
-        private SqlCommand createSelectCommandSendGateToArchive(SqlConnection con, int id)
-        {
-            string commandStr = "UPDATE SHAY_GatePass SET GPS_IsActive=N'-' Where GPS_Id=@Id and GPS_IsActive<>N'-'";
-            SqlCommand cmd = createCommand(con, commandStr);
-            cmd.Parameters.Add("@Id", SqlDbType.Int);
-            cmd.Parameters["@Id"].Value = id;
-   
-            return cmd;
-        }
-
-
-
-
-        //עדכון גייטפס
-        //public int UpdateGatePass(GatePass g)
-        //{
-        //    //int res = 0;
-        //    SqlConnection con = null;
-        //    int numEffected = 0;
-        //    try
-        //    {
-        //        con = Connect("FinalProject");
-        //        using (SqlCommand cmd = new SqlCommand("UpdateGatePass", con))
-        //        {
-        //            cmd.CommandType = CommandType.StoredProcedure;
-
-        //            cmd.Parameters.AddWithValue("@ContainerNum", g.ContainerNum);
-        //            cmd.Parameters.AddWithValue("@IsActive", g.IsActive);
-        //            cmd.Parameters.AddWithValue("@CreatedDate", g.CreatedDate);
-
-        //            //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
-        //            //returnParameter.Direction = ParameterDirection.ReturnValue;
-        //            //cmd.ExecuteNonQuery();
-        //            //var result = returnParameter.Value;
-        //            numEffected = cmd.ExecuteNonQuery();
-
-        //            //if (result.Equals(1))
-        //            //{
-        //            //    res = 1;
-
-        //            //}
-        //            //return res;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // write to log
-        //        throw (ex);
-        //    }
-        //    finally
-        //    {
-        //        if (con != null)
-        //        {
-        //            con.Close();
-        //        }
-        //    }
-        //    return numEffected;
-        //}
-
-
-
-
-
-        public int InsertUser(User user)
-        {
-            //int res = 0;
-            SqlConnection con = null;
-            int numEffected = 0;
-            try
-            {
-                con = Connect("FinalProject");
-                using (SqlCommand cmd = new SqlCommand("NewUser", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@UserID", user.UserID);
-                        cmd.Parameters.AddWithValue("@UserName", user.UserName);
-                        cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
-                         cmd.Parameters.AddWithValue("@UserPassword", user.UserPassword);
-                    cmd.Parameters.AddWithValue("@UserCompany", user.UserCompany);
-
-                    //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
-                    //returnParameter.Direction = ParameterDirection.ReturnValue;
-                    //cmd.ExecuteNonQuery();
-                    //var result = returnParameter.Value;
-                    numEffected = cmd.ExecuteNonQuery();
-
-                        //if (result.Equals(1))
-                        //{
-                        //    res = 1;
-
-                        //}
-                        //return res;
-                    
-                }
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
-            return numEffected;
-        }
-
-
-
-
-
-
-        //   public int logInUsr(User user)------test for Procedure
-        //   {
-        //       //List<GatePass> Users = new List<GatePass>();
-        //       SqlConnection con = null;
-        //       int res = 0;
-
-        //       try
-        //       {
-        //           con = Connect("FinalProject");
-
-        //           using (SqlCommand cmd = new SqlCommand("CheckUser", con))
-        //           {
-        //               cmd.CommandType = CommandType.StoredProcedure;
-
-        //               cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
-        //               cmd.Parameters.AddWithValue("@UserPassword", user.UserPassword);
-        //               var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
-        //               returnParameter.Direction = ParameterDirection.ReturnValue;
-        //               cmd.ExecuteNonQuery();
-
-        //               using (SqlDataReader dr = cmd.ExecuteReader())
-        //               {
-        //                   var result = returnParameter.Value;
-        //                   if (result.Equals(1))
-        //                   {
-        //                       while (dr.Read())
-        //                       {
-        //                           if (dr["USR_UserName"] != DBNull.Value)
-        //                           {
-        //                               user.UserID = Convert.ToInt32(dr["USR_Id"]);
-        //                               user.UserName = (string)dr["USR_UserName"];
-        //                               user.UserEmail = (string)dr["USR_Email"];
-        //                               user.UserPassword = (string)dr["USR_Password"];
-        //                               user.UserType = (string)dr["USR_Type"];
-        //                               res = 1;
-        //                           }
-        //                       }
-
-        //                   }
-        //               }
-
-        //           }
-        //           return res;
-        //       }
-
-        //       catch (Exception ex)
-        //       {
-        //           throw (ex);
-        //       }
-        //       finally
-        //       {
-        //           if (con != null)
-        //           {
-        //               con.Close();
-        //           }
-        //       }
-        //}
-
-
-
-
-
-
-
-        //כניסה לאתר
-
-        public User ReadUser(string userEmail)
-        {
-
-            SqlConnection con = null;
-
-            try
-            {
-                con = Connect("FinalProject");
-                SqlCommand selectCommand = CreateSelectCommandUser(con, userEmail);
-
-                SqlDataReader dr = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-                User u = new User();
-
-                while (dr.Read())
-                {
-
-
-                    u.UserID = Convert.ToInt32(dr["USR_Id"]);
-                    u.UserEmail = (string)dr["USR_Email"];
-                    u.UserPassword = (string)dr["USR_Password"];
-                    u.UserName = (string)dr["USR_UserName"];
-                    u.UserCompany = (string)dr["USR_Company"];
-
-
-                }
-                dr.Close();
-
-                return u;
-
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("failed in reading of Users", ex);
-            }
-            finally
-            {
-
-                if (con != null)
-                    con.Close();
-            }
-
-        }
-        private SqlCommand CreateSelectCommandUser(SqlConnection con, string userEmail)
-        {
-            string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email=@email ";
-            SqlCommand cmd = createCommand(con, commandStr);
-            //cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.Add("@email", SqlDbType.NVarChar);
-            cmd.Parameters["@email"].Value = userEmail;
-            //cmd.Parameters.Add("@password", SqlDbType.VarChar);
-            //cmd.Parameters["@password"].Value = userPassword;
-            return cmd;
-        }
-
-
-
-
-        SqlCommand createCommand(SqlConnection con, string CommandSTR)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = CommandSTR;
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandTimeout = 5;
-            return cmd;
-        }
-
-
-
-        ///// Read Drivers
-        ///// 
-        //SqlDataAdapter da;
-        //public DataTable dt;
-
-        //public DataTable ReadDrivers()
-        //{
-
-        //    SqlConnection con = null;
-
-        //    try
-        //    {
-        //        con = Connect("FinalProject");
-
-        //        string selectString = "SELECT * FROM SHAY_Driver";
-
-        //        da = new SqlDataAdapter(selectString, con);
-
-        //        DataSet ds = new DataSet();
-
-        //        da.Fill(ds);
-
-        //        dt = ds.Tables[0];
-
-        //        return dt;
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        // write to log file
-
-        //        throw new Exception("Error in Read to DataTable", ex);
-        //    }
-
-        //    finally
-        //    {
-        //        if (con != null)
-        //            con.Close();
-        //    }
-        //}
-
 
 
 

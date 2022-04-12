@@ -17,7 +17,11 @@ namespace Project_7.Controllers
             g.InsertGatePass();
             return Request.CreateResponse(HttpStatusCode.Created);
         }
-
+        public IEnumerable<GatePass> Get()
+        {
+            GatePass gatePass = new GatePass();
+            return gatePass.ReadNegativGatePass();
+        }
 
         //בדיקה לטבלה
         public List<GatePass> Get(string transportCompany)

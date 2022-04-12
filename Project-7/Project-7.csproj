@@ -167,12 +167,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\TransportCompany.cs" />
     <Compile Include="Models\DAL\DataServices.cs" />
     <Compile Include="Models\DevelopersGuide.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\Entry.cs" />
     <Compile Include="Models\Feed.cs" />
     <Compile Include="Models\GatePass.cs" />
+    <Compile Include="Models\Importer.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\Link2.cs" />
     <Compile Include="Models\OAuthTokenViewModel.cs" />
@@ -197,6 +199,7 @@
     <Content Include="demos\custom-row-renderer.html" />
     <Content Include="demos\db.js" />
     <Content Include="demos\demos.css" />
+    <Content Include="HTML\activeGatePass.html" />
     <Content Include="HTML\driver.html" />
     <Content Include="demos\driversDemo.html" />
     <Content Include="demos\login.html" />
@@ -205,14 +208,20 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="HTML\archivePage.html" />
     <Content Include="HTML\CreatGatePass.html" />
+    <Content Include="HTML\db.js" />
+    <Content Include="HTML\demos.css" />
+    <Content Include="HTML\gatePass.html" />
+    <Content Include="HTML\home.html" />
+    <Content Include="HTML\transportComp.html" />
+    <Content Include="HTML\login.html" />
     <Content Include="Pages\archive.html" />
     <Content Include="Pages\CompanyTable.html" />
     <Content Include="Pages\CreateExample.html" />
     <Content Include="Pages\CreateGatePass.html" />
     <Content Include="Pages\data-manipulation.html" />
     <Content Include="Pages\demos.css" />
-    <Content Include="Pages\GatePassArchieve.html" />
     <Content Include="Pages\GatePassCreationPage.html" />
     <Content Include="Pages\login.html" />
     <Content Include="Pages\ManageGates.html" />
@@ -330,6 +339,7 @@
     <Content Include="test\jsgrid.sort-strategies.tests.js" />
     <Content Include="test\jsgrid.tests.js" />
     <Content Include="test\jsgrid.validation.tests.js" />
+    <Content Include="test\Picture1.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
