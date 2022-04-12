@@ -840,7 +840,7 @@ namespace Project_7.Models.DAL
             catch (Exception ex)
             {
 
-                throw new Exception("failed in reading of Transporty Companies list", ex);
+                throw new Exception("failed in reading of Transport Companies list", ex);
             }
             finally
             {
@@ -850,7 +850,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandCompany(SqlConnection con)
         {
-            string commandStr = "SELECT * from SHAY_TransportCompany ";
+            string commandStr = "SELECT * from SHAY_TransportCompany";
             SqlCommand cmd = createCommand(con, commandStr);
 
             return cmd;
