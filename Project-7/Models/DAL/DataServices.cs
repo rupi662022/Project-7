@@ -779,7 +779,7 @@ namespace Project_7.Models.DAL
                 con = Connect("FinalProject");
                 using (SqlCommand cmd = new SqlCommand("NewCustomsBroker", con))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+           
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@BrokerName", b.BrokerName);
                     cmd.Parameters.AddWithValue("@Adress", b.Adress);
@@ -806,6 +806,161 @@ namespace Project_7.Models.DAL
             }
             return numEffected;
         }
+
+
+
+
+
+
+
+        //חברות תובלה
+
+
+
+
+
+
+
+        //Read
+        public List<TransportCompany> ReadCompany()
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandCompany(con);
+                List<TransportCompany> TransportCompanyList = new List<TransportCompany>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dataReader.Read())
+                {
+                    TransportCompany t = new TransportCompany();
+                    t.CompanyId = Convert.ToInt32(dataReader["TPC_Id"]);
+                    t.CompanyName = (string)dataReader["TPC_CompanyName"];
+                    t.CompanyAdress = (string)dataReader["TPC_Adress"];
+                    t.CompanyFax = (string)dataReader["TPC_Fax"];
+                    t.CompanyPhone = (string)dataReader["TPC_PhoneNumber"];
+
+
+
+                    TransportCompanyList.Add(t);
+                }
+                return TransportCompanyList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of Transporty Companies list", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandCompany(SqlConnection con)
+        {
+            string commandStr = "SELECT * from SHAY_TransportCompany ";
+            SqlCommand cmd = createCommand(con, commandStr);
+
+            return cmd;
+        }
+
+        ///Update
+
+        public int UpdateCompany(TransportCompany t)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("UpdateTransportCompany", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CompanyName", t.CompanyName);
+                    cmd.Parameters.AddWithValue("@BrokerName", t.CompanyAdress);
+                    cmd.Parameters.AddWithValue("@Adress", t.CompanyFax);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", t.CompanyPhone);
+                   
+
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
+
+        //insert
+
+        //public int InsertCompany(TransportCompany t)
+        //{
+        //    //int res = 0;
+        //    SqlConnection con = null;
+        //    int numEffected = 0;
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+        //        using (SqlCommand cmd = new SqlCommand("NewTransportCompany", con))
+        //        {
+        //            cmd.Parameters.AddWithValue("@CompanyName", t.CompanyName);
+        //            cmd.Parameters.AddWithValue("@BrokerName", t.CompanyAdress);
+        //            cmd.Parameters.AddWithValue("@Adress", t.CompanyFax);
+        //            cmd.Parameters.AddWithValue("@PhoneNumber", t.CompanyPhone);
+
+
+        //            numEffected = cmd.ExecuteNonQuery();
+
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // write to log
+        //        throw (ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+        //    return numEffected;
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
