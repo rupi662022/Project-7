@@ -26,9 +26,9 @@ namespace PROJECT_7.Controllers
 
 
 
-        public HttpResponseMessage Put([FromBody]TransportCompany t)
+        public HttpResponseMessage Put([FromBody]TransportCompany tCompany)
         {
-            t.UpdateTransportComany();
+            tCompany.UpdateTransportComany();
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 

@@ -840,7 +840,7 @@ namespace Project_7.Models.DAL
             catch (Exception ex)
             {
 
-                throw new Exception("failed in reading of Transporty Companies list", ex);
+                throw new Exception("failed in reading of Transport Companies list", ex);
             }
             finally
             {
