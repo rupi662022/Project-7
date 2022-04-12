@@ -39,7 +39,7 @@ namespace Project_7.Models.DAL
 
                 while (dataReader.Read())
                 {
-                    GatePass a =new GatePass();
+                    GatePass a = new GatePass();
                     a.Id = Convert.ToInt32(dataReader["GPS_Id"]);
                     a.ContainerNum = (string)dataReader["GPS_ContainerNum"];
                     a.ContainerType = (string)dataReader["GPS_ContainerType"];
@@ -69,7 +69,7 @@ namespace Project_7.Models.DAL
         {
             string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_IsActive=N'+'";
             SqlCommand cmd = createCommand(con, commandStr);
- 
+
             return cmd;
         }
 
@@ -150,17 +150,6 @@ namespace Project_7.Models.DAL
                     cmd.Parameters.AddWithValue("@ContainerType", g.ContainerType);
                     cmd.Parameters.AddWithValue("@TransportCompany", g.TransportCompany);
                     cmd.Parameters.AddWithValue("@Importer", g.Importer);
-                    //cmd.Parameters.AddWithValue("@CustomsBroker", g.CustomsBroker);
-                    //cmd.Parameters.AddWithValue("@ShippingCompanyAndLine", g.ShippingCompanyAndLine);
-                    //cmd.Parameters.AddWithValue("@StorageCertificate", g.StorageCertificate);
-                    //cmd.Parameters.AddWithValue("@CaseNumber", g.CaseNumber);
-                    //cmd.Parameters.AddWithValue("@Note", g.Note);
-                    //cmd.Parameters.AddWithValue("@OfficeNote", g.OfficeNote);
-                    //cmd.Parameters.AddWithValue("@GoToRepair", g.GoToRepair);
-                    //cmd.Parameters.AddWithValue("@ReturnFromRepair", g.ReturnFromRepair);
-                    //cmd.Parameters.AddWithValue("@IsActive", g.IsActive);
-                    //cmd.Parameters.AddWithValue("@UserEmail", g.UserEmail);
-                    //cmd.Parameters.AddWithValue("@CreatedDate", g.CreatedDate);
 
                     //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
                     //returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -288,7 +277,7 @@ namespace Project_7.Models.DAL
                     con.Close();
             }
         }
-        private SqlCommand CreateSelectCommandNegGatePass(SqlConnection con,string isActive)
+        private SqlCommand CreateSelectCommandNegGatePass(SqlConnection con, string isActive)
         {
             string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_IsActive=@N'+'";
             SqlCommand cmd = createCommand(con, commandStr);
@@ -342,11 +331,11 @@ namespace Project_7.Models.DAL
                     con.Close();
             }
         }
-        private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con,string userType, string transportCompany)
+        private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con, string userType, string transportCompany)
         {
             string commandStr = "select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_User U on T.TPC_CompanyName = U.USR_Company WHERE GPS_IsActive = '+' AND USR_Type = @userType AND GPS_TransportCompany = @transportCompany";
-                                         
-                           
+
+
             SqlCommand cmd = createCommand(con, commandStr);
             cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
             cmd.Parameters["@transportCompany"].Value = transportCompany;
@@ -728,7 +717,7 @@ namespace Project_7.Models.DAL
             return cmd;
         }
 
-   ///Update
+        ///Update
 
         public int UpdateBroker(CustomsBroker b)
         {
@@ -746,7 +735,7 @@ namespace Project_7.Models.DAL
                     cmd.Parameters.AddWithValue("@Adress", b.Adress);
                     cmd.Parameters.AddWithValue("@PhoneNumber", b.PhoneNumber);
                     cmd.Parameters.AddWithValue("@Fax", b.Fax);
-             
+
 
                     numEffected = cmd.ExecuteNonQuery();
 
