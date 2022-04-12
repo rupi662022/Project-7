@@ -333,7 +333,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con, string userType, string transportCompany)
         {
-            string commandStr = "select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_User U on T.TPC_CompanyName = U.USR_Company WHERE GPS_IsActive = '+' AND USR_Type = @userType AND GPS_TransportCompany = @transportCompany";
+            string commandStr = "select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_User U on T.TPC_CompanyName = U.USR_TransportCompany WHERE GPS_IsActive = '+' AND USR_Type = @userType AND GPS_TransportCompany = @transportCompany";
 
 
             SqlCommand cmd = createCommand(con, commandStr);
