@@ -850,7 +850,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandCompany(SqlConnection con)
         {
-            string commandStr = "SELECT * from SHAY_TransportCompany ";
+            string commandStr = "SELECT * from SHAY_TransportCompany";
             SqlCommand cmd = createCommand(con, commandStr);
 
             return cmd;
