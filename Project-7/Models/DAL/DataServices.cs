@@ -14,15 +14,6 @@ namespace Project_7.Models.DAL
 
     public class DataServices
     {
-        //public int InsertGate(GatePass gatePass)
-        //{
-
-        //}
-
-        //ReadgatePassList
-
-        ////בדיקה טבלה
-        ///
 
         SqlConnection Connect(string connectionStringName)
         {
@@ -33,7 +24,7 @@ namespace Project_7.Models.DAL
         }
 
 
-        //יצירת טבלה לפי חברת הובלה
+        //גייטפסים
 
         public List<GatePass> ReadgatePass()
         {
@@ -120,12 +111,6 @@ namespace Project_7.Models.DAL
                     //var result = returnParameter.Value;
                     numEffected = cmd.ExecuteNonQuery();
 
-                    //if (result.Equals(1))
-                    //{
-                    //    res = 1;
-
-                    //}
-                    //return res;
                 }
             }
             catch (Exception ex)
