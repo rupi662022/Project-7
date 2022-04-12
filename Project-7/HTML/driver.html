@@ -76,7 +76,7 @@
 
 
                     $("#GatePas").jsGrid({
-
+                    
                      height: "70%",
                     width: "100%",
                     filtering: true,
@@ -90,7 +90,7 @@
                     pageSize: 15,
                     pageButtonCount: 5,
                     deleteConfirm: function (item) {
-                        return "?ימחק. האם אתה בטוח \"" + item.Id + "\" נהג ";
+                        return "?ימחק. האם אתה בטוח \"" + item.DriverFname + "\"  ";
                     },
                     controller: {
 
@@ -134,15 +134,22 @@
                         { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center", },
                          
 
+
+
+
+           
+
+
                             {
                                 type: "control",
 
                             },
 
-                
+         
 
+                        ]
 
-                    ]
+         
                 });
 
             });
