@@ -11,8 +11,8 @@ namespace Project_7.Controllers
 {
     public class GatePassController : ApiController
     {
-        [HttpPost]
-        [Route("api/GatePass")]
+        //[HttpPost]
+        //[Route("api/GatePass")]
         public HttpResponseMessage Post([FromBody] GatePass g)
         {
             g.InsertGatePass();
