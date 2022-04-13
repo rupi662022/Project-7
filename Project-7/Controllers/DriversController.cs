@@ -24,7 +24,8 @@ namespace Project_7.Controllers
         }
 
 
-
+        //[HttpPost]
+        //[Route("api/Drivers")]
         public HttpResponseMessage Post([FromBody] Driver d)
         {
             d.InsertDriver();
