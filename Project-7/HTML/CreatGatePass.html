@@ -118,6 +118,14 @@
 
 
     </script>
+    <script>
+
+        function byebye() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        }
+
+    </script>
 </head>
 <body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
 
@@ -139,15 +147,16 @@
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
                     <ul class="nav navbar-nav mr-auto float-left">
-                        <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu">         </i></a></li>
+                        <li class="dropdown dropdown-user nav-item">
+                            <button id="byebye" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav float-right">
-
                         <li class="dropdown dropdown-user nav-item">
-                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name">   User Name</span></a>
+                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name" style="font-size:17px">   User Name</span></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="../demos/login2.html"><i class="ft-power"></i> Logout</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="login-simple.html"><i class="ft-power"></i> Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -172,7 +181,9 @@
                 </li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
                 <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> עמילי מכס</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="dropdown"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui">לקוחות</span></a></li>
+                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="transportComp.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> לקוחות</span></a></li>
+
+                <!--<li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="dropdown"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui">לקוחות</span></a></li>-->
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms">דשבורד</span></a></li>
 
             </ul>
