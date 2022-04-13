@@ -145,11 +145,12 @@ namespace Project_7.Models.DAL
                 using (SqlCommand cmd = new SqlCommand("UpdateGatePass", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Id", g.Id);
+                   
                     cmd.Parameters.AddWithValue("@ContainerNum", g.ContainerNum);
                     cmd.Parameters.AddWithValue("@ContainerType", g.ContainerType);
                     cmd.Parameters.AddWithValue("@TransportCompany", g.TransportCompany);
                     cmd.Parameters.AddWithValue("@Importer", g.Importer);
+                    cmd.Parameters.AddWithValue("@CreatedDate", g.CreatedDate);
 
                     //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
                     //returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -187,50 +188,6 @@ namespace Project_7.Models.DAL
 
 
 
-
-
-        public int InsertDriver(Driver d)
-        {
-            //int res = 0;
-            SqlConnection con = null;
-            int numEffected = 0;
-            try
-            {
-                con = Connect("FinalProject");
-                using (SqlCommand cmd = new SqlCommand("NewDriver", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@DriverId", d.DriverID);
-                        cmd.Parameters.AddWithValue("@TransportCompany", d.TransportComany);
-                        cmd.Parameters.AddWithValue("@FirstName", d.DriverFname);
-                        cmd.Parameters.AddWithValue("@LastName", d.DriverLname);
-                        cmd.Parameters.AddWithValue("@PhoneNumber", d.DriverPhone);
-                        cmd.Parameters.AddWithValue("@LicenceType", d.DriverLicense);
-
-
-
-                        numEffected = cmd.ExecuteNonQuery();
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                {
-                    con.Close();
-                }
-            }
-            return numEffected;
-        }
 
 
 
@@ -347,6 +304,43 @@ namespace Project_7.Models.DAL
 
 
 
+        //SEND GATEPASS TO ARCHIVE
+
+        public int SendGateToArchive(GatePass g)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("SendGateToArchive", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ContainerNum", g.ContainerNum);
+                    cmd.Parameters.AddWithValue("@CreatedDate", g.CreatedDate);
+
+
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
+
 
 
 
@@ -401,57 +395,49 @@ namespace Project_7.Models.DAL
 
 
 
-        //טבלה חברות הובלה
-        public List<TransportCompany> ReadTransportCompany()
-        {
-            SqlConnection con = null;
 
+        public int InsertDriver(Driver d)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
             try
             {
                 con = Connect("FinalProject");
-                SqlCommand selectCommand = CreateSelectCommandTransportCompany(con);
-                List<TransportCompany> TransportCompanyList = new List<TransportCompany>();
-                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-                while (dataReader.Read())
+                using (SqlCommand cmd = new SqlCommand("NewDriver", con))
                 {
-                    TransportCompany t = new TransportCompany();
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    t.CompanyId = Convert.ToInt32(dataReader["TPC_Id"]);
-                    t.CompanyName = (string)dataReader["TPC_CompanyName"];
-                    t.CompanyAdress = (string)dataReader["TPC_Adress"];
-                    t.CompanyFax = (string)dataReader["TPC_Fax"];
-                    t.CompanyPhone = (string)dataReader["TPC_PhoneNumber"];
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@DriverId", d.DriverID);
+                        cmd.Parameters.AddWithValue("@TransportCompany", d.TransportComany);
+                        cmd.Parameters.AddWithValue("@FirstName", d.DriverFname);
+                        cmd.Parameters.AddWithValue("@LastName", d.DriverLname);
+                        cmd.Parameters.AddWithValue("@PhoneNumber", d.DriverPhone);
+                        cmd.Parameters.AddWithValue("@LicenceType", d.DriverLicense);
 
 
-                    TransportCompanyList.Add(t);
+
+                        numEffected = cmd.ExecuteNonQuery();
+
+                    }
                 }
-                return TransportCompanyList;
             }
             catch (Exception ex)
             {
-
-                throw new Exception("failed in reading of TransportCompany List", ex);
+                // write to log
+                throw (ex);
             }
             finally
             {
                 if (con != null)
+                {
                     con.Close();
+                }
             }
+            return numEffected;
         }
-        private SqlCommand CreateSelectCommandTransportCompany(SqlConnection con)
-        {
-            string commandStr = "SELECT * FROM SHAY_TransportCompany WHERE TPC_IsActive=N'+'";
-            SqlCommand cmd = createCommand(con, commandStr);
-
-            return cmd;
-        }
-
-
-
-
-
-
 
 
         public int UpdateDrivers(Driver d)
@@ -531,40 +517,6 @@ namespace Project_7.Models.DAL
             return numEffected;
         }
 
-
-        //SEND GATEPASS TO ARCHIVE
-
-        public void SendGateToArchive(int id)
-        {
-            SqlConnection con = null;
-
-            try
-            {
-                con = Connect("FinalProject");
-                SqlCommand selectCommand = createSelectCommandSendGateToArchive(con, id);
-                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("failed in reading of artical", ex);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
-
-        private SqlCommand createSelectCommandSendGateToArchive(SqlConnection con, int id)
-        {
-            string commandStr = "UPDATE SHAY_GatePass SET GPS_IsActive=N'-' Where GPS_Id=@Id and GPS_IsActive<>N'-'";
-            SqlCommand cmd = createCommand(con, commandStr);
-            cmd.Parameters.Add("@Id", SqlDbType.Int);
-            cmd.Parameters["@Id"].Value = id;
-
-            return cmd;
-        }
 
 
 
@@ -841,7 +793,7 @@ namespace Project_7.Models.DAL
             try
             {
                 con = Connect("FinalProject");
-                using (SqlCommand cmd = new SqlCommand("DeleteCustomsBroker", con))
+                using (SqlCommand cmd = new SqlCommand("DelteCustomsBroker", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Id", b.Id);
@@ -882,7 +834,7 @@ namespace Project_7.Models.DAL
 
 
         //Read
-        public List<TransportCompany> ReadCompany()
+        public List<TransportCompany> ReadTransportCompany()
         {
             SqlConnection con = null;
 
@@ -903,7 +855,6 @@ namespace Project_7.Models.DAL
                     t.CompanyPhone = (string)dataReader["TPC_PhoneNumber"];
 
 
-
                     TransportCompanyList.Add(t);
                 }
                 return TransportCompanyList;
@@ -921,7 +872,8 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandCompany(SqlConnection con)
         {
-            string commandStr = "SELECT * from SHAY_TransportCompany";
+            string commandStr = "SELECT * from SHAY_TransportCompany where TPC_IsActive=N'+'";
+
             SqlCommand cmd = createCommand(con, commandStr);
 
             return cmd;
@@ -941,8 +893,8 @@ namespace Project_7.Models.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CompanyName", t.CompanyName);
-                    cmd.Parameters.AddWithValue("@BrokerName", t.CompanyAdress);
-                    cmd.Parameters.AddWithValue("@Adress", t.CompanyFax);
+                    cmd.Parameters.AddWithValue("@Adress", t.CompanyAdress);
+                    cmd.Parameters.AddWithValue("@Fax", t.CompanyFax);
                     cmd.Parameters.AddWithValue("@PhoneNumber", t.CompanyPhone);
                    
 
@@ -1004,6 +956,41 @@ namespace Project_7.Models.DAL
         //    return numEffected;
         //}
 
+
+        //Delete
+        public int DeleteTransportComany(TransportCompany t)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("DeleteTransportCompany", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CompanyName", t.CompanyName);
+
+                    
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
 
 
 

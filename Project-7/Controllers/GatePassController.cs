@@ -46,11 +46,13 @@ namespace Project_7.Controllers
         //    return gatePass.ReadgatePassList ();
         //}
 
-        public void Put(int id)
+
+        public HttpResponseMessage Delete([FromBody] GatePass gatePass)
         {
-            GatePass gatePass = new GatePass();
-            gatePass.SendGateToArchive(id);
+            gatePass.SendGateToArchive();
+            return Request.CreateResponse(HttpStatusCode.Created);
         }
+
 
 
 

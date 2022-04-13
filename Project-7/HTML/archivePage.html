@@ -116,14 +116,14 @@
                     height: "70%",
                     width: "100%",
                     filtering: true,
-                    editing: true,
+                    editing: false,
                     sorting: true,
                     sorter: true,
                     paging: true,
                     autoload: true,
 
                     pageSize: 15,
-                    pageButtonCount: 7,
+                    pageButtonCount: 6,
                     deleteConfirm: function (item) {
                         return "?ימחק לצמיתות. האם אתה בטוח \"" + item.Id + "\" גייטפס ";
                     },
@@ -140,13 +140,13 @@
                                     && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
                             });
                         },
-                        updateItem: function (item) {
-                            return $.ajax({
-                                type: "PUT",
-                                url: "../api/GatePass",
-                                data: item
-                            });
-                        },
+                        //updateItem: function (item) {
+                        //    return $.ajax({
+                        //        type: "PUT",
+                        //        url: "../api/GatePass",
+                        //        data: item
+                        //    });
+                        //},
                         //deleteItem: function (item) {
                         //    return $.ajax({
                         //        type: "PUT",
@@ -156,15 +156,15 @@
                         //}
                     },
                     fields: [
-                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center",editing:false },
-                        { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100, align: "center", },
-                        { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100, align: "center", },
-                        { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100, align: "center", },
-                        { name: "Importer", type: "text", title: "יבואן", width: 100, align: "center", },
-                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, filtering: true, align: "center" },
-                        {
-                            type: "control",
-                        },
+                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center" },
+                        { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100, align: "center" },
+                        { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100, align: "center" },
+                        { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100, align: "center"},
+                        { name: "Importer", type: "text", title: "יבואן", width: 100, align: "center" },
+                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, align: "center" },
+                        //{
+                        //    type: "control",
+                        //},
                     ]
                 });
 

@@ -10,14 +10,16 @@ namespace PROJECT_7.Controllers
 {
     public class TransportCompanyController : ApiController
     {
+
+
         // GET: api/TransportCompany
         public IEnumerable<TransportCompany> Get()
         {
-            TransportCompany tCompany = new TransportCompany();
-            return tCompany.ReadTransportCompany();
+            TransportCompany t = new TransportCompany();
+            return t.ReadTransportCompany();
         }
 
-
+   
         // GET: api/TransportCompany/5
         public string Get(int id)
         {
@@ -29,6 +31,12 @@ namespace PROJECT_7.Controllers
         public HttpResponseMessage Put([FromBody]TransportCompany tCompany)
         {
             tCompany.UpdateTransportComany();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
+        public HttpResponseMessage Delete([FromBody] TransportCompany t)
+        {
+            t.DeleteTransportComany();
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 

@@ -38,13 +38,6 @@ namespace Project_7.Models
 
 
 
-        public List<TransportCompany> ReadTransportCompany()
-        {
-            DataServices ds = new DataServices();
-            return ds.ReadTransportCompany();
-        }
-
-
 
         public int UpdateTransportComany()
         {
@@ -53,6 +46,21 @@ namespace Project_7.Models
         }
 
 
+
+        public int DeleteTransportComany()
+        {
+            DataServices ds = new DataServices();
+            return ds.DeleteTransportComany(this);
+        }
+
+
+
+
+        public List<TransportCompany> ReadTransportCompany()
+        {
+            DataServices ds = new DataServices();
+            return ds.ReadTransportCompany();
+        }
 
     }
 }

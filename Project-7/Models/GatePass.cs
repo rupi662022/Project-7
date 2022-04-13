@@ -103,15 +103,15 @@ namespace Project_7.Models
         }
 
         //שליחה לארכיון במידה וביצענו מחיקה
-        public void SendGateToArchive(int id)
+        public void SendGateToArchive()
         {
             DataServices ds = new DataServices();
-            ds.SendGateToArchive(id);
+            ds.SendGateToArchive(this);
         }
 
        
 
-
+        //עדכון רשומה
         public int UpdateGatePass()
         {
             DataServices ds = new DataServices();
