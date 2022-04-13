@@ -207,7 +207,7 @@
     <Content Include="HTML\CustomBrokers.html" />
     <Content Include="HTML\driver.html" />
     <Content Include="demos\driversDemo.html" />
-    <Content Include="demos\login.html" />
+    <Content Include="demos\login2.html" />
     <Content Include="demos\register.html" />
     <Content Include="demos\validation.html" />
     <Content Include="favicon.ico" />
