@@ -68,9 +68,9 @@
 
 
         $(document).ready(function () {
-           
+
             U = JSON.parse(localStorage.getItem('User'));
-          
+
             //('.user-name').append(U.UserName)
             $('.chkbox').click(function () {
                 checkBox = this.id
@@ -82,8 +82,8 @@
                     $(this).attr('value', '-')
                 }
             });
-/*            ajaxCall("GET", "../api/TransportCompany","",getTransport, getErrorTransport);*/
-            
+            /*            ajaxCall("GET", "../api/TransportCompany","",getTransport, getErrorTransport);*/
+
         });
 
         function submitGatePass() {
@@ -111,31 +111,24 @@
         }
 
 
-     
-        
+
         //function getErrorTransport(err) {
         //    alert(err);
         //}
 
-        
+
 
         //function getTransport(results) {
         //    console.log(results);
-            //str += "<option>Select Series/Movie</option>";
-            //for (var i = 0; i < results.length; i++) {
+        //str += "<option>Select Series/Movie</option>";
+        //for (var i = 0; i < results.length; i++) {
 
-            //    str += "<option value='" + results[i].CompanyName + "'>" + results[i].CompanyName + "</option>";
+        //    str += "<option value='" + results[i].CompanyName + "'>" + results[i].CompanyName + "</option>";
 
-            //}
-            //str += "</select>"
-            //$("#ph").append(str);
-         }
-
-      
-
-
-    
-
+        //}
+        //str += "</select>"
+        //$("#ph").append(str);
+        //}
 
 
     </script>
@@ -149,7 +142,7 @@
     </script>
 </head>
 <body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
-    
+
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
         <div class="navbar-wrapper">
@@ -194,10 +187,10 @@
                 <li class="active" data-menu=""><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px ;  border:solid 1px gray; background-color:#d5f4e6" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main">יצירת גייטפס</span></a></li>
                 <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
-                    <ul class="dropdown-menu" style="width:50%">
+                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <ul class="dropdown-menu">
                         <li data-menu=""><a class="dropdown-item" href="MyGatePass.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
-                        <li class="active" data-menu=""><a class="dropdown-item" href="archive.html" style="border:solid 1px gray;" data-toggle="dropdown"><p> ארכיון</p></a></li>
+                        <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
@@ -227,20 +220,8 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div></div>
-                                <div class="card-header">
 
-                                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
                                 <div class="card-content collpase show">
-
                                     <form class="form form-horizontal">
                                         <div class="form-body">
                                             <div class="row">
@@ -254,156 +235,144 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <!--<div class="form-group row">
-<<<<<<< HEAD
-                <label class="col-md-3 label-control" for="userinput2">סוג</label>
-                <div class="col-md-9">
-                    <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
-                </div>
-            </div>-->
-=======
                                                         <label class="col-md-3 label-control" for="userinput2">סוג</label>
                                                         <div class="col-md-9">
                                                             <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
                                                         </div>
                                                     </div>-->
->>>>>>> 58bfd00c1f5c6469e63030214017284495ccc333
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row ">
-                                                        <label class="col-md-3 label-control" for="ContType">יבואן</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" id="ImporterName" class="form-control border-primary" placeholder="Importer Name" name="ImporterName">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="ContType">סוג</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
-                                                        </div>
+                                                    <label class="col-md-3 label-control" for="userinput2">סוג</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="TransportCompName">חברת תובלה</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" id="TransportCompName" class="form-control border-primary" placeholder="Transport Company" name="TransportCompName" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="AccountIDNum">תיק מספר</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" id="AccountIDNum" class="form-control border-primary" placeholder="AccountIDNum" name="AccountIDNum">
-                                                        </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row ">
+                                                    <label class="col-md-3 label-control" for="ContType">יבואן</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" id="ImporterName" class="form-control border-primary" placeholder="Importer Name" name="ImporterName">
                                                     </div>
                                                 </div>
                                             </div>
-
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="CustomAgentName">עמיל מכס</label>
-                                                        <div class="col-md-9">
-                                                            <input class="form-control border-primary" type="text" placeholder="Custom Agen" id="CustomAgentName" required>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="ShippingCompNamePlusLine">חברת ספנות+קו</label>
-                                                        <div class="col-md-9">
-                                                            <input class="form-control border-primary" type="text" placeholder="Shipping Company and Line" id="ShippingCompNamePlusLine">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control">תעודת אחסנה</label>
-                                                        <div class="col-md-9">
-                                                            <input class="form-control border-primary" type="text" placeholder="Storage Certificate" id="StorageCertificate">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="OfficeNotes"> הערות משרד</label>
-                                                        <div class="col-md-9">
-                                                            <textarea id="Comments" rows="5" class="form-control border-primary" name="Comments" placeholder="הערות משרד"></textarea>
-                                                        </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="ContType">סוג</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-
-                                                        <label class="col-md-3 label-control " for="SendToMaintinance">יצא לתיקון</label>
-                                                        <div class="col-md-9">
-                                                            <input type="checkbox" VALUE='-' class="chkbox" name="SendToMaintinance" id="SendToMaintinance">
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="form-group row">
-
-                                                        <label class="col-md-3 label-control " for="ReturnedFromMaintinance">חזר מתיקון</label>
-                                                        <div class="col-md-9">
-                                                            <input type="checkbox" VALUE='-' class="chkbox" name="ReturnedFromMaintinance" id="ReturnedFromMaintinance">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control">משתמש</label>
-                                                        <div class="col-md-9">
-                                                            <input class="form-control border-primary" type="text" placeholder="Worker Email" id="WorkerEmail">
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="Notes">הערות</label>
-                                                        <div class="col-md-9">
-                                                            <textarea id="OfficeComents" rows="5" class="form-control border-primary" name="OfficeComents" placeholder="הערות"></textarea>
-                                                        </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="TransportCompName">חברת תובלה</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" id="TransportCompName" class="form-control border-primary" placeholder="Transport Company" name="TransportCompName" required>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="ph">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="AccountIDNum">תיק מספר</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" id="AccountIDNum" class="form-control border-primary" placeholder="AccountIDNum" name="AccountIDNum">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="form-actions center">
-                                                <button type="submit" onclick="submitGatePass()" class="btn btn-primary">
-                                                    <i class="fa fa-check-square-o"></i> שמור
-                                                </button>
-                                                <button type="button" class="btn btn-warning mr-1">
-                                                    <i class="ft-x"></i> ביטול
-                                                </button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="CustomAgentName">עמיל מכס</label>
+                                                    <div class="col-md-9">
+                                                        <input class="form-control border-primary" type="text" placeholder="Custom Agen" id="CustomAgentName" required>
+                                                    </div>
+                                                </div>
 
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="ShippingCompNamePlusLine">חברת ספנות+קו</label>
+                                                    <div class="col-md-9">
+                                                        <input class="form-control border-primary" type="text" placeholder="Shipping Company and Line" id="ShippingCompNamePlusLine">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control">תעודת אחסנה</label>
+                                                    <div class="col-md-9">
+                                                        <input class="form-control border-primary" type="text" placeholder="Storage Certificate" id="StorageCertificate">
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="OfficeNotes"> הערות משרד</label>
+                                                    <div class="col-md-9">
+                                                        <textarea id="Comments" rows="5" class="form-control border-primary" name="Comments" placeholder="הערות משרד"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+
+                                                    <label class="col-md-3 label-control " for="SendToMaintinance">יצא לתיקון</label>
+                                                    <div class="col-md-9">
+                                                        <input type="checkbox" VALUE='-' class="chkbox" name="SendToMaintinance" id="SendToMaintinance">
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row">
+
+                                                    <label class="col-md-3 label-control " for="ReturnedFromMaintinance">חזר מתיקון</label>
+                                                    <div class="col-md-9">
+                                                        <input type="checkbox" VALUE='-' class="chkbox" name="ReturnedFromMaintinance" id="ReturnedFromMaintinance">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control">משתמש</label>
+                                                    <div class="col-md-9">
+                                                        <input class="form-control border-primary" type="text" placeholder="Worker Email" id="WorkerEmail">
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="Notes">הערות</label>
+                                                    <div class="col-md-9">
+                                                        <textarea id="OfficeComents" rows="5" class="form-control border-primary" name="OfficeComents" placeholder="הערות"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="ph"></div>
+                                        <div class="form-actions center">
+                                            <button type="submit" onclick="submitGatePass()" class="btn btn-primary">
+                                                <i class="fa fa-check-square-o"></i> שמור
+                                            </button>
+                                            <button type="button" class="btn btn-warning mr-1">
+                                                <i class="ft-x"></i> ביטול
+                                            </button>
+
                                         </div>
                                     </form>
 
-
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
                 </section>
+
             </div>
         </div>
     </div>

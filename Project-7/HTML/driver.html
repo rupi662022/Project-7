@@ -47,7 +47,6 @@
 
     <style>
 
-
         p, h1, h2, h3, span, td, tr, table {
             font-family: sans-serif;
         }
@@ -72,8 +71,6 @@
                 data: "json"
 
             }).done(function (data) {
-
-
 
                     $("#GatePas").jsGrid({
                     
@@ -129,7 +126,6 @@
                                 url: "../api/Drivers",
                                 data: item
                             });
-
                         }
                     },
 
@@ -140,17 +136,11 @@
                         { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center", },
                         { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center", },
                         { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center", },
-
                             {
                                 type: "control",
-                        
-
                            }
-                            
                         ]
                 });
-
-
             });
         })
 
