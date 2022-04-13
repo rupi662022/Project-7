@@ -145,7 +145,8 @@ namespace Project_7.Models.DAL
                 using (SqlCommand cmd = new SqlCommand("UpdateGatePass", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                   
+
+                    cmd.Parameters.AddWithValue("@Id", g.Id);
                     cmd.Parameters.AddWithValue("@ContainerNum", g.ContainerNum);
                     cmd.Parameters.AddWithValue("@ContainerType", g.ContainerType);
                     cmd.Parameters.AddWithValue("@TransportCompany", g.TransportCompany);
