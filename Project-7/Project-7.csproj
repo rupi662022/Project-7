@@ -197,7 +197,7 @@
     <Content Include="demos\archive.html" />
     <Content Include="demos\basic - Copy.html" />
     <Content Include="demos\basic.html" />
-    <Content Include="demos\createGate.html" />
+    <Content Include="demos\createGateTEST.html" />
     <Content Include="demos\custom-row-renderer.html" />
     <Content Include="demos\db.js" />
     <Content Include="demos\demos.css" />

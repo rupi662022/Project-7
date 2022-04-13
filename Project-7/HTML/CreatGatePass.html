@@ -59,9 +59,7 @@
         });
 
         function submitGatePass() {
-
-
-
+            
             var sqlDatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
             let gatePass = {
                 ContainerNum: document.getElementById("ContainerNum").value,
@@ -141,15 +139,15 @@
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="active" data-menu=""><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px ;  border:solid 1px gray; background-color:#d5f4e6" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main">יצירת גייטפס</span></a></li>
-                <li class="dropdown nav-item" data-menu="dropdown" >
+                <li class="dropdown nav-item" data-menu="dropdown">
                     <a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
-                    <ul class="dropdown-menu" style="width:50%" >
+                    <ul class="dropdown-menu" style="width:50%">
                         <li data-menu=""><a class="dropdown-item" href="MyGatePass.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
-                        <li class="active" data-menu=""><a class="dropdown-item" href="archive.html" style="border:solid 1px gray;"  data-toggle="dropdown"><p> ארכיון</p></a></li>
+                        <li class="active" data-menu=""><a class="dropdown-item" href="archive.html" style="border:solid 1px gray;" data-toggle="dropdown"><p> ארכיון</p></a></li>
                     </ul>
                 </li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="driversPage.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
-                <!--<li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages">עמילי מכס</span></a></li>-->
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
+                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> עמילי מכס</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="dropdown"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui">לקוחות</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms">דשבורד</span></a></li>
 
@@ -159,12 +157,11 @@
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
-                <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h2 class="content-header-title">יצירת גייטפס</h2>
+                <div class="content-header-left col-md-12 col-12 mb-2">
+                    <h3 class="content-header-title mb-0" style="margin-right:50%"><b> יצירת גייטפס</b></h3>
                 </div>
+
             </div>
-
-
 
             <div class="content-body">
                 <!-- Basic form layout section start -->
@@ -201,11 +198,11 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <!--<div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="userinput2">סוג</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
-                                                        </div>
-                                                    </div>-->
+                                                    <label class="col-md-3 label-control" for="userinput2">סוג</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
+                                                    </div>
+                                                </div>-->
                                                 </div>
                                             </div>
 
