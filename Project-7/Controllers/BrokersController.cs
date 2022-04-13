@@ -41,7 +41,11 @@ namespace Project_7.Controllers
         }
 
 
-
+        public HttpResponseMessage Delete([FromBody] CustomsBroker b)
+        {
+            b.DeleteBroker();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
 
 
         //public List<Driver> Get()
@@ -61,8 +65,8 @@ namespace Project_7.Controllers
         }
 
         // DELETE: api/Drivers/5
-        public void Delete(int id)
-        {
-        }
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

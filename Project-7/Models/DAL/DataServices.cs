@@ -392,7 +392,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandDrivers(SqlConnection con)
         {
-            string commandStr = "SELECT * FROM SHAY_Driver ";
+            string commandStr = "SELECT * FROM SHAY_Driver WHERE DRI_IsActive=N'+'";
             SqlCommand cmd = createCommand(con, commandStr);
 
             return cmd;
@@ -441,7 +441,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandTransportCompany(SqlConnection con)
         {
-            string commandStr = "SELECT * FROM SHAY_TransportCompany ";
+            string commandStr = "SELECT * FROM SHAY_TransportCompany WHERE TPC_IsActive=N'+'";
             SqlCommand cmd = createCommand(con, commandStr);
 
             return cmd;
@@ -498,6 +498,38 @@ namespace Project_7.Models.DAL
         }
 
 
+        //Delete
+        public int DeleteDriver(Driver d)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("DeleteDriver", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DriverId", d.DriverID);
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
 
 
         //SEND GATEPASS TO ARCHIVE
@@ -711,7 +743,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandCustomsBroker(SqlConnection con)
         {
-            string commandStr = "SELECT * from SHAY_CustomsBroker ";
+            string commandStr = "SELECT * from SHAY_CustomsBroker where CSB_IsActive=N'+'";
             SqlCommand cmd = createCommand(con, commandStr);
 
             return cmd;
@@ -778,6 +810,45 @@ namespace Project_7.Models.DAL
 
                     numEffected = cmd.ExecuteNonQuery();
 
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
+
+
+
+
+
+        //Delete
+        public int DeleteBroker(CustomsBroker b)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("DeleteCustomsBroker", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", b.Id);
+          
+
+
+                    numEffected = cmd.ExecuteNonQuery();
 
                 }
             }

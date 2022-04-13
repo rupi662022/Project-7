@@ -41,6 +41,11 @@ namespace Project_7.Controllers
         }
 
 
+        public HttpResponseMessage Delete([FromBody] Driver d)
+        {
+            d.DeleteDriver();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
 
         // POST: api/Drivers
         public void Post([FromBody]string value)
@@ -55,6 +60,7 @@ namespace Project_7.Controllers
         // DELETE: api/Drivers/5
         public void Delete(int id)
         {
+
         }
     }
 }

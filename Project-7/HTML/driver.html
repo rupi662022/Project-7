@@ -122,6 +122,14 @@
                                 data: item
                             });
 
+                        },
+                              DeleteItem: function (item) {
+                            return $.ajax({
+                                type: "DELETE",
+                                url: "../api/Drivers",
+                                data: item
+                            });
+
                         }
                     },
 

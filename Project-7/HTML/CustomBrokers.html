@@ -39,13 +39,12 @@
     <script src="../srcc/jsgrid.load-strategies.js"></script>
     <script src="../srcc/jsgrid.sort-strategies.js"></script>
     <script src="../srcc/jsgrid.field.js"></script>
-    <script src="../srcc/fields/jsgrid.field.textarea.js"></script>
     <script src="../srcc/fields/jsgrid.field.text.js"></script>
     <script src="../srcc/fields/jsgrid.field.number.js"></script>
     <script src="../srcc/fields/jsgrid.field.select.js"></script>
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
-
+    <script src="../srcc/fields/jsgrid.field.textarea.js"></script>
     <style>
 
 
@@ -78,10 +77,10 @@
                 data: "json"
 
             }).done(function (data) {
-                /*      $("#jsGrid").jsGrid("option", "inserting", true);*/
-
+   
+                
                 $("#GatePas").jsGrid({
-
+                    
                     height: "70%",
                     width: "100%",
                     filtering: true,
@@ -91,6 +90,7 @@
                     sorter: true,
                     paging: true,
                     autoload: true,
+                    /* deleting:true,*/
 
                     pageSize: 15,
                     pageButtonCount: 5,
@@ -98,7 +98,7 @@
                         return "?ימחק. האם אתה בטוח \"" + item.BrokerName + "\"  ";
                     },
                     controller: {
-
+                        
                         loadData: function (filter) {
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
@@ -125,6 +125,14 @@
                                 data: item
                             });
 
+                        },
+
+                        deleteItem: function (item) {                  
+                            return $.ajax({
+                                type: "DELETE",
+                                url: "../api/Brokers",
+                                data: item
+                            });
                         }
                     },
 

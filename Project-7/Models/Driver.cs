@@ -50,7 +50,11 @@ namespace Project_7.Models
 
         }
 
-
+        public int DeleteDriver()
+        {
+            DataServices ds = new DataServices();
+            return ds.DeleteDriver(this);
+        }
 
 
         public int UpdateDrivers()

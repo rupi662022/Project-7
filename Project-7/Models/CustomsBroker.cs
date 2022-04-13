@@ -54,6 +54,14 @@ namespace Project_7.Models
             return ds.UpdateBroker(this);
         }
 
+
+
+        public int DeleteBroker()
+        {
+            DataServices ds = new DataServices();
+           return ds.DeleteBroker(this);
+        }
+
         public List<CustomsBroker> ReadBrokers()
         {
             DataServices ds = new DataServices();
