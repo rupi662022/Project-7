@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="rtl">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,20 +7,44 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
-    <title>Basic Forms - Robust - Responsive Bootstrap 4 Admin Dashboard Template for Web Application</title>
+
+    <title>jsGrid - Basic Scenario</title>
+
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
+
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/custom-rtl.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/colors/palette-gradient.css">
-    <link rel="stylesheet" type="text/css" href="../../../assets/css/style-rtl.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+
+
     <link rel="stylesheet" type="text/css" href="demos.css" />
-    <script src="../Scripts/jquery-3.4.1.min.js"></script>
-    <script src="../Scripts/jquery.min.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
     <script src="../Scripts/ajaxCalls.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
+    <link rel="stylesheet" type="text/css" href="../css/theme.css" />
+    <script src="../Scripts/qunit-1.10.0.js"></script>
+    <script src="../external/jquery/jquery-1.8.3.js"></script>
+    <script src="../src/js/core/app-menu.js"></script>
+    <script src="../srcc/jsgrid.core.js"></script>
+    <script src="../srcc/jsgrid.load-indicator.js"></script>
+    <script src="../srcc/jsgrid.load-strategies.js"></script>
+    <script src="../srcc/jsgrid.sort-strategies.js"></script>
+    <script src="../srcc/jsgrid.field.js"></script>
+    <script src="../srcc/fields/jsgrid.field.text.js"></script>
+    <script src="../srcc/fields/jsgrid.field.number.js"></script>
+    <script src="../srcc/fields/jsgrid.field.select.js"></script>
+    <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
+    <script src="../srcc/fields/jsgrid.field.control.js"></script>
+    <script src="../srcc/fields/jsgrid.field.textarea.js"></script>
 
     <style>
         #Add {
@@ -63,7 +87,7 @@
         });
 
         function submitGatePass() {
-            
+
             var sqlDatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
             let gatePass = {
                 ContainerNum: document.getElementById("ContainerNum").value,
@@ -115,6 +139,14 @@
 
 
     </script>
+    <script>
+
+        function byebye() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        }
+
+    </script>
 </head>
 <body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
     
@@ -136,12 +168,13 @@
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
                     <ul class="nav navbar-nav mr-auto float-left">
-                        <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu">         </i></a></li>
+                        <li class="dropdown dropdown-user nav-item">
+                            <button id="byebye" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav float-right">
-
                         <li class="dropdown dropdown-user nav-item">
-                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name">   User Name</span></a>
+                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name" style="font-size:17px">   User Name</span></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="login-simple.html"><i class="ft-power"></i> Logout</a>
@@ -169,7 +202,9 @@
                 </li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
                 <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> עמילי מכס</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="dropdown"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui">לקוחות</span></a></li>
+                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="transportComp.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> לקוחות</span></a></li>
+
+                <!--<li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="dropdown"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui">לקוחות</span></a></li>-->
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms">דשבורד</span></a></li>
 
             </ul>
@@ -219,11 +254,19 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <!--<div class="form-group row">
+<<<<<<< HEAD
                 <label class="col-md-3 label-control" for="userinput2">סוג</label>
                 <div class="col-md-9">
                     <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
                 </div>
             </div>-->
+=======
+                                                        <label class="col-md-3 label-control" for="userinput2">סוג</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
+                                                        </div>
+                                                    </div>-->
+>>>>>>> 58bfd00c1f5c6469e63030214017284495ccc333
                                                 </div>
                                             </div>
 
