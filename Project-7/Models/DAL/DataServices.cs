@@ -317,8 +317,8 @@ namespace Project_7.Models.DAL
                 using (SqlCommand cmd = new SqlCommand("SendGateToArchive", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ContainerNum", g.ContainerNum);
-                    cmd.Parameters.AddWithValue("@CreatedDate", g.CreatedDate);
+                    cmd.Parameters.AddWithValue("@Id", g.Id);
+                  
 
 
 
@@ -541,19 +541,10 @@ namespace Project_7.Models.DAL
                     cmd.Parameters.AddWithValue("@UserCompany", user.UserCompany);
                     cmd.Parameters.AddWithValue("@UserType", user.UserType);
 
-                    //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
-                    //returnParameter.Direction = ParameterDirection.ReturnValue;
-                    //cmd.ExecuteNonQuery();
-                    //var result = returnParameter.Value;
+          
                     numEffected = cmd.ExecuteNonQuery();
 
-                    //if (result.Equals(1))
-                    //{
-                    //    res = 1;
-
-                    //}
-                    //return res;
-
+          
                 }
             }
             catch (Exception ex)
@@ -601,8 +592,8 @@ namespace Project_7.Models.DAL
                     u.UserEmail = (string)dr["USR_Email"];
                     u.UserPassword = (string)dr["USR_Password"];
                     u.UserName = (string)dr["USR_UserName"];
-                    u.UserCompany = (string)dr["USR_Company"];
-
+                    u.UserCompany = (string)dr["USR_TransportCompany"];
+                    u.UserType= (string)dr["USR_Type"];
 
                 }
                 dr.Close();
@@ -613,7 +604,7 @@ namespace Project_7.Models.DAL
             catch (Exception ex)
             {
 
-                throw new Exception("failed in reading of Users", ex);
+                throw new Exception("failed in reading of User", ex);
             }
             finally
             {

@@ -286,6 +286,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\qunit-1.10.0.js" />
     <Content Include="src1\fields\jsgrid.field.checkbox.js" />
     <Content Include="src1\fields\jsgrid.field.control.js" />
     <Content Include="src1\fields\jsgrid.field.number.js" />
@@ -317,6 +318,7 @@
     <Content Include="src1\jsgrid.load-strategies.js" />
     <Content Include="src1\jsgrid.sort-strategies.js" />
     <Content Include="src1\jsgrid.validation.js" />
+    <Content Include="srcc\fields\Gruntfile.js" />
     <Content Include="srcc\fields\jsgrid.field.checkbox.js" />
     <Content Include="srcc\fields\jsgrid.field.control.js" />
     <Content Include="srcc\fields\jsgrid.field.number.js" />
@@ -329,6 +331,7 @@
     <Content Include="srcc\i18n\es.js" />
     <Content Include="srcc\i18n\fa.js" />
     <Content Include="srcc\i18n\fr.js" />
+    <Content Include="srcc\i18n\Gruntfile.js" />
     <Content Include="srcc\i18n\he.js" />
     <Content Include="srcc\i18n\it.js" />
     <Content Include="srcc\i18n\ja.js" />

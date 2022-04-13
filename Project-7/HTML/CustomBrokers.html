@@ -31,9 +31,9 @@
     <script src="../Scripts/ajaxCalls.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
-
+    <script src="../Scripts/qunit-1.10.0.js"></script>
     <script src="../external/jquery/jquery-1.8.3.js"></script>
-
+    <script src="../src/js/core/app-menu.js"></script>
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -45,6 +45,7 @@
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
     <script src="../srcc/fields/jsgrid.field.textarea.js"></script>
+  
     <style>
 
 
@@ -93,7 +94,7 @@
                     /* deleting:true,*/
 
                     pageSize: 15,
-                    pageButtonCount: 5,
+                    pageButtonCount: 6,
                     deleteConfirm: function (item) {
                         return "?ימחק. האם אתה בטוח \"" + item.BrokerName + "\"  ";
                     },
@@ -110,14 +111,8 @@
                             });
 
                         },
-                        updateItem: function (item) {
-                            return $.ajax({
-                                type: "PUT",
-                                url: "../api/Brokers",
-                                data: item
-                            });
 
-                        },
+
                         insertItem: function (item) {
                             return $.ajax({
                                 type: "POST",
@@ -126,6 +121,15 @@
                             });
 
                         },
+                        updateItem: function (item) {
+                            return $.ajax({
+                                type: "PUT",
+                                url: "../api/Brokers",
+                                data: item
+                            });
+
+                        },
+                 
 
                         deleteItem: function (item) {                  
                             return $.ajax({
@@ -138,10 +142,10 @@
 
                     fields: [
                         { name: "Id", title: 'מזהה', type: "text", width: 100, sorting: false, align: "center", editing: false, inserting: false },
-                        { name: "BrokerName", title: 'עמיל מכס', type: "text", width: 100, align: "center", },
-                        { name: "Adress", title: "כתובת", type: "text", width: 100, align: "center", },
-                        { name: "PhoneNumber", title: "מספר טלפון", type: "text", width: 100, align: "center", },
-                        { name: "Fax", type: "text", title: "פקס", width: 100, align: "center", },
+                        { name: "BrokerName", title: 'עמיל מכס', type: "text", width: 100, align: "center"},
+                        { name: "Adress", title: "כתובת", type: "text", width: 100, align: "center" },
+                        { name: "PhoneNumber", title: "מספר טלפון", type: "text", width: 100, align: "center"},
+                        { name: "Fax", type: "text", title: "פקס", width: 100, align: "center"},
 
                         {
                             type: "control",

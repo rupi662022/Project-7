@@ -78,6 +78,8 @@ namespace Project_7.Models
         public string UserEmail { get => userEmail; set => userEmail = value; }
         public DateTime CreatedDate { get => createdDate; set => createdDate = value; }
 
+
+        //הכנס גייטפס 
         public int InsertGatePass()
         {
            
