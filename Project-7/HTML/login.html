@@ -37,12 +37,9 @@
         $(document).ready(function () {
             $("#logId").submit(CeckUser)
             if (localStorage.getItem('User')) {
-                window.location.href = "driver.html";
+                window.location.href = "home.html";
             }
-
         });
-
-
 
         function CeckUser() {
             let email = $("#user-name").val();
@@ -52,7 +49,6 @@
             return false;
         }
 
-
         //window.localStorage.setItem("email", JSON.stringify(U.UserEmail));
         //window.localStorage.setItem("name", JSON.stringify(U.UserEmail));
 
@@ -60,13 +56,13 @@
         function Sucse(U) {
             console.log(U);
             if (U.UserPassword == password) {
-                if (U.UserID < 3) {
+                //if (U.UserID < 3) {
                     window.location.href = "home.html";
-                }
-                else {
-                    window.location.href = "home.html";
-                }
-                localSave(U);
+                //}
+                //else {
+                //    window.location.href = "home.html";
+                //}
+                //localSave(U);
             }
             else {
                 ecb()
@@ -79,13 +75,11 @@
             window.location.href = "registerU.html";
 
 
-            function localSave(U) {
-                localStorage.setItem('User', JSON.stringify(U));
-            }
+            //function localSave(U) {
+            //    localStorage.setItem('User', JSON.stringify(U));
+            //}
 
-
-
-            function disConnect() {
+            function byebye() {
                 localStorage.clear();
                 window.location.href = "login.html";
             }
@@ -145,7 +139,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="" style="margin-right:100px">
-                                        <button onclick="disConnect()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
+                                        <button onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
                                     </div>
                                 </div>
                             </div>
