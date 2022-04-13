@@ -44,7 +44,9 @@
 
 
         $(document).ready(function () {
+           
             U = JSON.parse(localStorage.getItem('User'));
+          
             //('.user-name').append(U.UserName)
             $('.chkbox').click(function () {
                 checkBox = this.id
@@ -56,6 +58,8 @@
                     $(this).attr('value', '-')
                 }
             });
+            ajaxCall("GET", "../api/TransportCompany", "", getTransport, getErrorTransport);
+            
         });
 
         function submitGatePass() {
@@ -83,20 +87,37 @@
         }
 
 
-        function postSuccessCB() {
-            console.log("success");
-        }
-
-        function postErrorCB(err) {
+     
+        
+        function getErrorTransport(err) {
             alert(err);
         }
+
+
+
+        function getTransport(results) {
+            console.log(results);
+            //str += "<option>Select Series/Movie</option>";
+            //for (var i = 0; i < results.length; i++) {
+
+            //    str += "<option value='" + results[i].CompanyName + "'>" + results[i].CompanyName + "</option>";
+
+            //}
+            //str += "</select>"
+            //$("#ph").append(str);
+         }
+
+      
+
+
+    
 
 
 
     </script>
 </head>
 <body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
-
+    
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
         <div class="navbar-wrapper">
@@ -198,11 +219,11 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <!--<div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="userinput2">סוג</label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
-                                                    </div>
-                                                </div>-->
+                <label class="col-md-3 label-control" for="userinput2">סוג</label>
+                <div class="col-md-9">
+                    <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
+                </div>
+            </div>-->
                                                 </div>
                                             </div>
 
@@ -320,7 +341,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            <div id="ph">
+                                            </div>
                                             <div class="form-actions center">
                                                 <button type="submit" onclick="submitGatePass()" class="btn btn-primary">
                                                     <i class="fa fa-check-square-o"></i> שמור
