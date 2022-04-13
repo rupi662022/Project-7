@@ -17,10 +17,10 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/colors/palette-gradient.css">
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style-rtl.css">
+    <link rel="stylesheet" type="text/css" href="demos.css" />
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <script src="../Scripts/jquery.min.js"></script>
     <script src="../Scripts/ajaxCalls.js"></script>
-    <link rel="stylesheet" type="text/css" href="demos.css" />
 
     <style>
         #Add {
@@ -45,7 +45,7 @@
 
         $(document).ready(function () {
             U = JSON.parse(localStorage.getItem('User'));
-            ('.user-name').append(U.UserName)
+            //('.user-name').append(U.UserName)
             $('.chkbox').click(function () {
                 checkBox = this.id
                 checkBoxValue = $(this).attr('value')
@@ -325,12 +325,13 @@
                                             </div>
 
                                             <div class="form-actions center">
-                                                <button type="button" class="btn btn-warning mr-1">
-                                                    <i class="ft-x"></i> Cancel
-                                                </button>
                                                 <button type="submit" onclick="submitGatePass()" class="btn btn-primary">
-                                                    <i class="fa fa-check-square-o"></i> Save
+                                                    <i class="fa fa-check-square-o"></i> שמור
                                                 </button>
+                                                <button type="button" class="btn btn-warning mr-1">
+                                                    <i class="ft-x"></i> ביטול
+                                                </button>
+
                                             </div>
                                         </div>
                                     </form>
