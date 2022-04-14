@@ -8,7 +8,7 @@
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
 
-    <title>jsGrid - Basic Scenario</title>
+    <title>שי שירותי נמל בע"מ</title>
 
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
@@ -60,6 +60,7 @@
         .jsgrid-grid-body {
             height: 300px;
         }
+
         #Add {
             background-color: #3bafda;
             font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
@@ -94,12 +95,12 @@
             $('#Add').on("click", function () {
                 window.location.href = "GatePass.html";
             });
-    
+
 
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
-                url: "../api/GatePass/?userType=" + userType +  "&transportCompany=" + transportCompany,
+                url: "../api/GatePass/?userType=" + userType + "&transportCompany=" + transportCompany,
                 data: "json"
 
             }).done(function (data) {
@@ -141,7 +142,7 @@
                 jsGrid.fields.date = MyDateField;
 
                 $("#GatePas").jsGrid({
-                   
+
                     height: "70%",
                     width: "100%",
                     filtering: true,
@@ -178,10 +179,10 @@
                             });
                         },
                         deleteItem: function (item) {
-                           
+
                             return $.ajax({
                                 type: "PUT",
-                                url: "../api/GatePass"+id,
+                                url: "../api/GatePass" + id,
                                 data: item
                             });
                         }
@@ -226,7 +227,9 @@
                         <a class="navbar-brand" href="../../../html/rtl/vertical-content-menu-template/index.html">
                             <!--<img class="brand-logo" alt="robust admin logo" src="../../../app-assets/images/logo/logo-dark-sm.png">-->
                             <h3 class="brand-text">שי שירותי נמל</h3>
+
                         </a>
+
                     </li>
                     <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
                 </ul>
@@ -322,7 +325,9 @@
     </div>
 
     <footer class="footer footer-static footer-light navbar-shadow">
-        <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
+        <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout">
+            <img src="../test/Picture1.png" style="width:200px;">
+        </p>
     </footer>
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>

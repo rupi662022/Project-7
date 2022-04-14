@@ -8,7 +8,7 @@
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
 
-    <title></title>
+    <title>שי שירותי נמל בע"מ</title>
 
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
@@ -54,7 +54,6 @@
         .jsgrid-grid-body {
             height: 500px;
         }
-
     </style>
 
     <script>
@@ -72,9 +71,9 @@
 
             }).done(function (data) {
 
-                    $("#GatePas").jsGrid({
-                    
-                     height: "70%",
+                $("#GatePas").jsGrid({
+
+                    height: "70%",
                     width: "100%",
                     filtering: true,
                     editing: true,
@@ -134,16 +133,16 @@
                     },
 
                     fields: [
-                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center"},
+                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center" },
                         { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center" },
                         { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center" },
                         { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center" },
-                        { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center"},
-                        { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center"},
-                            {
-                                type: "control",
-                           }
-                        ]
+                        { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center" },
+                        { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center" },
+                        {
+                            type: "control",
+                        }
+                    ]
                 });
             });
         })
