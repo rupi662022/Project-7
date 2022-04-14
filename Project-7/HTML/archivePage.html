@@ -56,7 +56,7 @@
         }*/
 
         .jsgrid-grid-body {
-            height: 300px;
+            height: 500px;
         }
     </style>
 
@@ -166,7 +166,8 @@
                     <li class="nav-item">
                         <a class="navbar-brand" href="../../../html/rtl/vertical-content-menu-template/index.html">
                             <!--<img class="brand-logo" alt="robust admin logo" src="../../../app-assets/images/logo/logo-dark-sm.png">-->
-                            <h3 class="brand-text">שי שירותי נמל</h3></a>
+                            <h3 class="brand-text">שי שירותי נמל</h3>
+                        </a>
                     </li>
                     <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
                 </ul>
@@ -198,7 +199,8 @@
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
-                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
                     <ul class="dropdown-menu" style="width:50%">
                         <li data-menu=""><a class="dropdown-item" href="activeGatePass.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
                         <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray ; background-color:#d5f4e6" data-toggle="dropdown"><p>ארכיון</p></a></li>
@@ -213,30 +215,49 @@
         </div>
     </div>
 
-    <div class="app-content container center-layout mt-2">
-        <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-left col-md-12 col-12 mb-2">
-                    <h3 class="content-header-title mb-0" style="margin-right:50%"><b> ארכיון</b></h3>
-                </div>
-
+      <!--//BEGIN OF THE GERID-->
+    <div class="app-content content">
+      <div class="content-wrapper">
+        <div class="content-header row">
+          <div class="content-header-left col-md-6 col-12 mb-2">
+            <h3 class="content-header-title" style="margin-right:100%" >ארכיון</h3>
+        
+          </div>
+          <div class="content-header-right col-md-6 col-12">
+            <div class="media width-250 float-right">
+            
             </div>
-            <div class="content-body">
-
-                <section id="basic">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-
-
-                                <div id="GatePas"></div>
-
-                            </div>
-                        </div>
+          </div>
+        </div>
+        <div class="content-body"><!-- Basic scenario start -->
+<section id="basic">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <!--<div class="card-header">
+            
+                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                        </ul>
                     </div>
-                </section>
+                </div>-->
+                <div class="card-content collapse show">
+                    <div class="card-body card-dashboard ">
+       
+                        <div id="GatePas"></div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+    </section>
+      </div>
+      </div>
     </div>
 
 
