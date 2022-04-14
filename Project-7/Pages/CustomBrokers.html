@@ -8,7 +8,7 @@
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
 
-    <title></title>
+    <title>שי שירותי נמל בע"מ</title>
 
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
@@ -31,9 +31,9 @@
     <script src="../Scripts/ajaxCalls.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
+    <script src="../Scripts/qunit-1.10.0.js"></script>
     <script src="../external/jquery/jquery-1.8.3.js"></script>
-
-
+    <script src="../src/js/core/app-menu.js"></script>
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -44,17 +44,24 @@
     <script src="../srcc/fields/jsgrid.field.select.js"></script>
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
-
+    <script src="../srcc/fields/jsgrid.field.textarea.js"></script>
+  
     <style>
+
 
         p, h1, h2, h3, span, td, tr, table {
             font-family: sans-serif;
         }
 
+        /*.card {
+            height: 700px;
+        }
+        #GatePas {
+            height: 80%;
+        }*/
         .jsgrid-grid-body {
             height: 500px;
         }
-
     </style>
 
     <script>
@@ -67,85 +74,90 @@
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
-                url: "../api/Drivers",
+                url: "../api/Brokers",
                 data: "json"
 
             }).done(function (data) {
-
-                    $("#GatePas").jsGrid({
+   
+                
+                $("#GatePas").jsGrid({
                     
-                     height: "70%",
+                    height: "70%",
                     width: "100%",
                     filtering: true,
                     editing: true,
                     inserting: true,
                     sorting: true,
                     sorter: true,
-                    //paging: true,
+               /*     paging: true,*/
                     autoload: true,
+                    /* deleting:true,*/
 
                     pageSize: 15,
-                    pageButtonCount: 5,
+                    pageButtonCount: 6,
                     deleteConfirm: function (item) {
-                        return "?ימחק. האם אתה בטוח \"" + item.DriverFname + "\"  ";
+                        return "?ימחק. האם אתה בטוח \"" + item.BrokerName + "\"  ";
                     },
                     controller: {
-
+                        
                         loadData: function (filter) {
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
-                                return (!filter.DriverID || item.DriverID.indexOf(filter.DriverID) > -1)
-                                    && (!filter.TransportComany || item.TransportComany.indexOf(filter.TransportComany) > -1)
-                                    && (!filter.DriverFname || item.DriverFname.indexOf(filter.DriverFname) > -1)
-                                    && (!filter.DriverLname || item.DriverLname.indexOf(filter.DriverLname) > -1)
-                                    && (!filter.DriverPhone || item.DriverPhone.indexOf(filter.DriverPhone) > -1)
-                                    && (!filter.DriverLicense || item.DriverLicense.indexOf(filter.DriverLicense) > -1);
+                                return (!filter.Id || item.Id.indexOf(filter.Id) > -1)
+                                    && (!filter.BrokerName || item.BrokerName.indexOf(filter.BrokerName) > -1)
+                                    && (!filter.Adress || item.Adress.indexOf(filter.Adress) > -1)
+                                    && (!filter.PhoneNumber || item.PhoneNumber.indexOf(filter.PhoneNumber) > -1)
+                                    && (!filter.Fax || item.Fax.indexOf(filter.Fax) > -1)
+                            });
 
+                        },
+
+
+                        insertItem: function (item) {
+                            return $.ajax({
+                                type: "POST",
+                                url: "../api/Brokers",
+                                data: item
                             });
 
                         },
                         updateItem: function (item) {
                             return $.ajax({
                                 type: "PUT",
-                                url: "../api/Drivers",
+                                url: "../api/Brokers",
                                 data: item
                             });
 
                         },
-                        insertItem: function (item) {
-                            return $.ajax({
-                                type: "POST",
-                                url: "../api/Drivers",
-                                data: item,
-                                cache: false,
-                                contentType: "application/json",
-                                dataType: "json"
-                            });
+                 
 
-                        },
-                        deleteItem: function (item) {
+                        deleteItem: function (item) {                  
                             return $.ajax({
                                 type: "DELETE",
-                                url: "../api/Drivers",
-                                data: item,
-                                cache: false
+                                url: "../api/Brokers",
+                                data: item
                             });
                         }
                     },
 
                     fields: [
-                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center"},
-                        { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center" },
-                        { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center" },
-                        { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center" },
-                        { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center"},
-                        { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center"},
-                            {
-                                type: "control",
-                           }
-                        ]
+                        { name: "Id", title: 'מזהה', type: "text", width: 100, sorting: false, align: "center", editing: false, inserting: false },
+                        { name: "BrokerName", title: 'עמיל מכס', type: "text", width: 100, align: "center"},
+                        { name: "Adress", title: "כתובת", type: "text", width: 100, align: "center" },
+                        { name: "PhoneNumber", title: "מספר טלפון", type: "text", width: 100, align: "center"},
+                        { name: "Fax", type: "text", title: "פקס", width: 100, align: "center"},
+
+                        {
+                            type: "control",
+                        },
+                    ]
                 });
             });
+
+            //function byebye() {
+            //    localStorage.clear();
+            ////    window.location.href = "login.html";
+            //}
         })
 
 
@@ -164,7 +176,6 @@
 <body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
 
     <!-- fixed-top-->
-
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
         <div class="navbar-wrapper">
             <div class="navbar-header">
@@ -209,17 +220,17 @@
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
                 <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
-                    <ul class="dropdown-menu" style="width:50%">
+                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <ul class="dropdown-menu">
                         <li data-menu=""><a class="dropdown-item" href="activeGatePass.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
                         <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
-                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> עמילי מכס</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> לקוחות</span></a></li>
+                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.pages"> נהגים</span></a></li>
+                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.general"> עמילי מכס</span></a></li>
+                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> לקוחות</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms"> דשבורד</span></a></li>
-                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> הצעות מחיר</span></a></li>
+                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> הצעות מחיר</span></a></li>
 
             </ul>
         </div>
@@ -230,7 +241,7 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>נהגים</b></h3>
+                    <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>עמילי מכס</b></h3>
 
                 </div>
                 <div class="content-header-right col-md-6 col-12">
@@ -274,15 +285,15 @@
 
 
     <footer class="footer footer-static footer-light navbar-shadow">
-        <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-bloWck d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
+        <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
     </footer>
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
-
     <script src="../../../app-assets/vendors/js/tables/jsgrid/jsgrid.min.js"></script>
     <script src="../../../app-assets/vendors/js/tables/jsgrid/griddata.js"></script>
-    <script src="../../../app-assets/js/core/app-menu.js"></script>W
-    <script src="../../../app-assets/js/core/app.js"></script>
     <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js"></script>
+    <script src="../../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../../app-assets/js/core/app.js"></script>
+
 </body>
 </html>

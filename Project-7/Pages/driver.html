@@ -8,7 +8,7 @@
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
 
-    <title>jsGrid - Basic Scenario</title>
+    <title>שי שירותי נמל בע"מ</title>
 
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
@@ -31,8 +31,8 @@
     <script src="../Scripts/ajaxCalls.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
-
     <script src="../external/jquery/jquery-1.8.3.js"></script>
+
 
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
@@ -51,10 +51,6 @@
             font-family: sans-serif;
         }
 
-        /*.card {
-            height: 200px;
-        }*/
-
         .jsgrid-grid-body {
             height: 500px;
         }
@@ -62,86 +58,95 @@
 
     <script>
 
+
         $(document).ready(function () {
 
             //end of set Date
-            let isActive = "-";
+
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
-                url: "../api/GatePass/isActive?isActive=" + isActive,
+                url: "../api/Drivers",
                 data: "json"
 
             }).done(function (data) {
-
-
-                ///Date to string function
-                var MyDateField = function (config) {
-                    jsGrid.Field.call(this, config);
-                };
-
-                MyDateField.prototype = new jsGrid.Field({
-                    /*       css: "datepicker",*/
-                    //align: "center",
-
-                    sorter: function (date1, date2) {
-                        return new Date(date1) - new Date(date2);
-                    },
-
-                    itemTemplate: function (value) {
-                        return new Date(value).toDateString();
-                    },
-
-
-                });
-                jsGrid.fields.date = MyDateField;
 
                 $("#GatePas").jsGrid({
 
                     height: "70%",
                     width: "100%",
                     filtering: true,
-                    editing: false,
+                    editing: true,
+                    inserting: true,
                     sorting: true,
                     sorter: true,
-                /*    paging: true,*/
+                    //paging: true,
                     autoload: true,
 
                     pageSize: 15,
-                    pageButtonCount: 6,
+                    pageButtonCount: 5,
                     deleteConfirm: function (item) {
-                        return "?ימחק לצמיתות. האם אתה בטוח \"" + item.Id + "\" גייטפס ";
+                        return "?ימחק. האם אתה בטוח \"" + item.DriverFname + "\"  ";
                     },
                     controller: {
 
                         loadData: function (filter) {
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
-                                return (!filter.Id || item.Id.indexOf(filter.Id) > -1)
-                                    && (!filter.ContainerNum || item.ContainerNum.indexOf(filter.ContainerNum) > -1)
-                                    && (!filter.ContainerType || item.ContainerType.indexOf(filter.ContainerType) > -1)
-                                    && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1)
-                                    && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1)
-                                    && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
-                            });
-                        },
+                                return (!filter.DriverID || item.DriverID.indexOf(filter.DriverID) > -1)
+                                    && (!filter.TransportComany || item.TransportComany.indexOf(filter.TransportComany) > -1)
+                                    && (!filter.DriverFname || item.DriverFname.indexOf(filter.DriverFname) > -1)
+                                    && (!filter.DriverLname || item.DriverLname.indexOf(filter.DriverLname) > -1)
+                                    && (!filter.DriverPhone || item.DriverPhone.indexOf(filter.DriverPhone) > -1)
+                                    && (!filter.DriverLicense || item.DriverLicense.indexOf(filter.DriverLicense) > -1);
 
+                            });
+
+                        },
+                        updateItem: function (item) {
+                            return $.ajax({
+                                type: "PUT",
+                                url: "../api/Drivers",
+                                data: item
+                            });
+
+                        },
+                        insertItem: function (item) {
+                            return $.ajax({
+                                type: "POST",
+                                url: "../api/Drivers",
+                                data: item,
+                                cache: false,
+                                contentType: "application/json",
+                                dataType: "json"
+                            });
+
+                        },
+                        deleteItem: function (item) {
+                            return $.ajax({
+                                type: "DELETE",
+                                url: "../api/Drivers",
+                                data: item,
+                                cache: false
+                            });
+                        }
                     },
+
                     fields: [
-                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center" },
-                        { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100, align: "center" },
-                        { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100, align: "center" },
-                        { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100, align: "center"},
-                        { name: "Importer", type: "text", title: "יבואן", width: 100, align: "center" },
-                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, align: "center" },
-                        //{
-                        //    type: "control",
-                        //},
+                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center" },
+                        { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center" },
+                        { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center" },
+                        { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center" },
+                        { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center" },
+                        { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center" },
+                        {
+                            type: "control",
+                        }
                     ]
                 });
-
             });
         })
+
 
     </script>
     <script>
@@ -158,6 +163,7 @@
 <body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
 
     <!-- fixed-top-->
+
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
         <div class="navbar-wrapper">
             <div class="navbar-header">
@@ -175,7 +181,9 @@
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
                     <ul class="nav navbar-nav mr-auto float-left">
-                        <li class="dropdown dropdown-user nav-item"><button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button></li>
+                        <li class="dropdown dropdown-user nav-item">
+                            <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav float-right">
                         <li class="dropdown dropdown-user nav-item">
@@ -200,76 +208,79 @@
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
                 <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
                     <ul class="dropdown-menu" style="width:50%">
                         <li data-menu=""><a class="dropdown-item" href="activeGatePass.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
-                        <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray ; background-color:#d5f4e6" data-toggle="dropdown"><p>ארכיון</p></a></li>
+                        <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
                 <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> עמילי מכס</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> לקוחות</span></a></li>
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms"> דשבורד</span></a></li>
-                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> הצעות מחיר</span></a></li>
+                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> הצעות מחיר</span></a></li>
 
             </ul>
         </div>
     </div>
 
-      <!--//BEGIN OF THE GERID-->
+    <!--//BEGIN OF THE GERID-->
     <div class="app-content content">
-      <div class="content-wrapper">
-        <div class="content-header row">
-            <div class="content-header-left col-md-6 col-12 mb-2">
-                <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>ארכיון</b></h3>
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-6 col-12 mb-2">
+                    <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>נהגים</b></h3>
 
-            </div>
-          <div class="content-header-right col-md-6 col-12">
-            <div class="media width-250 float-right">
-            
-            </div>
-          </div>
-        </div>
-        <div class="content-body"><!-- Basic scenario start -->
-<section id="basic">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <!--<div class="card-header">
-            
-                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                    <div class="heading-elements">
-                        <ul class="list-inline mb-0">
-                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                            <li><a data-action="close"><i class="ft-x"></i></a></li>
-                        </ul>
-                    </div>
-                </div>-->
-                <div class="card-content collapse show">
-                    <div class="card-body card-dashboard ">
-       
-                        <div id="GatePas"></div>
+                </div>
+                <div class="content-header-right col-md-6 col-12">
+                    <div class="media width-250 float-right">
+
                     </div>
                 </div>
             </div>
+
+            <div class="content-body">
+                <!-- Basic scenario start -->
+                <section id="basic">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <!--<div class="card-header">
+
+                                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>-->
+                                <div class="card-content collapse show">
+                                    <div class="card-body card-dashboard ">
+
+                                        <div id="GatePas"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
-    </div>
-    </section>
-      </div>
-      </div>
     </div>
 
 
     <footer class="footer footer-static footer-light navbar-shadow">
-        <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
+        <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-bloWck d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
     </footer>
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
+
     <script src="../../../app-assets/vendors/js/tables/jsgrid/jsgrid.min.js"></script>
     <script src="../../../app-assets/vendors/js/tables/jsgrid/griddata.js"></script>
-    <script src="../../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../../app-assets/js/core/app-menu.js"></script>W
     <script src="../../../app-assets/js/core/app.js"></script>
     <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js"></script>
 </body>
