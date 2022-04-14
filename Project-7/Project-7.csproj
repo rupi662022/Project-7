@@ -257,7 +257,7 @@
     <Content Include="PagesOld\archive.html" />
     <Content Include="PagesOld\CompanyTable.html" />
     <Content Include="PagesOld\CreateExample.html" />
-    <Content Include="PagesOld\CreateGatePass.html" />
+    <Content Include="PagesOld\CreateGatePass1.html" />
     <Content Include="PagesOld\data-manipulation.html" />
     <Content Include="PagesOld\demos.css" />
     <Content Include="PagesOld\GatePassCreationPage.html" />
@@ -265,7 +265,7 @@
     <Content Include="PagesOld\ManageGates.html" />
     <Content Include="PagesOld\MyGatePass.html" />
     <Content Include="PagesOld\NewGmailInitPage.html" />
-    <Content Include="PagesOld\Old.html" />
+    <Content Include="Pages\Old.html" />
     <Content Include="PagesOld\recover-password.html" />
     <Content Include="PagesOld\register.html" />
     <Content Include="PagesOld\registerUser.html" />
