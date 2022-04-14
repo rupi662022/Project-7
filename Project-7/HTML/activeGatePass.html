@@ -55,7 +55,6 @@
 
         .jsgrid-grid-body {
             height: 500px;
-            
         }
 
         #Add {
@@ -89,7 +88,7 @@
             $('#Add').on("click", function () {
                 window.location.href = "CreatGatePass.html";
             });
-    
+
 
             $.ajax({
                 type: "GET",
@@ -185,8 +184,8 @@
                         { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100, align: "center" },
                         { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100, align: "center" },
                         { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100, align: "center", },
-                        { name: "Importer", type: "text", title: "יבואן", width: 100, align: "center"},
-                       /* { name: "GoToRepair",che,type: "checkbox", title: "יצא לתיקון", sorting: false },*/
+                        { name: "Importer", type: "text", title: "יבואן", width: 100, align: "center" },
+                        /* { name: "GoToRepair",che,type: "checkbox", title: "יצא לתיקון", sorting: false },*/
                         { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, filtering: true, align: "center" },
                         {
                             type: "control",
@@ -252,7 +251,7 @@
         <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="gatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html"s data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
                 <li class="dropdown nav-item" data-menu="dropdown">
                     <a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
                     <ul class="dropdown-menu" style="width:50%">
@@ -264,7 +263,7 @@
                 <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> עמילי מכס</span></a></li>
                 <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> לקוחות</span></a></li>
                 <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms"> דשבורד</span></a></li>
-                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> הצעות מחיר</span></a></li>
+                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> הצעות מחיר</span></a></li>
             </ul>
         </div>
     </div>
@@ -275,11 +274,11 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title" style="margin-right:100%">גייטפסים פעילים</h3>
-         
-               <button id="Add">הוסף גייטפס חדש</button>
-           
-        </div>
+                    <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>גייטפסים פעילים</b></h3>
+
+                    <button id="Add">הוסף גייטפס חדש</button>
+
+                </div>
                 <div class="content-header-right col-md-6 col-12">
                     <div class="media width-250 float-right">
 
