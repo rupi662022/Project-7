@@ -74,7 +74,7 @@
         },
 
         filterValue: function() {
-            return this.filterControl.get(0).indeterminate
+            return this.filterControl.get("+").indeterminate
                 ? undefined
                 : this.filterControl.is(":checked");
         },

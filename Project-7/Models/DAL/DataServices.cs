@@ -45,7 +45,7 @@ namespace Project_7.Models.DAL
                     a.ContainerType = (string)dataReader["GPS_ContainerType"];
                     a.TransportCompany = (string)dataReader["GPS_TransportCompany"];
                     a.Importer = (string)dataReader["GPS_Importer"];
-                    a.Note = (string)dataReader["GPS_Note"];
+                    a.GoToRepair = (string)dataReader["GPS_GoToRepair"];
                     a.CreatedDate = (DateTime)dataReader["GPS_CreatedDate"];
 
                     gatePassList.Add(a);
