@@ -91,21 +91,6 @@
                     itemTemplate: function (value) {
                         return new Date(value).toDateString();
                     },
-                    //insertTemplate: function (value) {
-                    //    return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
-                    //},
-
-                    //editTemplate: function (value) {
-                    //    return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
-                    //},
-
-                    //insertValue: function () {
-                    //    return this._insertPicker.datepicker("getDate").toISOString();
-                    //},
-
-                    //editValue: function () {
-                    //    return this._editPicker.datepicker("getDate").toISOString();
-                    //}
 
 
                 });
@@ -140,20 +125,7 @@
                                     && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
                             });
                         },
-                        //updateItem: function (item) {
-                        //    return $.ajax({
-                        //        type: "PUT",
-                        //        url: "../api/GatePass",
-                        //        data: item
-                        //    });
-                        //},
-                        //deleteItem: function (item) {
-                        //    return $.ajax({
-                        //        type: "PUT",
-                        //        url: "../api/GatePass",
-                        //        data: item
-                        //    });
-                        //}
+
                     },
                     fields: [
                         { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center" },
