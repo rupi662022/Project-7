@@ -63,6 +63,9 @@
     <Reference Include="Google.Apis.PlatformServices, Version=1.57.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>packages\Google.Apis.1.57.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
     </Reference>
+    <Reference Include="IronOcr, Version=2022.3.0.0, Culture=neutral, PublicKeyToken=c2cbcea5ea3f6d8d, processorArchitecture=MSIL">
+      <HintPath>packages\IronOcr.2022.3.0\lib\net40\IronOcr.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -301,6 +304,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\qunit-1.10.0.js" />
+    <Content Include="Scripts\TaskAjax.js" />
     <Content Include="src1\fields\jsgrid.field.checkbox.js" />
     <Content Include="src1\fields\jsgrid.field.control.js" />
     <Content Include="src1\fields\jsgrid.field.number.js" />
@@ -462,7 +466,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\IronOcr.Languages.Hebrew.2020.11.2\build\IronOcr.Languages.Hebrew.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\IronOcr.Languages.Hebrew.2020.11.2\build\IronOcr.Languages.Hebrew.targets'))" />
   </Target>
+  <Import Project="packages\IronOcr.Languages.Hebrew.2020.11.2\build\IronOcr.Languages.Hebrew.targets" Condition="Exists('packages\IronOcr.Languages.Hebrew.2020.11.2\build\IronOcr.Languages.Hebrew.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

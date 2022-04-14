@@ -33,13 +33,13 @@
         var strToken = "";
         var username = "";
         var password = "";
-        var ContainerNumber = "";
+        var ContainerNum = "";
         function init() {
             username = "shayport"//need to fill in manually
             password = "shay@@2022"//need to fill in manually
             LogIn(username, password, successLoginCB, errorLoginCB);
-            ContainerNumber = sessionStorage.getItem("ContainerNumber")
-            if (ContainerNumber != null) {
+            ContainerNum = sessionStorage.getItem("ContainerNum")
+            if (ContainerNum != null) {
                 CreateGatePass();
 }
         }
@@ -61,7 +61,7 @@
 
         function CreateGatePass() {
             let tmpToken = strToken;
-            let apicall = "api/ContainerStatus/GetContainerStatusHaifa?ContainerNumber=" + ContainerNumber
+            let apicall = "api/ContainerStatus/GetContainerStatusHaifa?ContainerNum=" + ContainerNum
             GetAjaxCall(apicall, tmpToken, successResponseCB, errorResponseCB)
 
         }
