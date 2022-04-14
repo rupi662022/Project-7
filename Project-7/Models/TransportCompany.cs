@@ -39,11 +39,20 @@ namespace Project_7.Models
 
 
 
+        public int InsertTransportComany()
+        {
+            DataServices ds = new DataServices();
+            return ds.InsertTransportComany(this);
+        }
+
         public int UpdateTransportComany()
         {
             DataServices ds = new DataServices();
             return ds.UpdateTransportComany(this);
         }
+
+
+        
 
 
 

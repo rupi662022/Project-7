@@ -67,10 +67,9 @@
     <script>
 
 
+
         $(document).ready(function () {
-
-            U = JSON.parse(localStorage.getItem('User'));
-
+            //U = JSON.parse(localStorage.getItem('User'));
             //('.user-name').append(U.UserName)
             $('.chkbox').click(function () {
                 checkBox = this.id
@@ -82,11 +81,11 @@
                     $(this).attr('value', '-')
                 }
             });
-            /*            ajaxCall("GET", "../api/TransportCompany","",getTransport, getErrorTransport);*/
-
         });
 
         function submitGatePass() {
+
+
 
             var sqlDatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
             let gatePass = {
@@ -111,26 +110,13 @@
         }
 
 
+        function postSuccessCB() {
+            console.log("success");
+        }
 
-        //function getErrorTransport(err) {
-        //    alert(err);
-        //}
-
-
-
-        //function getTransport(results) {
-        //    console.log(results);
-        //str += "<option>Select Series/Movie</option>";
-        //for (var i = 0; i < results.length; i++) {
-
-        //    str += "<option value='" + results[i].CompanyName + "'>" + results[i].CompanyName + "</option>";
-
-        //}
-        //str += "</select>"
-        //$("#ph").append(str);
-        //}
-
-
+        function postErrorCB(err) {
+            alert(err);
+        }
     </script>
     <script>
 
@@ -240,10 +226,10 @@
                                                             <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
                                                         </div>
                                                     </div>-->
-                                                    <label class="col-md-3 label-control" for="userinput2">סוג</label>
+                                                    <!--<label class="col-md-3 label-control" for="userinput2">סוג</label>
                                                     <div class="col-md-9">
                                                         <input type="text" id="ContType" class="form-control border-primary" placeholder="Cont Type" name="ContType">
-                                                    </div>
+                                                    </div>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -252,7 +238,7 @@
                                                 <div class="form-group row ">
                                                     <label class="col-md-3 label-control" for="ContType">יבואן</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" id="ImporterName" class="form-control border-primary" placeholder="Importer Name" name="ImporterName">
+                                                        <input type="text" id="ImporterName" class="form-control border-primary" placeholder="הזן לדוגמה: פואד בחור/ יוסף אבו צאלח" name="ImporterName">
                                                     </div>
                                                 </div>
                                             </div>
@@ -270,7 +256,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="TransportCompName">חברת תובלה</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" id="TransportCompName" class="form-control border-primary" placeholder="Transport Company" name="TransportCompName" required>
+                                                        <input type="text" id="TransportCompName" class="form-control border-primary" placeholder="הזן לדוגמה: א.א שקד/ אב-דור" name="TransportCompName" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -288,7 +274,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="CustomAgentName">עמיל מכס</label>
                                                     <div class="col-md-9">
-                                                        <input class="form-control border-primary" type="text" placeholder="Custom Agen" id="CustomAgentName" required>
+                                                        <input class="form-control border-primary" type="text" placeholder="הזן לדוגמה: אדיב/ אביר" id="CustomAgentName" required>
                                                     </div>
                                                 </div>
 
@@ -338,7 +324,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control">משתמש</label>
                                                     <div class="col-md-9">
-                                                        <input class="form-control border-primary" type="text" placeholder="Worker Email" id="WorkerEmail">
+                                                        <input class="form-control border-primary" type="text" placeholder=" K@K.COM/ P@P.COM :הזן לדוגמה" id="WorkerEmail">
 
                                                     </div>
 

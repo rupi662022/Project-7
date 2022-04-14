@@ -116,7 +116,10 @@
                             return $.ajax({
                                 type: "POST",
                                 url: "../api/Drivers",
-                                data:item
+                                data: item,
+                                cache: false,
+                                contentType: "application/json",
+                                dataType: "json"
                             });
 
                         },
@@ -124,18 +127,19 @@
                             return $.ajax({
                                 type: "DELETE",
                                 url: "../api/Drivers",
-                                data: item
+                                data: item,
+                                cache: false
                             });
                         }
                     },
 
                     fields: [
-                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", },
-                        { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center", },
-                        { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center", },
-                        { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center", },
-                        { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center", },
-                        { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center", },
+                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center"},
+                        { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center" },
+                        { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center" },
+                        { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center" },
+                        { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center"},
+                        { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center"},
                             {
                                 type: "control",
                            }

@@ -219,7 +219,7 @@
     <Content Include="HTML\archivePage.html" />
     <Content Include="HTML\CreatGatePass.html" />
     <Content Include="HTML\demos.css" />
-    <Content Include="HTML\gatePass.html" />
+    <Content Include="demos\gatePass%28OLD%29.html" />
     <Content Include="HTML\home.html" />
     <Content Include="HTML\registerU.html" />
     <Content Include="HTML\transportComp.html" />

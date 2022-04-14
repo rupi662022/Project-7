@@ -27,6 +27,10 @@ namespace PROJECT_7.Controllers
         }
 
 
+        public int Post([FromBody] TransportCompany t)
+        {
+            return t.InsertTransportComany();
+        }
 
         public HttpResponseMessage Put([FromBody]TransportCompany tCompany)
         {

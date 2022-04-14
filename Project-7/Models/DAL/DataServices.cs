@@ -912,41 +912,41 @@ namespace Project_7.Models.DAL
 
         //insert
 
-        //public int InsertCompany(TransportCompany t)
-        //{
-        //    //int res = 0;
-        //    SqlConnection con = null;
-        //    int numEffected = 0;
-        //    try
-        //    {
-        //        con = Connect("FinalProject");
-        //        using (SqlCommand cmd = new SqlCommand("NewTransportCompany", con))
-        //        {
-        //            cmd.Parameters.AddWithValue("@CompanyName", t.CompanyName);
-        //            cmd.Parameters.AddWithValue("@BrokerName", t.CompanyAdress);
-        //            cmd.Parameters.AddWithValue("@Adress", t.CompanyFax);
-        //            cmd.Parameters.AddWithValue("@PhoneNumber", t.CompanyPhone);
+        public int InsertTransportComany(TransportCompany t)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("NewTransportCompany", con))
+                {
+                    cmd.Parameters.AddWithValue("@CompanyName", t.CompanyName);
+                    cmd.Parameters.AddWithValue("@BrokerName", t.CompanyAdress);
+                    cmd.Parameters.AddWithValue("@Adress", t.CompanyFax);
+                    //cmd.Parameters.AddWithValue("@PhoneNumber", t.CompanyPhone);
 
 
-        //            numEffected = cmd.ExecuteNonQuery();
+                    numEffected = cmd.ExecuteNonQuery();
 
 
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // write to log
-        //        throw (ex);
-        //    }
-        //    finally
-        //    {
-        //        if (con != null)
-        //        {
-        //            con.Close();
-        //        }
-        //    }
-        //    return numEffected;
-        //}
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
 
 
         //Delete

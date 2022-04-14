@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
 
     <script src="../external/jquery/jquery-1.8.3.js"></script>
-    <script src="../Scripts/ajaxCalls.js"></script>
+
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -110,6 +110,7 @@
                                 type: "PUT",
                                 url: "../api/TransportCompany",
                                 data: item
+                         
                             });
 
                         },
@@ -117,7 +118,9 @@
                             return $.ajax({
                                 type: "POST",
                                 url: "../api/TransportCompany",
-                                data: item
+                                data: item,
+
+
                             });
 
                         },
@@ -125,18 +128,20 @@
                             return $.ajax({
                                 type: "DELETE",
                                 url: "../api/TransportCompany",
-                                data: item
+                                data: item,
+                               
+
                             });
 
                         }
                     },
 
                     fields: [
-                        { name: "CompanyId", title: 'מספר חברה', type: "number", width: 100, sorting: false, align: "center", editing:false },
+                        { name: "CompanyId", title: 'מספר חברה', type: "number", width: 100, sorting: false, inserting: false, align: "center", editing: false },
                         { name: "CompanyName", title: 'שם חברה', type: "text", width: 100, align: "center" },
                         { name: "CompanyAdress", title: "כתובת", type: "text", width: 100, align: "center" },
                         { name: "CompanyFax", title: "פקס", type: "text", width: 100, align: "center" },
-                        { name: "CompanyPhone", type: "טלפון", title: "טלפון", width: 100, align: "center", editing: true },
+                        { name: "CompanyPhone", type: "טלפון", title: "טלפון", width: 100, align: "center" },
 
                         {
                             type: "control",
