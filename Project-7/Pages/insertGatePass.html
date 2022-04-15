@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -45,7 +46,7 @@
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
     <script src="../srcc/fields/jsgrid.field.textarea.js"></script>
-    <script src="../Scripts/TaskAjax.js"></script>
+
     <style>
         #Add {
             background-color: #3bafda;
@@ -67,21 +68,10 @@
     <script>
 
 
-        var strToken = "";
-        var username = "";
-        var password = "";
-        var ContainerNumber = "";
-        var x = "";
 
-        function init() {
-            username = "shayport"//need to fill in manually
-            password = "shay@@2022"//need to fill in manually
-            ContainerNumber = sessionStorage.getItem("ContainerNumber")
-
-            LogIn(username, password, successLoginCB, errorLoginCB);
-
-
-
+        $(document).ready(function () {
+            //U = JSON.parse(localStorage.getItem('User'));
+            //('.user-name').append(U.UserName)
             $('.chkbox').click(function () {
                 checkBox = this.id
                 checkBoxValue = $(this).attr('value')
@@ -92,99 +82,8 @@
                     $(this).attr('value', '-')
                 }
             });
-        }
+        });
 
-        function successLoginCB(data) {
-            //alert("successLoginCB")
-            strToken = JSON.stringify(data["Token"])
-            if (ContainerNumber != null) {
-                CreateGatePass();
-            }
-
-
-        }
-
-        function errorLoginCB() {
-            alert("errorLoginCB")
-        }
-
-
-
-
-        function CreateGatePass() {
-            let tmpToken = strToken;
-            let apicall = "api/ContainerStatus/GetContainerStatusHaifa?ContainerNum=" + ContainerNumber
-            GetAjaxCall(apicall, tmpToken, successResponseCB, errorResponseCB)
-
-        }
-        function successResponseCB(response) {
-            alert("successResponseCB")
-            console.log(response)
-            document.getElementById("Comments").value = "צילום"
-            let str = JSON.stringify(response)
-
-            //If DepartedContainers isnt null
-            if (response.ContainerStatusResponse.DepartedContainersList.length != 0) {
-
-                document.getElementById("CustomAgentName").value = response.ContainerStatusResponse.DepartedContainersList[0].CustomsAgentName
-                document.getElementById("ContType").value = response.ContainerStatusResponse.DepartedContainersList[0].ContainerType
-                document.getElementById("ShippingCompNamePlusLine").value = response.ContainerStatusResponse.DepartedContainersList[0].ShippingAgentName + "  " + response.ContainerStatusResponse.DepartedContainersList[0].StorageCode
-
-                if (response.ContainerStatusResponse.DepartedContainersList[0].AppointmentExists != false) {
-
-                    document.getElementById("TransportCompName").value = response.ContainerStatusResponse.DepartedContainersList[0].AppointmentTruckingCompanyName
-                }
-
-                if (response.ContainerStatusResponse.DepartedContainersList[0].ExportDocumentNumber != null) {
-
-                    document.getElementById("StorageCertificate").value = "יש תעודה"
-                }
-                else {
-                    document.getElementById("StorageCertificate").value = "אין תעודה"
-
-                }
-
-            }
-            //If InportContainers isnt
-            if (response.ContainerStatusResponse.InPortContainersList.length != 0) {
-                document.getElementById("CustomAgentName").value = response.ContainerStatusResponse.InPortContainersList[0].CustomsAgentName
-                document.getElementById("ContType").value = response.ContainerStatusResponse.InPortContainersList[0].ContainerType
-                document.getElementById("ShippingCompNamePlusLine").value = response.ContainerStatusResponse.InPortContainersList[0].ShippingAgentName + "  " + response.ContainerStatusResponse.InPortContainersList[0].StorageCode
-
-                if (response.ContainerStatusResponse.InPortContainersList[0].AppointmentExists != false) {//If there is a transportation company
-
-                    document.getElementById("TransportCompName").value = ContainerStatusResponse.InPortContainersListlength[0].AppointmentTruckingCompanyName
-
-
-                }
-
-
-            }
-
-            //    If InboundContainers isnt
-            if (response.ContainerStatusResponse.InboundContainersList.length != 0) {
-                if (response.ContainerStatusResponse.InboundContainersList[0].ExportDocumentNumber != null) {
-
-                    document.getElementById("StorageCertificate").value = "יש תעודה"
-                }
-                else {
-                    document.getElementById("StorageCertificate").value = "אין תעודה"
-
-
-                }
-
-            }
-
-            //    //CheckForNulls();
-
-        }
-
-        function errorResponseCB() {
-
-            alert("errorResponseCB")
-
-
-        }
         function submitGatePass() {
 
 
@@ -223,13 +122,13 @@
     <script>
 
         function byebye() {
-            //localStorage.clear();
+            localStorage.clear();
             window.location.href = "login.html";
         }
 
     </script>
 </head>
-<body onload="init()" class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
 
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
@@ -469,14 +368,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 
 
 
