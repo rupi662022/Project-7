@@ -104,7 +104,7 @@
                     editing: false,
                     sorting: true,
                     sorter: true,
-                    /*    paging: true,*/
+                    /*paging: true,*/
                     autoload: true,
 
                     pageSize: 15,
@@ -122,6 +122,7 @@
                                     && (!filter.ContainerType || item.ContainerType.indexOf(filter.ContainerType) > -1)
                                     && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1)
                                     && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1)
+                                    && (!filter.CustomsBroker || item.CustomsBroker.indexOf(filter.CustomsBroker) > -1)
                                     && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
                             });
                         },
@@ -133,6 +134,7 @@
                         { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100, align: "center" },
                         { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100, align: "center" },
                         { name: "Importer", type: "text", title: "יבואן", width: 100, align: "center" },
+                        { name: "CustomsBroker", type: "text", title: "עמיל מכס", align: "center" },
                         { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, align: "center" },
                         //{
                         //    type: "control",
