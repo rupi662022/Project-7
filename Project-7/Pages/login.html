@@ -34,7 +34,7 @@
         $(document).ready(function () {
             $("#logId").submit(CeckUser)
             if (localStorage.getItem('User')) {
-                window.location.href = "home.html";
+                window.location.href = "activeGatePass.html";
             }
 
         })
@@ -57,7 +57,7 @@
         function Sucse(U) {
             console.log(U);
             if (U.UserPassword == password) {
-                window.location.href = "home.html";
+                window.location.href = "activeGatePass.html";
                 localSave(U);
             }
             else {
