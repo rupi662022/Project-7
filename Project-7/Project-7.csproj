@@ -194,7 +194,6 @@
     <Compile Include="Models\TransportCompany.cs" />
     <Compile Include="Models\DAL\DataServices.cs" />
     <Compile Include="Models\Driver.cs" />
-    <Compile Include="Models\.cs" />
     <Compile Include="Models\GatePass.cs" />
     <Compile Include="Models\Importer.cs" />
     <Compile Include="Models\OCR.cs" />
@@ -216,6 +215,12 @@
     <Content Include="demos\db.js" />
     <Content Include="demos\demos.css" />
     <Content Include="demos\HtmlPage1.html" />
+    <Content Include="dist\jsgrid-theme.css" />
+    <Content Include="dist\jsgrid-theme.min.css" />
+    <Content Include="dist\jsgrid.css" />
+    <Content Include="dist\jsgrid.js" />
+    <Content Include="dist\jsgrid.min.css" />
+    <Content Include="dist\jsgrid.min.js" />
     <Content Include="external\jquery\jquery-1.8.3.js" />
     <Content Include="external\qunit\qunit-1.10.0.css" />
     <Content Include="external\qunit\qunit-1.10.0.js" />

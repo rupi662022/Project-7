@@ -27,6 +27,8 @@ namespace PROJECT_7.Controllers
         }
 
 
+        //[HttpPost]
+        //[Route("api/TransportCompany")]
         public int Post([FromBody] TransportCompany t)
         {
             return t.InsertTransportComany();

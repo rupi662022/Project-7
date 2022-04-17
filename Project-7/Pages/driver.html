@@ -20,10 +20,10 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">-->
 
 
     <link rel="stylesheet" type="text/css" href="demos.css" />
@@ -44,7 +44,7 @@
     <script src="../srcc/fields/jsgrid.field.select.js"></script>
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
-
+    <script src="../srcc/fields/jsgrid.field.textarea.js"></script>
     <style>
 
         p, h1, h2, h3, span, td, tr, table {
@@ -61,7 +61,7 @@
 
         $(document).ready(function () {
 
-            //end of set Date
+          
 
             $.ajax({
                 type: "GET",
@@ -116,9 +116,10 @@
                                 type: "POST",
                                 url: "../api/Drivers",
                                 data: item,
-                                cache: false,
+           /*                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",*/
                                 contentType: "application/json",
                                 dataType: "json"
+                               /* body: JSON.stringify(item)*/
                             });
 
                         },
@@ -271,7 +272,7 @@
         </div>
     </div>
 
-
+    
     <footer class="footer footer-static footer-light navbar-shadow">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-bloWck d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
     </footer>
@@ -280,7 +281,7 @@
 
     <script src="../../../app-assets/vendors/js/tables/jsgrid/jsgrid.min.js"></script>
     <script src="../../../app-assets/vendors/js/tables/jsgrid/griddata.js"></script>
-    <script src="../../../app-assets/js/core/app-menu.js"></script>W
+    <script src="../../../app-assets/js/core/app-menu.js"></script>
     <script src="../../../app-assets/js/core/app.js"></script>
     <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js"></script>
 </body>

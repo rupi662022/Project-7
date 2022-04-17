@@ -21,19 +21,21 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">-->
 
 
     <link rel="stylesheet" type="text/css" href="demos.css" />
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
 
-    <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
-    <link rel="stylesheet" type="text/css" href="../css/theme.css" />
+    <!--<link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
+    <link rel="stylesheet" type="text/css" href="../css/theme.css" />-->
 
     <script src="../external/jquery/jquery-1.8.3.js"></script>
-
+    <script src="../dist/jsgrid.js"></script>
+    <link href="../dist/jsgrid.css" rel="stylesheet" />
+    <link href="../dist/jsgrid-theme.css" rel="stylesheet" />
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -119,7 +121,7 @@
                                 type: "POST",
                                 url: "../api/TransportCompany",
                                 data: item,
-
+                                contentType: "application/json; charset=utf-8",
 
                             });
 
@@ -141,7 +143,7 @@
                         { name: "CompanyName", title: 'שם חברה', type: "text", width: 100, align: "center" },
                         { name: "CompanyAdress", title: "כתובת", type: "text", width: 100, align: "center" },
                         { name: "CompanyFax", title: "פקס", type: "text", width: 100, align: "center" },
-                        { name: "CompanyPhone", type: "text",title: "טלפון", width: 100, align: "center" },
+                        { name: "CompanyPhone", type: "text", title: "טלפון", width: 100, align: "center" },
 
                         {
                             type: "control",
