@@ -152,8 +152,8 @@
 
                     fields: [
                         { name: "Id", title: 'מזהה', type: "text", width: 100, sorting: false, align: "center", editing: false, inserting: false },
-                        { name: "BrokerName", title: 'עמיל מכס', type: "text", width: 100, align: "center"},
-                        { name: "Adress", title: "כתובת", type: "text", width: 100, align: "center" },
+                        { name: "BrokerName", title: 'עמיל מכס', type: "text", width: 100, align: "center", validate: { message: "חובה להזין שם עמיל מכס", validator: function (value) { return value > 0; } }},
+                        { name: "Adress", title: "כתובת", type: "text", width: 100, align: "center", validate: { validator: "rangeLength", param: [3, 80] } },
                         { name: "PhoneNumber", title: "מספר טלפון", type: "text", width: 100, align: "center"},
                         { name: "Fax", type: "text", title: "פקס", width: 100, align: "center"},
 

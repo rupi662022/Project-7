@@ -139,7 +139,7 @@
                     },
 
                     fields: [
-                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center" },
+                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", validate: { message: "חובה להזין תעודת זהות נהגס", validator: function (value) { return value > 0; } } },
                         { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center" },
                         { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center" },
                         { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center" },
