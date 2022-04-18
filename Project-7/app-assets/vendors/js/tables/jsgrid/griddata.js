@@ -41,9 +41,9 @@
 
     db.clients = [
         {
-            "Name": "NIAM",
+            "Name": "Otto Clay",
             "Age": 61,
-            "Country": 4,
+            "Country": 6,
             "Address": "Ap #897-1459 Quam Avenue",
             "Married": false
         },

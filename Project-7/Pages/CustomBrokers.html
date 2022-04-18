@@ -117,7 +117,17 @@
                             return $.ajax({
                                 type: "POST",
                                 url: "../api/Brokers",
-                                data: item
+                                data: item,
+                                success: function (html) {
+                                    alert('הוכנס עמיל מכס חדש ' /*+ html*/);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    if (jqXHR.status == 500) {
+                                        alert('Internal error: ' + jqXHR.responseText);
+                                    } else {
+                                        alert('Unexpected error.');
+                                    }
+                                }
                             });
 
                         },

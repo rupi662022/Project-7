@@ -4,12 +4,21 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Project_7.Models.DAL;
 using Project_7.Models;
 
 namespace Project_7.Controllers
 {
     public class DriversController : ApiController
     {
+
+
+        public int Post([FromBody] Driver d)
+        {
+            return d.InsertDriver();
+        }
+
+
         //// GET: api/Drivers
         public IEnumerable<Driver> Get()
         {
@@ -22,16 +31,6 @@ namespace Project_7.Controllers
         {
             return "value";
         }
-
-
-        ////[HttpPost]
-        ////[Route("api/Drivers")]
-        public HttpResponseMessage Post([FromBody] Driver d)
-        {
-            d.InsertDriver();
-            return Request.CreateResponse(HttpStatusCode.Created);
-        }
-
 
 
 
@@ -49,9 +48,9 @@ namespace Project_7.Controllers
         }
 
         // POST: api/Drivers
-        public void Post([FromBody]string value)
-        {
-        }
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
         // PUT: api/Drivers/5
         public void Put(int id, [FromBody]string value)

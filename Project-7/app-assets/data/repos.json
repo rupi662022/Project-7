@@ -615,8 +615,7 @@
     ]
   },
   {
-    "name": "my
-      ",
+    "name": "mysql",
     "description": "MySQL fork maintained and used at Twitter",
     "language": "C",
     "value": "mysql",

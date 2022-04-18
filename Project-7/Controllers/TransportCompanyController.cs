@@ -10,6 +10,10 @@ namespace PROJECT_7.Controllers
 {
     public class TransportCompanyController : ApiController
     {
+        public int Post([FromBody] TransportCompany t)
+        {
+            return t.InsertTransportComany();
+        }
 
 
         // GET: api/TransportCompany
@@ -27,13 +31,6 @@ namespace PROJECT_7.Controllers
         }
 
 
-        //[HttpPost]
-        //[Route("api/TransportCompany")]
-        public int Post([FromBody] TransportCompany t)
-        {
-            return t.InsertTransportComany();
-        }
-
         public HttpResponseMessage Put([FromBody]TransportCompany tCompany)
         {
             tCompany.UpdateTransportComany();
@@ -48,9 +45,9 @@ namespace PROJECT_7.Controllers
 
 
         // POST: api/TransportCompany
-        public void Post([FromBody]string value)
-        {
-        }
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
         // PUT: api/TransportCompany/5
         public void Put(int id, [FromBody]string value)

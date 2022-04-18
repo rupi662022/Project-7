@@ -924,10 +924,11 @@ namespace Project_7.Models.DAL
                 con = Connect("FinalProject");
                 using (SqlCommand cmd = new SqlCommand("NewTransportCompany", con))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CompanyName", t.CompanyName);
-                    cmd.Parameters.AddWithValue("@BrokerName", t.CompanyAdress);
-                    cmd.Parameters.AddWithValue("@Adress", t.CompanyFax);
-                    //cmd.Parameters.AddWithValue("@PhoneNumber", t.CompanyPhone);
+                    cmd.Parameters.AddWithValue("@Adress", t.CompanyAdress);
+                    cmd.Parameters.AddWithValue("@Fax", t.CompanyFax);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", t.CompanyPhone);
 
 
                     numEffected = cmd.ExecuteNonQuery();

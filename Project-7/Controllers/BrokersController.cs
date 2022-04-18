@@ -10,6 +10,14 @@ namespace Project_7.Controllers
 {
     public class BrokersController : ApiController
     {
+
+
+        public int Post([FromBody] CustomsBroker b)
+        {
+            return b.InsertBroker();
+        }
+
+
         //// GET: api/Drivers
         public IEnumerable<CustomsBroker> Get()
         {
@@ -22,15 +30,6 @@ namespace Project_7.Controllers
         {
             return "value";
         }
-
-
-
-        public HttpResponseMessage Post([FromBody] CustomsBroker b)
-        {
-            b.InsertBroker();
-            return Request.CreateResponse(HttpStatusCode.Created);
-        }
-
 
 
 
@@ -55,9 +54,9 @@ namespace Project_7.Controllers
         //}
 
         // POST: api/Drivers
-        public void Post([FromBody]string value)
-        {
-        }
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
         // PUT: api/Drivers/5
         public void Put(int id, [FromBody]string value)
