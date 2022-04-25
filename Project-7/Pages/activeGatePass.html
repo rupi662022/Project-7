@@ -49,6 +49,72 @@
 
     <style>
 
+        * {
+            margin: 0px;
+        }
+
+        .popup {
+            position: fixed;
+            top: -100vh;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            transition: top 0ms ease-in-out 300ms;
+        }
+
+            .popup.act {
+                transition: top 0ms ease-in-out;
+                top: 0vh;
+            }
+
+            .popup .popup-container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%) scale(1.2);
+                width: 400px;
+                padding: 30px 20px 20px;
+                background: #eee;
+                opacity: 0.5;
+                transition: all 300ms ease-in-out;
+            }
+
+            .popup.act .popup-container {
+                opacity: 1;
+                transform: translate(-50%,-50%) scale(1);
+            }
+
+            .popup .popup-container .popup-close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+                background: #111;
+                text-align: center;
+                line-height: 30px;
+                color: #eee;
+                border-radius: 50%;
+                font-size: 20px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            .popup .popup-container h1 {
+                text-align: center;
+                font-size: 25px;
+                font-family: "Raleway";
+                color: #222;
+            }
+
+            .popup .popup-container p {
+                margin-top: 10px;
+                font-size: 15px;
+                font-family: "Raleway";
+                color: #555;
+            }
+
         p, h1, h2, h3, span, td, tr, table {
             font-family: sans-serif;
         }
@@ -194,10 +260,31 @@
                         ///* { name: "GoToRepair",che,type: "checkbox", title: "יצא לתיקון", sorting: false },*/
                         { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 60, align: "center" },
                         {
+                            name: "Note", title: 'הערות',
+                            itemTemplate: function (value,item) {
+                                return $("<button>").attr("href", value).addClass("my-custom-button")
+                                    .on("click", function () {
+                                        /*  alert(item.Note);*/
+                                        let app = document.querySelector('#pop-up-data');
+                                        app.append(item.Note);
+  
+                                        document.querySelector(".popup").classList.add("act");
+                                    });
+
+                            }, width: 100, filtering: false, sorting: false, align: "center", editing: false,
+                        },
+                        {
                             type: "control",
                         },
                     ]
                 });
+
+
+                document.querySelector(".popup .popup-container .popup-close").addEventListener("click", function () {
+                    document.querySelector(".popup").classList.remove("act");
+                });
+                   
+        
                 
             });
         })
@@ -257,7 +344,7 @@
         <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html"s data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html" s data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
                 <li class="dropdown nav-item" data-menu="dropdown">
                     <a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
                     <ul class="dropdown-menu" style="width:50%">
@@ -298,22 +385,12 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <!--<div class="card-header">
 
-                                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>-->
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard ">
 
                                         <div id="GatePas"></div>
+
                                     </div>
                                 </div>
                             </div>
@@ -323,6 +400,15 @@
             </div>
         </div>
     </div>
+    <div class="popup">
+        <div class="popup-container">
+            <h1>הערות</h1>
+            <p id="pop-up-data"></p>
+            <div class="popup-close">&times;</div>
+        </div>
+    </div>
+
+    <button id="open-popup">Open Popup</button>
 
     <footer class="footer footer-static footer-light navbar-shadow">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>

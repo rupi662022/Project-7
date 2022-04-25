@@ -45,7 +45,7 @@ namespace Project_7.Models.DAL
                     a.ContainerType = (string)dataReader["GPS_ContainerType"];
                     a.TransportCompany = (string)dataReader["GPS_TransportCompany"];
                     a.Importer = (string)dataReader["GPS_Importer"];
-                    //a.GoToRepair = (string)dataReader["GPS_GoToRepair"];
+                    a.Note = (string)dataReader["GPS_Note"];
                     a.CustomsBroker = (string)dataReader["GPS_CustomsBroker"];
                     a.CreatedDate = (DateTime)dataReader["GPS_CreatedDate"];
 
