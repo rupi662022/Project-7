@@ -33,7 +33,8 @@
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
     <script src="../Scripts/ajaxCalls.js"></script>
     <script src="../external/jquery/jquery-1.8.3.js"></script>
-    <link href="../jquery-ui-1.13.1.custom/jquery-ui.theme.css" rel="stylesheet" />s
+    <!--<script src="../app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js"></script>-->
+    <link href="../jquery-ui-1.13.1.custom/jquery-ui.theme.css" rel="stylesheet" />
     <link href="../jquery-ui-1.13.1.custom/jquery-ui.structure.css" rel="stylesheet" />
     <script src="../jquery-ui-1.13.1.custom/jquery-ui.js"></script>
     <script src="../srcc/jsgrid.core.js"></script>
@@ -172,8 +173,8 @@
                 };
 
                 MyDateField.prototype = new jsGrid.Field({
-                    /*       css: "datepicker",*/
-                    //align: "center",
+                    css: "datepicker",
+                    align: "center",
 
                     sorter: function (date1, date2) {
                         return new Date(date1) - new Date(date2);
@@ -182,13 +183,13 @@
                     itemTemplate: function (value) {
                         return new Date(value).toDateString();
                     },
-                    //insertTemplate: function (value) {
-                    //    return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
-                    //},
+                    insertTemplate: function (value) {
+                        return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+                    },
 
-                    //editTemplate: function (value) {
-                    //    return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
-                    //},
+                    editTemplate: function (value) {
+                        return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+                    },
 
                     //insertValue: function () {
                     //    return this._insertPicker.datepicker("getDate").toISOString();
@@ -200,7 +201,7 @@
 
 
                 });
-                jsGrid.fields.date = MyDateField;
+                jsGrid.fields.MyDateField = MyDateField;
 
                 $("#GatePas").jsGrid({
 
@@ -213,7 +214,6 @@
                     sorter: true,
                     /*  paging: true,*/
                     autoload: true,
-
                     pageSize: 15,
                     pageButtonCount: 7,
                     deleteConfirm: function (item) {
@@ -230,6 +230,7 @@
                                     && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1)
                                     && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1)
                                     && (!filter.CustomsBroker || item.CustomsBroker.indexOf(filter.CustomsBroker) > -1)
+                                   /* && (!filter.GoToRepair || item.GoToRepair.indexOf(filter.GoToRepair) > -)*/
                                     && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
                             });
                         },
@@ -257,21 +258,23 @@
                         { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 80, align: "center", },
                         { name: "Importer", type: "text", title: "יבואן", width: 80, align: "center" },
                         { name: "CustomsBroker", type: "text", title: "עמיל מכס", width: 80, align: "center" },
-                        ///* { name: "GoToRepair",che,type: "checkbox", title: "יצא לתיקון", sorting: false },*/
-                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 60, align: "center" },
+                        { name: "GoToRepair", type: "checkbox", title: "יצא לתיקון", sorting: false },
+                        { name: "CreatedDate", title: "תאריך יצירה", type: "MyDateField", width: 60, align: "center" },
                         {
                             name: "Note", title: 'הערות',
-                            itemTemplate: function (value,item) {
-                                return $("<button>").attr("href", value).addClass("my-custom-button")
-                                    .on("click", function () {
-                                        /*  alert(item.Note);*/
-                                        let app = document.querySelector('#pop-up-data');
-                                        app.append(item.Note);
-  
-                                        document.querySelector(".popup").classList.add("act");
-                                    });
+                            itemTemplate: function (value, item) {
+                                if (item.Note !== "") {
 
-                            }, width: 100, filtering: false, sorting: false, align: "center", editing: false,
+                                    return $("<button>").attr("href", value).addClass("my-custom-button")
+                                        .on("click", function () {
+
+                                            document.getElementById("pop-up-data").innerHTML = item.Note;
+
+                                            document.querySelector(".popup").classList.add("act");
+                                        });
+                                }
+
+                            }, width: 30, filtering: false, sorting: false, align: "center", editing: false,
                         },
                         {
                             type: "control",
@@ -408,11 +411,12 @@
         </div>
     </div>
 
-    <button id="open-popup">Open Popup</button>
+    <button id="open-popup"></button>
 
     <footer class="footer footer-static footer-light navbar-shadow">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
     </footer>
+
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="../../../app-assets/vendors/js/tables/jsgrid/jsgrid.min.js"></script>

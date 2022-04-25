@@ -138,10 +138,24 @@
                         { name: "Importer", type: "text", title: "יבואן", width: 80, align: "center" },
                         { name: "CustomsBroker", type: "text", title: "עמיל מכס", width: 80, align: "center" },
                         { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 60, align: "center" },
+                        {
+                            name: "Note", title: 'הערות',
+                            itemTemplate: function (value, item) {
+                                return $("<button>").attr("href", value).addClass("my-custom-button")
+                                    .on("click", function () {
+                                        /*  alert(item.Note);*/
+                                        let app = document.querySelector('#pop-up-data');
+                                        app.append(item.Note);
 
-                        //{
-                        //    type: "control",
-                        //},
+                                        document.querySelector(".popup").classList.add("act");
+                                    });
+
+                            }, width: 100, filtering: false, sorting: false, align: "center", editing: false,
+                        },
+                        {
+                            type: "control",
+                        },
+                   
                     ]
                 });
 
