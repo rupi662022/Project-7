@@ -5633,6 +5633,7 @@
     <Content Include="demos\db.js" />
     <Content Include="demos\demos.css" />
     <Content Include="demos\HtmlPage1.html" />
+    <Content Include="dist\jquery-ui.css" />
     <Content Include="dist\jsgrid-theme.css" />
     <Content Include="dist\jsgrid-theme.min.css" />
     <Content Include="dist\jsgrid.css" />

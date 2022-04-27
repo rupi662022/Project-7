@@ -63,6 +63,38 @@
             });
 
 
+            var MyDateField = function (config) {
+                jsGrid.Field.call(this, config);
+            };
+
+            MyDateField.prototype = new jsGrid.Field({
+                sorter: function (date1, date2) {
+                    return new Date(date1) - new Date(date2);
+                },
+
+                itemTemplate: function (value) {
+                    return new Date(value).toDateString();
+                },
+
+                insertTemplate: function (value) {
+                    return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+                },
+
+                editTemplate: function (value) {
+                    return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+                },
+
+                insertValue: function () {
+                    return this._insertPicker.datepicker("getDate").toISOString();
+                },
+
+                editValue: function () {
+                    return this._editPicker.datepicker("getDate").toISOString();
+                }
+            });
+
+            jsGrid.fields.myDateField = MyDateField;
+
 
             //end of set Date
 
@@ -74,14 +106,11 @@
             }).done(function (data) {
 
                 ///Date to string function
-                var MyDateField = function (config) {
+                  var MyDateField = function (config) {
                     jsGrid.Field.call(this, config);
                 };
 
                 MyDateField.prototype = new jsGrid.Field({
-             /*       css: "datepicker",*/
-                    //align: "center",
-
                     sorter: function (date1, date2) {
                         return new Date(date1) - new Date(date2);
                     },
@@ -89,6 +118,7 @@
                     itemTemplate: function (value) {
                         return new Date(value).toDateString();
                     },
+
                     insertTemplate: function (value) {
                         return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
                     },
@@ -104,9 +134,8 @@
                     editValue: function () {
                         return this._editPicker.datepicker("getDate").toISOString();
                     }
-
-
                 });
+
                 jsGrid.fields.date = MyDateField;
 
 
@@ -163,7 +192,7 @@
                         { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center", },
                         { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100, align: "center", },
                         { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100, align: "center", },
-                        { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100, align: "center", },
+                        { name: "TransportCompany", title: "חברת תובלה", width: 100, align: "center", },
                         {
                             name: "Note", title: 'הערות',
                             itemTemplate: function (value) {
@@ -183,7 +212,7 @@
                         //},
 
                         { name: "Importer", type: "text", title: "יבואן", width: 100, align: "center", },
-                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 100, filtering: true, align: "center" },
+                        { name: "CreatedDate", title: "תאריך יצירה", type:"myDateField", width: 100, filtering: true, align: "center" },
 
                         {
                             type: "control",

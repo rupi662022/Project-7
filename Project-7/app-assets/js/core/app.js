@@ -46,33 +46,33 @@
         });
 
         // Top Navbars - Hide on Scroll
-        if ($(".navbar-hide-on-scroll").length > 0) {
-            $(".navbar-hide-on-scroll.fixed-top").headroom({
-              "offset": 205,
-              "tolerance": 5,
-              "classes": {
-                 // when element is initialised
-                initial : "headroom",
-                // when scrolling up
-                pinned : "headroom--pinned-top",
-                // when scrolling down
-                unpinned : "headroom--unpinned-top",
-              }
-            });
-            // Bottom Navbars - Hide on Scroll
-            $(".navbar-hide-on-scroll.fixed-bottom").headroom({
-              "offset": 205,
-              "tolerance": 5,
-              "classes": {
-                 // when element is initialised
-                initial : "headroom",
-                // when scrolling up
-                pinned : "headroom--pinned-bottom",
-                // when scrolling down
-                unpinned : "headroom--unpinned-bottom",
-              }
-            });
-        }
+        //if ($(".navbar-hide-on-scroll").length > 0) {
+        //    $(".navbar-hide-on-scroll.fixed-top").headroom({
+        //      "offset": 205,
+        //      "tolerance": 5,
+        //      "classes": {
+        //         // when element is initialised
+        //        initial : "headroom",
+        //        // when scrolling up
+        //        pinned : "headroom--pinned-top",
+        //        // when scrolling down
+        //        unpinned : "headroom--unpinned-top",
+        //      }
+        //    });
+        //    // Bottom Navbars - Hide on Scroll
+        //    $(".navbar-hide-on-scroll.fixed-bottom").headroom({
+        //      "offset": 205,
+        //      "tolerance": 5,
+        //      "classes": {
+        //         // when element is initialised
+        //        initial : "headroom",
+        //        // when scrolling up
+        //        pinned : "headroom--pinned-bottom",
+        //        // when scrolling down
+        //        unpinned : "headroom--unpinned-bottom",
+        //      }
+        //    });
+        //}
 
         //Match content & menu height for content menu
         setTimeout(function(){

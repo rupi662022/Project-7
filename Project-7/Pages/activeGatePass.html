@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
 
+    <!--<script src="../../../app-assets/js/scripts/ui/jquery-ui/date-pickers.js"></script>-->
+    <!--<script src="../../../app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js"></script>-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
 
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
@@ -116,6 +118,17 @@
                 color: #555;
             }
 
+               .hasDatepicker {
+            width: 100px;
+            text-align: center;
+        }
+
+        .ui-datepicker * {
+            font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
+            font-size: 14px;
+            font-weight: 300 !important;
+        }
+
         p, h1, h2, h3, span, td, tr, table {
             font-family: sans-serif;
         }
@@ -153,6 +166,42 @@
 
         $(document).ready(function () {
 
+            var MyDateField = function (config) {
+                jsGrid.Field.call(this, config);
+            };
+
+            MyDateField.prototype = new jsGrid.Field({
+                css: "date-field",            // redefine general property 'css'
+                align: "center",              // redefine general property 'align'
+                myCustomProperty: "foo",      // custom property
+                sorter: function (date1, date2) {
+                    return new Date(date1) - new Date(date2);
+                },
+
+                itemTemplate: function (value) {
+                    return new Date(value).toDateString();
+                },
+
+                insertTemplate: function (value) {
+                    return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+                },
+
+                editTemplate: function (value) {
+                    return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+                },
+
+                insertValue: function () {
+                    return this._insertPicker.datepicker("getDate").toISOString();
+                },
+
+                editValue: function () {
+                    return this._editPicker.datepicker("getDate").toISOString();
+                }
+            });
+
+            jsGrid.fields.date = MyDateField;
+            
+
             //Create New GatePass
             $('#Add').on("click", function () {
                 window.location.href = "CreatGatePass.html";
@@ -167,41 +216,7 @@
 
             }).done(function (data) {
 
-                ///Date to string function
-                var MyDateField = function (config) {
-                    jsGrid.Field.call(this, config);
-                };
 
-                MyDateField.prototype = new jsGrid.Field({
-                    css: "datepicker",
-                    align: "center",
-
-                    sorter: function (date1, date2) {
-                        return new Date(date1) - new Date(date2);
-                    },
-
-                    itemTemplate: function (value) {
-                        return new Date(value).toDateString();
-                    },
-                    insertTemplate: function (value) {
-                        return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
-                    },
-
-                    editTemplate: function (value) {
-                        return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
-                    },
-
-                    //insertValue: function () {
-                    //    return this._insertPicker.datepicker("getDate").toISOString();
-                    //},
-
-                    //editValue: function () {
-                    //    return this._editPicker.datepicker("getDate").toISOString();
-                    //}
-
-
-                });
-                jsGrid.fields.MyDateField = MyDateField;
 
                 $("#GatePas").jsGrid({
 
@@ -230,7 +245,7 @@
                                     && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1)
                                     && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1)
                                     && (!filter.CustomsBroker || item.CustomsBroker.indexOf(filter.CustomsBroker) > -1)
-                                   /* && (!filter.GoToRepair || item.GoToRepair.indexOf(filter.GoToRepair) > -)*/
+                                    /* && (!filter.GoToRepair || item.GoToRepair.indexOf(filter.GoToRepair) > -)*/
                                     && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
                             });
                         },
@@ -258,8 +273,8 @@
                         { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 80, align: "center", },
                         { name: "Importer", type: "text", title: "יבואן", width: 80, align: "center" },
                         { name: "CustomsBroker", type: "text", title: "עמיל מכס", width: 80, align: "center" },
-                        { name: "GoToRepair", type: "checkbox", title: "יצא לתיקון", sorting: false },
-                        { name: "CreatedDate", title: "תאריך יצירה", type: "MyDateField", width: 60, align: "center" },
+                        /*     { name: "GoToRepair", type: "checkbox", title: "יצא לתיקון", sorting: false },*/
+                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 70, align: "center", myCustomProperty: "bar"},
                         {
                             name: "Note", title: 'הערות',
                             itemTemplate: function (value, item) {
@@ -286,9 +301,9 @@
                 document.querySelector(".popup .popup-container .popup-close").addEventListener("click", function () {
                     document.querySelector(".popup").classList.remove("act");
                 });
-                   
-        
-                
+
+
+
             });
         })
 
@@ -393,7 +408,7 @@
                                     <div class="card-body card-dashboard ">
 
                                         <div id="GatePas"></div>
-
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -424,5 +439,7 @@
     <script src="../../../app-assets/js/core/app-menu.js"></script>
     <script src="../../../app-assets/js/core/app.js"></script>
     <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js"></script>
+    <script src="../app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js"></script>
+
 </body>
 </html>

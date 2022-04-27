@@ -14,7 +14,7 @@
 
         visible: true,
         filtering: true,
-        inserting: false,
+        inserting: true,
         editing: true,
         sorting: true,
         sorter: "string", // name of SortStrategy or function to compare elements
