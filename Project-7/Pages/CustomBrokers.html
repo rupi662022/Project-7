@@ -152,10 +152,10 @@
 
                     fields: [
                         { name: "Id", title: 'מזהה', type: "text", width: 100, sorting: false, align: "center", editing: false, inserting: false },
-                        { name: "BrokerName", title: 'עמיל מכס', type: "text", width: 100, align: "center", validate: { message: "חובה להזין שם עמיל מכס", validator: function (value) { return value > 0; } }},
-                        { name: "Adress", title: "כתובת", type: "text", width: 100, align: "center", validate: { validator: "rangeLength", param: [3, 80] } },
-                        { name: "PhoneNumber", title: "מספר טלפון", type: "text", width: 100, align: "center"},
-                        { name: "Fax", type: "text", title: "פקס", width: 100, align: "center"},
+                        { name: "BrokerName", title: 'עמיל מכס', type: "text", width: 100, align: "center", validate: { message: "חובה להזין עמיל מכס", validator:"required"} },
+                        { name: "Adress", title: "כתובת", type: "text", width: 100, align: "center", validate: { message: "אורך  הכתובת לא כנדרש", validator: "rangeLength", param: [3, 30] } },
+                        { name: "PhoneNumber", title: "מספר טלפון", type: "text", width: 100, align: "center", validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [7,15] }},
+                        { name: "Fax", type: "text", title: "פקס", width: 100, align: "center", validate: { message: "אורך מספר הפקס לא כנדרש", validator: "rangeLength", param: [5, 15] } },
 
                         {
                             type: "control",

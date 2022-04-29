@@ -149,10 +149,10 @@
 
                     fields: [
                         { name: "CompanyId", title: 'מספר חברה', type: "number", width: 100, sorting: false, inserting: false, align: "center", editing: false },
-                        { name: "CompanyName", title: 'שם חברה', type: "text", width: 100, align: "center", validate: { message: "חובה להזין שם חברה", validator: function (value) { return value > 0; } }},
+                        { name: "CompanyName", title: 'שם חברה', type: "text", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין ת.ז" }},
                         { name: "CompanyAdress", title: "כתובת", type: "text", width: 100, align: "center", validate: { validator: "rangeLength", param: [3, 80] }},
-                        { name: "CompanyFax", title: "פקס", type: "text", width: 100, align: "center" },
-                        { name: "CompanyPhone", type: "text", title: "טלפון", width: 100, align: "center" },
+                        { name: "CompanyFax", title: "פקס", type: "text", width: 100, align: "center", validate: { message: "אורך מספר הפקס לא כנדרש", validator: "rangeLength", param: [7, 15] } },
+                        { name: "CompanyPhone", type: "text", title: "טלפון", width: 100, align: "center",validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [5, 15] } },
 
                         {
                             type: "control",

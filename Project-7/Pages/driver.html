@@ -139,11 +139,28 @@
                     },
 
                     fields: [
-                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", validate: { message: "חובה להזין תעודת זהות נהגס", validator: function (value) { return value > 0; } } },
-                        { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center" },
-                        { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center" },
+                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", validate: { validator: "required", message: "חובה להזין ת.ז" } },
+                        {
+                            name: "TransportComany", title: 'חברת תובלה', type: "select", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין חברת תובלה" },
+                            items: function (item) {
+                                return
+                                $.ajax({
+                                    type: "GET",
+                                    contentType: "application/json; charset=utf-8",
+                                    url: "../api/TransportCompany",
+                                    data: "json"
+                                   
+                                });
+                               
+                            },
+                               
+                             valueField: "CompanyId", textField:"CompanyName"
+                                },
+                          
+
+                        { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין שם פרטי" } },
                         { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center" },
-                        { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center" },
+                        { name: "DriverPhone", type: "text", title: "טלפון", width: 100, align: "center",  validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [7, 15] } },
                         { name: "DriverLicense", type: "text", title: "סוג רשיון", width: 100, align: "center" },
                         {
                             type: "control",
