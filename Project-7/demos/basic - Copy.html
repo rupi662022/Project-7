@@ -56,44 +56,44 @@
 
         $(document).ready(function () {
             let transportCompany = "אא";
-
+            data = "";
             //Create New GatePass
             $('#Add').on("click", function () {
                 window.location.href = "basic.html";
             });
 
 
-            var MyDateField = function (config) {
-                jsGrid.Field.call(this, config);
-            };
+            //var MyDateField = function (config) {
+            //    jsGrid.Field.call(this, config);
+            //};
 
-            MyDateField.prototype = new jsGrid.Field({
-                sorter: function (date1, date2) {
-                    return new Date(date1) - new Date(date2);
-                },
+            //MyDateField.prototype = new jsGrid.Field({
+            //    sorter: function (date1, date2) {
+            //        return new Date(date1) - new Date(date2);
+            //    },
 
-                itemTemplate: function (value) {
-                    return new Date(value).toDateString();
-                },
+            //    itemTemplate: function (value) {
+            //        return new Date(value).toDateString();
+            //    },
 
-                insertTemplate: function (value) {
-                    return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
-                },
+            //    insertTemplate: function (value) {
+            //        return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+            //    },
 
-                editTemplate: function (value) {
-                    return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
-                },
+            //    editTemplate: function (value) {
+            //        return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+            //    },
 
-                insertValue: function () {
-                    return this._insertPicker.datepicker("getDate").toISOString();
-                },
+            //    insertValue: function () {
+            //        return this._insertPicker.datepicker("getDate").toISOString();
+            //    },
 
-                editValue: function () {
-                    return this._editPicker.datepicker("getDate").toISOString();
-                }
-            });
+            //    editValue: function () {
+            //        return this._editPicker.datepicker("getDate").toISOString();
+            //    }
+            //});
 
-            jsGrid.fields.myDateField = MyDateField;
+            //jsGrid.fields.myDateField = MyDateField;
 
 
             //end of set Date
@@ -106,37 +106,37 @@
             }).done(function (data) {
 
                 ///Date to string function
-                  var MyDateField = function (config) {
-                    jsGrid.Field.call(this, config);
-                };
+                //  var MyDateField = function (config) {
+                //    jsGrid.Field.call(this, config);
+                //};
 
-                MyDateField.prototype = new jsGrid.Field({
-                    sorter: function (date1, date2) {
-                        return new Date(date1) - new Date(date2);
-                    },
+                //MyDateField.prototype = new jsGrid.Field({
+                //    sorter: function (date1, date2) {
+                //        return new Date(date1) - new Date(date2);
+                //    },
 
-                    itemTemplate: function (value) {
-                        return new Date(value).toDateString();
-                    },
+                //    itemTemplate: function (value) {
+                //        return new Date(value).toDateString();
+                //    },
 
-                    insertTemplate: function (value) {
-                        return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
-                    },
+                //    insertTemplate: function (value) {
+                //        return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+                //    },
 
-                    editTemplate: function (value) {
-                        return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
-                    },
+                //    editTemplate: function (value) {
+                //        return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+                //    },
 
-                    insertValue: function () {
-                        return this._insertPicker.datepicker("getDate").toISOString();
-                    },
+                //    insertValue: function () {
+                //        return this._insertPicker.datepicker("getDate").toISOString();
+                //    },
 
-                    editValue: function () {
-                        return this._editPicker.datepicker("getDate").toISOString();
-                    }
-                });
+                //    editValue: function () {
+                //        return this._editPicker.datepicker("getDate").toISOString();
+                //    }
+                //});
 
-                jsGrid.fields.date = MyDateField;
+                //jsGrid.fields.date = MyDateField;
 
 
                 $("#GatePas").jsGrid({
@@ -145,7 +145,7 @@
                     width: "100%",
                     filtering: true,
                     editing: true,
-                    /*inserting: true,*/
+                    inserting: true,
                     sorting: true,
                     sorter: true,
                     paging: true,
@@ -159,6 +159,18 @@
                     controller: {
 
                         loadData: function (filter) {
+
+
+
+                                $.ajax({
+                                    type: "GET",
+                                    contentType: "application/json; charset=utf-8",
+                                    url: "../api/TransportCompany",
+
+                                     success: function (result) {
+                                        DATA = result;
+                                    }
+                                });
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
                                 return (!filter.Id || item.Id.indexOf(filter.Id) > -1)
@@ -212,7 +224,7 @@
                         //},
 
                         { name: "Importer", type: "text", title: "יבואן", width: 100, align: "center", },
-                        { name: "CreatedDate", title: "תאריך יצירה", type:"myDateField", width: 100, filtering: true, align: "center" },
+                        { name: "CreatedDate", title: "תאריך יצירה", type:"text", width: 100, filtering: true, align: "center" },
 
                         {
                             type: "control",

@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
     <script src="../external/jquery/jquery-1.8.3.js"></script>
     <!--<script src="../css/jquery-ui.js"></script>-->
-
+    <script src="../Scripts/ajaxCalls.js"></script>
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -61,6 +61,17 @@
 
         $(document).ready(function () {
 
+            //DATA = '';
+
+            //$.ajax({
+            //    type: "GET",
+            //    contentType: "application/json; charset=utf-8",
+            //    url: "../api/TransportCompany",
+
+            //    success: function (result) {
+            //        DATA = result;
+            //    }
+            //});
 
 
             $.ajax({
@@ -91,6 +102,7 @@
                     controller: {
 
                         loadData: function (filter) {
+
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
                                 return (!filter.DriverID || item.DriverID.indexOf(filter.DriverID) > -1)
@@ -101,6 +113,11 @@
                                     && (!filter.DriverLicense || item.DriverLicense.indexOf(filter.DriverLicense) > -1);
 
                             });
+
+
+
+
+
 
                         },
                         updateItem: function (item) {
@@ -136,27 +153,19 @@
                                 cache: false
                             });
                         }
+
+
+
+                        
                     },
 
                     fields: [
                         { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", validate: { validator: "required", message: "חובה להזין ת.ז" } },
                         {
-                            name: "TransportComany", title: 'חברת תובלה', type: "select", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין חברת תובלה" },
-                            items: function (item) {
-                                return
-                                $.ajax({
-                                    type: "GET",
-                                    contentType: "application/json; charset=utf-8",
-                                    url: "../api/TransportCompany",
-                                    data: "json"
-                                   
-                                });
-                               
-                            },
-                               
-                             valueField: "CompanyId", textField:"CompanyName"
-                                },
-                          
+                            name: "TransportComany", title: 'חברת תובלה', type: "select", width: 100, align: "center", items: data
+                            , valueField: "TransportComany", textField: "TransportComany",
+                            validate: { validator: "required", message: "חובה להזין חברת תובלה" },
+                        },
 
                         { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין שם פרטי" } },
                         { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center" },
