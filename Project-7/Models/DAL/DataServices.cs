@@ -545,7 +545,7 @@ namespace Project_7.Models.DAL
                     cmd.Parameters.AddWithValue("@UserCompany", user.UserCompany);
                     cmd.Parameters.AddWithValue("@UserType", user.UserType);
 
-          
+
                     numEffected = cmd.ExecuteNonQuery();
 
           

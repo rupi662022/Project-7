@@ -5660,6 +5660,7 @@
     <Content Include="demos\gatePass%28OLD%29.html" />
     <Content Include="Pages\home.html" />
     <Content Include="Pages\registerU.html" />
+    <Content Include="Pages\transportComp - Copy.html" />
     <Content Include="Pages\transportComp.html" />
     <Content Include="Pages\login.html" />
     <Content Include="jquery-ui-1.13.1.custom\external\jquery\jquery.js" />
@@ -5685,13 +5686,13 @@
     <Content Include="PagesOld\data-manipulation.html" />
     <Content Include="PagesOld\demos.css" />
     <Content Include="PagesOld\GatePassCreationPage.html" />
-    <Content Include="PagesOld\login.html" />
+    <Content Include="PagesOld\loginOld.html" />
     <Content Include="PagesOld\ManageGates.html" />
     <Content Include="PagesOld\MyGatePass.html" />
     <Content Include="PagesOld\NewGmailInitPage.html" />
     <Content Include="Pages\Old.html" />
     <Content Include="PagesOld\recover-password.html" />
-    <Content Include="PagesOld\register.html" />
+    <Content Include="PagesOld\registerOld.html" />
     <Content Include="PagesOld\registerUser.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\ajaxCallsStub.js" />

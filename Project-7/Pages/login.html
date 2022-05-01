@@ -37,6 +37,7 @@
                 window.location.href = "activeGatePass.html";
             }
 
+
         })
 
 
@@ -46,7 +47,7 @@
             password = $("#user-password").val();
             let url = "../api/User?userEmail=" + email;
             ajaxCall("GET", url, "", Sucse, ecb);
-            return false;
+        //    return false;
         }
 
 
@@ -55,8 +56,15 @@
 
 
         function Sucse(U) {
-            console.log(U);
-            if (U.UserPassword == password) {
+            
+           
+            /*console.log(U);*/
+            if (U.UserPassword == password && U.UserType == 'M') {
+           /*     if (U.UserType == type) {*/
+                    window.location.href = "driver.html"
+                    localSave(U);
+            }
+            else if (U.UserPassword == password && U.UserType !== type) {
                 window.location.href = "activeGatePass.html";
                 localSave(U);
             }
