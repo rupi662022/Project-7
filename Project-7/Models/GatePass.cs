@@ -24,7 +24,7 @@ namespace Project_7.Models
         string isActive;
         string userEmail;
         DateTime createdDate;
-
+        //User userID;
 
         public GatePass() { }
 
@@ -59,6 +59,7 @@ namespace Project_7.Models
             this.isActive = isActive;
             this.userEmail = userEmail;
             this.createdDate = createdDate;
+            //this.userID = userID;
         }
 
         public int Id { get => id; set => id = value; }
@@ -77,7 +78,7 @@ namespace Project_7.Models
         public string IsActive { get => isActive; set => isActive = value; }
         public string UserEmail { get => userEmail; set => userEmail = value; }
         public DateTime CreatedDate { get => createdDate; set => createdDate = value; }
-
+        //public User UserID { get => userID; set => userID = value; }
 
         //הכנס גייטפס 
         public int InsertGatePass()
@@ -122,11 +123,11 @@ namespace Project_7.Models
 
 
         // הבא את הגייטפסים הפעילים שלי
-        public List<GatePass> ReadMygatePass(string userType, string transportCompany) 
-        {
-            DataServices ds = new DataServices();
-            return ds.ReadMygatePass(userType, transportCompany);
-        }
+        //public List<GatePass> ReadMyGatePass(int userID)
+        //{
+        //    DataServices ds = new DataServices();
+        //    return ds.ReadMyGatePass(userID);
+        //}
 
         //public List<GatePass> ReadgatePassList()
         //{

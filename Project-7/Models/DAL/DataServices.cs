@@ -14,6 +14,7 @@ namespace Project_7.Models.DAL
 
     public class DataServices
     {
+        private object userID;
 
         SqlConnection Connect(string connectionStringName)
         {
@@ -74,6 +75,13 @@ namespace Project_7.Models.DAL
 
             return cmd;
         }
+
+
+
+        //internal List<GatePass> ReadMyGatePass(int userID)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
 
 
@@ -255,55 +263,55 @@ namespace Project_7.Models.DAL
 
         //הגייטפסים שלי
 
-        public List<GatePass> ReadMygatePass(string userType, string transportCompany)
-        {
-            SqlConnection con = null;
+        //public List<GatePass> ReadMygatePass(string userType, string transportCompany)
+        //{
+        //    SqlConnection con = null;
 
-            try
-            {
-                con = Connect("FinalProject");
-                SqlCommand selectCommand = CreateSelectCommandMyGatePass(con, userType, transportCompany);
-                List<GatePass> MyGatePassList = new List<GatePass>();
-                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+        //        SqlCommand selectCommand = CreateSelectCommandMyGatePass(con, userType, transportCompany);
+        //        List<GatePass> MyGatePassList = new List<GatePass>();
+        //        SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-                while (dataReader.Read())
-                {
-                    GatePass g = new GatePass();
+        //        while (dataReader.Read())
+        //        {
+        //            GatePass g = new GatePass();
 
-                    g.Id = Convert.ToInt32(dataReader["GPS_Id"]);
-                    g.ContainerNum = (string)dataReader["GPS_ContainerNum"];
-                    g.ContainerType = (string)dataReader["GPS_ContainerType"];
-                    g.TransportCompany = (string)dataReader["GPS_TransportCompany"];
-                    g.Importer = (string)dataReader["GPS_Importer"];
-                    g.CreatedDate = Convert.ToDateTime(dataReader["GPS_CreatedDate"]);
+        //            g.Id = Convert.ToInt32(dataReader["GPS_Id"]);
+        //            g.ContainerNum = (string)dataReader["GPS_ContainerNum"];
+        //            g.ContainerType = (string)dataReader["GPS_ContainerType"];
+        //            g.TransportCompany = (string)dataReader["GPS_TransportCompany"];
+        //            g.Importer = (string)dataReader["GPS_Importer"];
+        //            g.CreatedDate = Convert.ToDateTime(dataReader["GPS_CreatedDate"]);
 
-                    MyGatePassList.Add(g);
-                }
-                return MyGatePassList;
-            }
-            catch (Exception ex)
-            {
+        //            MyGatePassList.Add(g);
+        //        }
+        //        return MyGatePassList;
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw new Exception("failed in reading of my GatePass list", ex);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
-        private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con, string userType, string transportCompany)
-        {
-            string commandStr = "select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_User U on T.TPC_CompanyName = U.USR_TransportCompany WHERE GPS_IsActive = '+' AND USR_Type = @userType AND GPS_TransportCompany = @transportCompany";
+        //        throw new Exception("failed in reading of my GatePass list", ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //            con.Close();
+        //    }
+        //}
+        //private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con, string userType, string transportCompany)
+        //{
+        //    string commandStr = "select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_User U on T.TPC_CompanyName = U.USR_TransportCompany WHERE GPS_IsActive = '+' AND USR_Type = @userType AND GPS_TransportCompany = @transportCompany";
 
 
-            SqlCommand cmd = createCommand(con, commandStr);
-            cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
-            cmd.Parameters["@transportCompany"].Value = transportCompany;
-            cmd.Parameters.Add("@userType", SqlDbType.NVarChar);
-            cmd.Parameters["@userType"].Value = userType;
-            return cmd;
-        }
+        //    SqlCommand cmd = createCommand(con, commandStr);
+        //    cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
+        //    cmd.Parameters["@transportCompany"].Value = transportCompany;
+        //    cmd.Parameters.Add("@userType", SqlDbType.NVarChar);
+        //    cmd.Parameters["@userType"].Value = userType;
+        //    return cmd;
+        //}
 
 
 
@@ -999,6 +1007,56 @@ namespace Project_7.Models.DAL
 
 
 
+        public List<GatePass> ReadMyGatePass(int userID)
+        {
+
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+               SqlCommand selectCommand = CreateSelectCommandMyGatePass(con, userID);
+                List<GatePass> gatePassList = new List<GatePass>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+    
+              
+                       while (dataReader.Read())
+                        {
+                            GatePass g = new GatePass();
+
+                            g.Id = Convert.ToInt32(dataReader["GPS_Id"]);
+                            g.ContainerNum = (string)dataReader["GPS_ContainerNum"];
+                            g.ContainerType = (string)dataReader["GPS_ContainerType"];
+                            g.TransportCompany = (string)dataReader["GPS_TransportCompany"];
+                            g.Importer = (string)dataReader["GPS_Importer"];
+                            g.CreatedDate = Convert.ToDateTime(dataReader["GPS_CreatedDate"]);
+
+                    gatePassList.Add(g);
+                        }
+                        return gatePassList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of my GatePass list", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con, int userID)
+        {
+            string commandStr = " select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_Driver D on T.TPC_CompanyName = D.DRI_TransportCompany WHERE DRI_DriverId =@UserId and GPS_IsActive = '+'";
+
+
+            SqlCommand cmd = createCommand(con, commandStr);
+            cmd.Parameters.Add("@userID", SqlDbType.NVarChar);
+            cmd.Parameters["@userID"].Value = userID;
+            return cmd;
+        }
 
 
 
@@ -1042,55 +1100,6 @@ namespace Project_7.Models.DAL
 
         //    return cmd;
         //}
-
-
-        //SEND GATEPASS TO ARCHIVE PROC TRY
-
-        //public int SendGateToArchive(int id)
-        //{
-        //    //int res = 0;
-        //    SqlConnection con = null;
-        //    int numEffected = 0;
-        //    try
-        //    {
-        //        con = Connect("FinalProject");
-        //        using (SqlCommand cmd = new SqlCommand("SendGateToArchive", con))
-        //        {
-        //            cmd.CommandType = CommandType.StoredProcedure;
-        //            cmd.Parameters.AddWithValue("@Id", g.Id);
-        //            cmd.Parameters.AddWithValue("@IsActive", g.IsActive);
-
-
-        //            //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
-        //            //returnParameter.Direction = ParameterDirection.ReturnValue;
-        //            //cmd.ExecuteNonQuery();
-        //            //var result = returnParameter.Value;
-        //            numEffected = cmd.ExecuteNonQuery();
-
-        //            //if (result.Equals(1))
-        //            //{
-        //            //    res = 1;
-
-        //            //}
-        //            //return res;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // write to log
-        //        throw (ex);
-        //    }
-        //    finally
-        //    {
-        //        if (con != null)
-        //        {
-        //            con.Close();
-        //        }
-        //    }
-        //    return numEffected;
-        //}
-
-
 
         //עדכון גייטפס
 

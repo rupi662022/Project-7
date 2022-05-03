@@ -5688,7 +5688,7 @@
     <Content Include="PagesOld\GatePassCreationPage.html" />
     <Content Include="PagesOld\loginOld.html" />
     <Content Include="PagesOld\ManageGates.html" />
-    <Content Include="PagesOld\MyGatePass.html" />
+    <Content Include="PagesOld\MyGatePassOLD.html" />
     <Content Include="PagesOld\NewGmailInitPage.html" />
     <Content Include="Pages\Old.html" />
     <Content Include="PagesOld\recover-password.html" />

@@ -105,7 +105,7 @@
 
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
-                                return (!filter.DriverID || item.DriverID.indexOf(filter.DriverID) > -1)
+                                return (!filter.DriverID || item.DriverID.indexOf(filter.DriverID) > 0)
                                     && (!filter.TransportComany || item.TransportComany.indexOf(filter.TransportComany) > -1)
                                     && (!filter.DriverFname || item.DriverFname.indexOf(filter.DriverFname) > -1)
                                     && (!filter.DriverLname || item.DriverLname.indexOf(filter.DriverLname) > -1)
@@ -160,7 +160,7 @@
                     },
 
                     fields: [
-                        { name: "DriverID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", validate: { validator: "required", message: "חובה להזין ת.ז" } },
+                        { name: "DriverID", title: 'תעודת זהות', type: "number", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין ת.ז" }, },
                         {
                             name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center", /*items: data,*/
                         /*    , valueField: "TransportComany", textField: "TransportComany",*/

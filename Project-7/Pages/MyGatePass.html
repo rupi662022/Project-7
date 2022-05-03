@@ -88,8 +88,8 @@
         $(document).ready(function () {
 
             ///נדרש להביא מלוקל סטורג' של משתמש
-            let transportCompany = 'אא'
-            let userType = 'C'
+
+            let userID = '209100216'
             //Create New GatePass
             $('#Add').on("click", function () {
                 window.location.href = "GatePass.html";
@@ -99,8 +99,15 @@
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
-                url: "../api/GatePass/?userType=" + userType +  "&transportCompany=" + transportCompany,
-                data: "json"
+                url: "../api/User/userID?userID=" + userID,
+                data: "json",
+                  error: function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status == 500) {
+                        alert('Internal error: ' + jqXHR.responseText);
+                    } else {
+                        alert('Unexpected error.');
+                    }
+                }
 
             }).done(function (data) {
 
@@ -177,14 +184,14 @@
                                 data: item
                             });
                         },
-                        deleteItem: function (item) {
+                        //deleteItem: function (item) {
                            
-                            return $.ajax({
-                                type: "PUT",
-                                url: "../api/GatePass"+id,
-                                data: item
-                            });
-                        }
+                        //    return $.ajax({
+                        //        type: "PUT",
+                        //        url: "../api/GatePass"+id,
+                        //        data: item
+                        //    });
+                        //}
                     },
                     fields: [
                         { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false, align: "center", editing: false },

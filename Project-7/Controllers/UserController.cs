@@ -21,10 +21,10 @@ namespace Project_7.Controllers
         //[HttpPut]
         //[Route("api/User?userEmail")]
 
-        public User Get(string userEmail)
+        public IEnumerable<GatePass> Get(int userID)
         {
             User U = new User();
-            return U.ReadUser(userEmail);
+            return U.ReadMyGatePass(userID);
         }
 
 

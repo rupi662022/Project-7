@@ -14,6 +14,7 @@ namespace Project_7.Models
         string userPassword;
         string userCompany;
         string userType;
+        List<GatePass> gatePassList;
 
         public User() { }
 
@@ -25,14 +26,32 @@ namespace Project_7.Models
             UserPassword = userPassword;
             UserCompany = userCompany;
             UserType = userType;
+            
         }
+
+        public User(int userID, string userName, string userEmail, string userPassword, string userCompany, string userType, List<GatePass> gatePassList)
+
+        {
+            UserID = userID;
+            UserName = userName;
+            UserEmail = userEmail;
+            UserPassword = userPassword;
+            UserCompany = userCompany;
+            UserType = userType;
+            List<GatePass> GatePassList=new List<GatePass>();
+
+        }
+
+
 
         public int UserID { get => userID; set => userID = value; }
         public string UserName { get => userName; set => userName = value; }
         public string UserEmail { get => userEmail; set => userEmail = value; }
         public string UserPassword { get => userPassword; set => userPassword = value; }
         public string UserCompany { get => userCompany; set => userCompany = value; }
-        public string UserType { get => userType; set => userType = value; }
+        public string UserType { get => userType; set => userType = value; }      
+        internal List<GatePass> GatePassList { get => gatePassList; set => gatePassList = value; }
+
 
         //public User(string userEmail, string userPassword)
         //{
@@ -48,14 +67,14 @@ namespace Project_7.Models
             ds.InsertUser(this);
         }
 
-
-
-        //קריאה
-        public User ReadUser(string userEmail)
+        public List<GatePass> ReadMyGatePass(int userID)
         {
             DataServices ds = new DataServices();
-            return ds.ReadUser(userEmail);
+            return ds.ReadMyGatePass(userID);
         }
+
+        //קריאה
+
 
         ////}
         //public User ReadUser()/*---READ test for Procedures*/
