@@ -129,41 +129,35 @@
                                     <div class="card-body">
                                         <form class="form-horizontal" id="myForm" action="index.html" novalidate>
 
-                                            <div class="row">
-                                                <div class="col-12 col-sm-12 col-md-12">
+                                            <!--<div class="row">-->
+                                                <!--<div class="col-12 col-sm-12 col-md-12">-->
                                                     <fieldset class="form-group position-relative has-icon-left">
-                                                        <input type="text" name="first_name" id="userNum" class="form-control input-lg" placeholder="תעודת זהות" tabindex="1" required>
+                                                        <input type="text"  class="form-control input-lg" placeholder="תעודת זהות" tabindex="1" maxlength="13"   oninput="this.value=this.value.replace(/[^0-9]/g,'');" required>
                                                         <div class="form-control-position">
                                                             <i class="ft-user-check"></i>
                                                         </div>
                                                     </fieldset>
-                                                </div>
-                                            </div>
+                                                <!--</div>
+                                            </div>-->
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="text" name="display_name" id="userFull" class="form-control input-lg" placeholder="שם מלא" tabindex="3" required>
+                                                <input type="text" class="form-control input-lg" placeholder="שם מלא" tabindex="2"  maxlength="15" required>
                                                 <div class="form-control-position">
                                                     <i class="ft-user"></i>
                                                 </div>
                                                 <div class="help-block font-small-3"></div>
                                             </fieldset>
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="כתובת אימייל" tabindex="4" required>
+                                                <input type="email"  class="form-control input-lg" placeholder="כתובת אימייל" tabindex="3" maxlength="13" required>
                                                 <div class="form-control-position">
                                                     <i class="ft-mail"></i>
                                                 </div>
                                                 <div class="help-block font-small-3"></div>
                                             </fieldset>
-                                            <!--<fieldset class="form-group position-relative has-icon-left">
-                                                <input type="text" name="userType" id="userCompany" class="form-control input-lg" placeholder="שם חברה" tabindex="4" required>
-                                                <div class="form-control-position">
-                                                    <i class="ft-shield"></i>
-                                                </div>
-                                                <div class="help-block font-small-3"></div>
-                                            </fieldset>-->
+
                                             <div class="row">
                                                 <div class="col-12 col-sm-12 col-md-12">
                                                     <fieldset class="form-group position-relative has-icon-left">
-                                                        <input type="password" name="password" id="password" class="form-control input-lg" placeholder="סיסמה" tabindex="5" required>
+                                                        <input type="password" class="form-control input-lg" placeholder="סיסמה" tabindex="4" maxlength="15" pattern=".{8,}" title="Eight or more characters" required>
                                                         <div class="form-control-position">
                                                             <i class="fa fa-key"></i>
                                                         </div>
