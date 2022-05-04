@@ -27,24 +27,14 @@ namespace Project_7.Controllers
             return gatePass.ReadNegativGatePass(isActive);
         }
 
-        //[HttpGet]
-        //[Route("api/GatePass/userID")]
-        //public IEnumerable<GatePass> Get(int userID)
-        //{
-        //    GatePass gatePass = new GatePass();
-        //    return gatePass.ReadMyGatePass(userID);
-        //}
+
 
         public IEnumerable<GatePass> Get()
         {
             GatePass gatePass = new GatePass();
             return gatePass.ReadgatePass();
         }
-        //public List<GatePass> Get()
-        //{
-        //    GatePass gatePass = new GatePass();
-        //    return gatePass.ReadgatePassList ();
-        //}
+ 
 
 
         public HttpResponseMessage Delete([FromBody] GatePass gatePass)
@@ -54,13 +44,6 @@ namespace Project_7.Controllers
         }
 
 
-
-
-        //public void Put()
-        //{
-        //    GatePass g = new GatePass();
-        //    g.UpdateGatePass(this);
-        //}
 
 
         public HttpResponseMessage Put([FromBody] GatePass g)

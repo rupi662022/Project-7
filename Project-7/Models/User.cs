@@ -77,13 +77,13 @@ namespace Project_7.Models
 
 
         ////}
-        //public User ReadUser()/*---READ test for Procedures*/
-        //{
-        //    //int res = 0;
-        //    DataServices ds = new DataServices();
-        //    ds.ReadUser(this);
+        public User ReadUser(string userEmail)/*---READ test for Procedures*/
+        {
+            //int res = 0;
+            DataServices ds = new DataServices();
+            return ds.ReadUser(userEmail);
 
-        //}
+        }
 
 
 

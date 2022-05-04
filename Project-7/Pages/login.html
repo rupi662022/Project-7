@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/colors/palette-gradient.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/pages/login-register.css">
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style-rtl.css">
+    
 
     <style>
         p, h1, h2, h3, h4, span, td, tr, table {
@@ -43,9 +44,9 @@
 
 
         function CeckUser() {
-            let email = $("#user-name").val();
+            let userEmail = $("#user-name").val();
             password = $("#user-password").val();
-            let url = "../api/User?userEmail=" + email;
+            let url = "../api/User?userEmail=" + userEmail;
             ajaxCall("GET", url, "", Sucse, ecb);
             return false;
         }
@@ -56,18 +57,19 @@
 
 
         function Sucse(U) {
-            
-           type='M'
-           
-            if (U.UserPassword == password && U.UserType == type) {
-         
+
+        /*    type = 'M'*/
+            if (U.UserPassword == password) {
+                /*            if (U.UserPassword == password && U.UserType == type)*/
+                /*    localSave(U);*/
                 window.location.href = "MyGatePass.html";
-                    localSave(U);
+
             }
-            else if (U.UserPassword == password && U.UserType !== type) {
-                window.location.href = "activeGatePass.html";
-                localSave(U);
-            }
+            //else if (U.UserPassword == password && U.UserType !== type) {
+            //    localSave(U);
+            //    window.location.href = "activeGatePass.html";
+
+            //}
             else {
                 ecb()
             }
