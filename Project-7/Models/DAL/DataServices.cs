@@ -543,7 +543,7 @@ namespace Project_7.Models.DAL
 
                 dr.Read();
                 
-                    u.UserID = Convert.ToInt32(dr["USR_Id"]);
+                    u.UserID =(string)dr["USR_Id"];
                     u.UserEmail = (string)dr["USR_Email"];
                     u.UserPassword = (string)dr["USR_Password"];
                     u.UserName = (string)dr["USR_UserName"];
@@ -939,7 +939,7 @@ namespace Project_7.Models.DAL
 
 
 
-        public List<GatePass> ReadMyGatePass(int userID)
+        public List<GatePass> ReadMyGatePass(string userID)
         {
 
             SqlConnection con = null;
@@ -983,7 +983,7 @@ namespace Project_7.Models.DAL
                     con.Close();
             }
         }
-        private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con, int userID)
+        private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con, string userID)
         {
             string commandStr = " select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_Driver D on T.TPC_CompanyName = D.DRI_TransportCompany WHERE DRI_DriverId =@UserId and GPS_IsActive = '+'";
 

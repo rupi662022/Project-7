@@ -21,20 +21,12 @@ namespace Project_7.Controllers
 
         [HttpGet]
         [Route("api/User/userID")]
-        public IEnumerable<GatePass> Get(int userID)
+        public IEnumerable<GatePass> Get(string userID)
         {
             User U = new User();
             return U.ReadMyGatePass(userID);
         }
 
-
-        [HttpGet]
-        [Route("api/User/userEmail")]
-        public User Get(string userEmail)
-        {
-            User U = new User();
-            return U.ReadUser(userEmail);
-        }
 
 
 
@@ -43,6 +35,16 @@ namespace Project_7.Controllers
         {
             user.InsertUser();
             return Request.CreateResponse(HttpStatusCode.Created, "GOOD");
+        }
+
+
+
+        [HttpGet]
+        [Route("api/User/userEmail")]
+        public User Get(string userEmail)
+        {
+            User U = new User();
+            return U.ReadUser(userEmail);
         }
 
         //public void Post([FromBody] User user)
