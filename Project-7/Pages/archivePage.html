@@ -64,7 +64,10 @@
 
         $(document).ready(function () {
 
-            //end of set Date
+
+            U = JSON.parse(localStorage.getItem('User'));
+            document.getElementById("UserName").innerHTML = U.UserName;
+
             let isActive = "-";
             $.ajax({
                 type: "GET",

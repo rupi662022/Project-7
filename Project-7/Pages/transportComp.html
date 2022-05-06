@@ -69,6 +69,9 @@
 
 
 
+            U = JSON.parse(localStorage.getItem('User'));
+            document.getElementById("UserName").innerHTML = U.UserName;
+
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
@@ -203,12 +206,12 @@
                             <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav float-right">
+                    <ul class="nav navbar-nav float-right" style="margin-left: 80px">
                         <li class="dropdown dropdown-user nav-item">
-                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name" style="font-size:17px">   User Name</span></a>
+                            <a class="fa fa-id-badge text" href="#" data-toggle="dropdown">&nbsp<span class="user-name" style="float:left" id="UserName"> </span></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="login-simple.html"><i class="ft-power"></i> Logout</a>
+                                <div class="dropdown-divider "></div><a class="dropdown-item" style="text-align:right" href="login.html"><i class="ft-power float-left "></i> התנתק</a>
                             </div>
                         </li>
                     </ul>
