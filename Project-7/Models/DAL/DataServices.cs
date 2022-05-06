@@ -496,7 +496,7 @@ namespace Project_7.Models.DAL
                     cmd.Parameters.AddWithValue("@UserName", user.UserName);
                     cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
                     cmd.Parameters.AddWithValue("@UserPassword", user.UserPassword);
-                    cmd.Parameters.AddWithValue("@UserType", user.UserType);
+                    //cmd.Parameters.AddWithValue("@UserType", user.UserType);
 
 
                     numEffected = cmd.ExecuteNonQuery();
@@ -522,11 +522,6 @@ namespace Project_7.Models.DAL
 
 
 
-
-
-
-        //כניסה לאתר
-
         public User ReadUser(string userEmail)
         {
 
@@ -541,15 +536,17 @@ namespace Project_7.Models.DAL
 
                 User u = new User();
 
-                dr.Read();
-                
-                    u.UserID =(string)dr["USR_Id"];
+                while (dr.Read())
+                {
+
+
+                    u.UserID = Convert.ToInt32(dr["USR_Id"]);
+                    u.UserName = (string)dr["USR_UserName"];
                     u.UserEmail = (string)dr["USR_Email"];
                     u.UserPassword = (string)dr["USR_Password"];
-                    u.UserName = (string)dr["USR_UserName"];
-                    u.UserType= (string)dr["USR_Type"];
+                    u.UserType = (string)dr["USR_Type"];
 
-                
+                }
                 dr.Close();
 
                 return u;
@@ -579,6 +576,62 @@ namespace Project_7.Models.DAL
             //cmd.Parameters["@password"].Value = userPassword;
             return cmd;
         }
+
+
+        //כניסה לאתר
+
+        //public User ReadUser(string userEmail)
+        //{
+
+        //    SqlConnection con = null;
+
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+        //        SqlCommand selectCommand = CreateSelectCommandUser(con, userEmail);
+
+        //        SqlDataReader dr = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+        //        User u = new User();
+
+        //        dr.Read();
+                
+        //            u.UserID =Convert.ToInt32(dr["USR_Id"]);
+        //            u.UserEmail = (string)dr["USR_Email"];
+        //            u.UserPassword = (string)dr["USR_Password"];
+        //            u.UserName = (string)dr["USR_UserName"];
+        //            u.UserType= (string)dr["USR_Type"];
+
+                
+        //        dr.Close();
+
+        //        return u;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw new Exception("failed in reading of User", ex);
+        //    }
+        //    finally
+        //    {
+
+        //        if (con != null)
+        //            con.Close();
+        //    }
+
+        //}
+        //private SqlCommand CreateSelectCommandUser(SqlConnection con, string userEmail)
+        //{
+        //    string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email=@email ";
+        //    SqlCommand cmd = createCommand(con, commandStr);
+        //    //cmd.Parameters.AddWithValue("@email", email);
+        //    cmd.Parameters.Add("@email", SqlDbType.NVarChar);
+        //    cmd.Parameters["@email"].Value = userEmail;
+        //    //cmd.Parameters.Add("@password", SqlDbType.VarChar);
+        //    //cmd.Parameters["@password"].Value = userPassword;
+        //    return cmd;
+        //}
 
 
 
@@ -939,7 +992,7 @@ namespace Project_7.Models.DAL
 
 
 
-        public List<GatePass> ReadMyGatePass(string userID)
+        public List<GatePass> ReadMyGatePass(int userID)
         {
 
             SqlConnection con = null;
@@ -983,13 +1036,13 @@ namespace Project_7.Models.DAL
                     con.Close();
             }
         }
-        private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con, string userID)
+        private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con, int userID)
         {
-            string commandStr = " select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_Driver D on T.TPC_CompanyName = D.DRI_TransportCompany WHERE DRI_DriverId =@UserId and GPS_IsActive = '+'";
+            string commandStr = "select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_Driver D on T.TPC_CompanyName = D.DRI_TransportCompany WHERE DRI_DriverId =@UserId and GPS_IsActive = '+'";
 
 
             SqlCommand cmd = createCommand(con, commandStr);
-            cmd.Parameters.Add("@userID", SqlDbType.NVarChar);
+            cmd.Parameters.Add("@userID", SqlDbType.Int);
             cmd.Parameters["@userID"].Value = userID;
             return cmd;
         }

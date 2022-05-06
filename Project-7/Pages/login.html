@@ -44,9 +44,9 @@
 
 
         function CeckUser() {
-            let userEmail = $("#user-name").val();
+            let email = $("#user-name").val();
             password = $("#user-password").val();
-            let url = "../api/User?userEmail=" + userEmail;
+            let url = "../api/User?userEmail=" + email;
             ajaxCall("GET", url, "", Sucse, ecb);
             return false;
         }
@@ -57,19 +57,23 @@
 
 
         function Sucse(U) {
-
-        /*    type = 'M'*/
-            if (U.UserPassword == password) {
-                /*            if (U.UserPassword == password && U.UserType == type)*/
-                /*    localSave(U);*/
+            console.log(U)
+            let type = 'M'
+            /*       if (U.UserPassword == password) {*/
+            if (U.UserPassword == password)
+            {
+                if (U.UserType == type) {
+                localSave(U);
                 window.location.href = "MyGatePass.html";
 
             }
-            //else if (U.UserPassword == password && U.UserType !== type) {
-            //    localSave(U);
-            //    window.location.href = "activeGatePass.html";
+           else {
+                    localSave(U);
+                    window.location.href = "activeGatePass.html";
+                }
+            
 
-            //}
+        }
             else {
                 ecb()
             }

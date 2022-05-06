@@ -8,7 +8,7 @@ namespace Project_7.Models
 {
     public class User
     {
-        string userID;
+        int userID;
         string userName;
         string userEmail;
         string userPassword;
@@ -18,7 +18,7 @@ namespace Project_7.Models
 
         public User() { }
 
-        public User(string userID, string userName, string userEmail, string userPassword, string userCompany, string userType)
+        public User(int userID, string userName, string userEmail, string userPassword, string userCompany, string userType)
         {
             UserID = userID;
             UserName = userName;
@@ -29,7 +29,7 @@ namespace Project_7.Models
             
         }
 
-        public User(string userID, string userName, string userEmail, string userPassword, string userCompany, string userType, List<GatePass> gatePassList)
+        public User(int userID, string userName, string userEmail, string userPassword, string userCompany, string userType, List<GatePass> gatePassList)
 
         {
             UserID = userID;
@@ -44,7 +44,7 @@ namespace Project_7.Models
 
 
 
-        public string UserID { get => userID; set => userID = value; }
+        public int UserID { get => userID; set => userID = value; }
         public string UserName { get => userName; set => userName = value; }
         public string UserEmail { get => userEmail; set => userEmail = value; }
         public string UserPassword { get => userPassword; set => userPassword = value; }
@@ -67,7 +67,7 @@ namespace Project_7.Models
             ds.InsertUser(this);
         }
 
-        public List<GatePass> ReadMyGatePass(string userID)
+        public List<GatePass> ReadMyGatePass(int userID)
         {
             DataServices ds = new DataServices();
             return ds.ReadMyGatePass(userID);

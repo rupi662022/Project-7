@@ -21,7 +21,7 @@ namespace Project_7.Controllers
 
         [HttpGet]
         [Route("api/User/userID")]
-        public IEnumerable<GatePass> Get(string userID)
+        public IEnumerable<GatePass> Get(int userID)
         {
             User U = new User();
             return U.ReadMyGatePass(userID);
@@ -39,8 +39,8 @@ namespace Project_7.Controllers
 
 
 
-        [HttpGet]
-        [Route("api/User/userEmail")]
+        //[HttpGet]
+        //[Route("api/User/userEmail")]
         public User Get(string userEmail)
         {
             User U = new User();
