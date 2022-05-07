@@ -10,27 +10,27 @@
 
     <title>שי שירותי נמל בע"מ</title>
 
-    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
 
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
-
+    
     <link href="../app-assets/css-rtl/app.css" rel="stylesheet" />
     <link href="../app-assets/css-rtl/custom-rtl.css" rel="stylesheet" />
     <link href="../app-assets/css-rtl/core/menu/menu-types/vertical-menu.css" rel="stylesheet" />
-    <link href="../app-assets/css/plugins/forms/switch.min.css" rel="stylesheet" />
+    <!--<link href="../app-assets/css/plugins/forms/switch.min.css" rel="stylesheet" />-->
+    <link href="../assets/css/style-rtl.css" rel="stylesheet" />
+    <script src="../app-assets/vendors/js/ui/headroom.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-    <link href="../assets/css/style-rtl.css" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="demos.css" />
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
-
+    <!-- BEGIN Grid scripts-->
     <script src="../external/jquery/jquery-1.8.3.js"></script>
     <script src="../dist/jsgrid.js"></script>
     <link href="../dist/jsgrid.css" rel="stylesheet" />
@@ -61,10 +61,10 @@
         }
 
         img {
-            float:right; 
-            height:30px; 
-     /*       width:60px; */
-            padding-left:14px;
+            float: right;
+            height: 30px;
+            /*       width:60px; */
+            padding-left: 14px;
         }
     </style>
 
@@ -185,7 +185,7 @@
 
 
 </head>
-<body class="vertical-layout vertical-menu 2-column menu-expanded " data-open="hover" data-menu="vertical-menu" >
+<body class="vertical-layout vertical-menu 2-column menu-expanded " data-open="hover" data-menu="vertical-menu">
 
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-static-top navbar-dark navbar-shadow navbar-border">
@@ -193,30 +193,32 @@
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
                     <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="activeGatePass.html"><i class="ft-menu font-large-1"></i></a></li>
-                    <li class="nav-item"><a class="navbar-brand" href="../../../html/rtl/vertical-menu-template/index.html">
-    <img  class="brand-logo"  src="../Logo/pngegg.png" />
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="../../../html/rtl/vertical-menu-template/index.html">
+                            <img class="brand-logo" src="../Logo/pngegg.png" />
 
 
-    <h3 class="brand-text">שי שירותי נמל</h3>
-</a>
-</li>
+                            <h3 class="brand-text">שי שירותי נמל</h3>
+                        </a>
+                    </li>
                     <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
                 </ul>
             </div>
 
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
-                                    <!--<ul class="nav navbar-nav mr-auto float-left">
+                    <!--<ul class="nav navbar-nav mr-auto float-left">
                         <li class="dropdown dropdown-user nav-item">
                             <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
                         </li>
                     </ul>-->
-                    <ul class="nav navbar-nav float-right" style="margin-left: 100px">s
+                    <ul class="nav navbar-nav float-right" style="margin-left: 100px">
+                        s
                         <li class="dropdown dropdown-user nav-item" style="float:left">
-                            <a class="fa fa-user-circle fa-2x" href="#" data-toggle="dropdown">&nbsp<span class="user-name"  id="UserName"> </span></a>
+                            <a class="fa fa-user-circle fa-2x" href="#" data-toggle="dropdown">&nbsp<span class="user-name" id="UserName"> </span></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
-                                <div ></div><a class="dropdown-item" style="text-align:right; font-size:medium;font-weight:bold; font-family:sans-serif" href="login.html"><i class="ft-power float-left "></i> התנתק</a>
+                                <div></div><a class="dropdown-item" style="text-align:right; font-size:medium;font-weight:bold; font-family:sans-serif" href="login.html"><i class="ft-power float-left "></i> התנתק</a>
                             </div>
                         </li>
                     </ul>
@@ -224,31 +226,31 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- BEGIN Navigation-->
-    <div class="main-menu menu-dark menu-static menu-shadow"  >
-        <div class="main-menu-content" style="margin-left:30px" >
+    <div class="main-menu menu-dark menu-static menu-shadow" data-scroll-to-active="true">
+        <div class="main-menu-content" style="margin-left:30px">
             <!--<div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">-->
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" style="height:800px;padding-top:30px">
 
-                <li><a class="menu-item" style="font-size:18px" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span > יצירת גייטפס </span></a></li>
+                <li class="nav-item"><a  style="font-size:18px" href="CreatGatePass.html"><i class="menu-title"></i><span> יצירת גייטפס </span></a></li>
 
 
                 <li class=" nav-item">
-                    <a style="font-size:18px" href="activeGatePass.html"><i class="icon-drawer"></i><span style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <a style="font-size:18px" href="activeGatePass.html"><i class="icon-screen-tablet"></i><span class="menu-title" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
                     <ul class="menu-content">
-                        <li><a class="menu-item" href="activeGatePass.html" ><p>גייטפסים פעילים</p></a></li>
-                        <li><a ca class="menu-item" href="archivePage.html" ><p>ארכיון</p></a></li>
+                        <li><a class="menu-item" href="activeGatePass.html"><p>גייטפסים פעילים</p></a></li>
+                        <li><a class="menu-item" href="archivePage.html"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
 
-                <li><a class="menu-item" style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span > נהגים</span></a></li>
-                <li><a class="menu-item" style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span> עמילי מכס</span></a></li>
-                <li><a class="menu-item" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span> חברות תובלה</span></a></li>
-                <li><a class="menu-item" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span > דשבורד</span></a></li>
-                <li><a class="menu-item" style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span > הצעות מחיר</span></a></li>
-         
-           
+                <li class="nav-item"><a  style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
+                <li class="nav-item"><a  style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
+                <li class="nav-item"><a  style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> חברות תובלה</span></a></li>
+                <li class="nav-item"><a  style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
+                <li class="nav-item"><a  style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> הצעות מחיר</span></a></li>
+
+
             </ul>
         </div>
     </div>
@@ -274,23 +276,21 @@
                 <div class="content-body" id="GatePas">
                     <!-- Basic scenario start -->
                     <!--<section id="basic">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
 
-                            <div class="card-content collapse show">
-                                <div class="card-body card-dashboard ">-->
-
-         
+                                <div class="card-content collapse show">
+                                    <div class="card-body card-dashboard ">-->
                     <!--</div>-->
-                    </div>
                 </div>
             </div>
         </div>
-                    <!--</div>
-                </section>-->
-            <!--</div>-->
-        <!--</div>-->
+    </div>
+    <!--</div>
+    </section>-->
+    <!--</div>-->
+    <!--</div>-->
     <!--</div>-->
 
     <footer class="footer footer-static footer-light navbar-shadow">
@@ -303,5 +303,6 @@
     <script src="../../../app-assets/js/core/app-menu.js"></script>
     <script src="../../../app-assets/js/core/app.js"></script>
     <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js"></script>
+
 </body>
 </html>
