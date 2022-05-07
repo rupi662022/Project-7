@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html class="loading" lang="en" data-textdirection="rtl">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,20 +17,19 @@
 
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
 
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
+    <link href="../app-assets/css-rtl/app.css" rel="stylesheet" />
+    <link href="../app-assets/css-rtl/custom-rtl.css" rel="stylesheet" />
+    <link href="../app-assets/css-rtl/core/menu/menu-types/vertical-menu.css" rel="stylesheet" />
+    <link href="../app-assets/css/plugins/forms/switch.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-
+    <link href="../assets/css/style-rtl.css" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="demos.css" />
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
-
-    <!--<link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
-    <link rel="stylesheet" type="text/css" href="../css/theme.css" />-->
 
     <script src="../external/jquery/jquery-1.8.3.js"></script>
     <script src="../dist/jsgrid.js"></script>
@@ -59,6 +58,13 @@
         }*/
         .jsgrid-grid-body {
             height: 500px;
+        }
+
+        img {
+            float:right; 
+            height:30px; 
+     /*       width:60px; */
+            padding-left:14px;
         }
     </style>
 
@@ -122,7 +128,7 @@
                                 url: "../api/TransportCompany",
                                 data: item,
                                 success: function (html) {
-                                alert('הוכנסה חברת תובה חדשה'/* + html*/);
+                                    alert('הוכנסה חברת תובה חדשה'/* + html*/);
                                 },
                                 error: function (jqXHR, textStatus, errorThrown) {
                                     if (jqXHR.status == 500) {
@@ -139,7 +145,7 @@
                             return $.ajax({
                                 type: "DELETE",
                                 url: "../api/TransportCompany",
-                                data:item
+                                data: item
 
 
                             });
@@ -149,10 +155,10 @@
 
                     fields: [
                         { name: "CompanyId", title: 'מספר חברה', type: "number", width: 100, sorting: false, inserting: false, align: "center", editing: false },
-                        { name: "CompanyName", title: 'שם חברה', type: "text", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין ת.ז" }},
-                        { name: "CompanyAdress", title: "כתובת", type: "text", width: 100, align: "center", validate: { validator: "rangeLength", param: [3, 80] }},
+                        { name: "CompanyName", title: 'שם חברה', type: "text", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין ת.ז" } },
+                        { name: "CompanyAdress", title: "כתובת", type: "text", width: 100, align: "center", validate: { validator: "rangeLength", param: [3, 80] } },
                         { name: "CompanyFax", title: "פקס", type: "text", width: 100, align: "center", validate: { message: "אורך מספר הפקס לא כנדרש", validator: "rangeLength", param: [7, 15] } },
-                        { name: "CompanyPhone", type: "text", title: "טלפון", width: 100, align: "center",validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [5, 15] } },
+                        { name: "CompanyPhone", type: "text", title: "טלפון", width: 100, align: "center", validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [5, 15] } },
 
                         {
                             type: "control",
@@ -179,36 +185,38 @@
 
 
 </head>
-<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+<body class="vertical-layout vertical-menu 2-column menu-expanded " data-open="hover" data-menu="vertical-menu" >
 
     <!-- fixed-top-->
-    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
+    <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-static-top navbar-dark navbar-shadow navbar-border">
         <div class="navbar-wrapper">
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
-                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="../../../html/rtl/vertical-content-menu-template/index.html">
-                            <!--<img class="brand-logo" alt="robust admin logo" src="../../../app-assets/images/logo/logo-dark-sm.png">-->
-                            <h3 class="brand-text">שי שירותי נמל</h3>
-                        </a>
-                    </li>
+                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="activeGatePass.html"><i class="ft-menu font-large-1"></i></a></li>
+                    <li class="nav-item"><a class="navbar-brand" href="../../../html/rtl/vertical-menu-template/index.html">
+    <img  class="brand-logo"  src="../Logo/pngegg.png" />
+
+
+    <h3 class="brand-text">שי שירותי נמל</h3>
+</a>
+</li>
                     <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
                 </ul>
             </div>
+
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
-                    <ul class="nav navbar-nav mr-auto float-left">
+                                    <!--<ul class="nav navbar-nav mr-auto float-left">
                         <li class="dropdown dropdown-user nav-item">
                             <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
                         </li>
-                    </ul>
-                    <ul class="nav navbar-nav float-right">
+                    </ul>-->
+                    <ul class="nav navbar-nav float-right" style="margin-left: 80px">
                         <li class="dropdown dropdown-user nav-item">
-                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name" style="font-size:17px">   User Name</span></a>
+                            <a class="fa fa-id-badge text" href="#" data-toggle="dropdown">&nbsp<span class="user-name" style="float:left" id="UserName"> </span></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="login-simple.html"><i class="ft-power"></i> Logout</a>
+                                <div class="dropdown-divider "></div><a class="dropdown-item" style="text-align:right" href="login.html"><i class="ft-power float-left "></i> התנתק</a>
                             </div>
                         </li>
                     </ul>
@@ -217,77 +225,74 @@
         </div>
     </nav>
 
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!-- BEGIN Navigation-->
+    <div class="main-menu menu-dark menu-static menu-shadow"  >
+        <div class="main-menu-content" style="margin-left:30px" >
+            <!--<div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">-->
+            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" style="height:732px;padding-top:30px">
+
+                <li><a class="menu-item" style="font-size:18px" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span > יצירת גייטפס </span></a></li>
 
 
-    <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-without-dd-arrow navbar-shadow" role="navigation" data-menu="menu-wrapper">
-        <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
-            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
-                <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="activeGatePass.html"  data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
-                    <ul class="dropdown-menu" style="width:50%">
-                        <li data-menu=""><a class="dropdown-item" href="activeGatePass.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
-                        <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>ארכיון</p></a></li>
+                <li class=" nav-item">
+                    <a style="font-size:18px" href="activeGatePass.html"><i class="icon-drawer"></i><span style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="activeGatePass.html" ><p>גייטפסים פעילים</p></a></li>
+                        <li><a ca class="menu-item" href="archivePage.html" ><p>ארכיון</p></a></li>
                     </ul>
                 </li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
-                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> עמילי מכס</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> לקוחות</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms"> דשבורד</span></a></li>
-                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> הצעות מחיר</span></a></li>
 
+                <li><a class="menu-item" style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span > נהגים</span></a></li>
+                <li><a class="menu-item" style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span> עמילי מכס</span></a></li>
+                <li><a class="menu-item" style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span> חברות תובלה</span></a></li>
+                <li><a class="menu-item" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span > דשבורד</span></a></li>
+                <li><a class="menu-item" style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span > הצעות מחיר</span></a></li>
+         
+           
             </ul>
         </div>
     </div>
-
+    <!-- END Navigation-->
     <!--//BEGIN OF THE GERID-->
-    <div class="app-content content">
+    <div class="content app-content">
         <div class="content-wrapper">
+            <!-- content header-->
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
                     <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>חברות תובלה</b></h3>
 
-                </div>
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="media width-250 float-right">
 
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-body">
-                <!-- Basic scenario start -->
-                <section id="basic">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <!--<div class="card-header">
-
-                                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>-->
-                                <div class="card-content collapse show">
-                                    <div class="card-body card-dashboard ">
-
-                                        <div id="GatePas"></div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="content-header-right col-md-6 col-12">
+                        <div class="media width-250 float-left">
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+            <!-- content header-->
+            <!-- content body-->
+            <div class="card-content">
+                <div class="content-body" id="GatePas">
+                    <!-- Basic scenario start -->
+                    <!--<section id="basic">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+
+                            <div class="card-content collapse show">
+                                <div class="card-body card-dashboard ">-->
+
+         
+                    <!--</div>-->
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+                    <!--</div>
+                </section>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
     <footer class="footer footer-static footer-light navbar-shadow">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
     </footer>

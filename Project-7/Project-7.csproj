@@ -5621,6 +5621,9 @@
     <Content Include="app-assets\vendors\js\ui\unison.min.js" />
     <Content Include="app-assets\vendors\js\vendors.min.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="assets\css\style-rtl.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\js\scripts.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -5643,6 +5646,8 @@
     <Content Include="external\jquery\jquery-1.8.3.js" />
     <Content Include="external\qunit\qunit-1.10.0.css" />
     <Content Include="external\qunit\qunit-1.10.0.js" />
+    <Content Include="Logo\pngegg.png" />
+    <Content Include="Logo\shayLogo.png" />
     <Content Include="Pages\insertGatePass.html" />
     <Content Include="Pages\MyGatePass.html" />
     <Content Include="Pages\activeGatePass.html" />
@@ -6239,6 +6244,11 @@
     <Content Include="app-assets\vendors\js\editors\tinymce\skins\lightgray\ToolTip.less" />
     <Content Include="app-assets\vendors\js\editors\tinymce\skins\lightgray\Variables.less" />
     <Content Include="app-assets\vendors\js\editors\tinymce\skins\lightgray\Window.less" />
+    <Content Include="assets\scss\colors\palette-variables.scss" />
+    <Content Include="assets\scss\style-rtl.scss" />
+    <Content Include="assets\scss\style.scss" />
+    <Content Include="assets\scss\variables\components-variables.scss" />
+    <Content Include="assets\scss\variables\variables.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
