@@ -161,30 +161,23 @@
             cursor: pointer;
         }
 
-        img {
-            float: right;
-            height: 30px;
-            /*       width:60px; */
-            padding-left: 14px;
-        }
+
     </style>
 
     <script>
 
         $(document).ready(function () {
 
-            U = JSON.parse(localStorage.getItem('User'));
-            document.getElementById("UserName").innerHTML = U.UserName;
+            //U = JSON.parse(localStorage.getItem('User'));
+            //document.getElementById("UserName").innerHTML = U.UserName;
 
 
-            var MyDateField = function (config) {
+
+            var DateField = function (config) {
                 jsGrid.Field.call(this, config);
             };
 
-            MyDateField.prototype = new jsGrid.Field({
-                css: "date-field",            // redefine general property 'css'
-                align: "center",              // redefine general property 'align'
-                myCustomProperty: "foo",      // custom property
+            DateField.prototype = new jsGrid.Field({
                 sorter: function (date1, date2) {
                     return new Date(date1) - new Date(date2);
                 },
@@ -192,6 +185,35 @@
                 itemTemplate: function (value) {
                     return new Date(value).toDateString();
                 },
+
+
+                filterTemplate: function () {
+       /*             var now = new Date();*/
+          //          this._fromPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() - 1) });
+          ///*          this._toPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() + 1) });*/
+          //        /*  return $("<div>").append(this._fromPicker).append(this._toPicker);*/
+
+                 
+                  /*  if (!this.filtering)*/
+                    return this._filtertPicker = $("<input>").datepicker({ defaultDate: new Date() })
+
+                    var grid = this._grid,
+                        $result = this.filterControl = this._createTextBox();
+
+                    if (this.autosearch) {
+                        $result.on("keypress", function (e) {
+                            if (e.which === 13) {
+                                grid.search();
+                                e.preventDefault();
+                            }
+                        });
+                    }
+
+                    return $result;
+
+              
+                },
+
 
                 insertTemplate: function (value) {
                     return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
@@ -207,11 +229,20 @@
 
                 editValue: function () {
                     return this._editPicker.datepicker("getDate").toISOString();
-                }
+                },
+
+                //filterValue: function () {
+                //    return {
+                //        from: this._fromPicker.datepicker("getDate"),
+                //        to: this._toPicker.datepicker("getDate")
+                //    };
+                //}
             });
 
-            jsGrid.fields.date = MyDateField;
-            
+            jsGrid.fields.date = DateField;
+
+
+
 
             //Create New GatePass
             $('#Add').on("click", function () {
@@ -257,9 +288,14 @@
                                     && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1)
                                     && (!filter.CustomsBroker || item.CustomsBroker.indexOf(filter.CustomsBroker) > -1)
                                     /* && (!filter.GoToRepair || item.GoToRepair.indexOf(filter.GoToRepair) > -)*/
-                                    && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
+                                    && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1)
+                                    //&& (!filter.RegisterDate.from || new Date(item.CreatedDate) >= filter.CreatedDate.from)
+                                    //&& (!filter.RegisterDate.to || new Date(item.CreatedDate) <= filter.CreatedDate.to);
                             });
                         },
+
+
+
                         updateItem: function (item) {
                             return $.ajax({
                                 type: "PUT",
@@ -285,7 +321,7 @@
                         { name: "Importer", type: "text", title: "יבואן", width: 80, align: "center" },
                         { name: "CustomsBroker", type: "text", title: "עמיל מכס", width: 80, align: "center" },
                         /*     { name: "GoToRepair", type: "checkbox", title: "יצא לתיקון", sorting: false },*/
-                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 70, align: "center", myCustomProperty: "bar"},
+                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 70, align: "center"},
                         {
                             name: "Note", title: 'הערות',
                             itemTemplate: function (value, item) {
