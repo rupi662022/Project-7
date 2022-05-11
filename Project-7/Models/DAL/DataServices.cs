@@ -478,6 +478,51 @@ namespace Project_7.Models.DAL
 
 
 
+        public List<User> ReadUsers()
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandUsers(con);
+                List<User> UserList = new List<User>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dataReader.Read())
+                {
+                    User u = new User();
+                 
+                    u.UserName = (string)dataReader["USR_UserName"];
+                    u.UserType = (string)dataReader["USR_Type"];
+                    u.UserEmail = (string)dataReader["USR_Email"];
+
+
+
+                    UserList.Add(u);
+                }
+                return UserList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of Customs Brokers list", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandUsers(SqlConnection con)
+        {
+            string commandStr = "SELECT * from SHAY_User ";
+            SqlCommand cmd = createCommand(con, commandStr);
+
+            return cmd;
+        }
+
+
 
 
         public int InsertUser(User user)

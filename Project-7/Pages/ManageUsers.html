@@ -154,8 +154,9 @@
                     },
 
                     fields: [
-                        { name: "UserName", title: 'מספר חברה', type: "number", width: 100, sorting: false, inserting: false, align: "center", editing: false },
-                        { name: "UserType", title: 'שם חברה', type: "text", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין ת.ז" } },
+                        { name: "UserName", title: 'שם משתמש', type: "text", width: 100, sorting: false, inserting: false, align: "center", editing: false },
+                        { name: "UserEmail", title: 'מייל משתמש', type: "text", width: 100, align: "center" },
+                        { name: "UserType", title: 'סוג משתמש', type: "text", width: 100, align: "center" },
                         //{ name: "CompanyAdress", title: "כתובת", type: "text", width: 100, align: "center", validate: { validator: "rangeLength", param: [3, 80] } },
                         //{ name: "CompanyFax", title: "פקס", type: "text", width: 100, align: "center", validate: { message: "אורך מספר הפקס לא כנדרש", validator: "rangeLength", param: [7, 15] } },
                         //{ name: "CompanyPhone", type: "text", title: "טלפון", width: 100, align: "center", validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [5, 15] } },
@@ -245,7 +246,7 @@
 
                 <li class="nav-item"><a  style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
                 <li class="nav-item"><a  style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
-                <li class="nav-item"><a  style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> חברות תובלה</span></a></li>
+                <li class="nav-item"><a  style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשים</span></a></li>
                 <li class="nav-item"><a  style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
                 <li class="nav-item"><a  style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> הצעות מחיר</span></a></li>
 

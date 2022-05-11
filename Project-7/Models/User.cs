@@ -73,6 +73,12 @@ namespace Project_7.Models
             return ds.ReadMyGatePass(userID);
         }
 
+        public List<User> ReadUsers()
+        {
+            DataServices ds = new DataServices();
+            return ds.ReadUsers();
+        }
+
         //קריאה
 
 
