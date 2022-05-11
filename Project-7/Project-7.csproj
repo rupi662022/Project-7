@@ -5769,6 +5769,7 @@
     <Content Include="demos\gatePass%28OLD%29.html" />
     <Content Include="Pages\home.html" />
     <Content Include="Pages\registerU.html" />
+    <Content Include="Pages\ManageUsers.html" />
     <Content Include="Pages\transportComp - Copy.html" />
     <Content Include="Pages\transportComp.html" />
     <Content Include="Pages\login.html" />

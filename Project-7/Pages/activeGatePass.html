@@ -161,17 +161,35 @@
             cursor: pointer;
         }
 
-
+/**/
+        /*@media (max-width: 767px) {*/
+      
+        /*}*/
+       
+            /**/
     </style>
 
     <script>
 
         $(document).ready(function () {
 
-            //U = JSON.parse(localStorage.getItem('User'));
-            //document.getElementById("UserName").innerHTML = U.UserName;
+            U = JSON.parse(localStorage.getItem('User'));
 
+            //Adm = document.getElementsById("Price");
+      
+            if (U.UserType== "C") {
 
+                $('#Price').hide();
+                $('#Dashboard').hide();
+            /*    $('[id^=Price]').hide();*/
+           /*     el.style.display = 'block';*/
+
+            }
+            document.getElementById("UserName").innerHTML = U.UserName;
+
+      
+           
+            
 
             var DateField = function (config) {
                 jsGrid.Field.call(this, config);
@@ -192,10 +210,18 @@
           //          this._fromPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() - 1) });
           ///*          this._toPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() + 1) });*/
           //        /*  return $("<div>").append(this._fromPicker).append(this._toPicker);*/
+                    var now = new Date();
+                    this._fromPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() - 1), dateFormat: "mm/dd/yy" });
+                    this._toPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() + 1),dateFormat: "mm/dd/yy" });
+                    return $("<div>").append(this._fromPicker).append(this._toPicker);
+                        //$result = this.filterControl = this._createTextBox();
+                  
+                    //    //return this._filtertPicker = $("<input>").datepicker({ defaultDate: new Date(), dateFormat: "dd/mm/yy" })
+                    ////if (!this.filtering)
+                    //    return "";
 
-                 
-                  /*  if (!this.filtering)*/
-                    return this._filtertPicker = $("<input>").datepicker({ defaultDate: new Date() })
+                    if (!this.filtering)
+                        return "";
 
                     var grid = this._grid,
                         $result = this.filterControl = this._createTextBox();
@@ -211,8 +237,11 @@
 
                     return $result;
 
-              
+           
                 },
+                    //}
+                  /*  return $("<div>").append(this._filtertPicker)*/
+  
 
 
                 insertTemplate: function (value) {
@@ -224,11 +253,11 @@
                 },
 
                 insertValue: function () {
-                    return this._insertPicker.datepicker("getDate").toISOString();
+                    return this._insertPicker.datepicker("getDate")
                 },
 
                 editValue: function () {
-                    return this._editPicker.datepicker("getDate").toISOString();
+                    return this._editPicker.datepicker("getDate")
                 },
 
                 //filterValue: function () {
@@ -242,6 +271,36 @@
             jsGrid.fields.date = DateField;
 
 
+            //var MyDateField = function (config) {
+            //    jsGrid.Field.call(this, config);
+            //};
+
+            //MyDateField.prototype = new jsGrid.Field({
+
+            //    sorter: function (date1, date2) {
+            //        return new Date(date1) - new Date(date2);
+            //    },
+
+            //    itemTemplate: function (value) {
+            //        return new Date(value).toDateString();
+            //    },
+
+            //    insertTemplate: function (value) {
+            //        return this._insertPicker = $("<input class='date-picker'>").datetimepicker();
+            //    },
+
+            //    editTemplate: function (value) {
+            //        return this._editPicker = $("<input class='date-picker'>").datetimepicker();
+            //    },
+
+            //    insertValue: function () {
+            //        return this._insertPicker.data("DateTimePicker").useCurrent();
+            //    },
+
+            //    editValue: function () {
+            //        return this._editPicker.data("DateTimePicker").useCurrent();
+            //    }
+            //});
 
 
             //Create New GatePass
@@ -352,6 +411,9 @@
 
 
             });
+
+
+
         })
 
     </script>
@@ -417,11 +479,11 @@
                         <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray ;" data-toggle="dropdown"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
-                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
-                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> עמילי מכס</span></a></li>
-                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> לקוחות</span></a></li>
-                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms"> דשבורד</span></a></li>
-                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> הצעות מחיר</span></a></li>
+        <li class="nav-item"><a  style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
+                <li class="nav-item"><a  style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
+                <li class="nav-item"><a  style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> חברות תובלה</span></a></li>
+                <li class="nav-item Admin" id="Dashboard" style="display:none;"><a  style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
+                 <li  class="nav-item-Admin"  id="Price" style="display:none;"><a  style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span  id="Price" class="menu-title"> הצעות מחיר</span></a></li>
             </ul>
         </div>
     </div>
