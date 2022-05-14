@@ -14,11 +14,12 @@ namespace Project_7.Models
         string userPassword;
         string userCompany;
         string userType;
+        bool isAdmin;
         List<GatePass> gatePassList;
 
         public User() { }
 
-        public User(int userID, string userName, string userEmail, string userPassword, string userCompany, string userType)
+        public User(int userID, string userName, string userEmail, string userPassword, string userCompany, string userType,bool isAdmin)
         {
             UserID = userID;
             UserName = userName;
@@ -26,10 +27,10 @@ namespace Project_7.Models
             UserPassword = userPassword;
             UserCompany = userCompany;
             UserType = userType;
-            
+            IsAdmin= isAdmin;
         }
 
-        public User(int userID, string userName, string userEmail, string userPassword, string userCompany, string userType, List<GatePass> gatePassList)
+        public User(int userID, string userName, string userEmail, string userPassword, string userCompany, string userType,bool isAdmin, List<GatePass> gatePassList)
 
         {
             UserID = userID;
@@ -39,6 +40,7 @@ namespace Project_7.Models
             UserCompany = userCompany;
             UserType = userType;
             List<GatePass> GatePassList=new List<GatePass>();
+            IsAdmin = isAdmin;
 
         }
 
@@ -51,6 +53,7 @@ namespace Project_7.Models
         public string UserCompany { get => userCompany; set => userCompany = value; }
         public string UserType { get => userType; set => userType = value; }      
         internal List<GatePass> GatePassList { get => gatePassList; set => gatePassList = value; }
+        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
 
 
         //public User(string userEmail, string userPassword)
@@ -79,6 +82,14 @@ namespace Project_7.Models
             return ds.ReadUsers();
         }
 
+        public int UpdateUser()
+        {
+            DataServices ds = new DataServices();
+            return ds.UpdateUser(this);
+        }
+
+
+        
         //קריאה
 
 

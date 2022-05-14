@@ -14,7 +14,7 @@ namespace Project_7.Models.DAL
 
     public class DataServices
     {
-        private object userID;
+        //private object userID;
 
         SqlConnection Connect(string connectionStringName)
         {
@@ -640,14 +640,14 @@ namespace Project_7.Models.DAL
         //        User u = new User();
 
         //        dr.Read();
-                
+
         //            u.UserID =Convert.ToInt32(dr["USR_Id"]);
         //            u.UserEmail = (string)dr["USR_Email"];
         //            u.UserPassword = (string)dr["USR_Password"];
         //            u.UserName = (string)dr["USR_UserName"];
         //            u.UserType= (string)dr["USR_Type"];
 
-                
+
         //        dr.Close();
 
         //        return u;
@@ -685,8 +685,46 @@ namespace Project_7.Models.DAL
 
 
 
-        ///Custom Brokers Actions
+        public int UpdateUser(User u)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("UpdateUser", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+          
+                    cmd.Parameters.AddWithValue("@UserId", u.UserID);
 
+                    cmd.Parameters.AddWithValue("@IsAdmin", u.IsAdmin);
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+                    //if (result.Equals(1))
+                    //{
+                    //    res = 1;
+
+                    //}
+                    //return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
 
         //Read
         public List<CustomsBroker> ReadBrokers()

@@ -36,6 +36,13 @@ namespace Project_7.Controllers
         }
 
 
+        public HttpResponseMessage Put([FromBody] User u)
+        {
+            u.UpdateUser();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
+
         //POST: api/User
         public HttpResponseMessage Post([FromBody] User user)
         {
