@@ -12,32 +12,29 @@ namespace Project_7.Models
         string userName;
         string userEmail;
         string userPassword;
-        string userCompany;
         string userType;
         bool isAdmin;
         List<GatePass> gatePassList;
 
         public User() { }
 
-        public User(int userID, string userName, string userEmail, string userPassword, string userCompany, string userType,bool isAdmin)
+        public User(int userID, string userName, string userEmail, string userPassword, string userType,bool isAdmin)
         {
             UserID = userID;
             UserName = userName;
             UserEmail = userEmail;
             UserPassword = userPassword;
-            UserCompany = userCompany;
             UserType = userType;
             IsAdmin= isAdmin;
         }
 
-        public User(int userID, string userName, string userEmail, string userPassword, string userCompany, string userType,bool isAdmin, List<GatePass> gatePassList)
+        public User(int userID, string userName, string userEmail, string userPassword, string userType,bool isAdmin, List<GatePass> gatePassList)
 
         {
             UserID = userID;
             UserName = userName;
             UserEmail = userEmail;
             UserPassword = userPassword;
-            UserCompany = userCompany;
             UserType = userType;
             List<GatePass> GatePassList=new List<GatePass>();
             IsAdmin = isAdmin;
@@ -50,19 +47,11 @@ namespace Project_7.Models
         public string UserName { get => userName; set => userName = value; }
         public string UserEmail { get => userEmail; set => userEmail = value; }
         public string UserPassword { get => userPassword; set => userPassword = value; }
-        public string UserCompany { get => userCompany; set => userCompany = value; }
         public string UserType { get => userType; set => userType = value; }      
         internal List<GatePass> GatePassList { get => gatePassList; set => gatePassList = value; }
         public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
 
 
-        //public User(string userEmail, string userPassword)
-        //{
-
-        //    UserEmail = userEmail;
-        //    UserPassword = userPassword;
-
-        //}
 
         public void InsertUser()
         {
@@ -89,16 +78,11 @@ namespace Project_7.Models
         }
 
 
-        
-        //קריאה
-
-
-        ////}
-        public User ReadUser(string userEmail)/*---READ test for Procedures*/
-        {
-            //int res = 0;
+    
+        public User ReadLogUser(string userEmail)
+       {
             DataServices ds = new DataServices();
-            return ds.ReadUser(userEmail);
+            return ds.ReadLogUser(userEmail);
 
         }
 

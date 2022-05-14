@@ -11,13 +11,7 @@ namespace Project_7.Controllers
 {
     public class UserController : ApiController
     {
-        // GET: api/User
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
 
-        // GET: api/User/5
 
         [HttpGet]
         [Route("api/User/userID")]
@@ -35,7 +29,8 @@ namespace Project_7.Controllers
             return U.ReadUsers();
         }
 
-
+        [HttpPut]
+        [Route("api/User")]
         public HttpResponseMessage Put([FromBody] User u)
         {
             u.UpdateUser();
@@ -52,18 +47,13 @@ namespace Project_7.Controllers
 
 
 
-        //[HttpGet]
-        //[Route("api/User/userEmail")]
+        [HttpGet]
+        [Route("api/User/userEmail")]
         public User Get(string userEmail)
         {
             User U = new User();
-            return U.ReadUser(userEmail);
+            return U.ReadLogUser(userEmail);
         }
-
-        //public void Post([FromBody] User user)
-        //{
-        //     user.InsertUser();
-        //}
 
         //// PUT: api/User/5
         //public void Put(int id, [FromBody]string value)

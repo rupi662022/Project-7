@@ -122,18 +122,5 @@ namespace Project_7.Models
         }
 
 
-        // הבא את הגייטפסים הפעילים שלי
-        //public List<GatePass> ReadMyGatePass(int userID)
-        //{
-        //    DataServices ds = new DataServices();
-        //    return ds.ReadMyGatePass(userID);
-        //}
-
-        //public List<GatePass> ReadgatePassList()
-        //{
-        //    DataServices ds = new DataServices();
-        //    return ds.ReadgatePassList();
-        //}
-
     }
 }

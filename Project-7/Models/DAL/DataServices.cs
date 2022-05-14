@@ -78,11 +78,6 @@ namespace Project_7.Models.DAL
 
 
 
-        //internal List<GatePass> ReadMyGatePass(int userID)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
 
 
 
@@ -494,8 +489,9 @@ namespace Project_7.Models.DAL
                     User u = new User();
                  
                     u.UserName = (string)dataReader["USR_UserName"];
-                    u.UserType = (string)dataReader["USR_Type"];
+                    //u.UserType = (string)dataReader["USR_Type"];
                     u.UserEmail = (string)dataReader["USR_Email"];
+                    u.IsAdmin = (bool)dataReader["USR_IsAdmin"];
 
 
 
@@ -506,7 +502,7 @@ namespace Project_7.Models.DAL
             catch (Exception ex)
             {
 
-                throw new Exception("failed in reading of Customs Brokers list", ex);
+                throw new Exception("failed in reading of Users list", ex);
             }
             finally
             {
@@ -516,7 +512,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandUsers(SqlConnection con)
         {
-            string commandStr = "SELECT * from SHAY_User ";
+            string commandStr = "SELECT * from SHAY_User where USR_Type='M' ";
             SqlCommand cmd = createCommand(con, commandStr);
 
             return cmd;
@@ -567,7 +563,7 @@ namespace Project_7.Models.DAL
 
 
 
-        public User ReadUser(string userEmail)
+        public User ReadLogUser(string userEmail)
         {
 
             SqlConnection con = null;
@@ -582,7 +578,7 @@ namespace Project_7.Models.DAL
                 User u = new User();
 
                 while (dr.Read())
-                {
+        
 
 
                     u.UserID = Convert.ToInt32(dr["USR_Id"]);
@@ -590,8 +586,8 @@ namespace Project_7.Models.DAL
                     u.UserEmail = (string)dr["USR_Email"];
                     u.UserPassword = (string)dr["USR_Password"];
                     u.UserType = (string)dr["USR_Type"];
-
-                }
+                    u.IsAdmin = (bool)dr["USR_IsAdmin"];
+                
                 dr.Close();
 
                 return u;
@@ -614,70 +610,11 @@ namespace Project_7.Models.DAL
         {
             string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email=@email ";
             SqlCommand cmd = createCommand(con, commandStr);
-            //cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.Add("@email", SqlDbType.NVarChar);
-            cmd.Parameters["@email"].Value = userEmail;
-            //cmd.Parameters.Add("@password", SqlDbType.VarChar);
-            //cmd.Parameters["@password"].Value = userPassword;
+            cmd.Parameters.Add("@userEmail", SqlDbType.NVarChar);
+            cmd.Parameters["@userEmail"].Value = userEmail;
+
             return cmd;
         }
-
-
-        //כניסה לאתר
-
-        //public User ReadUser(string userEmail)
-        //{
-
-        //    SqlConnection con = null;
-
-        //    try
-        //    {
-        //        con = Connect("FinalProject");
-        //        SqlCommand selectCommand = CreateSelectCommandUser(con, userEmail);
-
-        //        SqlDataReader dr = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-        //        User u = new User();
-
-        //        dr.Read();
-
-        //            u.UserID =Convert.ToInt32(dr["USR_Id"]);
-        //            u.UserEmail = (string)dr["USR_Email"];
-        //            u.UserPassword = (string)dr["USR_Password"];
-        //            u.UserName = (string)dr["USR_UserName"];
-        //            u.UserType= (string)dr["USR_Type"];
-
-
-        //        dr.Close();
-
-        //        return u;
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw new Exception("failed in reading of User", ex);
-        //    }
-        //    finally
-        //    {
-
-        //        if (con != null)
-        //            con.Close();
-        //    }
-
-        //}
-        //private SqlCommand CreateSelectCommandUser(SqlConnection con, string userEmail)
-        //{
-        //    string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email=@email ";
-        //    SqlCommand cmd = createCommand(con, commandStr);
-        //    //cmd.Parameters.AddWithValue("@email", email);
-        //    cmd.Parameters.Add("@email", SqlDbType.NVarChar);
-        //    cmd.Parameters["@email"].Value = userEmail;
-        //    //cmd.Parameters.Add("@password", SqlDbType.VarChar);
-        //    //cmd.Parameters["@password"].Value = userPassword;
-        //    return cmd;
-        //}
-
 
 
 
@@ -697,18 +634,13 @@ namespace Project_7.Models.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
           
-                    cmd.Parameters.AddWithValue("@UserId", u.UserID);
+                    cmd.Parameters.AddWithValue("@UserEmail", u.UserEmail);
 
                     cmd.Parameters.AddWithValue("@IsAdmin", u.IsAdmin);
 
                     numEffected = cmd.ExecuteNonQuery();
 
-                    //if (result.Equals(1))
-                    //{
-                    //    res = 1;
 
-                    //}
-                    //return res;
                 }
             }
             catch (Exception ex)
@@ -1099,7 +1031,7 @@ namespace Project_7.Models.DAL
                             g.TransportCompany = (string)dataReader["GPS_TransportCompany"];
                             g.Importer = (string)dataReader["GPS_Importer"];
                             g.Note = (string)dataReader["GPS_Note"];
-                    //g.GoToRepair = (string)dataReader["GPS_GoToRepair"];
+        
                              g.CustomsBroker = (string)dataReader["GPS_CustomsBroker"];
                             g.CreatedDate = Convert.ToDateTime(dataReader["GPS_CreatedDate"]);
 

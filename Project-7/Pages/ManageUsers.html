@@ -105,8 +105,8 @@
                         loadData: function (filter) {
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
-                                return (!filter.UserName || item.CompanyId.indexOf(filter.UserName) > -1)
-                                    && (!filter.UserType || item.CompanyName.indexOf(filter.UserType) > -1);
+                                return (!filter.UserName || item.UserName.indexOf(filter.UserName) > -1)
+                                    && (!filter.IsAdmin || item.IsAdmin.indexOf(filter.IsAdmin) > -1);
                                     //&& (!filter.CompanyAdress || item.CompanyAdress.indexOf(filter.CompanyAdress) > -1)
                                     //&& (!filter.CompanyFax || item.CompanyFax.indexOf(filter.CompanyFax) > -1)
                                     //&& (!filter.CompanyPhone || item.CompanyPhone.indexOf(filter.CompanyPhone) > -1)
@@ -160,12 +160,8 @@
                     fields: [
                         { name: "UserName", title: 'שם משתמש', type: "text", width: 100, sorting: false, inserting: false, align: "center", editing: false },
                         { name: "UserEmail", title: 'מייל משתמש', type: "text", width: 100, align: "center" },
-                 /*       { name: "UserType", title: 'סוג משתמש', type: "text", width: 100, align: "center" },*/
                         { name: "IsAdmin", title: 'אדמין', type: "checkbox", width: 100, align: "center" },
-                        //{ name: "CompanyAdress", title: "כתובת", type: "text", width: 100, align: "center", validate: { validator: "rangeLength", param: [3, 80] } },
-                        //{ name: "CompanyFax", title: "פקס", type: "text", width: 100, align: "center", validate: { message: "אורך מספר הפקס לא כנדרש", validator: "rangeLength", param: [7, 15] } },
-                        //{ name: "CompanyPhone", type: "text", title: "טלפון", width: 100, align: "center", validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [5, 15] } },
-
+              
                         {
                             type: "control",
 
@@ -173,7 +169,7 @@
 
                     ]
                 });
-
+                
             });
 
         })
