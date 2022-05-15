@@ -59,7 +59,7 @@
           
             }
 
-            ajaxCall("POST", "../api/User", JSON.stringify(adduser), postSCB, postECB);
+            ajaxCall("POST", "../api/User/"+ "/in", JSON.stringify(adduser), postSCB, postECB);
             
             return false;
 

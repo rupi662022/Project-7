@@ -23,7 +23,6 @@ namespace Project_7.Controllers
 
         
         [HttpGet]
-        
         [Route("api/User/{GetUsers}")]
         public IEnumerable<User> GetUsers()
         {
@@ -40,7 +39,8 @@ namespace Project_7.Controllers
         }
 
 
-        //POST: api/User
+        [HttpPost]
+        [Route("api/User/in")]
         public HttpResponseMessage Post([FromBody] User user)
         {
             user.InsertUser();
