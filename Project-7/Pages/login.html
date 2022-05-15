@@ -44,9 +44,9 @@
 
 
         function CeckUser() {
-            let email = $("#user-name").val();
+            let userEmail = $("#user-name").val();
             password = $("#user-password").val();
-            let url = "../api/User?userEmail=" + email;
+            let url = "../api/User/" + userEmail + "/Pass";
             ajaxCall("GET", url, "", Sucse, ecb);
             return false;
         }
@@ -57,20 +57,22 @@
         
             console.log(U)
             let type = 'M'
-            /*       if (U.UserPassword == password) {*/
+
             if (U.UserPassword == password)
             {
 
-                ////if (U.IsAdmin == 'True') {
-                //    window.location.href ="activeGatePass.html"
-                //}
-                if (U.UserType == type) {
+   
+                if (U.UserType == type ) {
                 localSave(U);
                 window.location.href = "MyGatePass.html";
 
             }
-           else {
-                    localSave(U);
+                else {
+                    if (U.IsAdmin == true) {
+                        localSave(U);
+                        window.location.href = "Dashboard.html"
+                    }
+                   else
                     window.location.href = "activeGatePass.html";
                 }
            
@@ -106,7 +108,7 @@
     <!-- ////////////////////////////////////////////////////////////////////////////-->
     <div class="app-content container center-layout mt-2">
         <div class="content-wrapper">
-            <div class="content-header row">W
+            <div class="content-header row">
             </div>
             <div class="content-body">
                 <section class="flexbox-container">

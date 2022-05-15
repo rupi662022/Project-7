@@ -78,7 +78,7 @@
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
-                url: "../api/User/{GetUsers}",
+                url: "../api/TransportCompany",
                 data: "json"
 
             }).done(function (data) {
@@ -90,7 +90,7 @@
                     width: "100%",
                     filtering: true,
                     editing: true,
-                   /* inserting: true,*/
+                    inserting: true,
                     sorting: true,
                     sorter: true,
                     /* paging: true,*/
@@ -98,57 +98,53 @@
                     pageSize: 15,
                     pageButtonCount: 5,
                     deleteConfirm: function (item) {
-                        return "?ימחק. האם אתה בטוח \"" + item.UserName + "\"מתשמש ";
+                        return "?תמחק. האם אתה בטוח \"" + item.CompanyName + "\"חברת תובלה ";
                     },
                     controller: {
 
                         loadData: function (filter) {
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
-                                return (!filter.UserName || item.UserName.indexOf(filter.UserName) > -1)
-                                    && (!filter.IsAdmin || item.IsAdmin.indexOf(filter.IsAdmin) > -1);
-                                    //&& (!filter.CompanyAdress || item.CompanyAdress.indexOf(filter.CompanyAdress) > -1)
-                                    //&& (!filter.CompanyFax || item.CompanyFax.indexOf(filter.CompanyFax) > -1)
-                                    //&& (!filter.CompanyPhone || item.CompanyPhone.indexOf(filter.CompanyPhone) > -1)
+                                return (!filter.CompanyId || item.CompanyId.indexOf(filter.CompanyId) > -1)
+                                    && (!filter.CompanyName || item.CompanyName.indexOf(filter.CompanyName) > -1)
+                                    && (!filter.CompanyAdress || item.CompanyAdress.indexOf(filter.CompanyAdress) > -1)
+                                    && (!filter.CompanyFax || item.CompanyFax.indexOf(filter.CompanyFax) > -1)
+                                    && (!filter.CompanyPhone || item.CompanyPhone.indexOf(filter.CompanyPhone) > -1)
                             });
 
                         },
                         updateItem: function (item) {
                             return $.ajax({
                                 type: "PUT",
-                                url: "../api/User",
+                                url: "../api/TransportCompany",
                                 data: item
 
                             });
 
                         },
-                        //insertItem: function (item) {
-                        //    return $.ajax({
-                        //        type: "POST",
-                        //        url: "../api/User",
-                        //        data: item,
-                        //        success: function (html) {
-                        //            alert('הוכנסה חברת תובה חדשה'/* + html*/);
-                        //        },
-                        //        error: function (jqXHR, textStatus, errorThrown) {
-                        //            if (jqXHR.status == 500) {
-                        //                alert('Internal error: ' + jqXHR.responseText);
-                        //            } else {
-                        //                alert('Unexpected error.');
-                        //            }
-                        //        }
+                        insertItem: function (item) {
+                            return $.ajax({
+                                type: "POST",
+                                url: "../api/TransportCompany",
+                                data: item,
+                                success: function (html) {
+                                    alert('הוכנסה חברת תובה חדשה'/* + html*/);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    if (jqXHR.status == 500) {
+                                        alert('Internal error: ' + jqXHR.responseText);
+                                    } else {
+                                        alert('Unexpected error.');
+                                    }
+                                }
 
-                        //    });
+                            });
 
-
-                        //},
-
-
-
+                        },
                         deleteItem: function (item) {
                             return $.ajax({
                                 type: "DELETE",
-                                url: "../api/User",
+                                url: "../api/TransportCompany",
                                 data: item
 
 
@@ -158,10 +154,12 @@
                     },
 
                     fields: [
-                        { name: "UserName", title: 'שם משתמש', type: "text", width: 100, sorting: false, align: "center", editing: false },
-                        { name: "UserEmail", title: 'מייל משתמש', type: "text", width: 100, align: "center" },
-                        { name: "IsAdmin", title: 'אדמין', type: "checkbox", width: 100, align: "center" },
-              
+                        { name: "CompanyId", title: 'מספר חברה', type: "number", width: 100, sorting: false, inserting: false, align: "center", editing: false },
+                        { name: "CompanyName", title: 'שם חברה', type: "text", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין ת.ז" } },
+                        { name: "CompanyAdress", title: "כתובת", type: "text", width: 100, align: "center", validate: { validator: "rangeLength", param: [3, 80] } },
+                        { name: "CompanyFax", title: "פקס", type: "text", width: 100, align: "center", validate: { message: "אורך מספר הפקס לא כנדרש", validator: "rangeLength", param: [7, 15] } },
+                        { name: "CompanyPhone", type: "text", title: "טלפון", width: 100, align: "center", validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [5, 15] } },
+
                         {
                             type: "control",
 
@@ -169,7 +167,7 @@
 
                     ]
                 });
-                
+
             });
 
         })
@@ -247,7 +245,7 @@
 
                 <li class="nav-item"><a  style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
                 <li class="nav-item"><a  style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
-                <li class="nav-item"><a  style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשים</span></a></li>
+                <li class="nav-item"><a  style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title">דאשבורד</span></a></li>
                 <li class="nav-item"><a  style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
                 <li class="nav-item"><a  style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> הצעות מחיר</span></a></li>
 
@@ -262,7 +260,7 @@
             <!-- content header-->
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>ניהול משתמשים</b></h3>
+                    <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>חברות תובלה</b></h3>
 
 
                     <div class="content-header-right col-md-6 col-12">

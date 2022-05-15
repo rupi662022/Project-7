@@ -161,12 +161,7 @@
             cursor: pointer;
         }
 
-/**/
-        /*@media (max-width: 767px) {*/
-      
-        /*}*/
-       
-            /**/
+
     </style>
 
     <script>
@@ -181,8 +176,8 @@
 
                 $('#Price').hide();
                 $('#Dashboard').hide();
-            /*    $('[id^=Price]').hide();*/
-           /*     el.style.display = 'block';*/
+                $('#MangeUsers').hide();
+                /*     el.style.display = 'block';*/
 
             }
             document.getElementById("UserName").innerHTML = U.UserName;
@@ -479,11 +474,12 @@
                         <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray ;" data-toggle="dropdown"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
-        <li class="nav-item"><a  style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
-                <li class="nav-item"><a  style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
-                <li class="nav-item"><a  style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> חברות תובלה</span></a></li>
-                <li class="nav-item Admin" id="Dashboard" style="display:none;"><a  style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
-                 <li  class="nav-item-Admin"  id="Price" style="display:none;"><a  style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span  id="Price" class="menu-title"> הצעות מחיר</span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
+                <li class="nav-item"><a style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> חברות תובלה</span></a></li>
+                <li class="nav-item Admin" id="Dashboard" style="display:none;"><a style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
+                <li class="nav-item-Admin" id="Price" style="display:none;"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span id="Price" class="menu-title"> הצעות מחיר</span></a></li>
+                <li class="nav-item-Admin" id="Price" style="display:none;"><a style="font-size:18px;" href="ManageUsers.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span id="MangeUsers" class="menu-title"> ניהול משתמשים</span></a></li>
             </ul>
         </div>
     </div>

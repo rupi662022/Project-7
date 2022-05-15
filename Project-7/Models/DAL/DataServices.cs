@@ -491,6 +491,8 @@ namespace Project_7.Models.DAL
                     u.UserName = (string)dataReader["USR_UserName"];
                     //u.UserType = (string)dataReader["USR_Type"];
                     u.UserEmail = (string)dataReader["USR_Email"];
+                    //u.UserPassword = (string)dataReader["USR_Password"];
+
                     u.IsAdmin = (bool)dataReader["USR_IsAdmin"];
 
 
@@ -512,8 +514,9 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandUsers(SqlConnection con)
         {
-            string commandStr = "SELECT * from SHAY_User where USR_Type='M' ";
+            string commandStr = "SELECT * from SHAY_User where USR_Type='U'";
             SqlCommand cmd = createCommand(con, commandStr);
+    
 
             return cmd;
         }
@@ -578,18 +581,22 @@ namespace Project_7.Models.DAL
                 User u = new User();
 
                 while (dr.Read())
-        
+                {
 
 
-                    u.UserID = Convert.ToInt32(dr["USR_Id"]);
-                    u.UserName = (string)dr["USR_UserName"];
+                    ////u.UserID = Convert.ToInt32(dr["USR_Id"]);
+                    //u.UserName = (string)dr["USR_UserName"];
                     u.UserEmail = (string)dr["USR_Email"];
                     u.UserPassword = (string)dr["USR_Password"];
                     u.UserType = (string)dr["USR_Type"];
                     u.IsAdmin = (bool)dr["USR_IsAdmin"];
-                
+                }
                 dr.Close();
+                if (u.UserEmail == null)
+                {
 
+                    throw new Exception("one of the parameter incorect");
+                }
                 return u;
 
             }
@@ -608,7 +615,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandUser(SqlConnection con, string userEmail)
         {
-            string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email=@email ";
+            string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email=@userEmail";
             SqlCommand cmd = createCommand(con, commandStr);
             cmd.Parameters.Add("@userEmail", SqlDbType.NVarChar);
             cmd.Parameters["@userEmail"].Value = userEmail;

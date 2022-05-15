@@ -46,19 +46,6 @@ namespace Project_7.Controllers
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
-
-        //public List<Driver> Get()
-        //{
-        //    Driver driver = new Driver();
-        //    return driver.ReadDrivers();
-        //}
-
-        // POST: api/Drivers
-        //public void Post([FromBody]string value)
-        //{
-        //}
-
-        // PUT: api/Drivers/5
         public void Put(int id, [FromBody]string value)
         {
         }
