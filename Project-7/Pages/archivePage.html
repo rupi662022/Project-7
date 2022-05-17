@@ -216,31 +216,36 @@
 <body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
 
     <!-- fixed-top-->
-    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
+    <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-static-top navbar-dark navbar-shadow navbar-border">
         <div class="navbar-wrapper">
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
-                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="activeGatePass.html"><i class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item">
-                        <a class="navbar-brand" href="../../../html/rtl/vertical-content-menu-template/index.html">
-                            <!--<img class="brand-logo" alt="robust admin logo" src="../../../app-assets/images/logo/logo-dark-sm.png">-->
+                        <a class="navbar-brand" href="../../../html/rtl/vertical-menu-template/index.html">
+                            <img class="brand-logo" src="../Logo/pngegg.png" />
+
+
                             <h3 class="brand-text">שי שירותי נמל</h3>
                         </a>
                     </li>
                     <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
                 </ul>
             </div>
+
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
-                    <ul class="nav navbar-nav mr-auto float-left">
-                        <li class="dropdown dropdown-user nav-item"><button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button></li>
-                    </ul>
-                    <ul class="nav navbar-nav float-right">
+                    <!--<ul class="nav navbar-nav mr-auto float-left">
                         <li class="dropdown dropdown-user nav-item">
-                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name" style="font-size:17px">   User Name</span></a>
+                            <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
+                        </li>
+                    </ul>-->
+                    <ul class="nav navbar-nav float-right" style="margin-left: 100px">
+
+                        <li class="dropdown dropdown-user nav-item" style="float:left">
+                            <a class="fa fa-user-circle fa-2x" href="#" data-toggle="dropdown">&nbsp<span class="user-name" id="UserName"> </span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="login-simple.html"><i class="ft-power"></i> Logout</a>
+                                <div></div><a class="dropdown-item" style="text-align:right; font-size:medium;font-weight:bold; font-family:sans-serif" href="login.html"><i class="ft-power float-left "></i> התנתק</a>
                             </div>
                         </li>
                     </ul>
@@ -274,49 +279,50 @@
         </div>
     </div>
 
-      <!--//BEGIN OF THE GERID-->
+    <!--//BEGIN OF THE GERID-->
     <div class="app-content content">
-      <div class="content-wrapper">
-        <div class="content-header row">
-            <div class="content-header-left col-md-6 col-12 mb-2">
-                <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>ארכיון</b></h3>
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-6 col-12 mb-2">
+                    <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>ארכיון</b></h3>
 
-            </div>
-          <div class="content-header-right col-md-6 col-12">
-            <div class="media width-250 float-right">
-            
-            </div>
-          </div>
-        </div>
-        <div class="content-body"><!-- Basic scenario start -->
-<section id="basic">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <!--<div class="card-header">
-            
-                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                    <div class="heading-elements">
-                        <ul class="list-inline mb-0">
-                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                            <li><a data-action="close"><i class="ft-x"></i></a></li>
-                        </ul>
-                    </div>
-                </div>-->
-                <div class="card-content collapse show">
-                    <div class="card-body card-dashboard ">
-       
-                        <div id="GatePas"></div>
+                </div>
+                <div class="content-header-right col-md-6 col-12">
+                    <div class="media width-250 float-right">
+
                     </div>
                 </div>
             </div>
+            <div class="content-body">
+                <!-- Basic scenario start -->
+                <section id="basic">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <!--<div class="card-header">
+
+                                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>-->
+                                <div class="card-content collapse show">
+                                    <div class="card-body card-dashboard ">
+
+                                        <div id="GatePas"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
-    </div>
-    </section>
-      </div>
-      </div>
     </div>
 
 
