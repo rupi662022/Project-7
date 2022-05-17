@@ -73,7 +73,18 @@
 
         $(document).ready(function () {
 
+            U = JSON.parse(localStorage.getItem('User'));
 
+        
+
+            if (U.UserType == "C") {
+
+                $('#Price').hide();
+                $('#Dashboard').hide();
+                $('#MangeUsers').hide();
+                /*     el.style.display = 'block';*/
+
+            }
 
             $.ajax({
                 type: "GET",

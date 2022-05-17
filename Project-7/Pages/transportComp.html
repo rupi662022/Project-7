@@ -79,6 +79,17 @@
             U = JSON.parse(localStorage.getItem('User'));
             document.getElementById("UserName").innerHTML = U.UserName;
 
+            if (U.UserType == "C") {
+
+                $('#Price').hide();
+                $('#Dashboard').hide();
+                $('#MangeUsers').hide();
+
+
+            }
+
+
+
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",

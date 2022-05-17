@@ -75,7 +75,18 @@
             //U = JSON.parse(localStorage.getItem('User'));
             //document.getElementById("UserName").innerHTML = U.UserName;
 
+            U = JSON.parse(localStorage.getItem('User'));
 
+            //Adm = document.getElementsById("Price");
+            document.getElementById("UserName").innerHTML = U.UserName;
+            if (U.UserType == "C") {
+
+                $('#Price').hide();
+                $('#Dashboard').hide();
+                $('#MangeUsers').hide();
+                /*     el.style.display = 'block';*/
+
+            }
 
             var DateField = function (config) {
                 jsGrid.Field.call(this, config);

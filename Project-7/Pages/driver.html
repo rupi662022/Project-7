@@ -70,7 +70,18 @@
 
             U = JSON.parse(localStorage.getItem('User'));
             document.getElementById("UserName").innerHTML = U.UserName;
+ 
 
+            //Adm = document.getElementsById("Price");
+
+            if (U.UserType == "C") {
+
+                $('#Price').hide();
+                $('#Dashboard').hide();
+                $('#MangeUsers').hide();
+                /*     el.style.display = 'block';*/
+
+            }
             //DATA = '';
 
             //$.ajax({

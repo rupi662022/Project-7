@@ -78,6 +78,19 @@
 
 
             U = JSON.parse(localStorage.getItem('User'));
+
+
+            //Adm = document.getElementsById("Price");
+
+            if (U.UserType == "C") {
+
+                $('#Price').hide();
+                $('#Dashboard').hide();
+                $('#MangeUsers').hide();
+                /*     el.style.display = 'block';*/
+
+            }
+
             document.getElementById("UserName").innerHTML = U.UserName;
 
             $.ajax({
