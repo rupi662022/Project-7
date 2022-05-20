@@ -179,6 +179,7 @@
     <Compile Include="Controllers\AfterAuthController.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\BrokersController.cs" />
+    <Compile Include="Controllers\CustomerAdminController.cs" />
     <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\GatePassController.cs" />
     <Compile Include="Controllers\GmailAPIController.cs" />
@@ -190,6 +191,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomsBroker.cs" />
+    <Compile Include="Models\CustomerAdmin.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\TransportCompany.cs" />
     <Compile Include="Models\DAL\DataServices.cs" />
@@ -5753,6 +5755,7 @@
     <Content Include="Logo\pngegg.png" />
     <Content Include="Logo\shayLogo.png" />
     <Content Include="Pages\insertGatePass.html" />
+    <Content Include="Pages\CustomerAdminUsers.html" />
     <Content Include="Pages\MyGatePass.html" />
     <Content Include="Pages\activeGatePass.html" />
     <Content Include="Pages\CustomBrokers.html" />

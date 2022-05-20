@@ -906,7 +906,7 @@ namespace Project_7.Models.DAL
                     cmd.Parameters.AddWithValue("@Adress", t.CompanyAdress);
                     cmd.Parameters.AddWithValue("@Fax", t.CompanyFax);
                     cmd.Parameters.AddWithValue("@PhoneNumber", t.CompanyPhone);
-                   
+
 
 
                     numEffected = cmd.ExecuteNonQuery();
@@ -1061,7 +1061,7 @@ namespace Project_7.Models.DAL
         private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con, int userID)
         {
             string commandStr = "select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_Driver D on T.TPC_CompanyName = D.DRI_TransportCompany WHERE DRI_DriverId =@UserId and GPS_IsActive = '+'";
-
+                
 
             SqlCommand cmd = createCommand(con, commandStr);
             cmd.Parameters.Add("@userID", SqlDbType.Int);
@@ -1089,7 +1089,49 @@ namespace Project_7.Models.DAL
 
 
 
+        //CustomerAdmin Actions
+        public List<CustomerAdmin> ReadCustomerAdmins()
+        {
+            SqlConnection con = null;
 
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandReadCustomerAdmins(con);
+                List<CustomerAdmin> AdminList = new List<CustomerAdmin>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dataReader.Read())
+                {
+                    CustomerAdmin a = new CustomerAdmin();
+                    a.AdminId = Convert.ToInt32(dataReader["CUN_AdminId"]);
+                    a.FullName = (string)dataReader["CUN_FullName"];
+                    a.TransportComany = (string)dataReader["CUN_TransportCompany"];
+                    a.PhoneNumber = (string)dataReader["CUN_PhoneNumber"];
+                    a.IsAllowed = (bool)dataReader["CUN_IsAllowed"];
+
+                    AdminList.Add(a);
+                }
+                return AdminList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of Admin list", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandReadCustomerAdmins(SqlConnection con)
+        {
+            string commandStr = "SELECT * FROM SHAY_CustomerAdmin WHERE CUN_IsActive=N'+'";
+            SqlCommand cmd = createCommand(con, commandStr);
+
+            return cmd;
+        }
 
 
 
