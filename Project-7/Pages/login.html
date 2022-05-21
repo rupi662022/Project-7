@@ -34,9 +34,9 @@
 
         $(document).ready(function () {
             $("#logId").submit(CeckUser)
-            if (localStorage.getItem('User')) {
-                window.location.href = "activeGatePass.html";
-            }
+            //if (localStorage.getItem('User')) {
+            //    window.location.href = "activeGatePass.html";
+            //}
 
 
         })
@@ -56,26 +56,28 @@
         function Sucse(U) {
         
             console.log(U)
-            let type = 'M'
+       
 
             if (U.UserPassword == password)
             {
 
    
-                if (U.UserType == type ) {
-                localSave(U);
+                if (U.UserType == "C"||"G")
+                {
                 window.location.href = "MyGatePass.html";
 
-            }
-                else {
-                    if (U.IsAdmin == true) {
-                        localSave(U);
+                }
+                else if (U.UserType == "U")
+                {
+                    if (U.IsAdmin == true)
+                    {
+                       
                         window.location.href = "Dashboard.html"
                     }
                    else
                     window.location.href = "activeGatePass.html";
                 }
-           
+                localSave(U);
 
         }
             else {

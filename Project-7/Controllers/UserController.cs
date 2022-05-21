@@ -44,13 +44,12 @@ namespace Project_7.Controllers
         public HttpResponseMessage Post([FromBody] User user)
         {
             user.InsertUser();
-            return Request.CreateResponse(HttpStatusCode.Created, "GOOD");
+            return Request.CreateResponse(HttpStatusCode.Created, "נרשמת בהצלחה");
         }
 
 
 
-      
-  
+
         [HttpGet]
         [Route("api/User/{userEmail}/Pass")]
         public User Get(string userEmail)

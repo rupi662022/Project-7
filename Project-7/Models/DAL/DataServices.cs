@@ -526,7 +526,7 @@ namespace Project_7.Models.DAL
 
         public int InsertUser(User user)
         {
-            //int res = 0;
+
             SqlConnection con = null;
             int numEffected = 0;
             try
@@ -535,6 +535,7 @@ namespace Project_7.Models.DAL
                 using (SqlCommand cmd = new SqlCommand("NewUser", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+
 
                     cmd.Parameters.AddWithValue("@UserID", user.UserID);
                     cmd.Parameters.AddWithValue("@UserName", user.UserName);
@@ -1060,8 +1061,8 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandMyGatePass(SqlConnection con, int userID)
         {
-            string commandStr = "select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_Driver D on T.TPC_CompanyName = D.DRI_TransportCompany WHERE DRI_DriverId =@UserId and GPS_IsActive = '+'";
-                
+            string commandStr =
+                "if exists(select * from SHAY_Driver where DRI_DriverId=@UserID) begin select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_Driver D on T.TPC_CompanyName = D.DRI_TransportCompany WHERE DRI_DriverId = @UserId and GPS_IsActive = '+'  end  if exists(select * from SHAY_CustomerAdmin where CUN_AdminId = @UserID)  begin select * from SHAY_GatePass G inner join SHAY_TransportCompany T on G.GPS_TransportCompany = T.TPC_CompanyName inner join SHAY_CustomerAdmin C on T.TPC_CompanyName = C.CUN_TransportCompany  WHERE CUN_AdminId = @UserId and GPS_IsActive = '+' end";
 
             SqlCommand cmd = createCommand(con, commandStr);
             cmd.Parameters.Add("@userID", SqlDbType.Int);
