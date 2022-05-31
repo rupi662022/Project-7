@@ -68,112 +68,9 @@
         }
     </style>
 
-    <script>
 
 
-        $(document).ready(function () {
-
-
-
-            $.ajax({
-                type: "GET",
-                contentType: "application/json; charset=utf-8",
-                url: "../api/TransportCompany",
-                data: "json"
-
-            }).done(function (data) {
-
-
-                $("#GatePas").jsGrid({
-
-                    height: "70%",
-                    width: "100%",
-                    filtering: true,
-                    editing: true,
-                    inserting: true,
-                    sorting: true,
-                    sorter: true,
-                    /* paging: true,*/
-                    autoload: true,
-                    pageSize: 15,
-                    pageButtonCount: 5,
-                    deleteConfirm: function (item) {
-                        return "?תמחק. האם אתה בטוח \"" + item.CompanyName + "\"חברת תובלה ";
-                    },
-                    controller: {
-
-                        loadData: function (filter) {
-                            return $.grep(data, function (item) {
-                                // client-side filtering below (be sure conditions are correct)
-                                return (!filter.CompanyId || item.CompanyId.indexOf(filter.CompanyId) > -1)
-                                    && (!filter.CompanyName || item.CompanyName.indexOf(filter.CompanyName) > -1)
-                                    && (!filter.CompanyAdress || item.CompanyAdress.indexOf(filter.CompanyAdress) > -1)
-                                    && (!filter.CompanyFax || item.CompanyFax.indexOf(filter.CompanyFax) > -1)
-                                    && (!filter.CompanyPhone || item.CompanyPhone.indexOf(filter.CompanyPhone) > -1)
-                            });
-
-                        },
-                        updateItem: function (item) {
-                            return $.ajax({
-                                type: "PUT",
-                                url: "../api/TransportCompany",
-                                data: item
-
-                            });
-
-                        },
-                        insertItem: function (item) {
-                            return $.ajax({
-                                type: "POST",
-                                url: "../api/TransportCompany",
-                                data: item,
-                                success: function (html) {
-                                    alert('הוכנסה חברת תובה חדשה'/* + html*/);
-                                },
-                                error: function (jqXHR, textStatus, errorThrown) {
-                                    if (jqXHR.status == 500) {
-                                        alert('Internal error: ' + jqXHR.responseText);
-                                    } else {
-                                        alert('Unexpected error.');
-                                    }
-                                }
-
-                            });
-
-                        },
-                        deleteItem: function (item) {
-                            return $.ajax({
-                                type: "DELETE",
-                                url: "../api/TransportCompany",
-                                data: item
-
-
-                            });
-
-                        }
-                    },
-
-                    fields: [
-                        { name: "CompanyId", title: 'מספר חברה', type: "number", width: 100, sorting: false, inserting: false, align: "center", editing: false },
-                        { name: "CompanyName", title: 'שם חברה', type: "text", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין ת.ז" } },
-                        { name: "CompanyAdress", title: "כתובת", type: "text", width: 100, align: "center", validate: { validator: "rangeLength", param: [3, 80] } },
-                        { name: "CompanyFax", title: "פקס", type: "text", width: 100, align: "center", validate: { message: "אורך מספר הפקס לא כנדרש", validator: "rangeLength", param: [7, 15] } },
-                        { name: "CompanyPhone", type: "text", title: "טלפון", width: 100, align: "center", validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [5, 15] } },
-
-                        {
-                            type: "control",
-
-                        },
-
-                    ]
-                });
-
-            });
-
-        })
-
-
-    </script>
+    
     <script>
 
         function byebye() {
@@ -260,7 +157,7 @@
             <!-- content header-->
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>חברות תובלה</b></h3>
+                    <h3 class="content-header-title" style="margin-right: 100%; margin-top:4px; width:300px"><b>דשבורד</b></h3>
 
 
                     <div class="content-header-right col-md-6 col-12">
@@ -272,16 +169,8 @@
             <!-- content header-->
             <!-- content body-->
             <div class="card-content">
-                <div class="content-body" id="GatePas">
-                    <!-- Basic scenario start -->
-                    <!--<section id="basic">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-
-                                <div class="card-content collapse show">
-                                    <div class="card-body card-dashboard ">-->
-                    <!--</div>-->
+                <div class="content-body"  id="GatePas">
+                    <iframe title="FINALPROJBI - Page 1" width="1060" height="580" src="https://app.powerbi.com/view?r=eyJrIjoiZWM4NWQzM2EtNWZlZS00OTc4LTllNTAtZjBmMjU5ZGM3Nzk0IiwidCI6ImY3NGRkNDZmLWYwZmYtNDY4My04NTcyLWFlZjMxZjZkNzQyYiIsImMiOjl9" frameborder="0" allowFullScreen="true" style="margin-right: 130px;margin-top:4px;"></iframe>
                 </div>
             </div>
         </div>
