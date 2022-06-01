@@ -10,35 +10,31 @@
 
     <title>שי שירותי נמל בע"מ</title>
 
-    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
 
-    <!--<script src="../../../app-assets/js/scripts/ui/jquery-ui/date-pickers.js"></script>-->
-    <!--<script src="../../../app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js"></script>-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
 
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
+    <link href="../app-assets/css-rtl/app.css" rel="stylesheet" />
+    <link href="../app-assets/css-rtl/custom-rtl.css" rel="stylesheet" />
+    <link href="../app-assets/css-rtl/core/menu/menu-types/vertical-menu.css" rel="stylesheet" />
+    <!--<link href="../app-assets/css/plugins/forms/switch.min.css" rel="stylesheet" />-->
+    <link href="../assets/css/style-rtl.css" rel="stylesheet" />
+    <script src="../app-assets/vendors/js/ui/headroom.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 
-
     <link rel="stylesheet" type="text/css" href="demos.css" />
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
-
-    <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
-    <link rel="stylesheet" type="text/css" href="../css/theme.css" />
-    <script src="../Scripts/ajaxCalls.js"></script>
+    <!-- BEGIN Grid scripts-->
     <script src="../external/jquery/jquery-1.8.3.js"></script>
-    <!--<script src="../app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js"></script>-->
-    <link href="../jquery-ui-1.13.1.custom/jquery-ui.theme.css" rel="stylesheet" />
-    <link href="../jquery-ui-1.13.1.custom/jquery-ui.structure.css" rel="stylesheet" />
-    <script src="../jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+    <script src="../dist/jsgrid.js"></script>
+    <link href="../dist/jsgrid.css" rel="stylesheet" />
+    <link href="../dist/jsgrid-theme.css" rel="stylesheet" />
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -51,6 +47,25 @@
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
 
     <style>
+
+
+        p, h1, h2, h3, span, td, tr, table {
+            font-family: sans-serif;
+        }
+
+        /*.card {
+            height: 1000px;
+        }*/
+        .jsgrid-grid-body {
+            height: 500px;
+        }
+
+        img {
+            float: right;
+            height: 30px;
+            /*       width:60px; */
+            padding-left: 14px;
+        }
 
         * {
             margin: 0px;
@@ -118,7 +133,7 @@
                 color: #555;
             }
 
-               .hasDatepicker {
+        .hasDatepicker {
             width: 100px;
             text-align: center;
         }
@@ -160,8 +175,6 @@
             border: none;
             cursor: pointer;
         }
-
-
     </style>
 
     <script>
@@ -177,15 +190,15 @@
                 $('#Price').hide();
                 $('#Dashboard').hide();
                 $('#MangeUsers').hide();
-                
-             
+
+
 
             }
-        
 
-      
-           
-            
+
+
+
+
 
             var DateField = function (config) {
                 jsGrid.Field.call(this, config);
@@ -205,9 +218,9 @@
 
                     var now = new Date();
                     this._fromPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() - 1), dateFormat: "mm/dd/yy" });
-                    this._toPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() + 1),dateFormat: "mm/dd/yy" });
+                    this._toPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() + 1), dateFormat: "mm/dd/yy" });
                     return $("<div>").append(this._fromPicker).append(this._toPicker);
-            
+
                     if (!this.filtering)
                         return "";
 
@@ -225,9 +238,9 @@
 
                     return $result;
 
-           
+
                 },
-  
+
 
 
                 insertTemplate: function (value) {
@@ -304,8 +317,8 @@
                                     && (!filter.CustomsBroker || item.CustomsBroker.indexOf(filter.CustomsBroker) > -1)
                                     /* && (!filter.GoToRepair || item.GoToRepair.indexOf(filter.GoToRepair) > -)*/
                                     && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1)
-                                    //&& (!filter.RegisterDate.from || new Date(item.CreatedDate) >= filter.CreatedDate.from)
-                                    //&& (!filter.RegisterDate.to || new Date(item.CreatedDate) <= filter.CreatedDate.to);
+                                //&& (!filter.RegisterDate.from || new Date(item.CreatedDate) >= filter.CreatedDate.from)
+                                //&& (!filter.RegisterDate.to || new Date(item.CreatedDate) <= filter.CreatedDate.to);
                             });
                         },
 
@@ -336,7 +349,7 @@
                         { name: "Importer", type: "text", title: "יבואן", width: 80, align: "center" },
                         { name: "CustomsBroker", type: "text", title: "עמיל מכס", width: 80, align: "center" },
                         /*     { name: "GoToRepair", type: "checkbox", title: "יצא לתיקון", sorting: false },*/
-                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 70, align: "center"},
+                        { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 70, align: "center" },
                         {
                             name: "Note", title: 'הערות',
                             itemTemplate: function (value, item) {
@@ -384,7 +397,7 @@
 
 
 </head>
-<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+<body class="vertical-layout vertical-menu 2-column menu-expanded " data-open="hover" data-menu="vertical-menu">
 
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-static-top navbar-dark navbar-shadow navbar-border">
@@ -424,83 +437,65 @@
             </div>
         </div>
     </nav>
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
+
+    <!-- BEGIN Navigation-->
+    <div class="main-menu menu-dark menu-static menu-shadow" data-scroll-to-active="true">
+        <div class="main-menu-content" style="margin-left:30px">
+            <!--<div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">-->
+            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" style="height:800px;padding-top:30px">
+
+                <li class="nav-item"><a style="font-size:18px" href="CreatGatePass.html"><i class="menu-title"></i><span> יצירת גייטפס </span></a></li>
 
 
-    <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-without-dd-arrow navbar-shadow" role="navigation" data-menu="menu-wrapper">
-        <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
-            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
-                <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:cornflowerblue" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
-                    <ul class="dropdown-menu" style="width:50%">
-                        <li data-menu=""><a class="dropdown-item" href="activeGatePass.html" style="border:solid 1px gray ; background-color:cornflowerblue" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
-                        <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>ארכיון</p></a></li>
+                <li class="nav nav-item">
+                    <a style="font-size:18px" href="activeGatePass.html"><i class="icon-screen-tablet"></i><span class="menu-title" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="activeGatePass.html"><p>גייטפסים פעילים</p></a></li>
+                        <li><a class="menu-item" href="archivePage.html"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
+
                 <li class="nav-item"><a style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
                 <li class="nav-item"><a style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
                 <li class="nav-item"><a style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> חברות תובלה</span></a></li>
-                <li id="Dashboard" class="nav-item"><a style="font-size:18px" href="Dashboard.html" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span  class="menu-title"> דשבורד</span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
                 <li class="nav-item"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> הצעות מחיר</span></a></li>
-                <li class="nav-item"><a style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="CustomerAdminUsers.html" data-toggle="sans-serif"><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
-                <li class="nav-item"><a style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשי חברה</span></a></li>
-
-
+                <li class="nav-item"><a style="font-size:18px;  " href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
+                <li class="nav-item"><a style="font-size:18px;  " href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשי חברה</span></a></li>
 
             </ul>
         </div>
     </div>
-
-
+    <!-- END Navigation-->
     <!--//BEGIN OF THE GERID-->
-    <div class="app-content content">
+    <div class="content app-content">
         <div class="content-wrapper">
+            <!-- content header-->
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
                     <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>גייטפסים פעילים</b></h3>
 
-                    <button id="Add">הוסף גייטפס חדש</button>
 
-                </div>
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="media width-250 float-right">
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-body">
-                <!-- Basic scenario start -->
-                <section id="basic">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-
-                                <div class="card-content collapse show">
-                                    <div class="card-body card-dashboard ">
-
-                                        <div id="GatePas"></div>
-
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="content-header-right col-md-6 col-12">
+                        <div class="media width-250 float-left">
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+            <!-- content header-->
+            <!-- content body-->
+            <div class="card-content">
+                <div class="content-body" id="GatePas">
+
+                </div>
             </div>
         </div>
     </div>
-    <div class="popup">
-        <div class="popup-container">
-            <h1>הערות</h1>
-            <p id="pop-up-data"></p>
-            <div class="popup-close">&times;</div>
-        </div>
-    </div>
-
-    <button id="open-popup"></button>
+    <!--</div>
+    </section>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
 
     <footer class="footer footer-static footer-light navbar-shadow">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
