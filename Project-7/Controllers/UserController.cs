@@ -67,14 +67,6 @@ namespace Project_7.Controllers
             u.DeleteUser();
             return Request.CreateResponse(HttpStatusCode.Created);
         }
-        //// PUT: api/User/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
 
-        //// DELETE: api/User/5
-        //public void Delete(int id)
-        //{
-        //}
     }
 }
