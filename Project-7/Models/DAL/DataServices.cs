@@ -481,11 +481,12 @@ namespace Project_7.Models.DAL
                 while (dataReader.Read())
                 {
                     User u = new User();
-                 
+
+                    u.UserID = Convert.ToInt32(dataReader["USR_Id"]);
                     u.UserName = (string)dataReader["USR_UserName"];
                     //u.UserType = (string)dataReader["USR_Type"];
                     u.UserEmail = (string)dataReader["USR_Email"];
-                    //u.UserPassword = (string)dataReader["USR_Password"];
+                    u.UserPassword = (string)dataReader["USR_Password"];
 
                     u.IsAdmin = (bool)dataReader["USR_IsAdmin"];
 
@@ -674,9 +675,11 @@ namespace Project_7.Models.DAL
                 using (SqlCommand cmd = new SqlCommand("UpdateUser", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-          
+         
+                    cmd.Parameters.AddWithValue("@UserID", u.UserID);
+                    cmd.Parameters.AddWithValue("@UserName", u.UserName);
                     cmd.Parameters.AddWithValue("@UserEmail", u.UserEmail);
-
+                    cmd.Parameters.AddWithValue("@UserPassword", u.UserPassword);
                     cmd.Parameters.AddWithValue("@IsAdmin", u.IsAdmin);
 
                     numEffected = cmd.ExecuteNonQuery();

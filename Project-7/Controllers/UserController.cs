@@ -44,7 +44,7 @@ namespace Project_7.Controllers
         public HttpResponseMessage Post([FromBody] User user)
         {
             user.InsertUser();
-            return Request.CreateResponse(HttpStatusCode.Created, "בביצוע");
+            return Request.CreateResponse(HttpStatusCode.Created);
         }
 
 

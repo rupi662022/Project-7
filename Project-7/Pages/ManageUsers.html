@@ -101,7 +101,7 @@
                     width: "100%",
                     filtering: true,
                     editing: true,
-                    //inserting: true,
+                    inserting: true,
                     sorting: true,
                     sorter: true,
                     /* paging: true,*/
@@ -117,9 +117,9 @@
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
                                 return (!filter.UserName || item.UserName.indexOf(filter.UserName) > -1)
-                                    && (!filter.IsAdmin || item.IsAdmin.indexOf(filter.IsAdmin) > -1);
-                                    //&& (!filter.CompanyAdress || item.CompanyAdress.indexOf(filter.CompanyAdress) > -1)
-                                    //&& (!filter.CompanyFax || item.CompanyFax.indexOf(filter.CompanyFax) > -1)
+                                    && (!filter.IsAdmin || item.IsAdmin.indexOf(filter.IsAdmin) > -1)
+                                    && (!filter.UserPassword || item.UserPassword.indexOf(filter.UserPassword) > -1)
+                                    && (!filter.UserID || item.UserID.indexOf(filter.UserID) > -1);
                                     //&& (!filter.CompanyPhone || item.CompanyPhone.indexOf(filter.CompanyPhone) > -1)
                             });
 
@@ -133,26 +133,26 @@
                             });
 
                         },
-                        //insertItem: function (item) {
-                        //    return $.ajax({
-                        //        type: "POST",
-                        //        url: "../api/User",
-                        //        data: item,
-                        //        success: function (html) {
-                        //            alert('הוכנסה חברת תובה חדשה' + html);
-                        //        },
-                        //        error: function (jqXHR, textStatus, errorThrown) {
-                        //            if (jqXHR.status == 500) {
-                        //                alert('Internal error: ' + jqXHR.responseText);
-                        //            } else {
-                        //                alert('Unexpected error.');
-                        //            }
-                        //        }
+                        insertItem: function (item) {
+                            return $.ajax({
+                                type: "POST",
+                                url: "../api/User/" + "/in",
+                                data: item,
+                                success: function (html) {
+                                    alert('הוכנס משתמש חדשה' + html);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    if (jqXHR.status == 500) {
+                                        alert('Internal error: ' + jqXHR.responseText);
+                                    } else {
+                                        alert('Unexpected error.');
+                                    }
+                                }
 
-                        //    });
+                            });
 
 
-                        //},
+                        },
 
 
 
@@ -169,8 +169,10 @@
                     },
 
                     fields: [
-                        { name: "UserName", title: 'שם משתמש', type: "text", width: 100, sorting: false, align: "center", editing: false },
+                        { name: "UserID", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", editing: false },
+                        { name: "UserName", title: 'שם משתמש', type: "text", width: 100,align: "center"},
                         { name: "UserEmail", title: 'מייל משתמש', type: "text", width: 100, align: "center" },
+                        { name: "UserPassword", title: 'סיסמא', type: "text", width: 100, align: "center" },
                         { name: "IsAdmin", title: 'אדמין', type: "checkbox", width: 100, align: "center" },
               
                         {
