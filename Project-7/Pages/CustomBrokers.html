@@ -10,30 +10,31 @@
 
     <title>שי שירותי נמל בע"מ</title>
 
-    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
 
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
 
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
+    <link href="../app-assets/css-rtl/app.css" rel="stylesheet" />
+    <link href="../app-assets/css-rtl/custom-rtl.css" rel="stylesheet" />
+    <link href="../app-assets/css-rtl/core/menu/menu-types/vertical-menu.css" rel="stylesheet" />
+    <!--<link href="../app-assets/css/plugins/forms/switch.min.css" rel="stylesheet" />-->
+    <link href="../assets/css/style-rtl.css" rel="stylesheet" />
+    <script src="../app-assets/vendors/js/ui/headroom.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 
-
     <link rel="stylesheet" type="text/css" href="demos.css" />
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
-    <script src="../Scripts/ajaxCalls.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
-    <link rel="stylesheet" type="text/css" href="../css/theme.css" />
-    <script src="../Scripts/qunit-1.10.0.js"></script>
+    <!-- BEGIN Grid scripts-->
     <script src="../external/jquery/jquery-1.8.3.js"></script>
-    <script src="../src/js/core/app-menu.js"></script>
+    <script src="../dist/jsgrid.js"></script>
+    <link href="../dist/jsgrid.css" rel="stylesheet" />
+    <link href="../dist/jsgrid-theme.css" rel="stylesheet" />
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -44,8 +45,7 @@
     <script src="../srcc/fields/jsgrid.field.select.js"></script>
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
-    <script src="../srcc/fields/jsgrid.field.textarea.js"></script>
-  
+
     <style>
 
 
@@ -54,10 +54,7 @@
         }
 
         /*.card {
-            height: 700px;
-        }
-        #GatePas {
-            height: 80%;
+            height: 1000px;
         }*/
         .jsgrid-grid-body {
             height: 500px;
@@ -69,6 +66,7 @@
             /*       width:60px; */
             padding-left: 14px;
         }
+   
     </style>
 
     <script>
@@ -100,10 +98,10 @@
                 data: "json"
 
             }).done(function (data) {
-   
-                
+
+
                 $("#GatePas").jsGrid({
-                    
+
                     height: "70%",
                     width: "100%",
                     filtering: true,
@@ -111,7 +109,7 @@
                     inserting: true,
                     sorting: true,
                     sorter: true,
-               /*     paging: true,*/
+                    /*     paging: true,*/
                     autoload: true,
                     /* deleting:true,*/
 
@@ -121,7 +119,7 @@
                         return "?ימחק. האם אתה בטוח \"" + item.BrokerName + "\"  ";
                     },
                     controller: {
-                        
+
                         loadData: function (filter) {
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
@@ -161,9 +159,9 @@
                             });
 
                         },
-                 
 
-                        deleteItem: function (item) {                  
+
+                        deleteItem: function (item) {
                             return $.ajax({
                                 type: "DELETE",
                                 url: "../api/Brokers",
@@ -174,9 +172,9 @@
 
                     fields: [
                         { name: "Id", title: 'מזהה', type: "text", width: 100, sorting: false, align: "center", editing: false, inserting: false },
-                        { name: "BrokerName", title: 'עמיל מכס', type: "text", width: 100, align: "center", validate: { message: "חובה להזין עמיל מכס", validator:"required"} },
+                        { name: "BrokerName", title: 'עמיל מכס', type: "text", width: 100, align: "center", validate: { message: "חובה להזין עמיל מכס", validator: "required" } },
                         { name: "Adress", title: "כתובת", type: "text", width: 100, align: "center", validate: { message: "אורך  הכתובת לא כנדרש", validator: "rangeLength", param: [3, 30] } },
-                        { name: "PhoneNumber", title: "מספר טלפון", type: "text", width: 100, align: "center", validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [7,15] }},
+                        { name: "PhoneNumber", title: "מספר טלפון", type: "text", width: 100, align: "center", validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [7, 15] } },
                         { name: "Fax", type: "text", title: "פקס", width: 100, align: "center", validate: { message: "אורך מספר הפקס לא כנדרש", validator: "rangeLength", param: [5, 15] } },
 
                         {
@@ -205,7 +203,7 @@
 
 
 </head>
-<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+<body class="vertical-layout vertical-menu 2-column menu-expanded " data-open="hover" data-menu="vertical-menu">
 
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-static-top navbar-dark navbar-shadow navbar-border">
@@ -246,78 +244,64 @@
         </div>
     </nav>
 
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!-- BEGIN Navigation-->
+    <div class="main-menu menu-dark menu-static menu-shadow" data-scroll-to-active="true">
+        <div class="main-menu-content" style="margin-left:30px">
+            <!--<div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">-->
+            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" style="height:800px;padding-top:30px">
+
+                <li class="nav-item"><a style="font-size:18px" href="CreatGatePass.html"><i class="menu-title"></i><span> יצירת גייטפס </span></a></li>
 
 
-    <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-without-dd-arrow navbar-shadow" role="navigation" data-menu="menu-wrapper">
-        <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
-            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main"> יצירת גייטפס </span></a></li>
-                <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
-                    <ul class="dropdown-menu">
-                        <li data-menu=""><a class="dropdown-item" href="activeGatePass.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
-                        <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>ארכיון</p></a></li>
+                <li class="nav nav-item">
+                    <a style="font-size:18px" href="activeGatePass.html"><i class="icon-screen-tablet"></i><span class="menu-title" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="activeGatePass.html"><p>גייטפסים פעילים</p></a></li>
+                        <li><a class="menu-item" href="archivePage.html"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
-                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.pages"> נהגים</span></a></li>
-                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px;  border:solid 1px gray; background-color:cornflowerblue" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.general"> עמילי מכס</span></a></li>
-                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> לקוחות</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms"> דשבורד</span></a></li>
-                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> הצעות מחיר</span></a></li>
+
+                <li class="nav-item"><a style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
+                <li class="nav-item"><a style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> חברות תובלה</span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
+                <li class="nav-item"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> הצעות מחיר</span></a></li>
+                <li class="nav-item"><a style="font-size:18px;  " href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
+                <li class="nav-item"><a style="font-size:18px;  " href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשי חברה</span></a></li>
 
             </ul>
         </div>
     </div>
-
+    <!-- END Navigation-->
     <!--//BEGIN OF THE GERID-->
-    <div class="app-content content">
+    <div class="content app-content">
         <div class="content-wrapper">
+            <!-- content header-->
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title" style="margin-right:100%; width:300px"><b>עמילי מכס</b></h3>
+                    <h3 class="content-header-title" style="margin-right:100%; width:300px"><b> עמילי מכס</b></h3>
 
-                </div>
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="media width-250 float-right">
 
+                    <div class="content-header-right col-md-6 col-12">
+                        <div class="media width-250 float-left">
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- content header-->
+            <!-- content body-->
+            <div class="card-content">
+                <div class="content-body" id="GatePas">
 
-            <div class="content-body">
-                <!-- Basic scenario start -->
-                <section id="basic">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <!--<div class="card-header">
-
-                                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>-->
-                                <div class="card-content collapse show">
-                                    <div class="card-body card-dashboard ">
-
-                                        <div id="GatePas"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                </div>
             </div>
         </div>
     </div>
-
+    <!--</div>
+    </section>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
 
     <footer class="footer footer-static footer-light navbar-shadow">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
@@ -326,9 +310,11 @@
     <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="../../../app-assets/vendors/js/tables/jsgrid/jsgrid.min.js"></script>
     <script src="../../../app-assets/vendors/js/tables/jsgrid/griddata.js"></script>
-    <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js"></script>
     <script src="../../../app-assets/js/core/app-menu.js"></script>
     <script src="../../../app-assets/js/core/app.js"></script>
+    <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js"></script>
+
+</body>
 
 </body>
 </html>

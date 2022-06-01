@@ -15,7 +15,7 @@
     <!-- BEGIN VENDOR CSS-->
 
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
-    
+
     <link href="../app-assets/css-rtl/app.css" rel="stylesheet" />
     <link href="../app-assets/css-rtl/custom-rtl.css" rel="stylesheet" />
     <link href="../app-assets/css-rtl/core/menu/menu-types/vertical-menu.css" rel="stylesheet" />
@@ -67,7 +67,6 @@
             padding-left: 14px;
         }
     </style>
-
     <script>
 
 
@@ -75,16 +74,16 @@
 
             U = JSON.parse(localStorage.getItem('User'));
 
-        
 
-            if (U.UserType == "U") {
 
-                $('#Price').hide();
-                $('#Dashboard').hide();
-                $('#MangeUsers').hide();
-                /*     el.style.display = 'block';*/
+            //if (U.I== "U") {
 
-            }
+            //    $('#Price').hide();
+            //    $('#Dashboard').hide();
+            //    $('#MangeUsers').hide();
+            //    /*     el.style.display = 'block';*/
+
+            //}
 
             $.ajax({
                 type: "GET",
@@ -120,7 +119,7 @@
                                     && (!filter.TransportComany || item.TransportComany.indexOf(filter.TransportComany) > -1)
                                     && (!filter.AdminId || item.AdminId.indexOf(filter.AdminId) > -1)
                                     && (!filter.PhoneNumber || item.PhoneNumber.indexOf(filter.PhoneNumber) > -1);
-                                    //&& (!filter.CompanyPhone || item.CompanyPhone.indexOf(filter.CompanyPhone) > -1)
+                                //&& (!filter.CompanyPhone || item.CompanyPhone.indexOf(filter.CompanyPhone) > -1)
                             });
 
                         },
@@ -173,7 +172,7 @@
                         { name: "FullName", title: 'שם אדמין', type: "text", width: 100, sorting: false, align: "center", editing: false },
                         { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center" },
                         { name: "PhoneNumber", title: 'מספר טלפון', type: "text", width: 100, align: "center" },
-              
+
                         {
                             type: "control",
 
@@ -181,7 +180,7 @@
 
                     ]
                 });
-                
+
             });
 
         })
@@ -259,9 +258,9 @@
 
                 <li class="nav-item"><a style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
                 <li class="nav-item"><a style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
-                <li class="nav-item"><a style="font-size:18px;" href="ManageUsers.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשים</span></a></li>
-                <li class="nav-item"><a style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="CustomerAdminUsers.html" data-toggle="sans-serif"><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
-                <li class="nav-item"><a style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
+                <li class="nav-item"><a style="font-size:18px;" href="ManageUsers.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשי חברה</span></a></li>
+                <li class="nav-item"><a style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-people"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="Dashboard.html" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
                 <li class="nav-item"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> הצעות מחיר</span></a></li>
 
 

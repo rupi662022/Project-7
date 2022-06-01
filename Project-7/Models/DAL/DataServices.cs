@@ -1144,7 +1144,7 @@ namespace Project_7.Models.DAL
                     a.FullName = (string)dataReader["CUN_FullName"];
                     a.TransportComany = (string)dataReader["CUN_TransportCompany"];
                     a.PhoneNumber = (string)dataReader["CUN_PhoneNumber"];
-                    a.IsAllowed = (bool)dataReader["CUN_IsAllowed"];
+                    //a.IsAllowed = (bool)dataReader["CUN_IsAllowed"];
 
                     AdminList.Add(a);
                 }

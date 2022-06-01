@@ -10,34 +10,31 @@
 
     <title>שי שירותי נמל בע"מ</title>
 
-    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
-    <!--<script src="../../../app-assets/js/scripts/ui/jquery-ui/date-pickers.js"></script>-->
-    <!--<script src="../../../app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js"></script>-->
+
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
 
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
+    <link href="../app-assets/css-rtl/app.css" rel="stylesheet" />
+    <link href="../app-assets/css-rtl/custom-rtl.css" rel="stylesheet" />
+    <link href="../app-assets/css-rtl/core/menu/menu-types/vertical-menu.css" rel="stylesheet" />
+    <!--<link href="../app-assets/css/plugins/forms/switch.min.css" rel="stylesheet" />-->
+    <link href="../assets/css/style-rtl.css" rel="stylesheet" />
+    <script src="../app-assets/vendors/js/ui/headroom.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 
-
     <link rel="stylesheet" type="text/css" href="demos.css" />
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
-
-    <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
-    <link rel="stylesheet" type="text/css" href="../css/theme.css" />
-    <script src="../Scripts/ajaxCalls.js"></script>
+    <!-- BEGIN Grid scripts-->
     <script src="../external/jquery/jquery-1.8.3.js"></script>
-    <!--<script src="../app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js"></script>-->
-    <link href="../jquery-ui-1.13.1.custom/jquery-ui.theme.css" rel="stylesheet" />
-    <link href="../jquery-ui-1.13.1.custom/jquery-ui.structure.css" rel="stylesheet" />
-    <script src="../jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+    <script src="../dist/jsgrid.js"></script>
+    <link href="../dist/jsgrid.css" rel="stylesheet" />
+    <link href="../dist/jsgrid-theme.css" rel="stylesheet" />
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -50,116 +47,26 @@
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
 
     <style>
-        * {
-            margin: 0px;
-        }
 
-        .popup {
-            position: fixed;
-            top: -100vh;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            transition: top 0ms ease-in-out 300ms;
-        }
-
-            .popup.act {
-                transition: top 0ms ease-in-out;
-                top: 0vh;
-            }
-
-            .popup .popup-container {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%) scale(1.2);
-                width: 400px;
-                padding: 30px 20px 20px;
-                background: #eee;
-                opacity: 0.5;
-                transition: all 300ms ease-in-out;
-            }
-
-            .popup.act .popup-container {
-                opacity: 1;
-                transform: translate(-50%,-50%) scale(1);
-            }
-
-            .popup .popup-container .popup-close {
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                width: 30px;
-                height: 30px;
-                background: #111;
-                text-align: center;
-                line-height: 30px;
-                color: #eee;
-                border-radius: 50%;
-                font-size: 20px;
-                font-weight: 600;
-                cursor: pointer;
-            }
-
-            .popup .popup-container h1 {
-                text-align: center;
-                font-size: 25px;
-                font-family: "Raleway";
-                color: #222;
-            }
-
-            .popup .popup-container p {
-                margin-top: 10px;
-                font-size: 15px;
-                font-family: "Raleway";
-                color: #555;
-            }
-
-        .hasDatepicker {
-            width: 100px;
-            text-align: center;
-        }
-
-        .ui-datepicker * {
-            font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
-            font-size: 14px;
-            font-weight: 300 !important;
-        }
 
         p, h1, h2, h3, span, td, tr, table {
             font-family: sans-serif;
         }
 
+        /*.card {
+            height: 1000px;
+        }*/
         .jsgrid-grid-body {
             height: 500px;
-            /*       position: relative;
-            overflow-wrap: normal;*/
         }
 
-        #Add {
-            background-color: #3bafda;
-            font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
-            font-weight: 300;
-            font-size: 14px;
+        img {
             float: right;
-            margin-right: 50px;
-            margin-bottom: 10PX;
-            color: #fff;
-            border-color: #3bafda;
-            min-width: 8.5rem;
-        }
-
-
-        .my-custom-button {
-            background-image: url('../css/google-docs.png');
-            width: 16px;
-            height: 16px;
-            border: none;
-            cursor: pointer;
+            height: 30px;
+            /*       width:60px; */
+            padding-left: 14px;
         }
     </style>
-
     <script>
 
         $(document).ready(function () {
@@ -275,7 +182,7 @@
                         { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 70, align: "center" },
                         { name: "ContainerType", title: "סוג מכולה", type: "text", width: 30, align: "center" },
                         { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 80, align: "center", },
-                        { name: "Importer", type: "text", title: "יבואן", width: 80, align: "center" },
+                        //{ name: "Importer", type: "text", title: "יבואן", width: 80, align: "center" },
                         { name: "CustomsBroker", type: "text", title: "עמיל מכס", width: 80, align: "center" },
                         /*     { name: "GoToRepair", type: "checkbox", title: "יצא לתיקון", sorting: false },*/
                         { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 70, align: "center", myCustomProperty: "bar" },
@@ -326,31 +233,37 @@
 <body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
 
     <!-- fixed-top-->
-    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
+    <!-- fixed-top-->
+    <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-static-top navbar-dark navbar-shadow navbar-border">
         <div class="navbar-wrapper">
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
-                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="activeGatePass.html"><i class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item">
-                        <a class="navbar-brand" href="../../../html/rtl/vertical-content-menu-template/index.html">
-                            <!--<img class="brand-logo" alt="robust admin logo" src="../../../app-assets/images/logo/logo-dark-sm.png">-->
+                        <a class="navbar-brand" href="../../../html/rtl/vertical-menu-template/index.html">
+                            <img class="brand-logo" src="../Logo/pngegg.png" />
+
+
                             <h3 class="brand-text">שי שירותי נמל</h3>
                         </a>
                     </li>
                     <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
                 </ul>
             </div>
+
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
-                    <ul class="nav navbar-nav mr-auto float-left">
-                        <li class="dropdown dropdown-user nav-item"><button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button></li>
-                    </ul>
-                    <ul class="nav navbar-nav float-right" style="margin-left: 80px">
+                    <!--<ul class="nav navbar-nav mr-auto float-left">
                         <li class="dropdown dropdown-user nav-item">
-                            <a class="fa fa-id-badge text" href="#" data-toggle="dropdown">&nbsp<span class="user-name" style="float:left" id="UserName"> </span></a>
+                            <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
+                        </li>
+                    </ul>-->
+                    <ul class="nav navbar-nav float-right" style="margin-left: 100px">
+
+                        <li class="dropdown dropdown-user nav-item" style="float:left">
+                            <a class="fa fa-user-circle fa-2x" href="#" data-toggle="dropdown">&nbsp<span class="user-name" id="UserName"> </span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
-                                <div class="dropdown-divider "></div><a class="dropdown-item" style="text-align:right" href="login.html"><i class="ft-power float-left "></i> התנתק</a>
+                                <div></div><a class="dropdown-item" style="text-align:right; font-size:medium;font-weight:bold; font-family:sans-serif" href="login.html"><i class="ft-power float-left "></i> התנתק</a>
                             </div>
                         </li>
                     </ul>
@@ -360,10 +273,6 @@
     </nav>
 
     <!-- ////////////////////////////////////////////////////////////////////////////-->
-
-
-
-
     <!--//BEGIN OF THE GERID-->
     <div class="app-content content">
         <div class="content-wrapper">
