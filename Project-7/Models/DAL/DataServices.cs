@@ -45,9 +45,7 @@ namespace Project_7.Models.DAL
                     a.ContainerNum = (string)dataReader["GPS_ContainerNum"];
                     a.ContainerType = (string)dataReader["GPS_ContainerType"];
                     a.TransportCompany = (string)dataReader["GPS_TransportCompany"];
-                    a.Importer = (string)dataReader["GPS_Importer"];
                     a.Note = (string)dataReader["GPS_Note"];
-                    a.GoToRepair = (string)dataReader["GPS_GoToRepair"];
                     a.CustomsBroker = (string)dataReader["GPS_CustomsBroker"];
                     a.CreatedDate = (DateTime)dataReader["GPS_CreatedDate"];
 
@@ -101,11 +99,7 @@ namespace Project_7.Models.DAL
                     cmd.Parameters.AddWithValue("@CustomsBroker", g.CustomsBroker);
                     cmd.Parameters.AddWithValue("@ShippingCompanyAndLine", g.ShippingCompanyAndLine);
                     cmd.Parameters.AddWithValue("@StorageCertificate", g.StorageCertificate);
-                    cmd.Parameters.AddWithValue("@CaseNumber", g.CaseNumber);
                     cmd.Parameters.AddWithValue("@Note", g.Note);
-                    cmd.Parameters.AddWithValue("@OfficeNote", g.OfficeNote);
-                    cmd.Parameters.AddWithValue("@GoToRepair", g.GoToRepair);
-                    cmd.Parameters.AddWithValue("@ReturnFromRepair", g.ReturnFromRepair);
                     cmd.Parameters.AddWithValue("@IsActive", g.IsActive);
                     cmd.Parameters.AddWithValue("@UserEmail", g.UserEmail);
                     cmd.Parameters.AddWithValue("@CreatedDate", g.CreatedDate);
@@ -1076,7 +1070,6 @@ namespace Project_7.Models.DAL
                             g.ContainerNum = (string)dataReader["GPS_ContainerNum"];
                             g.ContainerType = (string)dataReader["GPS_ContainerType"];
                             g.TransportCompany = (string)dataReader["GPS_TransportCompany"];
-                            g.Importer = (string)dataReader["GPS_Importer"];
                             g.Note = (string)dataReader["GPS_Note"];
         
                              g.CustomsBroker = (string)dataReader["GPS_CustomsBroker"];

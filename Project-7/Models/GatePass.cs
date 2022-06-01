@@ -16,11 +16,7 @@ namespace Project_7.Models
         string customsBroker;
         string shippingCompanyAndLine;
         string storageCertificate;
-        string caseNumber;
         string note;
-        string officeNote;
-        string goToRepair;
-        string returnFromRepair;
         string isActive;
         string userEmail;
         DateTime createdDate;
@@ -31,17 +27,9 @@ namespace Project_7.Models
 
 
 
-        //public GatePass(int id, string containerNum, string containerType, string transportCompany, string importer) { 
-        //        this.id = id;
-        //    this.containerNum = containerNum;
-        //    this.containerType = containerType;
-        //    this.transportCompany = transportCompany;
-        //    this.importer = importer;
-        //}
 
 
-
-        public GatePass(int id,string containerNum, string containerType, string transportCompany, string importer, string customsBroker, string shippingCompanyAndLine, string storageCertificate, string caseNumber, string note, string officeNote, string goToRepair, string returnFromRepair, string isActive, string userEmail, DateTime createdDate)
+        public GatePass(int id,string containerNum, string containerType, string transportCompany, string importer, string customsBroker, string shippingCompanyAndLine, string storageCertificate, string note,  string isActive, string userEmail, DateTime createdDate)
         {
             this.id = id;
             this.containerNum = containerNum;
@@ -50,12 +38,8 @@ namespace Project_7.Models
             this.importer = importer;
             this.customsBroker = customsBroker;
             this.shippingCompanyAndLine = shippingCompanyAndLine;
-            this.storageCertificate = storageCertificate;
-            this.caseNumber = caseNumber;
+            this.storageCertificate = storageCertificate; 
             this.note = note;
-            this.officeNote = officeNote;
-            this.goToRepair = goToRepair;
-            this.returnFromRepair = returnFromRepair;
             this.isActive = isActive;
             this.userEmail = userEmail;
             this.createdDate = createdDate;
@@ -70,11 +54,7 @@ namespace Project_7.Models
         public string CustomsBroker { get => customsBroker; set => customsBroker = value; }
         public string ShippingCompanyAndLine { get => shippingCompanyAndLine; set => shippingCompanyAndLine = value; }
         public string StorageCertificate { get => storageCertificate; set => storageCertificate = value; }
-        public string CaseNumber { get => caseNumber; set => caseNumber = value; }
         public string Note { get => note; set => note = value; }
-        public string OfficeNote { get => officeNote; set => officeNote = value; }
-        public string GoToRepair { get => goToRepair; set => goToRepair = value; }
-        public string ReturnFromRepair { get => returnFromRepair; set => returnFromRepair = value; }
         public string IsActive { get => isActive; set => isActive = value; }
         public string UserEmail { get => userEmail; set => userEmail = value; }
         public DateTime CreatedDate { get => createdDate; set => createdDate = value; }
