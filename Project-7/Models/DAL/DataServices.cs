@@ -514,7 +514,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandUsers(SqlConnection con)
         {
-            string commandStr = "SELECT * from SHAY_User where USR_Type='U'";
+            string commandStr = "SELECT * from SHAY_User where USR_Type='U' AND USR_IsActive=N'+'";
             SqlCommand cmd = createCommand(con, commandStr);
     
 
@@ -566,6 +566,45 @@ namespace Project_7.Models.DAL
 
 
 
+        public int DeleteUser(User u)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("DeleteUser", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@UserID", u.UserID);
+
+
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
+
+
+
+
+
+
 
         public User ReadLogUser(string userEmail)
         {
@@ -585,8 +624,8 @@ namespace Project_7.Models.DAL
                 {
 
 
-                    ////u.UserID = Convert.ToInt32(dr["USR_Id"]);
-                    //u.UserName = (string)dr["USR_UserName"];
+                    u.UserID = Convert.ToInt32(dr["USR_Id"]);
+                    u.UserName = (string)dr["USR_UserName"];
                     u.UserEmail = (string)dr["USR_Email"];
                     u.UserPassword = (string)dr["USR_Password"];
                     u.UserType = (string)dr["USR_Type"];
@@ -1132,6 +1171,127 @@ namespace Project_7.Models.DAL
             SqlCommand cmd = createCommand(con, commandStr);
 
             return cmd;
+        }
+
+
+
+
+        // Customer Adnin
+
+
+
+        public int InsertCustomerAdmin(CustomerAdmin c)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("NewCustomerAdmin", con))
+                {
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@AdminId", c.AdminId);
+                    cmd.Parameters.AddWithValue("@TransportComany", c.TransportComany);
+                    cmd.Parameters.AddWithValue("@FullName", c.FullName);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", c.PhoneNumber);
+
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
+
+
+
+
+
+         public int UpdateCustomerAdmin(CustomerAdmin c)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("UpdateCustomerAdmin", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@AdminId", c.AdminId);
+                    cmd.Parameters.AddWithValue("@TransportComany", c.TransportComany);
+                    cmd.Parameters.AddWithValue("@FullName", c.FullName);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", c.PhoneNumber);
+
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
+        }
+
+
+
+        public int DeleteCustomerAdmin(CustomerAdmin c)
+        {
+            //int res = 0;
+            SqlConnection con = null;
+            int numEffected = 0;
+            try
+            {
+                con = Connect("FinalProject");
+                using (SqlCommand cmd = new SqlCommand("DelteCustomerAdmin", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@AdminId", c.AdminId);
+
+
+
+                    numEffected = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+     
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+            return numEffected;
         }
 
 

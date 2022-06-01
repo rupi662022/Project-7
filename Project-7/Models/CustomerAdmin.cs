@@ -37,26 +37,26 @@ namespace Project_7.Models
         }
 
 
-        //public int InsertCustomerAdmin()
-        //{
-      
-        //    DataServices ds = new DataServices();
-        //    return ds.InsertCustomerAdmin(this);
+        public int InsertCustomerAdmin()
+        {
 
-        //}
+            DataServices ds = new DataServices();
+            return ds.InsertCustomerAdmin(this);
 
-        //public int DeleteCustomerAdmin()
-        //{
-        //    DataServices ds = new DataServices();
-        //    return ds.DeleteCustomerAdmin(this);
-        //}
+        }
+
+        public int DeleteCustomerAdmin()
+        {
+            DataServices ds = new DataServices();
+            return ds.DeleteCustomerAdmin(this);
+        }
 
 
-        //public int UpdateCustomerAdmin()
-        //{
-        //    DataServices ds = new DataServices();
-        //    return ds.UpdateCustomerAdmin(this);
-        //}
+        public int UpdateCustomerAdmin()
+        {
+            DataServices ds = new DataServices();
+            return ds.UpdateCustomerAdmin(this);
+        }
 
         public List<CustomerAdmin> ReadCustomerAdmins()
         {

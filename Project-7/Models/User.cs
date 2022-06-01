@@ -88,6 +88,10 @@ namespace Project_7.Models
 
 
 
-
+        public int DeleteUser()
+        {
+            DataServices ds = new DataServices();
+            return ds.DeleteUser(this);
+        }
     }
 }

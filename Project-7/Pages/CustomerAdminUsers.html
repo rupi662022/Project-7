@@ -101,7 +101,7 @@
                     width: "100%",
                     filtering: true,
                     editing: true,
-                   /* inserting: true,*/
+                    inserting: true,
                     sorting: true,
                     sorter: true,
                     /* paging: true,*/
@@ -117,9 +117,9 @@
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
                                 return (!filter.FullName || item.FullName.indexOf(filter.FullName) > -1)
-                                    && (!filter.TransportComany || item.TransportComany.indexOf(filter.TransportComany) > -1);
-                                    //&& (!filter.CompanyAdress || item.CompanyAdress.indexOf(filter.CompanyAdress) > -1)
-                                    //&& (!filter.CompanyFax || item.CompanyFax.indexOf(filter.CompanyFax) > -1)
+                                    && (!filter.TransportComany || item.TransportComany.indexOf(filter.TransportComany) > -1)
+                                    && (!filter.AdminId || item.AdminId.indexOf(filter.AdminId) > -1)
+                                    && (!filter.PhoneNumber || item.PhoneNumber.indexOf(filter.PhoneNumber) > -1);
                                     //&& (!filter.CompanyPhone || item.CompanyPhone.indexOf(filter.CompanyPhone) > -1)
                             });
 
@@ -127,39 +127,39 @@
                         updateItem: function (item) {
                             return $.ajax({
                                 type: "PUT",
-                                url: "../api/User",
+                                url: "../api/CustomerAdmin",
                                 data: item
 
                             });
 
                         },
-                        //insertItem: function (item) {
-                        //    return $.ajax({
-                        //        type: "POST",
-                        //        url: "../api/User",
-                        //        data: item,
-                        //        success: function (html) {
-                        //            alert('הוכנסה חברת תובה חדשה'/* + html*/);
-                        //        },
-                        //        error: function (jqXHR, textStatus, errorThrown) {
-                        //            if (jqXHR.status == 500) {
-                        //                alert('Internal error: ' + jqXHR.responseText);
-                        //            } else {
-                        //                alert('Unexpected error.');
-                        //            }
-                        //        }
+                        insertItem: function (item) {
+                            return $.ajax({
+                                type: "POST",
+                                url: "../api/CustomerAdmin",
+                                data: item,
+                                success: function (html) {
+                                    alert('הוכנסה מנהל חדש'/* + html*/);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    if (jqXHR.status == 500) {
+                                        alert('Internal error: ' + jqXHR.responseText);
+                                    } else {
+                                        alert('Unexpected error.');
+                                    }
+                                }
 
-                        //    });
+                            });
 
 
-                        //},
+                        },
 
 
 
                         deleteItem: function (item) {
                             return $.ajax({
                                 type: "DELETE",
-                                url: "../api/User",
+                                url: "../api/CustomerAdmin",
                                 data: item
 
 
@@ -169,9 +169,10 @@
                     },
 
                     fields: [
+                        { name: "AdminId", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", editing: false },
                         { name: "FullName", title: 'שם אדמין', type: "text", width: 100, sorting: false, align: "center", editing: false },
                         { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center" },
-                        { name: "IsAllowed", title: 'הרשאת הוספת נהג', type: "checkbox", width: 100, align: "center" },
+                        { name: "PhoneNumber", title: 'מספר טלפון', type: "text", width: 100, align: "center" },
               
                         {
                             type: "control",

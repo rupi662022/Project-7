@@ -13,10 +13,10 @@ namespace Project_7.Controllers
     {
 
 
-        //public int Post([FromBody] CustomerAdmin c)
-        //{
-        //    return c.InsertCustomerAdmin();
-        //}
+        public int Post([FromBody] CustomerAdmin c)
+        {
+            return c.InsertCustomerAdmin();
+        }
 
 
         public IEnumerable<CustomerAdmin> Get()
@@ -32,18 +32,18 @@ namespace Project_7.Controllers
 
 
 
-        //public HttpResponseMessage Put([FromBody] CustomerAdmin c)
-        //{
-        //    c.UpdateCustomerAdmin();
-        //    return Request.CreateResponse(HttpStatusCode.Created);
-        //}
+        public HttpResponseMessage Put([FromBody] CustomerAdmin c)
+        {
+            c.UpdateCustomerAdmin();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
 
 
-        //public HttpResponseMessage Delete([FromBody] CustomerAdmin c)
-        //{
-        //    c.DeleteCustomerAdmin();
-        //    return Request.CreateResponse(HttpStatusCode.Created);
-        //}
+        public HttpResponseMessage Delete([FromBody] CustomerAdmin c)
+        {
+            c.DeleteCustomerAdmin();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
 
 
 

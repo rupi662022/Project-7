@@ -55,17 +55,18 @@
 
         function Sucse(U) {
         
-            console.log(U)
+            console.log(U.UserType)
        
 
             if (U.UserPassword == password)
-            {   
-                if (U.UserType == "C"||"G")
+            {
+                localSave(U);
+                if (U.UserType == 'C' || U.UserType=='G')
                 {
-                    window.location.href = "activeGatePass.html";
+                    window.location.href ="MyGatePass.html";
 
                 }
-                else if (U.UserType == "U")
+                else if (U.UserType == 'U')
                 {
                     if (U.IsAdmin == true)
                     {
@@ -75,7 +76,7 @@
                    else
                     window.location.href = "activeGatePass.html";
                 }
-                localSave(U);
+                
 
         }
             else {

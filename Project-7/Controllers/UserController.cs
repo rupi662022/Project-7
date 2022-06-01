@@ -44,7 +44,7 @@ namespace Project_7.Controllers
         public HttpResponseMessage Post([FromBody] User user)
         {
             user.InsertUser();
-            return Request.CreateResponse(HttpStatusCode.Created, "נרשמת בהצלחה");
+            return Request.CreateResponse(HttpStatusCode.Created, "בביצוע");
         }
 
 
@@ -58,6 +58,15 @@ namespace Project_7.Controllers
             return U.ReadLogUser(userEmail);
         }
 
+
+
+        [HttpDelete]
+        [Route("api/User")]
+        public HttpResponseMessage DeleteUser([FromBody] User u)
+        {
+            u.DeleteUser();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
         //// PUT: api/User/5
         //public void Put(int id, [FromBody]string value)
         //{
