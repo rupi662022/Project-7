@@ -630,7 +630,7 @@ namespace Project_7.Models.DAL
         }
         private SqlCommand CreateSelectCommandUser(SqlConnection con, string userEmail)
         {
-            string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email=@userEmail";
+            string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email=@userEmail AND USR_IsActive=N'+'";
             SqlCommand cmd = createCommand(con, commandStr);
             cmd.Parameters.Add("@userEmail", SqlDbType.NVarChar);
             cmd.Parameters["@userEmail"].Value = userEmail;
@@ -905,6 +905,7 @@ namespace Project_7.Models.DAL
                 using (SqlCommand cmd = new SqlCommand("UpdateTransportCompany", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CompanyId", t.CompanyId);
                     cmd.Parameters.AddWithValue("@CompanyName", t.CompanyName);
                     cmd.Parameters.AddWithValue("@Adress", t.CompanyAdress);
                     cmd.Parameters.AddWithValue("@Fax", t.CompanyFax);

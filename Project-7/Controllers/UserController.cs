@@ -41,12 +41,15 @@ namespace Project_7.Controllers
 
         [HttpPost]
         [Route("api/User/in")]
-        public HttpResponseMessage Post([FromBody] User user)
+        //public HttpResponseMessage Post([FromBody] User user)
+        //{
+        //    user.InsertUser();
+        //    return Request.CreateResponse(HttpStatusCode.Created);
+        //}
+        public void Post([FromBody] User user)
         {
-            user.InsertUser();
-            return Request.CreateResponse(HttpStatusCode.Created);
+             user.InsertUser();
         }
-
 
 
 

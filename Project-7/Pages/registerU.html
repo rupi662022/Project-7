@@ -59,19 +59,19 @@
           
             }
 
-            ajaxCall("POST", "../api/User/"+ "/in", JSON.stringify(adduser), postSCB, postECB);
+            ajaxCall("POST", "../api/User/" + "/in", JSON.stringify(adduser), successCB, errorCB);
             
             return false;
 
         }
 
-        function postSCB(status) {
+        function successCB(status) {
             window.location.href = "login.html";
             console.log(status);
             alert("ההרשמה בוצעה בהצלחה");
         }
 
-        function postECB(err) {
+        function errorCB(err) {
             console.log(err);
             alert("!המשתמש קיים במערכת");
             window.location.href = "registerU.html";
