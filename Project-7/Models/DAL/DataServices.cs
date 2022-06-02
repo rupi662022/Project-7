@@ -25,7 +25,7 @@ namespace Project_7.Models.DAL
         }
 
 
-        //גייטפסים
+        ////////GatePas////////
 
         public List<GatePass> ReadgatePass()
         {
@@ -129,10 +129,6 @@ namespace Project_7.Models.DAL
 
 
 
-
-
-
-        //with Procedure
         public int UpdateGatePass(GatePass g)
         {
             //int res = 0;
@@ -184,19 +180,7 @@ namespace Project_7.Models.DAL
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        //טבלה גייטפס- ארכיון
-
+        ///Read Archieve
         public List<GatePass> ReadNegativGatePass(string isActive)
         {
             SqlConnection con = null;
@@ -251,7 +235,7 @@ namespace Project_7.Models.DAL
 
 
 
-        //SEND GATEPASS TO ARCHIVE
+        ///SEND GATEPASS TO ARCHIVE
 
         public int SendGateToArchive(GatePass g)
         {
@@ -293,7 +277,8 @@ namespace Project_7.Models.DAL
 
 
 
-        //Driver Actions
+        ////////Driver////////
+
         public List<Driver> ReadDrivers()
         {
             SqlConnection con = null;
@@ -407,12 +392,7 @@ namespace Project_7.Models.DAL
 
                     numEffected = cmd.ExecuteNonQuery();
 
-                    //if (result.Equals(1))
-                    //{
-                    //    res = 1;
 
-                    //}
-                    //return res;
                 }
             }
             catch (Exception ex)
@@ -431,10 +411,9 @@ namespace Project_7.Models.DAL
         }
 
 
-        //Delete
         public int DeleteDriver(Driver d)
         {
-            //int res = 0;
+
             SqlConnection con = null;
             int numEffected = 0;
             try
@@ -466,6 +445,7 @@ namespace Project_7.Models.DAL
 
 
 
+        ////////User////////
 
         public List<User> ReadUsers()
         {
@@ -702,7 +682,8 @@ namespace Project_7.Models.DAL
             return numEffected;
         }
 
-        //Read
+        ////////Customs Broker////////
+
         public List<CustomsBroker> ReadBrokers()
         {
             SqlConnection con = null;
@@ -787,7 +768,7 @@ namespace Project_7.Models.DAL
             return numEffected;
         }
 
-        //insert
+      
 
         public int InsertBroker(CustomsBroker b)
         {
@@ -829,9 +810,6 @@ namespace Project_7.Models.DAL
 
 
 
-
-
-        //Delete
         public int DeleteBroker(CustomsBroker b)
         {
             //int res = 0;
@@ -867,20 +845,8 @@ namespace Project_7.Models.DAL
         }
 
 
+        ////////Transport Company////////
 
-
-
-
-
-        //חברות תובלה
-
-
-
-
-
-
-
-        //Read
         public List<TransportCompany> ReadTransportCompany()
         {
             SqlConnection con = null;
@@ -926,7 +892,7 @@ namespace Project_7.Models.DAL
             return cmd;
         }
 
-        ///Update
+   
 
         public int UpdateTransportComany(TransportCompany t)
         {
@@ -965,7 +931,7 @@ namespace Project_7.Models.DAL
             return numEffected;
         }
 
-        //insert
+      
 
         public int InsertTransportComany(TransportCompany t)
         {
@@ -1019,7 +985,7 @@ namespace Project_7.Models.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CompanyName", t.CompanyName);
 
-                    
+
 
                     numEffected = cmd.ExecuteNonQuery();
 
@@ -1041,15 +1007,7 @@ namespace Project_7.Models.DAL
         }
 
 
-
-
-
-
-
-
-
-
-
+        ////////My GatePass////////
 
         public List<GatePass> ReadMyGatePass(int userID)
         {
@@ -1106,26 +1064,7 @@ namespace Project_7.Models.DAL
         }
 
 
-
-
-
-
-
-
-        SqlCommand createCommand(SqlConnection con, string CommandSTR)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = CommandSTR;
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandTimeout = 5;
-            return cmd;
-        }
-
-
-
-
-        //CustomerAdmin Actions
+        ////////Customer Admin////////
         public List<CustomerAdmin> ReadCustomerAdmins()
         {
             SqlConnection con = null;
@@ -1169,10 +1108,6 @@ namespace Project_7.Models.DAL
             return cmd;
         }
 
-
-
-
-        // Customer Adnin
 
 
 
@@ -1292,79 +1227,19 @@ namespace Project_7.Models.DAL
 
 
 
-        //   public int logInUsr(User user)------test for Procedure
-        //   {
-        //       //List<GatePass> Users = new List<GatePass>();
-        //       SqlConnection con = null;
-        //       int res = 0;
-
-        //       try
-        //       {
-        //           con = Connect("FinalProject");
-
-        //           using (SqlCommand cmd = new SqlCommand("CheckUser", con))
-        //           {
-        //               cmd.CommandType = CommandType.StoredProcedure;
-
-        //               cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
-        //               cmd.Parameters.AddWithValue("@UserPassword", user.UserPassword);
-        //               var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
-        //               returnParameter.Direction = ParameterDirection.ReturnValue;
-        //               cmd.ExecuteNonQuery();
-
-        //               using (SqlDataReader dr = cmd.ExecuteReader())
-        //               {
-        //                   var result = returnParameter.Value;
-        //                   if (result.Equals(1))
-        //                   {
-        //                       while (dr.Read())
-        //                       {
-        //                           if (dr["USR_UserName"] != DBNull.Value)
-        //                           {
-        //                               user.UserID = Convert.ToInt32(dr["USR_Id"]);
-        //                               user.UserName = (string)dr["USR_UserName"];
-        //                               user.UserEmail = (string)dr["USR_Email"];
-        //                               user.UserPassword = (string)dr["USR_Password"];
-        //                               user.UserType = (string)dr["USR_Type"];
-        //                               res = 1;
-        //                           }
-        //                       }
-
-        //                   }
-        //               }
-
-        //           }
-        //           return res;
-        //       }
-
-        //       catch (Exception ex)
-        //       {
-        //           throw (ex);
-        //       }
-        //       finally
-        //       {
-        //           if (con != null)
-        //           {
-        //               con.Close();
-        //           }
-        //       }
-        //}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+        SqlCommand createCommand(SqlConnection con, string CommandSTR)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = CommandSTR;
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandTimeout = 5;
+            return cmd;
+        }
 
 
 

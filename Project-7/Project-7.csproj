@@ -197,7 +197,6 @@
     <Compile Include="Models\DAL\DataServices.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\GatePass.cs" />
-    <Compile Include="Models\Importer.cs" />
     <Compile Include="Models\OCR.cs" />
     <Compile Include="Models\Program.cs" />
     <Compile Include="Models\User.cs" />

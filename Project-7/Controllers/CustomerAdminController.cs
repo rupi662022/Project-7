@@ -25,11 +25,6 @@ namespace Project_7.Controllers
             return admin.ReadCustomerAdmins();
         }
 
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
 
 
         public HttpResponseMessage Put([FromBody] CustomerAdmin c)

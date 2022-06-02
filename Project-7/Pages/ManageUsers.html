@@ -10,7 +10,7 @@
 
     <title>שי שירותי נמל בע"מ</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+    <!--<link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
 
@@ -75,14 +75,14 @@
 
             U = JSON.parse(localStorage.getItem('User'));
 
-        
 
-            if (U.UserType == "U") {
+            document.getElementById("UserName").innerHTML = U.UserName;
+            if (U.IsAdmin == false) {
 
                 $('#Price').hide();
                 $('#Dashboard').hide();
-                $('#MangeUsers').hide();
-                /*     el.style.display = 'block';*/
+                $('#CustomerAdmin').hide();
+                $('#Users').hide();
 
             }
 
@@ -153,7 +153,6 @@
 
 
                         },
-
 
 
                         deleteItem: function (item) {
@@ -247,7 +246,7 @@
             <!--<div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">-->
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" style="height:800px;padding-top:30px">
 
-                <li class="nav-item"><a  style="font-size:18px" href="CreatGatePass.html"><i class="menu-title"></i><span> יצירת גייטפס </span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="CreatGatePass.html"><i class="menu-title"></i><span> יצירת גייטפס </span></a></li>
 
 
                 <li class="nav nav-item">
@@ -258,12 +257,13 @@
                     </ul>
                 </li>
 
-                <li class="nav-item"><a  style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
-                <li class="nav-item"><a  style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
-                <li class="nav-item"><a  style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשי חברה</span></a></li>
-                <li class="nav-item"><a  style="font-size:18px" href="#" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
-                <li class="nav-item"><a  style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> הצעות מחיר</span></a></li>
-
+                <li class="nav-item"><a style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
+                <li class="nav-item"><a style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> חברות תובלה</span></a></li>
+                <li class="nav-item" id="Dashboard"><a style="font-size:18px" href="Dashboard.html" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
+                <li class="nav-item" id="Price"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> הצעות מחיר</span></a></li>
+                <li class="nav-item" id="CustomerAdmin"><a style="font-size:18px;  " href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
+                <li class="nav-item" id="Users"><a style="font-size:18px;  " href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשי חברה</span></a></li>
 
             </ul>
         </div>

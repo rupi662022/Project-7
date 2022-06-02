@@ -50,9 +50,6 @@ namespace Project_7.Controllers
         {
         }
 
-        // DELETE: api/Drivers/5
-        //public void Delete(int id)
-        //{
-        //}
+   
     }
 }
