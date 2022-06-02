@@ -46,6 +46,18 @@
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
     <script src="../srcc/fields/jsgrid.field.textarea.js"></script>
     <script src="../Scripts/TaskAjax.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="js/jsPDF/dist/jspdf.min.js"></script>
+    <script src="FileSaver.js"></script>
+    <script src="../Scripts/Ajax1.js"></script>
+    <script src="../Scripts/Ajax2.js"></script>
+    <script src="../Scripts/APIWITHKEY.js"></script>
+    <script src="../Scripts/TaskAjax.js"></script>
+    <script src="../Scripts/Gmail API Init.js"></script>
+    <script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.iw.IGHhY2ETigM.O/m=debug_error/exm=auth2,client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCPeroE8gK_NXdeawOw-yQ9z6uDXtw/cb=gapi.loaded_1" async=""></script>
+    <script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.iw.IGHhY2ETigM.O/m=auth2,client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCPeroE8gK_NXdeawOw-yQ9z6uDXtw/cb=gapi.loaded_0" async=""></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="../Scripts/Ajax1.js"></script>
     <style>
         #Add {
             background-color: #3bafda;
@@ -65,47 +77,238 @@
         }
     </style>
     <script>
+        /////from here is NEWPageRed
+        var access_token = "";
+        var expires_in = "";
+        var ContainerNumber = "";
+        function refreshtoken() {
 
+            window.location.href = ("https://localhost:44311/Pages/HtmlPage1.html")
+        }
+
+        function GetToken() {
+
+            var a = window.location.search
+            var questionmark = a.split("?")
+            var withapersand = questionmark[1].split("&")
+            var code = withapersand[0]
+
+
+
+            let call = "https://oauth2.googleapis.com/token?" + code + "&client_id=444171297629-u3ii66o4ovl3sb62c326uusnam9g4vfd.apps.googleusercontent.com&client_secret=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&grant_type=authorization_code&redirect_uri=https://localhost:44311/Pages/CreatGatePass.html"
+            ajaxCall("POST", call, "", GetTokenScCB, GetTokenErCB)
+
+        }
+        function GetTokenScCB(data) {
+            alert("in GetTokenScCB")
+            console.log(data)
+            access_token = data.access_token
+            expires_in = data.expires_in
+            console.log(expires_in)
+            //timer(expires_in)
+            //data.access_token
+            //sessionStorage.setItem("access_token", data.access_token)
+            //sessionStorage.setItem("expires_in", data.expires_in)
+            //window.location.href = ("https://localhost:44311/Pages/NewGmailPage.html")
+
+        }
+        //function timer(expires_in) {
+        //    var sec = expires_in;
+        //    var timer = setInterval(function () {
+        //        document.getElementById('safeTimerDisplay').innerHTML = '00:' + expires_in;
+        //        sec--;
+        //        if (expires_in < 0) {
+        //            clearInterval(timer);
+        //        }
+        //    }, 1000);
+        //}
+        function GetTokenErCB() {
+
+            alert("in testimErCB")
+            console.log()
+
+        }
+        /////////////From down and on its the old code///////////
+        function GetListOfMsgs_0() {
+
+
+            ajaxCall("GET", "../api/AfterAuth", "", ScGetListOfMsgs_0, ErGetListOfMsgs_0);
+
+        }
+        function ScGetListOfMsgs_0(data) {
+
+
+            let x = JSON.parse(data)
+            User_Id = x.Email_adress_userId;
+            Max_Results = x.Max_Results;
+            query = x.Q_has_attachment;
+            format = x.Format;
+            alert("in ScGetListOfMsgs_0")
+            let apicall = "https://gmail.googleapis.com/gmail/v1/users/" + User_Id + "/messages?maxResults=" + Max_Results + "&q=" + query + "&access_token=" + access_token;
+            ajaxCall("GET", apicall, "", ScGetListOfMsgs, ErGetListOfMsgs)
+
+        }
+
+        function ErGetListOfMsgs_0() {
+
+            alert("in ErGetListOfMsgs_0")
+
+        }
+
+
+        function ScGetListOfMsgs(MsgIdNThreadId) {
+            console.log(MsgIdNThreadId)
+            alert("in ScGetListOfMsgs")
+            MsgId = MsgIdNThreadId.messages[0].id;
+            let apicall = "https://gmail.googleapis.com/gmail/v1/users/" + User_Id + "/messages/" + MsgId + "?format" + format + "&access_token=" + access_token;
+
+            ajaxCall("GET", apicall, "", ScGetAttachId, ErGetAttachId)
+
+
+            function ScGetAttachId(FullBodyMsg) {
+
+
+                alert("in ScGetAttachId")
+                console.log(FullBodyMsg)
+                AttachId = FullBodyMsg.payload.parts[1].body.attachmentId;
+
+                let apicall = "https://gmail.googleapis.com/gmail/v1/users/" + User_Id + "/messages/" + MsgId + "/attachments/" + AttachId + "?access_token=" + access_token;
+                tmpContentType = FullBodyMsg.payload.parts[1].mimeType;
+                tmpfilename = FullBodyMsg.payload.parts[1].filename;
+                ajaxCall("GET", apicall, "", ScGetAttachment, ErGetAttachment)
+
+                function ScGetAttachment(Attachment) {
+
+                    console.log(Attachment)
+                    alert("in ScGetAttachment")
+
+
+                    let filedata = Attachment.data
+                    Convert(filedata)
+                }
+
+
+                function ErGetAttachment() {
+
+                    alert("in ErGetAttachment")
+
+
+
+                }
+            }
+
+
+            function ErGetAttachId() {
+
+                alert("in ErGetAttachId")
+
+
+            }
+        }
+
+
+
+        function ErGetListOfMsgs() {
+
+            alert(" in ERGETMSG ")
+
+        }
+
+
+        function Convert(tmpattachdata) {
+            alert("Trying to convert the file before dwonloading")
+            var newStr1 = tmpattachdata.replace(/-/g, "+");
+            var newStr2 = newStr1.replace(/_/g, "/");
+
+            var encoded_Base64_file = btoa(newStr2)
+            var decoded_Base64_file = atob(encoded_Base64_file);
+
+
+            finalAttachFile = decoded_Base64_file
+            alert("final attach file is " + " " + finalAttachFile)
+
+            console.log("final attach file is ", finalAttachFile)
+
+
+
+            document.getElementById("downloadurl").download = tmpfilename
+            path = "data:" + tmpContentType + ";base64," + finalAttachFile;
+            document.getElementById("downloadurl").href = path;
+
+            document.getElementById("downloadurl").click()
+
+            runAfterNSeconds(5)
+        }
+
+        function runAfterNSeconds(n) {
+            setTimeout(() => {
+                getcontnum();
+            }, n * 1000);
+        }
+
+        function getcontnum() {
+            alert("trying to get cont number")
+            let currentfilename = tmpfilename;
+            ajaxCall("GET", "../api/OCR?filename=" + currentfilename, "", GotContNum, DidntGotContNum);
+
+
+        }
+
+
+
+        function GotContNum(response) {
+            alert("GotContNum")
+            console.log(response)
+            //sessionStorage.setItem("ContainerNum", response)
+            ContainerNumber = response
+            //window.location.replace("../Pages/CreatGatePass.html")
+            CreateGatePass()
+        }
+
+
+
+
+        function DidntGotContNum() {
+
+
+            alert("DidntGotContNum")
+
+        }
+
+        ///// till here is NEWPageRed
 
         var strToken = "";
         var username = "";
         var password = "";
-        var ContainerNumber = "";
         var x = "";
 
         function init() {
-
-
-            U = JSON.parse(localStorage.getItem('User'));
-            document.getElementById("UserName").innerHTML = U.UserName;
-
-
             username = "shayport"//need to fill in manually
             password = "shay@@2022"//need to fill in manually
-            ContainerNumber = sessionStorage.getItem("ContainerNumber")
+            //ContainerNumber = sessionStorage.getItem("ContainerNum")
 
             LogIn(username, password, successLoginCB, errorLoginCB);
 
 
 
-            $('.chkbox').click(function () {
-                checkBox = this.id
-                checkBoxValue = $(this).attr('value')
-                if (checkBoxValue == '-') {
-                    $(this).attr('value', '+')
-                }
-                else {
-                    $(this).attr('value', '-')
-                }
-            });
+            //$('.chkbox').click(function () {
+            //    checkBox = this.id
+            //    checkBoxValue = $(this).attr('value')
+            //    if (checkBoxValue == '-') {
+            //        $(this).attr('value', '+')
+            //    }
+            //    else {
+            //        $(this).attr('value', '-')
+            //    }
+            //});
         }
 
         function successLoginCB(data) {
-            //alert("successLoginCB")
+            alert("successLoginCB")
             strToken = JSON.stringify(data["Token"])
-            if (ContainerNumber != null) {
-                CreateGatePass();
-            }
+            //if (ContainerNumber != null) {
+            //    CreateGatePass();
+            //}
 
 
         }
@@ -119,8 +322,9 @@
 
         function CreateGatePass() {
             let tmpToken = strToken;
-            let apicall = "api/ContainerStatus/GetContainerStatusHaifa?ContainerNum=" + ContainerNumber
+            let apicall = "api/ContainerStatus/GetContainerStatusHaifa?ContainerNumber=" + ContainerNumber
             GetAjaxCall(apicall, tmpToken, successResponseCB, errorResponseCB)
+
 
         }
         function successResponseCB(response) {
@@ -128,6 +332,7 @@
             console.log(response)
             document.getElementById("Comments").value = "צילום"
             let str = JSON.stringify(response)
+            document.getElementById("ContainerNum").value = ContainerNumber
 
             //If DepartedContainers isnt null
             if (response.ContainerStatusResponse.DepartedContainersList.length != 0) {
@@ -200,14 +405,14 @@
                 ContainerNum: document.getElementById("ContainerNum").value,
                 ContainerType: document.getElementById("ContType").value,
                 TransportCompany: document.getElementById("TransportCompName").value,
-                Importer: document.getElementById("ImporterName").value,
+                //Importer: document.getElementById("ImporterName").value,
                 CustomsBroker: document.getElementById("CustomAgentName").value,
                 ShippingCompanyAndLine: document.getElementById("ShippingCompNamePlusLine").value,
                 StorageCertificate: document.getElementById("StorageCertificate").value,
-                CaseNumber: document.getElementById("AccountIDNum").value,
+                //CaseNumber: document.getElementById("AccountIDNum").value,
                 Note: document.getElementById("Comments").value,
-                OfficeNote: document.getElementById("OfficeComents").value,
-                GoToRepair: document.getElementById("SendToMaintinance").value,
+                //OfficeNote: document.getElementById("OfficeComents").value,
+                //GoToRepair: document.getElementById("SendToMaintinance").value,
                 ReturnFromRepair: document.getElementById("ReturnedFromMaintinance").value,
                 UserEmail: document.getElementById("WorkerEmail").value,
                 IsActive: '+',
@@ -236,38 +441,42 @@
     </script>
 </head>
 <body onload="init()" class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+    <button onclick="GetListOfMsgs_0()">start</button>
+    <a id="downloadurl" href="path">
 
+    </a>
+    <button onclick="GetToken()"> Set token</button>
+
+    <button onclick="refreshtoken()"> refresh or Get token</button>
+    <!--<p id="safeTimerDisplay">timer</p>-->
     <!-- fixed-top-->
-    <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-static-top navbar-dark navbar-shadow navbar-border">
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
         <div class="navbar-wrapper">
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
-                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="activeGatePass.html"><i class="ft-menu font-large-1"></i></a></li>
+                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item">
-                        <a class="navbar-brand" href="../../../html/rtl/vertical-menu-template/index.html">
-                            <img class="brand-logo" src="../Logo/pngegg.png" />
-
-
+                        <a class="navbar-brand" href="../../../html/rtl/vertical-content-menu-template/index.html">
+                            <!--<img class="brand-logo" alt="robust admin logo" src="../../../app-assets/images/logo/logo-dark-sm.png">-->
                             <h3 class="brand-text">שי שירותי נמל</h3>
                         </a>
                     </li>
                     <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
                 </ul>
             </div>
-
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
-                    <!--<ul class="nav navbar-nav mr-auto float-left">
+                    <ul class="nav navbar-nav mr-auto float-left">
                         <li class="dropdown dropdown-user nav-item">
-                            <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
+                            <button id="byebye" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
                         </li>
-                    </ul>-->
-                    <ul class="nav navbar-nav float-right" style="margin-left: 100px">
-
-                        <li class="dropdown dropdown-user nav-item" style="float:left">
-                            <a class="fa fa-user-circle fa-2x" href="#" data-toggle="dropdown">&nbsp<span class="user-name" id="UserName"> </span></a>
+                    </ul>
+                    <ul class="nav navbar-nav float-right">
+                        <li class="dropdown dropdown-user nav-item">
+                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name" style="font-size:17px">   User Name</span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <div></div><a class="dropdown-item" style="text-align:right; font-size:medium;font-weight:bold; font-family:sans-serif" href="login.html"><i class="ft-power float-left "></i> התנתק</a>
+                                <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="login-simple.html"><i class="ft-power"></i> Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -282,7 +491,7 @@
         <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="active" data-menu=""><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px ;  border:solid 1px gray; background-color:cornflowerblue" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main">יצירת גייטפס</span></a></li>
+                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px ;  border:solid 1px gray; background-color:#d5f4e6" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main">יצירת גייטפס</span></a></li>
                 <li class="dropdown nav-item" data-menu="dropdown">
                     <a class="dropdown-toggle nav-link" style="font-size:18px" href="#"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
                     <ul class="dropdown-menu">
@@ -351,12 +560,12 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group row ">
+                                                <!--<div class="form-group row ">
                                                     <label class="col-md-3 label-control" for="ContType">יבואן</label>
                                                     <div class="col-md-9">
                                                         <input type="text" id="ImporterName" class="form-control border-primary" placeholder="הזן לדוגמה: פואד בחור/ יוסף אבו צאלח" name="ImporterName">
                                                     </div>
-                                                </div>
+                                                </div>-->
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group row">
@@ -377,12 +586,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group row">
+                                                <!--<div class="form-group row">
                                                     <label class="col-md-3 label-control" for="AccountIDNum">תיק מספר</label>
                                                     <div class="col-md-9">
                                                         <input type="text" id="AccountIDNum" class="form-control border-primary" placeholder="AccountIDNum" name="AccountIDNum">
                                                     </div>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </div>
                                         <div class="row">
@@ -410,7 +619,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 label-control" for="OfficeNotes"> הערות משרד</label>
+                                                    <label class="col-md-3 label-control" for="Comments"> הערות </label>
                                                     <div class="col-md-9">
                                                         <textarea id="Comments" rows="5" class="form-control border-primary" name="Comments" placeholder="הערות משרד"></textarea>
                                                     </div>
@@ -420,22 +629,21 @@
 
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group row">
+                                                <!--<div class="form-group row">
 
                                                     <label class="col-md-3 label-control " for="SendToMaintinance">יצא לתיקון</label>
                                                     <div class="col-md-9">
                                                         <input type="checkbox" VALUE='-' class="chkbox" name="SendToMaintinance" id="SendToMaintinance">
                                                     </div>
 
-                                                </div>
-
-                                                <div class="form-group row">
+                                                </div>-->
+                                                <!--<div class="form-group row">
 
                                                     <label class="col-md-3 label-control " for="ReturnedFromMaintinance">חזר מתיקון</label>
                                                     <div class="col-md-9">
                                                         <input type="checkbox" VALUE='-' class="chkbox" name="ReturnedFromMaintinance" id="ReturnedFromMaintinance">
                                                     </div>
-                                                </div>
+                                                </div>-->
 
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control">משתמש</label>
@@ -446,14 +654,14 @@
 
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <!--<div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="Notes">הערות</label>
                                                     <div class="col-md-9">
                                                         <textarea id="OfficeComents" rows="5" class="form-control border-primary" name="OfficeComents" placeholder="הערות"></textarea>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </div>
                                         <div id="ph"></div>
                                         <div class="form-actions center">

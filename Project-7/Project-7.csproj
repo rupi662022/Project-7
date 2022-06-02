@@ -5753,6 +5753,7 @@
     <Content Include="external\qunit\qunit-1.10.0.js" />
     <Content Include="Logo\pngegg.png" />
     <Content Include="Logo\shayLogo.png" />
+    <Content Include="Pages\HtmlPage1.html" />
     <Content Include="Pages\insertGatePass.html" />
     <Content Include="Pages\CustomerAdminUsers.html" />
     <Content Include="Pages\MyGatePass.html" />

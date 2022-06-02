@@ -13,10 +13,10 @@ namespace Project_7.Controllers
     {
         //[HttpPost]
         //[Route("api/GatePass")]
-        public HttpResponseMessage Post([FromBody] GatePass g)
+        public void Post([FromBody] GatePass g)
         {
             g.InsertGatePass();
-            return Request.CreateResponse(HttpStatusCode.Created);
+            //return Request.CreateResponse(HttpStatusCode.Created);
         }
 
         [HttpGet]
