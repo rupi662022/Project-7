@@ -85,6 +85,21 @@
         }
     </style>
     <script>
+
+
+        U = JSON.parse(localStorage.getItem('User'));
+
+        //Adm = document.getElementsById("Price");
+        document.getElementById("UserName").innerHTML = U.UserName;
+        if (U.IsAdmin == false) {
+
+            $('#Price').hide();
+            $('#Dashboard').hide();
+            $('#CustomerAdmin').hide();
+            $('#Users').hide();
+
+        }
+
         /////from here is NEWPageRed
         var access_token = "";
         var expires_in = "";
