@@ -95,7 +95,7 @@ namespace Project_7.Models.DAL
                     cmd.Parameters.AddWithValue("@ContainerNum", g.ContainerNum);
                     cmd.Parameters.AddWithValue("@ContainerType", g.ContainerType);
                     cmd.Parameters.AddWithValue("@TransportCompany", g.TransportCompany);
-                    cmd.Parameters.AddWithValue("@Importer", g.Importer);
+                    //cmd.Parameters.AddWithValue("@Importer", g.Importer);
                     cmd.Parameters.AddWithValue("@CustomsBroker", g.CustomsBroker);
                     cmd.Parameters.AddWithValue("@ShippingCompanyAndLine", g.ShippingCompanyAndLine);
                     cmd.Parameters.AddWithValue("@StorageCertificate", g.StorageCertificate);
@@ -145,7 +145,7 @@ namespace Project_7.Models.DAL
                     cmd.Parameters.AddWithValue("@ContainerNum", g.ContainerNum);
                     cmd.Parameters.AddWithValue("@ContainerType", g.ContainerType);
                     cmd.Parameters.AddWithValue("@TransportCompany", g.TransportCompany);
-                    cmd.Parameters.AddWithValue("@Importer", g.Importer);
+                    //cmd.Parameters.AddWithValue("@Importer", g.Importer);
                     cmd.Parameters.AddWithValue("@CreatedDate", g.CreatedDate);
 
                     //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
@@ -200,7 +200,7 @@ namespace Project_7.Models.DAL
                     g.ContainerNum = (string)dataReader["GPS_ContainerNum"];
                     g.ContainerType = (string)dataReader["GPS_ContainerType"];
                     g.TransportCompany = (string)dataReader["GPS_TransportCompany"];
-                    g.Importer = (string)dataReader["GPS_Importer"];
+                    //g.Importer = (string)dataReader["GPS_Importer"];
                     g.CustomsBroker=(string)dataReader["GPS_CustomsBroker"];
                     g.CreatedDate = Convert.ToDateTime(dataReader["GPS_CreatedDate"]);
 

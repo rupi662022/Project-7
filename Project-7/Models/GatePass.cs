@@ -12,7 +12,6 @@ namespace Project_7.Models
         string containerNum;
         string containerType;
         string transportCompany;
-        string importer;
         string customsBroker;
         string shippingCompanyAndLine;
         string storageCertificate;
@@ -29,13 +28,12 @@ namespace Project_7.Models
 
 
 
-        public GatePass(int id,string containerNum, string containerType, string transportCompany, string importer, string customsBroker, string shippingCompanyAndLine, string storageCertificate, string note,  string isActive, string userEmail, DateTime createdDate)
+        public GatePass(int id,string containerNum, string containerType, string transportCompany,string customsBroker, string shippingCompanyAndLine, string storageCertificate, string note,  string isActive, string userEmail, DateTime createdDate)
         {
             this.id = id;
             this.containerNum = containerNum;
             this.containerType = containerType;
             this.transportCompany = transportCompany;
-            this.importer = importer;
             this.customsBroker = customsBroker;
             this.shippingCompanyAndLine = shippingCompanyAndLine;
             this.storageCertificate = storageCertificate; 
@@ -50,7 +48,6 @@ namespace Project_7.Models
         public string ContainerNum { get => containerNum; set => containerNum = value; }
         public string ContainerType { get => containerType; set => containerType = value; }
         public string TransportCompany { get => transportCompany; set => transportCompany = value; }
-        public string Importer { get => importer; set => importer = value; }
         public string CustomsBroker { get => customsBroker; set => customsBroker = value; }
         public string ShippingCompanyAndLine { get => shippingCompanyAndLine; set => shippingCompanyAndLine = value; }
         public string StorageCertificate { get => storageCertificate; set => storageCertificate = value; }
