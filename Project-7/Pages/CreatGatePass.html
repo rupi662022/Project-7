@@ -10,12 +10,15 @@
 
     <title>שי שירותי נמל בע"מ</title>
 
-    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+    <!--<link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
 
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
+    <link href="../app-assets/css-rtl/core/menu/menu-types/vertical-menu.css" rel="stylesheet" />
+    <link href="../assets/css/style-rtl.css" rel="stylesheet" />
+    <script src="../app-assets/vendors/js/ui/headroom.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
@@ -75,6 +78,26 @@
         p, h1, h2, h3, span, td, tr, table {
             font-family: sans-serif;
         }
+
+
+        p, h1, h2, h3, span, td, tr, table {
+            font-family: sans-serif;
+        }
+
+        /*.card {
+            height: 1000px;
+        }*/
+        .jsgrid-grid-body {
+            height: 500px;
+        }
+
+        img {
+            float: right;
+            height: 30px;
+            /*       width:60px; */
+            padding-left: 14px;
+        }
+
     </style>
     <script>
         /////from here is NEWPageRed
@@ -304,7 +327,7 @@
         }
 
         function successLoginCB(data) {
-            alert("successLoginCB")
+            /*    alert("successLoginCB")*/
             strToken = JSON.stringify(data["Token"])
             //if (ContainerNumber != null) {
             //    CreateGatePass();
@@ -424,7 +447,7 @@
 
 
         function postSuccessCB() {
-            console.log("success");
+            console.log("גייטפס חדש הוכנס");
         }
 
         function postErrorCB(err) {
@@ -440,7 +463,7 @@
 
     </script>
 </head>
-<body onload="init()" class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+<body onload="init()"  class="vertical-layout vertical-menu 2-column menu-expanded " data-open="hover" data-menu="vertical-menu">
     <button onclick="GetListOfMsgs_0()">start</button>
     <a id="downloadurl" href="path">
 
@@ -450,33 +473,36 @@
     <button onclick="refreshtoken()"> refresh or Get token</button>
     <!--<p id="safeTimerDisplay">timer</p>-->
     <!-- fixed-top-->
-    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
+    <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-static-top navbar-dark navbar-shadow navbar-border">
         <div class="navbar-wrapper">
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
-                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+                    <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="activeGatePass.html"><i class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item">
-                        <a class="navbar-brand" href="../../../html/rtl/vertical-content-menu-template/index.html">
-                            <!--<img class="brand-logo" alt="robust admin logo" src="../../../app-assets/images/logo/logo-dark-sm.png">-->
+                        <a class="navbar-brand" href="../../../html/rtl/vertical-menu-template/index.html">
+                            <img class="brand-logo" src="../Logo/pngegg.png" />
+
+
                             <h3 class="brand-text">שי שירותי נמל</h3>
                         </a>
                     </li>
                     <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
                 </ul>
             </div>
+
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
-                    <ul class="nav navbar-nav mr-auto float-left">
+                    <!--<ul class="nav navbar-nav mr-auto float-left">
                         <li class="dropdown dropdown-user nav-item">
-                            <button id="byebye" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
+                            <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
                         </li>
-                    </ul>
-                    <ul class="nav navbar-nav float-right">
-                        <li class="dropdown dropdown-user nav-item">
-                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name" style="font-size:17px">   User Name</span></a>
+                    </ul>-->
+                    <ul class="nav navbar-nav float-right" style="margin-left: 100px">
+
+                        <li class="dropdown dropdown-user nav-item" style="float:left">
+                            <a class="fa fa-user-circle fa-2x" href="#" data-toggle="dropdown">&nbsp<span class="user-name" id="UserName"> </span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="login-simple.html"><i class="ft-power"></i> Logout</a>
+                                <div></div><a class="dropdown-item" style="text-align:right; font-size:medium;font-weight:bold; font-family:sans-serif" href="login.html"><i class="ft-power float-left "></i> התנתק</a>
                             </div>
                         </li>
                     </ul>
@@ -485,30 +511,34 @@
         </div>
     </nav>
 
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!-- BEGIN Navigation-->
+    <div class="main-menu menu-dark menu-static menu-shadow" data-scroll-to-active="true">
+        <div class="main-menu-content" style="margin-left:30px">
+            <!--<div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">-->
+            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" style="height:800px;padding-top:30px">
 
-    <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-without-dd-arrow navbar-shadow" role="navigation" data-menu="menu-wrapper">
-        <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
-            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="active" data-menu=""><a class="dropdown-toggle nav-link" style="font-size:18px" href="home.html" data-toggle="sans-serif"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a></li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px ;  border:solid 1px gray; background-color:#d5f4e6" href="CreatGatePass.html" data-toggle="sans-serif"><i class="icon-note"></i><span data-i18n="nav.templates.main">יצירת גייטפס</span></a></li>
-                <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" style="font-size:18px" href="#"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
-                    <ul class="dropdown-menu">
-                        <li data-menu=""><a class="dropdown-item" href="activeGatePass.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>גייטפסים פעילים</p></a></li>
-                        <li data-menu=""><a class="dropdown-item" href="archivePage.html" style="border:solid 1px gray;" data-toggle="dropdown"><p>ארכיון</p></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="CreatGatePass.html"><i class="menu-title"></i><span> יצירת גייטפס </span></a></li>
+
+
+                <li class="nav nav-item">
+                    <a style="font-size:18px" href="activeGatePass.html"><i class="icon-screen-tablet"></i><span class="menu-title" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="activeGatePass.html"><p>גייטפסים פעילים</p></a></li>
+                        <li><a class="menu-item" href="archivePage.html"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a></li>
-                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span data-i18n="nav.category.pages"> עמילי מכס</span></a></li>
-                <li class="active" data-menu="megamenu"><a class="dropdown-toggle nav-link" style="font-size:18px" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.pages"> לקוחות</span></a></li>
-                <!--<li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="transportComp.html" data-toggle="dropdown"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui">לקוחות</span></a></li>-->
-                <li class="active" data-menu="dropdown"><a class="dropdown-toggle nav-link" style="font-size:18px" href="#" data-toggle="dropdown"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms"> דשבורד</span></a></li>
-                <li class="active"><a class="dropdown-toggle nav-link" style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui"> הצעות מחיר</span></a></li>
 
+                <li class="nav-item"><a style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
+                <li class="nav-item"><a style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> חברות תובלה</span></a></li>
+                <li class="nav-item" id="Dashboard"><a style="font-size:18px" href="Dashboard.html" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
+                <li class="nav-item" id="Price"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> הצעות מחיר</span></a></li>
+                <li class="nav-item" id="CustomerAdmin"><a style="font-size:18px;  " href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
+                <li class="nav-item" id="Users"><a style="font-size:18px;  " href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשי חברה</span></a></li>
             </ul>
         </div>
     </div>
+    <!-- END Navigation-->
     <div class="app-content content">
         <div class="content-wrapper">
             <div></div>
