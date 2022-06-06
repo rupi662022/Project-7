@@ -103,6 +103,8 @@
 
 
 
+        $(document).ready(function () {
+
         U = JSON.parse(localStorage.getItem('User'));
 
 
@@ -115,7 +117,7 @@
             $('#Users').hide();
 
         }
-
+        })
 
 
         /////from here is NEWPageRed
@@ -455,7 +457,7 @@
                 //OfficeNote: document.getElementById("OfficeComents").value,
                 //GoToRepair: document.getElementById("SendToMaintinance").value,
                 //ReturnFromRepair: document.getElementById("ReturnedFromMaintinance").value,
-                UserEmail: document.getElementById("WorkerEmail").value,
+                UserEmail: U.UserEmail,
                 IsActive: '+',
                 CreatedDate: sqlDatetime
             }
@@ -470,16 +472,12 @@
 
         function postErrorCB(err) {
             alert(err);
-        }
-    </script>
-    <script>
+            }
 
-        function byebye() {
-            //localStorage.clear();
-            window.location.href = "login.html";
-        }
 
+      
     </script>
+
 </head>
 <body onload="init()"  class="vertical-layout vertical-menu 2-column menu-expanded " data-open="hover" data-menu="vertical-menu">
     <button onclick="GetListOfMsgs_0()">start</button>
@@ -693,14 +691,14 @@
                                                     </div>
                                                 </div>-->
 
-                                                <div class="form-group row">
+                                                <!--<div class="form-group row">
                                                     <label class="col-md-3 label-control">משתמש</label>
                                                     <div class="col-md-9">
                                                         <input class="form-control border-primary" type="text" placeholder=" הזן לדוגמה: K@K.COM/ P@P.COM " id="WorkerEmail">
 
                                                     </div>
 
-                                                </div>
+                                                </div>-->
                                             </div>
                                             <!--<div class="col-md-6">
                                                 <div class="form-group row">

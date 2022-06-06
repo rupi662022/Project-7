@@ -145,8 +145,10 @@ namespace Project_7.Models.DAL
                     cmd.Parameters.AddWithValue("@ContainerNum", g.ContainerNum);
                     cmd.Parameters.AddWithValue("@ContainerType", g.ContainerType);
                     cmd.Parameters.AddWithValue("@TransportCompany", g.TransportCompany);
+                    cmd.Parameters.AddWithValue("@CustomBroker", g.CustomsBroker);
+
                     //cmd.Parameters.AddWithValue("@Importer", g.Importer);
-                    cmd.Parameters.AddWithValue("@CreatedDate", g.CreatedDate);
+                    //cmd.Parameters.AddWithValue("@CreatedDate", g.CreatedDate);
 
                     //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
                     //returnParameter.Direction = ParameterDirection.ReturnValue;
