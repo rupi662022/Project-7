@@ -143,7 +143,7 @@
 
         }
         function GetTokenScCB(data) {
-            alert("in GetTokenScCB")
+            //alert("in GetTokenScCB")
             console.log(data)
             access_token = data.access_token
             expires_in = data.expires_in
@@ -186,7 +186,7 @@
             Max_Results = x.Max_Results;
             query = x.Q_has_attachment;
             format = x.Format;
-            alert("in ScGetListOfMsgs_0")
+            //alert("in ScGetListOfMsgs_0")
             let apicall = "https://gmail.googleapis.com/gmail/v1/users/" + User_Id + "/messages?maxResults=" + Max_Results + "&q=" + query + "&access_token=" + access_token;
             ajaxCall("GET", apicall, "", ScGetListOfMsgs, ErGetListOfMsgs)
 
@@ -201,7 +201,7 @@
 
         function ScGetListOfMsgs(MsgIdNThreadId) {
             console.log(MsgIdNThreadId)
-            alert("in ScGetListOfMsgs")
+            //alert("in ScGetListOfMsgs")
             MsgId = MsgIdNThreadId.messages[0].id;
             let apicall = "https://gmail.googleapis.com/gmail/v1/users/" + User_Id + "/messages/" + MsgId + "?format" + format + "&access_token=" + access_token;
 
@@ -211,7 +211,7 @@
             function ScGetAttachId(FullBodyMsg) {
 
 
-                alert("in ScGetAttachId")
+                //alert("in ScGetAttachId")
                 console.log(FullBodyMsg)
                 AttachId = FullBodyMsg.payload.parts[1].body.attachmentId;
 
@@ -223,7 +223,7 @@
                 function ScGetAttachment(Attachment) {
 
                     console.log(Attachment)
-                    alert("in ScGetAttachment")
+                    //alert("in ScGetAttachment")
 
 
                     let filedata = Attachment.data
@@ -259,7 +259,7 @@
 
 
         function Convert(tmpattachdata) {
-            alert("Trying to convert the file before dwonloading")
+            //alert("Trying to convert the file before dwonloading")
             var newStr1 = tmpattachdata.replace(/-/g, "+");
             var newStr2 = newStr1.replace(/_/g, "/");
 
@@ -268,7 +268,7 @@
 
 
             finalAttachFile = decoded_Base64_file
-            alert("final attach file is " + " " + finalAttachFile)
+            //alert("final attach file is " + " " + finalAttachFile)
 
             console.log("final attach file is ", finalAttachFile)
 
@@ -300,7 +300,7 @@
 
 
         function GotContNum(response) {
-            alert("GotContNum")
+            //alert("GotContNum")
             console.log(response)
             //sessionStorage.setItem("ContainerNum", response)
             ContainerNumber = response
@@ -371,7 +371,7 @@
 
         }
         function successResponseCB(response) {
-            alert("successResponseCB")
+            //alert("successResponseCB")
             console.log(response)
             document.getElementById("Comments").value = "צילום"
             let str = JSON.stringify(response)
