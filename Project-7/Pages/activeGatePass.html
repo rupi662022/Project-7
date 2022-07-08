@@ -19,16 +19,14 @@
     <link href="../app-assets/css-rtl/app.css" rel="stylesheet" />
     <link href="../app-assets/css-rtl/custom-rtl.css" rel="stylesheet" />
     <link href="../app-assets/css-rtl/core/menu/menu-types/vertical-menu.css" rel="stylesheet" />
-    <!--<link href="../app-assets/css/plugins/forms/switch.min.css" rel="stylesheet" />-->
-    <link href="../assets/css/style-rtl.css" rel="stylesheet" />
+    <!--<link href="../assets/css/style-rtl.css" rel="stylesheet" />-->
     <script src="../app-assets/vendors/js/ui/headroom.min.js"></script>
-
+    <link href="../app-assets/css-rtl/components.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-
-    <link rel="stylesheet" type="text/css" href="demos.css" />
+    <!--<link rel="stylesheet" type="text/css" href="demos.css" />-->
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
     <!-- BEGIN Grid scripts-->
     <script src="../external/jquery/jquery-1.8.3.js"></script>
@@ -45,6 +43,11 @@
     <script src="../srcc/fields/jsgrid.field.select.js"></script>
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
+
+
+    <!--<link href="../app-assets/css/components.css" rel="stylesheet" />
+    <link href="../app-assets/css-rtl/bootstrap.css" rel="stylesheet" />-->
+
 
     <style>
 
@@ -145,11 +148,6 @@
             font-family: sans-serif;
         }
 
-        .jsgrid-grid-body {
-            height: 500px;
-            /*       position: relative;
-            overflow-wrap: normal;*/
-        }
 
         #Add {
             background-color: #3bafda;
@@ -192,7 +190,7 @@
             }
 
 
-
+           
 
 
 
@@ -206,64 +204,67 @@
                 },
 
                 itemTemplate: function (value) {
-                    return new Date(value).toDateString();
+                    return new Date(value).toLocaleDateString();
                 },
+ 
 
-
-                filterTemplate: function () {
-
-                    var now = new Date();
-                    this._fromPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() - 1), dateFormat: "mm/dd/yy" });
-                    this._toPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() + 1), dateFormat: "mm/dd/yy" });
-                    return $("<div>").append(this._fromPicker).append(this._toPicker);
-
-                    if (!this.filtering)
-                        return "";
-
-                    var grid = this._grid,
-                        $result = this.filterControl = this._createTextBox();
-
-                    if (this.autosearch) {
-                        $result.on("keypress", function (e) {
-                            if (e.which === 13) {
-                                grid.search();
-                                e.preventDefault();
-                            }
-                        });
-                    }
-
-                    return $result;
-
-
-                },
-
-
-
-                insertTemplate: function (value) {
-                    return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
-                },
-
-                editTemplate: function (value) {
-                    return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
-                },
-
-                insertValue: function () {
-                    return this._insertPicker.datepicker("getDate")
-                },
-
-                editValue: function () {
-                    return this._editPicker.datepicker("getDate")
-                },
-
-                //filterValue: function () {
-                //    return {
-                //        from: this._fromPicker.datepicker("getDate"),
-                //        to: this._toPicker.datepicker("getDate")
-                //    };
-                //}
-            });
-
+                 });
             jsGrid.fields.date = DateField;
+
+            //    filterTemplate: function () {
+
+            //        var now = new Date();
+            //        this._fromPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() - 1), dateFormat: "mm/dd/yy" });
+            //        this._toPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() + 1), dateFormat: "mm/dd/yy" });
+            //        return $("<div>").append(this._fromPicker).append(this._toPicker);
+
+            //        if (!this.filtering)
+            //            return "";
+
+            //        var grid = this._grid,
+            //            $result = this.filterControl = this._createTextBox();
+
+            //        if (this.autosearch) {
+            //            $result.on("keypress", function (e) {
+            //                if (e.which === 13) {
+            //                    grid.search();
+            //                    e.preventDefault();
+            //                }
+            //            });
+            //        }
+
+            //        return $result;
+
+
+            //    },
+
+
+
+            //    insertTemplate: function (value) {
+            //        return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+            //    },
+
+            //    editTemplate: function (value) {
+            //        return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+            //    },
+
+            //    insertValue: function () {
+            //        return this._insertPicker.datepicker("getDate")
+            //    },
+
+            //    editValue: function () {
+            //        return this._editPicker.datepicker("getDate")
+            //    },
+
+            //    //filterValue: function () {
+            //    //    return {
+            //    //        from: this._fromPicker.datepicker("getDate"),
+            //    //        to: this._toPicker.datepicker("getDate")
+            //    //    };
+            //    //}
+            //});
+
+            //jsGrid.fields.date = DateField;
 
 
 
@@ -273,15 +274,26 @@
                 window.location.href = "CreatGatePass.html";
             });
 
-            
 
-            var db = $.ajax({
+
+            var TransportCompanies = $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
                 url: "../api/TransportCompany",
                 data: "json"
 
             })
+
+            var CustomsBrokers = $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "../api/Brokers",
+                data: "json"
+
+            })
+
+
+
             console.log(db)
 
 
@@ -309,23 +321,19 @@
                     pageSize: 15,
                     pageButtonCount: 7,
                     deleteConfirm: function (item) {
-                        return "?ימחק. האם אתה בטוח \"" + item.Id + "\" גייטפס ";
+                        return " גייטפס\"" + item.Id + "\"  ימחק. האם אתה בטוח?";
                     },
                     controller: {
 
                         loadData: function (filter) {
                             return $.grep(data, function (item) {
-                                // client-side filtering below (be sure conditions are correct)
                                 return (!filter.Id || item.Id.indexOf(filter.Id) > -1)
                                     && (!filter.ContainerNum || item.ContainerNum.indexOf(filter.ContainerNum) > -1)
                                     && (!filter.ContainerType || item.ContainerType.indexOf(filter.ContainerType) > -1)
                                     && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1)
-                               /*     && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1)*/
                                     && (!filter.CustomsBroker || item.CustomsBroker.indexOf(filter.CustomsBroker) > -1)
-                                    /* && (!filter.GoToRepair || item.GoToRepair.indexOf(filter.GoToRepair) > -)*/
-                                    && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1)
-                                //&& (!filter.RegisterDate.from || new Date(item.CreatedDate) >= filter.CreatedDate.from)
-                                //&& (!filter.RegisterDate.to || new Date(item.CreatedDate) <= filter.CreatedDate.to);
+                                    && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
+            
                             });
                         },
 
@@ -354,14 +362,12 @@
                         { name: "ContainerType", title: "סוג מכולה", type: "text", width: 30, align: "center" },
                         {
                             name: "TransportCompany", title: "חברת תובלה", type: "select", width: 80, align: "center"
-                            , items:
-                                db.responseJSON
-                           
-                            , valueField: "CompanyName", textField: "CompanyName"
-                            },
-                        //{ name: "Importer", type: "text", title: "יבואן", width: 80, align: "center" },
-                        { name: "CustomsBroker", type: "text", title: "עמיל מכס", width: 80, align: "center" },
-                        /*     { name: "GoToRepair", type: "checkbox", title: "יצא לתיקון", sorting: false },*/
+                            , items:TransportCompanies.responseJSON , valueField: "CompanyName", textField: "CompanyName"
+                        },
+                        {
+                            name: "CustomsBroker", type: "select", title: "עמיל מכס", width: 80, align: "center"
+                            , items: CustomsBrokers.responseJSON, valueField: "BrokerName", textField: "BrokerName"
+                        },
                         { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 70, align: "center" },
                         {
                             name: "Note", title: 'הערות',
@@ -399,14 +405,7 @@
         })
 
     </script>
-    <!--<script>
 
-        function byebye() {
-            localStorage.clear();
-            window.location.href = "login.html";
-        }
-
-    </script>-->
 
 
 </head>
@@ -432,11 +431,7 @@
 
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
-                    <!--<ul class="nav navbar-nav mr-auto float-left">
-                        <li class="dropdown dropdown-user nav-item">
-                            <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
-                        </li>
-                    </ul>-->
+             
                     <ul class="nav navbar-nav float-right" style="margin-left: 100px">
 
                         <li class="dropdown dropdown-user nav-item" style="float:left">
@@ -454,38 +449,27 @@
     <!-- BEGIN Navigation-->
     <div class="main-menu menu-dark menu-static menu-shadow" data-scroll-to-active="true">
         <div class="main-menu-content" style="margin-left:30px">
-            <!--<div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">-->
-            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" style="height:800px;padding-top:30px">
+            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" style="height:870px;padding-top:30px">
 
-                <li class="nav-item"><a style="font-size:18px" href="CreatGatePass.html"><i class="menu-title"></i><span> יצירת גייטפס </span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="CreatGatePass.html"><i class="ft-file-plus"></i><span class="menu-title" > יצירת גייטפס </span></a></li>
 
 
                 <li class="nav nav-item">
-                    <a style="font-size:18px" href="activeGatePass.html"><i class="icon-screen-tablet"></i><span class="menu-title" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <a style="font-size:18px" href="activeGatePass.html"><i class="icon-screen-desktop"></i><span class="menu-title" >ניהול גייטפסים</span></a>
                     <ul class="menu-content">
-                        <li><a class="menu-item" href="activeGatePass.html"><p>גייטפסים פעילים</p></a></li>
-                        <li><a class="menu-item" href="archivePage.html"><p>ארכיון</p></a></li>
+                        <li style="margin-right:45px;"><a class="menu-item" href="activeGatePass.html"><p>גייטפסים פעילים</p></a></li>
+                        <li style="margin-right:45px;"><a class="menu-item" href="archivePage.html"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
 
                 <li class="nav-item"><a style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
-                <li class="nav-item"><a style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
-                <li class="nav-item"><a style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> חברות תובלה</span></a></li>
-                <li class="nav-item" id="Dashboard"><a style="font-size:18px" href="Dashboard.html" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
-                <li class="nav-item" id="Price"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> הצעות מחיר</span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> עמילי מכס</span></a></li>
+                <li class="nav-item"><a style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="ft-package"></i><span class="menu-title"> חברות תובלה</span></a></li>
+                <li class="nav-item" id="Dashboard"><a style="font-size:18px" href="Dashboard.html" data-toggle="sans-serif"><i class="icon-chart"></i><span class="menu-title"> דשבורד</span></a></li>
+                <li class="nav-item" id="Price"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-calculator"></i><span class="menu-title"> הצעות מחיר</span></a></li>
                 <li class="nav-item" id="CustomerAdmin"><a style="font-size:18px;  " href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
-                <li class="nav-item" id="Users"><a style="font-size:18px;  " href="ManageUsers.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשי חברה</span></a></li>
-                <li class=" nav-item">
-                    <a href="#"><i class="ft-layout"></i><span class="menu-title" data-i18n="">General</span></a>
-                    <ul class="menu-content">
-                        <li>
-                            <a class="menu-item" href="#">Layouts</a>
-                        </li>
-                        <li>
-                            <a class="menu-item" href="documentation-starter-kit.html">Starter Kit</a>
-                        </li>
-                    </ul>
-                </li>
+                <li class="nav-item" id="Users"><a style="font-size:18px; " href="ManageUsers.html" data-toggle="sans-serif"><i class="ft-users"></i><span class="menu-title"> משתמשי חברה</span></a></li>
+            
             </ul>
         </div>
     </div>
@@ -520,17 +504,21 @@
             <h1>הערות</h1>
             <p id="pop-up-data"></p>
             <div class="popup-close">&times;</div>
+
         </div>
     </div>
 
-    <button id="open-popup"></button>
     <!--</div>
     </section>-->
     <!--</div>-->
-    
-    <footer  style="margin-bottom:0PX" class="footer footer-static footer-light navbar-shadow">
+    <!--<button id="open-popup"></button>-->
+
+    <footer style="margin-bottom:0PX" class="footer footer-static footer-light navbar-shadow">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span></p>
     </footer>
+
+
+
 
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
@@ -540,6 +528,7 @@
     <script src="../../../app-assets/js/core/app.js"></script>
     <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js"></script>
     <script src="../app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js"></script>
+
 
 </body>
 </html>

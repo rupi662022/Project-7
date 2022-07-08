@@ -2925,6 +2925,7 @@
     <Content Include="app-assets\js\scripts\charts\rickshaw\scatter.min.js" />
     <Content Include="app-assets\js\scripts\coming-soon\coming-soon.js" />
     <Content Include="app-assets\js\scripts\coming-soon\coming-soon.min.js" />
+    <Content Include="app-assets\js\scripts\components\table-components.js" />
     <Content Include="app-assets\js\scripts\customizer.js" />
     <Content Include="app-assets\js\scripts\customizer.min.js" />
     <Content Include="app-assets\js\scripts\documentation.js" />
@@ -5753,8 +5754,8 @@
     <Content Include="external\qunit\qunit-1.10.0.js" />
     <Content Include="Logo\pngegg.png" />
     <Content Include="Logo\shayLogo.png" />
-    <Content Include="Pages\HtmlPage1.html" />
-    <Content Include="Pages\insertGatePass.html" />
+    <Content Include="PagesOld\HtmlPage1.html" />
+    <Content Include="PagesOld\insertGatePass.html" />
     <Content Include="Pages\CustomerAdminUsers.html" />
     <Content Include="Pages\MyGatePass.html" />
     <Content Include="Pages\activeGatePass.html" />
@@ -5768,13 +5769,13 @@
     <Content Include="Global.asax" />
     <Content Include="Pages\archivePage.html" />
     <Content Include="Pages\CreatGatePass.html" />
-    <Content Include="Pages\demos.css" />
+    <Content Include="app-assets\css\plugins\demos.css" />
     <Content Include="demos\gatePass%28OLD%29.html" />
-    <Content Include="Pages\home.html" />
+    <Content Include="PagesOld\home.html" />
     <Content Include="Pages\registerU.html" />
     <Content Include="Pages\ManageUsers.html" />
     <Content Include="Pages\Dashboard.html" />
-    <Content Include="Pages\transportComp - Copy.html" />
+    <Content Include="PagesOld\transportComp - Copy.html" />
     <Content Include="Pages\transportComp.html" />
     <Content Include="Pages\login.html" />
     <Content Include="jquery-ui-1.13.1.custom\external\jquery\jquery.js" />
@@ -5804,7 +5805,7 @@
     <Content Include="PagesOld\ManageGates.html" />
     <Content Include="PagesOld\MyGatePassOLD.html" />
     <Content Include="PagesOld\NewGmailInitPage.html" />
-    <Content Include="Pages\Old.html" />
+    <Content Include="PagesOld\Old.html" />
     <Content Include="PagesOld\recover-password.html" />
     <Content Include="PagesOld\registerOld.html" />
     <Content Include="PagesOld\registerUser.html" />
