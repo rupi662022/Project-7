@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/colors/palette-gradient.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/pages/login-register.css">
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style-rtl.css">
-    
+
 
     <style>
         p, h1, h2, h3, h4, span, td, tr, table {
@@ -54,38 +54,34 @@
 
 
         function Sucse(U) {
-        
-            console.log(U.UserType)
-       
 
-            if (U.UserPassword == password)
-            {
+            console.log(U.UserType)
+
+
+            if (U.UserPassword == password) {
                 localSave(U);
-                if (U.UserType == 'C' || U.UserType=='G')
-                {
-                    window.location.href ="MyGatePass.html";
+                if (U.UserType == 'C' || U.UserType == 'G') {
+                    window.location.href = "MyGatePass.html";
 
                 }
-                else if (U.UserType == 'U')
-                {
-                    if (U.IsAdmin == true)
-                    {
-                       
+                else if (U.UserType == 'U') {
+                    if (U.IsAdmin == true) {
+
                         window.location.href = "Dashboard.html"
                     }
-                   else
-                    window.location.href = "activeGatePass.html";
+                    else
+                        window.location.href = "activeGatePass.html";
                 }
-                
 
-        }
+
+            }
             else {
                 ecb()
             }
         }
 
         function ecb(err) {
-      
+
             alert("משתמש לא קיים, אנא הירשם")
             window.location.href = "registerU.html";
         }
@@ -105,7 +101,6 @@
 
 
 </head>
-<div>
     <body class="horizontal-layout horizontal-menu horizontal-menu-padding 1-column   menu-expanded blank-page blank-page" data-open="hover" data-menu="horizontal-menu" data-col="1-column">
         <!-- ////////////////////////////////////////////////////////////////////////////-->
         <div class="app-content container center-layout mt-2">
@@ -140,11 +135,11 @@
                                                 </fieldset>
                                                 <div class="form-group row">
                                                     <!--<div class="col-md-6 col-12 text-center text-md-left">
-                                                        <fieldset>
-                                                            <input type="checkbox" id="remember-me" class="chk-remember">
-                                                            <label for="remember-me"> זכור אותי</label>
-                                                        </fieldset>
-                                                    </div>-->
+                                                <fieldset>
+                                                    <input type="checkbox" id="remember-me" class="chk-remember">
+                                                    <label for="remember-me"> זכור אותי</label>
+                                                </fieldset>
+                                            </div>-->
                                                     <!--<div class="col-md-6 col-12 text-center text-md-right"><a href="recover-password.html" class="card-link">שכחת סיסמה?</a></div>-->
                                                 </div>
                                                 <button type="submit" class="btn btn-info btn-lg btn-block"></><i class="ft-unlock"></i> התחבר</button>
@@ -183,5 +178,5 @@
 
         <!--<p> dasdsaads</p>-->
     </body>
-</div>
+
 </html>

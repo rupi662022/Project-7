@@ -66,6 +66,10 @@
             /*       width:60px; */
             padding-left: 14px;
         }
+
+        #UserName {
+            font-size: 25PX;
+        }
     </style>
     <script>
 
@@ -197,14 +201,7 @@
 
 
     </script>
-    <!--<script>
 
-        function byebye() {
-            localStorage.clear();
-            window.location.href = "login.html";
-        }
-
-    </script>-->
 
 
 </head>
@@ -213,14 +210,12 @@
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-static-top navbar-dark navbar-shadow navbar-border">
         <div class="navbar-wrapper">
-            <div class="navbar-header">
+            <div class="navbar-header" style="width:200PX">
                 <ul class="nav navbar-nav flex-row">
                     <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="activeGatePass.html"><i class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item">
-                        <a class="navbar-brand" href="../../../html/rtl/vertical-menu-template/index.html">
-                            <img class="brand-logo" src="../Logo/pngegg.png" />
-
-
+                        <a class="navbar-brand" href="activeGatePass.html">
+                            <img class="brand-logo" src="../Logo/pngegg.png" style="padding-bottom:6PX" />
                             <h3 class="brand-text">שי שירותי נמל</h3>
                         </a>
                     </li>
@@ -230,11 +225,7 @@
 
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
-                    <!--<ul class="nav navbar-nav mr-auto float-left">
-                        <li class="dropdown dropdown-user nav-item">
-                            <button id="disConnect" style="margin-top:10px" onclick="byebye()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
-                        </li>
-                    </ul>-->
+
                     <ul class="nav navbar-nav float-right" style="margin-left: 100px">
 
                         <li class="dropdown dropdown-user nav-item" style="float:left">
@@ -252,27 +243,26 @@
     <!-- BEGIN Navigation-->
     <div class="main-menu menu-dark menu-static menu-shadow" data-scroll-to-active="true">
         <div class="main-menu-content" style="margin-left:30px">
-            <!--<div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">-->
-            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" style="height:800px;padding-top:30px">
+            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" style="height:870px;padding-top:30px">
 
-                <li class="nav-item"><a style="font-size:18px" href="CreatGatePass.html"><i class="menu-title"></i><span> יצירת גייטפס </span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="CreatGatePass.html"><i class="ft-file-plus"></i><span class="menu-title"> יצירת גייטפס </span></a></li>
 
 
                 <li class="nav nav-item">
-                    <a style="font-size:18px" href="activeGatePass.html"><i class="icon-screen-tablet"></i><span class="menu-title" style=" font-family:sans-serif">ניהול גייטפסים</span></a>
+                    <a style="font-size: 18px; " href="activeGatePass.html"><i class="icon-screen-desktop"></i><span class="menu-title">ניהול גייטפסים</span></a>
                     <ul class="menu-content">
                         <li style="margin-right:45px;"><a class="menu-item" href="activeGatePass.html"><p>גייטפסים פעילים</p></a></li>
                         <li style="margin-right:45px;"><a class="menu-item" href="archivePage.html"><p>ארכיון</p></a></li>
                     </ul>
                 </li>
 
-                <li class="nav-item"><a style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
-                <li class="nav-item"><a style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> עמילי מכס</span></a></li>
-                <li class="nav-item"><a style="font-size:18px;  border:solid 1px gray; background-color:#d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> חברות תובלה</span></a></li>
-                <li class="nav-item" id="Dashboard"><a style="font-size:18px" href="Dashboard.html" data-toggle="sans-serif"><i class="icon-screen-desktop"></i><span class="menu-title"> דשבורד</span></a></li>
-                <li class="nav-item" id="Price"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> הצעות מחיר</span></a></li>
-                <li class="nav-item" id="CustomerAdmin"><a style="font-size:18px;  " href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
-                <li class="nav-item" id="Users"><a style="font-size:18px;  " href="ManageUsers.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> משתמשי חברה</span></a></li>
+                <li class="nav-item"><a style="font-size: 18px;" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
+                <li class="nav-item"><a style="font-size: 18px;" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> עמילי מכס</span></a></li>
+                <li class="nav-item"><a style="font-size: 18px; border: solid 1px gray; background-color: #d5f4e6;" href="transportComp.html" data-toggle="sans-serif"><i class="ft-package"></i><span class="menu-title"> חברות תובלה</span></a></li>
+                <li class="nav-item" id="CustomerAdmin"><a style="font-size: 18px; " href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
+                <li class="nav-item" id="Users"><a style="font-size: 18px; " href="ManageUsers.html" data-toggle="sans-serif"><i class="ft-users"></i><span class="menu-title"> ניהול משתמשים</span></a></li>
+                <li class="nav-item" id="Dashboard"><a style="font-size: 18px;" href="Dashboard.html" data-toggle="sans-serif"><i class="icon-chart"></i><span class="menu-title"> דשבורד</span></a></li>
+                <li class="nav-item" id="Price"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-calculator"></i><span class="menu-title"> הצעות מחיר</span></a></li>
 
             </ul>
         </div>
