@@ -175,7 +175,9 @@
             border: none;
             cursor: pointer;
         }
-   
+        #UserName {
+            font-size: 25PX;
+        }
     </style>
 
     <script>
@@ -200,6 +202,7 @@
 
 
 
+
             var DateField = function (config) {
                 jsGrid.Field.call(this, config);
             };
@@ -210,64 +213,38 @@
                 },
 
                 itemTemplate: function (value) {
-                    return new Date(value).toDateString();
+                    return new Date(value).toLocaleDateString();
                 },
 
 
-                filterTemplate: function () {
-
-                    var now = new Date();
-                    this._fromPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() - 1), dateFormat: "mm/dd/yy" });
-                    this._toPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() + 1), dateFormat: "mm/dd/yy" });
-                    return $("<div>").append(this._fromPicker).append(this._toPicker);
-
-                    if (!this.filtering)
-                        return "";
-
-                    var grid = this._grid,
-                        $result = this.filterControl = this._createTextBox();
-
-                    if (this.autosearch) {
-                        $result.on("keypress", function (e) {
-                            if (e.which === 13) {
-                                grid.search();
-                                e.preventDefault();
-                            }
-                        });
-                    }
-
-                    return $result;
-
-
-                },
+            });
+            jsGrid.fields.date = DateField;
 
 
 
-                insertTemplate: function (value) {
-                    return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
-                },
-
-                editTemplate: function (value) {
-                    return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
-                },
-
-                insertValue: function () {
-                    return this._insertPicker.datepicker("getDate")
-                },
-
-                editValue: function () {
-                    return this._editPicker.datepicker("getDate")
-                },
-
-                //filterValue: function () {
-                //    return {
-                //        from: this._fromPicker.datepicker("getDate"),
-                //        to: this._toPicker.datepicker("getDate")
-                //    };
-                //}
+            //Create New GatePass
+            $('#Add').on("click", function () {
+                window.location.href = "CreatGatePass.html";
             });
 
-            jsGrid.fields.date = DateField;
+
+
+            var TransportCompanies = $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "../api/TransportCompany",
+                data: "json"
+
+            })
+
+            var CustomsBrokers = $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "../api/Brokers",
+                data: "json"
+
+            })
+
 
 
             //Create New GatePass
@@ -316,12 +293,9 @@
                                     && (!filter.ContainerNum || item.ContainerNum.indexOf(filter.ContainerNum) > -1)
                                     && (!filter.ContainerType || item.ContainerType.indexOf(filter.ContainerType) > -1)
                                     && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1)
-                                    /*     && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1)*/
-                                    && (!filter.CustomsBroker || item.CustomsBroker.indexOf(filter.CustomsBroker) > -1)
-                                    /* && (!filter.GoToRepair || item.GoToRepair.indexOf(filter.GoToRepair) > -)*/
+                                    && (!filter.CustomsBroker || item.CustomsBroker.indexOf(filter.CustomsBroker) > -1)             
                                     && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1)
-                                //&& (!filter.RegisterDate.from || new Date(item.CreatedDate) >= filter.CreatedDate.from)
-                                //&& (!filter.RegisterDate.to || new Date(item.CreatedDate) <= filter.CreatedDate.to);
+                  
                             });
                         },
 
@@ -331,13 +305,17 @@
 
 
 
-                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 30, sorting: false, align: "center", editing: false, filtering: false },
+                        { name: "Id", title: 'קוד גייטפס', type: "number", width: 30, sorting: false, align: "center", editing: false, filtering: false },
                         { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 70, align: "center" },
                         { name: "ContainerType", title: "סוג מכולה", type: "text", width: 30, align: "center" },
-                        { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 80, align: "center", },
-                        //{ name: "Importer", type: "text", title: "יבואן", width: 80, align: "center" },
-                        { name: "CustomsBroker", type: "text", title: "עמיל מכס", width: 80, align: "center" },
-                        /*     { name: "GoToRepair", type: "checkbox", title: "יצא לתיקון", sorting: false },*/
+                        {
+                            name: "TransportCompany", title: "חברת תובלה", type: "select", width: 80, align: "center"
+                            , items: TransportCompanies.responseJSON, valueField: "CompanyName", textField: "CompanyName"
+                        },
+                        {
+                            name: "CustomsBroker", type: "select", title: "עמיל מכס", width: 80, align: "center"
+                            , items: CustomsBrokers.responseJSON, valueField: "BrokerName", textField: "BrokerName"
+                        },
                         { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 70, align: "center" },
                         //{
                         //    name: "Note", title: 'הערות',
@@ -355,15 +333,15 @@
 
                         //    }, width: 30, filtering: false, sorting: false, align: "center", editing: false,
                         //},
-                        //{
-                        //    type: "control",
-                        //},
+                        {
+                            type: "control",
+                        },
                     ]
                 });
 
 
-                document.querySelector(".popup .popup-container .popup-close").addEventListener("click", function () {
-                    document.querySelector(".popup").classList.remove("act");
+                //document.querySelector(".popup .popup-container .popup-close").addEventListener("click", function () {
+                //    document.querySelector(".popup").classList.remove("act");
                 });
 
 
@@ -372,7 +350,7 @@
 
 
 
-        })
+     /*   })*/
 
     </script>
     <!--<script>
@@ -486,14 +464,9 @@
             <p id="pop-up-data"></p>
             <div class="popup-close">&times;</div>
         </div>
-    </div>
+    </div>-->
 
-    <button id="open-popup"></button>-->
-    <!--</div>
-    </section>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
+
     <footer style="margin-bottom:0PX" class="footer footer-static footer-light navbar-shadow">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2 container center-layout"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span></p>
     </footer>

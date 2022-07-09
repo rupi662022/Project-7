@@ -85,7 +85,13 @@
                 $('#Users').hide();
 
             }
+            var TransportCompanies = $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "../api/TransportCompany",
+                data: "json"
 
+            })
 
             $.ajax({
                 type: "GET",
@@ -172,7 +178,10 @@
                     fields: [
                         { name: "AdminId", title: 'תעודת זהות', type: "text", width: 100, sorting: false, align: "center", editing: false },
                         { name: "FullName", title: 'שם אדמין', type: "text", width: 100, sorting: false, align: "center", editing: false },
-                        { name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center" },
+                        {
+                            name: "TransportComany", title: "חברת תובלה", type: "select", width: 80, align: "center"
+                            , items: TransportCompanies.responseJSON, valueField: "CompanyName", textField: "CompanyName"
+                        },
                         { name: "PhoneNumber", title: 'מספר טלפון', type: "text", width: 100, align: "center" },
 
                         {
@@ -288,15 +297,7 @@
             <!-- content body-->
             <div class="card-content">
                 <div class="content-body" id="GatePas">
-                    <!-- Basic scenario start -->
-                    <!--<section id="basic">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-
-                                <div class="card-content collapse show">
-                                    <div class="card-body card-dashboard ">-->
-                    <!--</div>-->
+  \
                 </div>
             </div>
         </div>

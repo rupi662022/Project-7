@@ -19,10 +19,8 @@
     <link href="../app-assets/css-rtl/app.css" rel="stylesheet" />
     <link href="../app-assets/css-rtl/custom-rtl.css" rel="stylesheet" />
     <link href="../app-assets/css-rtl/core/menu/menu-types/vertical-menu.css" rel="stylesheet" />
-    <!--<link href="../assets/css/style-rtl.css" rel="stylesheet" />-->
     <script src="../app-assets/vendors/js/ui/headroom.min.js"></script>
-    <link href="../app-assets/css-rtl/components.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+\    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
@@ -170,6 +168,11 @@
             border: none;
             cursor: pointer;
         }
+
+
+        #UserName{
+            font-size:25PX;
+        }
     </style>
 
     <script>
@@ -211,62 +214,6 @@
                  });
             jsGrid.fields.date = DateField;
 
-            //    filterTemplate: function () {
-
-            //        var now = new Date();
-            //        this._fromPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() - 1), dateFormat: "mm/dd/yy" });
-            //        this._toPicker = $("<input>").datepicker({ defaultDate: now.setFullYear(now.getFullYear() + 1), dateFormat: "mm/dd/yy" });
-            //        return $("<div>").append(this._fromPicker).append(this._toPicker);
-
-            //        if (!this.filtering)
-            //            return "";
-
-            //        var grid = this._grid,
-            //            $result = this.filterControl = this._createTextBox();
-
-            //        if (this.autosearch) {
-            //            $result.on("keypress", function (e) {
-            //                if (e.which === 13) {
-            //                    grid.search();
-            //                    e.preventDefault();
-            //                }
-            //            });
-            //        }
-
-            //        return $result;
-
-
-            //    },
-
-
-
-            //    insertTemplate: function (value) {
-            //        return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
-            //    },
-
-            //    editTemplate: function (value) {
-            //        return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
-            //    },
-
-            //    insertValue: function () {
-            //        return this._insertPicker.datepicker("getDate")
-            //    },
-
-            //    editValue: function () {
-            //        return this._editPicker.datepicker("getDate")
-            //    },
-
-            //    //filterValue: function () {
-            //    //    return {
-            //    //        from: this._fromPicker.datepicker("getDate"),
-            //    //        to: this._toPicker.datepicker("getDate")
-            //    //    };
-            //    //}
-            //});
-
-            //jsGrid.fields.date = DateField;
-
-
 
 
             //Create New GatePass
@@ -293,10 +240,6 @@
             })
 
 
-
-            console.log(db)
-
-
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
@@ -305,7 +248,7 @@
 
             }).done(function (data) {
 
-                console.log(data)
+
 
                 $("#GatePas").jsGrid({
 
@@ -357,7 +300,7 @@
                     fields: [
 
 
-                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 30, sorting: false, align: "center", editing: false, filtering: false },
+                        { name: "Id", title: 'קוד גייטפס', type: "number", width: 30, sorting: false, align: "center", editing: false, filtering: false },
                         { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 70, align: "center" },
                         { name: "ContainerType", title: "סוג מכולה", type: "text", width: 30, align: "center" },
                         {
@@ -407,21 +350,17 @@
     </script>
 
 
-
 </head>
 <body class="vertical-layout vertical-menu 2-column menu-expanded " data-open="hover" data-menu="vertical-menu">
-
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-static-top navbar-dark navbar-shadow navbar-border">
         <div class="navbar-wrapper">
-            <div class="navbar-header">
+            <div class="navbar-header" style="width:200PX">
                 <ul class="nav navbar-nav flex-row">
                     <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="activeGatePass.html"><i class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item">
-                        <a class="navbar-brand" href="../../../html/rtl/vertical-menu-template/index.html">
-                            <img class="brand-logo" src="../Logo/pngegg.png" />
-
-
+                        <a class="navbar-brand" href="activeGatePass.html">
+                            <img class="brand-logo" src="../Logo/pngegg.png" style="padding-bottom:6PX" />
                             <h3 class="brand-text">שי שירותי נמל</h3>
                         </a>
                     </li>
@@ -431,7 +370,7 @@
 
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse" id="navbar-mobile">
-             
+
                     <ul class="nav navbar-nav float-right" style="margin-left: 100px">
 
                         <li class="dropdown dropdown-user nav-item" style="float:left">
@@ -451,11 +390,11 @@
         <div class="main-menu-content" style="margin-left:30px">
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" style="height:870px;padding-top:30px">
 
-                <li class="nav-item"><a style="font-size:18px" href="CreatGatePass.html"><i class="ft-file-plus"></i><span class="menu-title" > יצירת גייטפס </span></a></li>
+                <li class="nav-item"><a style="font-size:18px" href="CreatGatePass.html"><i class="ft-file-plus"></i><span class="menu-title"> יצירת גייטפס </span></a></li>
 
 
                 <li class="nav nav-item">
-                    <a style="font-size:18px" href="activeGatePass.html"><i class="icon-screen-desktop"></i><span class="menu-title" >ניהול גייטפסים</span></a>
+                    <a style="font-size: 18px; border:solid 1px gray; background-color:#d5f4e6;" href="activeGatePass.html"><i class="icon-screen-desktop"></i><span class="menu-title">ניהול גייטפסים</span></a>
                     <ul class="menu-content">
                         <li style="margin-right:45px;"><a class="menu-item" href="activeGatePass.html"><p>גייטפסים פעילים</p></a></li>
                         <li style="margin-right:45px;"><a class="menu-item" href="archivePage.html"><p>ארכיון</p></a></li>
@@ -465,11 +404,11 @@
                 <li class="nav-item"><a style="font-size:18px" href="driver.html" data-toggle="sans-serif"><i class="icon-compass"></i><span class="menu-title"> נהגים</span></a></li>
                 <li class="nav-item"><a style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> עמילי מכס</span></a></li>
                 <li class="nav-item"><a style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="ft-package"></i><span class="menu-title"> חברות תובלה</span></a></li>
+                <li class="nav-item" id="CustomerAdmin"><a style="font-size:18px;  " href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
+                <li class="nav-item" id="Users"><a style="font-size:18px; " href="ManageUsers.html" data-toggle="sans-serif"><i class="ft-users"></i><span class="menu-title"> משתמשי החברה</span></a></li>
                 <li class="nav-item" id="Dashboard"><a style="font-size:18px" href="Dashboard.html" data-toggle="sans-serif"><i class="icon-chart"></i><span class="menu-title"> דשבורד</span></a></li>
                 <li class="nav-item" id="Price"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-calculator"></i><span class="menu-title"> הצעות מחיר</span></a></li>
-                <li class="nav-item" id="CustomerAdmin"><a style="font-size:18px;  " href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
-                <li class="nav-item" id="Users"><a style="font-size:18px; " href="ManageUsers.html" data-toggle="sans-serif"><i class="ft-users"></i><span class="menu-title"> משתמשי חברה</span></a></li>
-            
+
             </ul>
         </div>
     </div>

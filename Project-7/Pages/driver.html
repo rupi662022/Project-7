@@ -88,6 +88,15 @@
 
             }
 
+            var TransportCompanies = $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "../api/TransportCompany",
+                data: "json"
+
+            })
+
+
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
@@ -176,10 +185,12 @@
                     fields: [
                         { name: "DriverID", title: 'תעודת זהות', type: "number", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין ת.ז" }, },
                         {
-                            name: "TransportComany", title: 'חברת תובלה', type: "text", width: 100, align: "center", /*items: data,*/
-                            /*    , valueField: "TransportComany", textField: "TransportComany",*/
-                            validate: { validator: "required", message: "חובה להזין חברת תובלה" },
+                                       
+                            name: "TransportComany", title: "חברת תובלה", type: "select", width: 80, align: "center"
+                          , items: TransportCompanies.responseJSON, valueField: "CompanyName", textField: "CompanyName", validate: { validator: "required", message: "חובה להזין חברת תובלה" }
                         },
+                            
+                      
 
                         { name: "DriverFname", title: "שם פרטי", type: "text", width: 100, align: "center", validate: { validator: "required", message: "חובה להזין שם פרטי" } },
                         { name: "DriverLname", title: "שם משפחה", type: "text", width: 100, align: "center" },
