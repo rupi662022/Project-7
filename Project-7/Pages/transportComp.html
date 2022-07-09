@@ -175,7 +175,7 @@
                     },
 
                     fields: [
-                        { name: "CompanyId", title: 'מספר חברה', type: "number", width: 100, sorting: false, inserting: false, align: "center", editing: false },
+                        { name: "CompanyId", title: 'מספר חברה', type: "number", width: 100, sorting: false, inserting: false, align: "center", editing: false, filtering: false },
                         {
                             name: "CompanyName", title: "חברת תובלה", type: "select", width: 80, align: "center"
                             , items: TransportCompanies.responseJSON, valueField: "CompanyName", textField: "CompanyName", validate: { validator: "required", message: "חובה להזין שם חברה" } },

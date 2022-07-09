@@ -176,7 +176,7 @@
                     },
 
                     fields: [
-                        { name: "Id", title: 'מזהה', type: "text", width: 100, sorting: false, align: "center", editing: false, inserting: false },
+                        { name: "Id", title: 'מזהה', type: "text", width: 100, sorting: false, align: "center", editing: false, inserting: false  ,filtering: false},
                         {
                             name: "BrokerName", type: "select", title: "עמיל מכס", width: 80, align: "center"
                             , items: CustomsBrokers.responseJSON, valueField: "BrokerName", textField: "BrokerName", validate: { message: "חובה להזין עמיל מכס", validator: "required" } },
