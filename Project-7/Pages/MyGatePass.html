@@ -45,28 +45,8 @@
     <script src="../srcc/fields/jsgrid.field.select.js"></script>
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
+    <link href="../ProjectStyle.css" rel="stylesheet" />
 
-    <style>
-
-
-        p, h1, h2, h3, span, td, tr, table {
-            font-family: sans-serif;
-        }
-
-        /*.card {
-            height: 1000px;
-        }*/
-        .jsgrid-grid-body {
-            height: 500px;
-        }
-
-        img {
-            float: right;
-            height: 30px;
-            /*       width:60px; */
-            padding-left: 14px;
-        }
-    </style>
     <script>
 
         $(document).ready(function () {
@@ -202,9 +182,9 @@
 
                             }, width: 30, filtering: false, sorting: false, align: "center", editing: false,
                         },
-                        //{
-                        //    type: "control",
-                        //},
+                        {
+                            type: "control", modeSwitchButton: false, editButton: false, deleteButton: false,
+                        },
                     ]
                 });
 

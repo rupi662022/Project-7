@@ -41,139 +41,9 @@
     <script src="../srcc/fields/jsgrid.field.select.js"></script>
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
+    <link href="../ProjectStyle.css" rel="stylesheet" />
+    <link href="../GPStyle.css" rel="stylesheet" />
 
-
-    <!--<link href="../app-assets/css/components.css" rel="stylesheet" />
-    <link href="../app-assets/css-rtl/bootstrap.css" rel="stylesheet" />-->
-
-
-    <style>
-
-
-        p, h1, h2, h3, span, td, tr, table {
-            font-family: sans-serif;
-        }
-
-        .jsgrid-grid-body {
-            height: 500px;
-        }
-
-        img {
-            float: right;
-            height: 30px;
-            /*       width:60px; */
-            padding-left: 14px;
-        }
-
-        * {
-            margin: 0px;
-        }
-
-        .popup {
-            position: fixed;
-            top: -100vh;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            transition: top 0ms ease-in-out 300ms;
-        }
-
-            .popup.act {
-                transition: top 0ms ease-in-out;
-                top: 0vh;
-            }
-
-            .popup .popup-container {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%) scale(1.2);
-                width: 400px;
-                padding: 30px 20px 20px;
-                background: #eee;
-                opacity: 0.5;
-                transition: all 300ms ease-in-out;
-            }
-
-            .popup.act .popup-container {
-                opacity: 1;
-                transform: translate(-50%,-50%) scale(1);
-            }
-
-            .popup .popup-container .popup-close {
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                width: 30px;
-                height: 30px;
-                background: #111;
-                text-align: center;
-                line-height: 30px;
-                color: #eee;
-                border-radius: 50%;
-                font-size: 20px;
-                font-weight: 600;
-                cursor: pointer;
-            }
-
-            .popup .popup-container h1 {
-                text-align: center;
-                font-size: 25px;
-                font-family: "Raleway";
-                color: #222;
-            }
-
-            .popup .popup-container p {
-                margin-top: 10px;
-                font-size: 15px;
-                font-family: "Raleway";
-                color: #555;
-            }
-
-        .hasDatepicker {
-            width: 100px;
-            text-align: center;
-        }
-
-        .ui-datepicker * {
-            font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
-            font-size: 14px;
-            font-weight: 300 !important;
-        }
-
-        p, h1, h2, h3, span, td, tr, table {
-            font-family: sans-serif;
-        }
-
-
-        #Add {
-            background-color: #3bafda;
-            font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
-            font-weight: 300;
-            font-size: 14px;
-            float: right;
-            margin-right: 50px;
-            margin-bottom: 10PX;
-            color: #fff;
-            border-color: #3bafda;
-            min-width: 8.5rem;
-        }
-
-
-        .my-custom-button {
-            background-image: url('../css/google-docs.png');
-            width: 16px;
-            height: 16px;
-            border: none;
-            cursor: pointer;
-        }
-
-
-        #UserName{
-            font-size:25PX;
-        }
-    </style>
 
     <script>
 
@@ -405,7 +275,7 @@
                 <li class="nav-item"><a style="font-size:18px" href="CustomBrokers.html" data-toggle="sans-serif"><i class="icon-briefcase"></i><span class="menu-title"> עמילי מכס</span></a></li>
                 <li class="nav-item"><a style="font-size:18px;" href="transportComp.html" data-toggle="sans-serif"><i class="ft-package"></i><span class="menu-title"> חברות תובלה</span></a></li>
                 <li class="nav-item" id="CustomerAdmin"><a style="font-size:18px;  " href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
-                <li class="nav-item" id="Users"><a style="font-size:18px; " href="ManageUsers.html" data-toggle="sans-serif"><i class="ft-users"></i><span class="menu-title"> ניהול משתמשים</span></a></li>
+                <li class="nav-item" id="Users"><a style="font-size:18px; " href="ManageUsers.html" data-toggle="sans-serif"><i class="ft-users"></i><span class="menu-title"> משתמשי החברה</span></a></li>
                 <li class="nav-item" id="Dashboard"><a style="font-size:18px" href="Dashboard.html" data-toggle="sans-serif"><i class="icon-chart"></i><span class="menu-title"> דשבורד</span></a></li>
                 <li class="nav-item" id="Price"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-calculator"></i><span class="menu-title"> הצעות מחיר</span></a></li>
 
