@@ -5746,24 +5746,19 @@
     <Content Include="external\qunit\qunit-1.10.0.js" />
     <Content Include="Logo\pngegg.png" />
     <Content Include="Logo\shayLogo.png" />
-    <Content Include="PagesOld\HtmlPage1.html" />
-    <Content Include="PagesOld\insertGatePass.html" />
     <Content Include="Pages\CustomerAdminUsers.html" />
     <Content Include="Pages\MyGatePass.html" />
     <Content Include="Pages\activeGatePass.html" />
     <Content Include="Pages\CustomBrokers.html" />
     <Content Include="Pages\driver.html" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Pages\archivePage.html" />
     <Content Include="Pages\CreatGatePass.html" />
     <Content Include="app-assets\css\plugins\demos.css" />
-    <Content Include="PagesOld\home.html" />
     <Content Include="Pages\registerU.html" />
     <Content Include="Pages\ManageUsers.html" />
     <Content Include="Pages\Dashboard.html" />
-    <Content Include="PagesOld\transportComp - Copy.html" />
     <Content Include="Pages\transportComp.html" />
     <Content Include="Pages\login.html" />
     <Content Include="jquery-ui-1.13.1.custom\external\jquery\jquery.js" />
@@ -5782,21 +5777,6 @@
     <Content Include="jquery-ui-1.13.1.custom\jquery-ui.theme.css" />
     <Content Include="jquery-ui-1.13.1.custom\jquery-ui.theme.min.css" />
     <Content Include="jquery-ui-1.13.1.custom\LICENSE.txt" />
-    <Content Include="PagesOld\archive.html" />
-    <Content Include="PagesOld\CompanyTable.html" />
-    <Content Include="PagesOld\CreateExample.html" />
-    <Content Include="PagesOld\CreateGatePass1.html" />
-    <Content Include="PagesOld\data-manipulation.html" />
-    <Content Include="PagesOld\demos.css" />
-    <Content Include="PagesOld\GatePassCreationPage.html" />
-    <Content Include="PagesOld\loginOld.html" />
-    <Content Include="PagesOld\ManageGates.html" />
-    <Content Include="PagesOld\MyGatePassOLD.html" />
-    <Content Include="PagesOld\NewGmailInitPage.html" />
-    <Content Include="PagesOld\Old.html" />
-    <Content Include="PagesOld\recover-password.html" />
-    <Content Include="PagesOld\registerOld.html" />
-    <Content Include="PagesOld\registerUser.html" />
     <Content Include="GPStyle.css" />
     <Content Include="ProjectStyle.css" />
     <Content Include="Scripts\ajaxCalls.js" />
@@ -6456,18 +6436,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="src\js\scripts\" />
     <Folder Include="src\scss\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />
