@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 
-    <link rel="stylesheet" type="text/css" href="demos.css" />
+    <!--<link rel="stylesheet" type="text/css" href="demos.css" />-->
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
     <!-- BEGIN Grid scripts-->
     <script src="../external/jquery/jquery-1.8.3.js"></script>
@@ -46,6 +46,7 @@
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
     <link href="../ProjectStyle.css" rel="stylesheet" />
+    <link href="../GPStyle.css" rel="stylesheet" />
 
     <script>
 
@@ -72,41 +73,24 @@
 
             }).done(function (data) {
 
-                ///Date to string function
-                var MyDateField = function (config) {
+                var DateField = function (config) {
                     jsGrid.Field.call(this, config);
                 };
 
-                MyDateField.prototype = new jsGrid.Field({
-                    /*       css: "datepicker",*/
-                    //align: "center",
-
+                DateField.prototype = new jsGrid.Field({
                     sorter: function (date1, date2) {
                         return new Date(date1) - new Date(date2);
                     },
 
                     itemTemplate: function (value) {
-                        return new Date(value).toDateString();
+                        return new Date(value).toLocaleDateString();
                     },
-                    //insertTemplate: function (value) {
-                    //    return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
-                    //},
-
-                    //editTemplate: function (value) {
-                    //    return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
-                    //},
-
-                    //insertValue: function () {
-                    //    return this._insertPicker.datepicker("getDate").toISOString();
-                    //},
-
-                    //editValue: function () {
-                    //    return this._editPicker.datepicker("getDate").toISOString();
-                    //}
 
 
                 });
-                jsGrid.fields.date = MyDateField;
+                jsGrid.fields.date = DateField;
+
+
 
                 $("#GatePas").jsGrid({
 
@@ -281,13 +265,13 @@
             </div>
         </div>
     </div>
-    <!--<div class="popup">
+    <div class="popup">
         <div class="popup-container">
             <h1>הערות</h1>
             <p id="pop-up-data"></p>
             <div class="popup-close">&times;</div>
         </div>
-    </div>-->
+    </div>
 
     <button id="open-popup"></button>
     <footer style="margin-bottom:0PX" class="footer footer-static footer-light navbar-shadow">

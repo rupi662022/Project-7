@@ -65,13 +65,13 @@
                 $('#Users').hide();
 
             }
-            var CustomsBrokers = $.ajax({
-                type: "GET",
-                contentType: "application/json; charset=utf-8",
-                url: "../api/Brokers",
-                data: "json"
+            //var CustomsBrokers = $.ajax({
+            //    type: "GET",
+            //    contentType: "application/json; charset=utf-8",
+            //    url: "../api/Brokers",
+            //    data: "json"
 
-            })
+            //})
 
 
             $.ajax({
@@ -99,7 +99,7 @@
                     pageSize: 15,
                     pageButtonCount: 6,
                     deleteConfirm: function (item) {
-                        return "?ימחק. האם אתה בטוח \"" + item.BrokerName + "\"  ";
+                        return " עמיל מכס \"" + item.BrokerName + "\"  ימחק. האם אתה בטוח?";
                     },
                     controller: {
 
@@ -156,11 +156,11 @@
                     fields: [
                         { name: "Id", title: 'מזהה', type: "text", width: 100, sorting: false, align: "center", editing: false, inserting: false  ,filtering: false},
                         {
-                            name: "BrokerName", type: "select", title: "עמיל מכס", width: 80, align: "center"
-                            , items: CustomsBrokers.responseJSON, valueField: "BrokerName", textField: "BrokerName", validate: { message: "חובה להזין עמיל מכס", validator: "required" } },
+                            name: "BrokerName", type: "text", title: "עמיל מכס", width: 80, align: "center",validate: { message: "חובה להזין עמיל מכס", validator: "required" }
+                        },
                         { name: "Adress", title: "כתובת", type: "text", width: 100, align: "center", validate: { message: "אורך  הכתובת לא כנדרש", validator: "rangeLength", param: [3, 30] } },
                         { name: "PhoneNumber", title: "מספר טלפון", type: "text", width: 100, align: "center", validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [7, 15] } },
-                        { name: "Fax", type: "text", title: "פקס", width: 100, align: "center", validate: { message: "אורך מספר הפקס לא כנדרש", validator: "rangeLength", param: [5, 15] } },
+                        { name: "Fax", type: "text", title: "פקס", width: 100, align: "center" },
 
                         {
                             type: "control",

@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 
-    <link rel="stylesheet" type="text/css" href="demos.css" />
+    <!--<link rel="stylesheet" type="text/css" href="demos.css" />-->
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
     <!-- BEGIN Grid scripts-->
     <script src="../external/jquery/jquery-1.8.3.js"></script>
@@ -66,13 +66,13 @@
                 $('#Users').hide();
 
             }
-            var TransportCompanies = $.ajax({
-                type: "GET",
-                contentType: "application/json; charset=utf-8",
-                url: "../api/TransportCompany",
-                data: "json"
+            //var TransportCompanies = $.ajax({
+            //    type: "GET",
+            //    contentType: "application/json; charset=utf-8",
+            //    url: "../api/TransportCompany",
+            //    data: "json"
 
-            })
+            //})
 
 
             $.ajax({
@@ -98,7 +98,7 @@
                     pageSize: 15,
                     pageButtonCount: 5,
                     deleteConfirm: function (item) {
-                        return "?תמחק. האם אתה בטוח \"" + item.CompanyName + "\"חברת תובלה ";
+                        return " חברת התובלה \"" + item.CompanyName + "\"  תמחק. האם אתה בטוח?";;
                     },
                     controller: {
 
@@ -156,10 +156,9 @@
                     fields: [
                         { name: "CompanyId", title: 'מספר חברה', type: "number", width: 100, sorting: false, inserting: false, align: "center", editing: false, filtering: false },
                         {
-                            name: "CompanyName", title: "חברת תובלה", type: "select", width: 80, align: "center"
-                            , items: TransportCompanies.responseJSON, valueField: "CompanyName", textField: "CompanyName", validate: { validator: "required", message: "חובה להזין שם חברה" } },
+                            name: "CompanyName", title: "חברת תובלה", type: "text", width: 80, align: "center",validate: { validator: "required", message: "חובה להזין שם חברה" } },
                         { name: "CompanyAdress", title: "כתובת", type: "text", width: 100, align: "center", validate: { validator: "rangeLength", param: [3, 80] } },
-                        { name: "CompanyFax", title: "פקס", type: "text", width: 100, align: "center", validate: { message: "אורך מספר הפקס לא כנדרש", validator: "rangeLength", param: [7, 15] } },
+                        { name: "CompanyFax", title: "פקס", type: "text", width: 100, align: "center"},
                         { name: "CompanyPhone", type: "text", title: "טלפון", width: 100, align: "center", validate: { message: "אורך מספר הטלפון לא כנדרש", validator: "rangeLength", param: [5, 15] } },
 
                         {
