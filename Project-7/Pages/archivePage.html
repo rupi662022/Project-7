@@ -97,24 +97,29 @@
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
                 url: "../api/TransportCompany",
-                data: "json"
+                async: false,
+                data: "json",
+                success: function (json) {
+                    TransportCompanies = json;
+                },
 
-            })
+            });
+
+
 
             var CustomsBrokers = $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
                 url: "../api/Brokers",
-                data: "json"
+                async: false,
+                data: "json",
+                success: function (json) {
+                    CustomsBrokers = json;
+                },
 
             })
 
 
-
-            //Create New GatePass
-            $('#Add').on("click", function () {
-                window.location.href = "CreatGatePass.html";
-            });
 
 
 
@@ -179,50 +184,19 @@
                             , items: CustomsBrokers.responseJSON, valueField: "BrokerName", textField: "BrokerName"
                         },
                         { name: "CreatedDate", title: "תאריך יצירה", type: "date", width: 70, align: "center" },
-                        //{
-                        //    name: "Note", title: 'הערות',
-                        //    itemTemplate: function (value, item) {
-                        //        if (item.Note !== "") {
 
-                        //            return $("<button>").attr("href", value).addClass("my-custom-button")
-                        //                .on("click", function () {
-
-                        //                    document.getElementById("pop-up-data").innerHTML = item.Note;
-
-                        //                    document.querySelector(".popup").classList.add("act");
-                        //                });
-                        //        }
-
-                        //    }, width: 30, filtering: false, sorting: false, align: "center", editing: false,
-                        //},
                         {
                             type: "control", modeSwitchButton: false, editButton: false, deleteButton: false,
                         },
                     ]
                 });
 
-
-                //document.querySelector(".popup .popup-container .popup-close").addEventListener("click", function () {
-                //    document.querySelector(".popup").classList.remove("act");
                 });
 
 
 
             });
-
-
-
-     /*   })*/
-
     </script>
-    <!--<script>
-
-        function byebye() {
-            localStorage.clear();
-            window.location.href = "login.html";
-        }
-
-    </script>-->
 
 
 </head>

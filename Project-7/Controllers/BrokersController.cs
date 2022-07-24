@@ -18,14 +18,13 @@ namespace Project_7.Controllers
         }
 
 
-        //// GET: api/Drivers
+    
         public IEnumerable<CustomsBroker> Get()
         {
             CustomsBroker b = new CustomsBroker();
             return b.ReadBrokers();
         }
 
-        // GET: api/Drivers/5
         public string Get(int id)
         {
             return "value";

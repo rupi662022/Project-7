@@ -68,9 +68,16 @@
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
                 url: "../api/TransportCompany",
-                data: "json"
+                async: false,
+                data: "json",
+                success: function (json) {
+                    TransportCompanies = json;
+                },
 
-            })
+            });
+
+
+
 
             $.ajax({
                 type: "GET",
@@ -286,7 +293,7 @@
     </footer>-->
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/jsgrid/jsgrid.min.js"></script>
+    <script src="../app-assets/vendors/js/tables/jsgrid/jsgrid.js"></script>
     <script src="../../../app-assets/vendors/js/tables/jsgrid/griddata.js"></script>
     <script src="../../../app-assets/js/core/app-menu.js"></script>
     <script src="../../../app-assets/js/core/app.js"></script>
