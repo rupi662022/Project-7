@@ -5747,6 +5747,8 @@
     <Content Include="Logo\pngegg.png" />
     <Content Include="Logo\shayLogo.png" />
     <Content Include="Pages\CustomerAdminUsers.html" />
+    <Content Include="Pages\Calculator.html" />
+    <Content Include="Pages\HtmlPage1.html" />
     <Content Include="Pages\MyGatePass.html" />
     <Content Include="Pages\activeGatePass.html" />
     <Content Include="Pages\CustomBrokers.html" />

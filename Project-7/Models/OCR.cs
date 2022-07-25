@@ -5,6 +5,7 @@ using System.Text;
 using System.Web;
 using IronOcr;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace PROJECT_7.Models
 {
@@ -70,7 +71,7 @@ namespace PROJECT_7.Models
 
             }
 
-
+            File.Delete("C:\\Users\\guyhe\\Desktop\\GMAIL\\" + filename);
 
             return ContNum;
 

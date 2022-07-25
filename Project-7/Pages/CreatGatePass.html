@@ -112,6 +112,8 @@
             access_token = data.access_token
             expires_in = data.expires_in
             console.log(expires_in)
+            $("#refreshtoken").hide()
+            $("#gettoken").hide()
             //timer(expires_in)
             //data.access_token
             //sessionStorage.setItem("access_token", data.access_token)
@@ -254,7 +256,7 @@
         }
 
         function getcontnum() {
-            alert("trying to get cont number")
+            alert("מנסה לשלוף את מספר המכולה")
             let currentfilename = tmpfilename;
             ajaxCall("GET", "../api/OCR?filename=" + currentfilename, "", GotContNum, DidntGotContNum);
 
@@ -278,7 +280,7 @@
         function DidntGotContNum() {
 
 
-            alert("DidntGotContNum")
+            alert("שליפת מספר המכולה נכשלה")
 
         }
 
@@ -321,7 +323,7 @@
         }
 
         function errorLoginCB() {
-            alert("errorLoginCB")
+            alert(" נסה שנית")
         }
 
 
@@ -392,11 +394,19 @@
                 }
 
             }
-
+            let apicall = "https://gmail.googleapis.com/gmail/v1/users/" + User_Id + "/messages/" + MsgId + "/trash/" + "?access_token=" + access_token;
+            ajaxCall("POST", apicall, "", ScMsgDeleted, ErMsgDeleted)
             //    //CheckForNulls();
 
         }
+        function ScMsgDeleted() {
 
+            console.log("in ScMsgDeleted")
+        }
+        function ErMsgDeleted() {
+
+            console.log("in ErMsgDeleted")
+        }
         function errorResponseCB() {
 
             alert("errorResponseCB")
@@ -444,13 +454,10 @@
 
 </head>
 <body onload="init()" class="vertical-layout vertical-menu 2-column menu-expanded " data-open="hover" data-menu="vertical-menu">
-    <button onclick="GetListOfMsgs_0()">start</button>
     <a id="downloadurl" href="path">
 
     </a>
-    <button onclick="GetToken()"> Set token</button>
 
-    <button onclick="refreshtoken()"> refresh or Get token</button>
     <!--<p id="safeTimerDisplay">timer</p>-->
     <!-- fixed-top-->
     <!-- fixed-top-->
@@ -508,7 +515,7 @@
                 <li class="nav-item" id="CustomerAdmin"><a style="font-size:18px;  " href="CustomerAdminUsers.html" data-toggle="sans-serif"><i class="icon-user-following"></i><span class="menu-title"> מנהלי חברות תובלה</span></a></li>
                 <li class="nav-item" id="Users"><a style="font-size:18px; " href="ManageUsers.html" data-toggle="sans-serif"><i class="ft-users"></i><span class="menu-title"> ניהול משתמשים</span></a></li>
                 <li class="nav-item" id="Dashboard"><a style="font-size:18px" href="Dashboard.html" data-toggle="sans-serif"><i class="icon-chart"></i><span class="menu-title"> דשבורד</span></a></li>
-                <li class="nav-item" id="Price"><a style="font-size:18px;" href="#" data-toggle="sans-serif"><i class="icon-calculator"></i><span class="menu-title"> הצעות מחיר</span></a></li>
+                <li class="nav-item" id="Price"><a style="font-size:18px;" href="Calculator.html" data-toggle="sans-serif"><i class="icon-calculator"></i><span class="menu-title"> הצעות מחיר</span></a></li>
 
             </ul>
         </div>
@@ -517,19 +524,26 @@
     <div class="app-content content">
         <div class="content-wrapper">
             <div></div>
-            <div class="content-header row">
+            <div class="content-header row" style="">
+         
                 <div class="content-header-left col-md-6 col-12 mb-2">
                     <h3 class="content-header-title" style="margin-right:90%; width:300px"><b>יצירת גייטפס</b></h3>
-
+                    <button id="refreshtoken" class="btn btn-info mr-1" onclick="refreshtoken()"> רענן אסימון</button>
+                    <button id="gettoken" class="btn btn-danger mr-1" onclick="GetToken()"> הגדר אסימון</button>
+                    <button  class="btn btn-success" onclick="GetListOfMsgs_0()">התחל </button>
 
                     <div class="content-header-right col-md-6 col-12">
+
                         <div class="media width-250 float-left">
+
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="content-body">
                 <!-- Basic form layout section start -->
+             
                 <section id="basic-form-layouts">
 
                     <div class="row">
@@ -542,7 +556,7 @@
                                         <div class="form-body">
                                             <div class="row">
                                                 <div></div>
-          
+
                                                 <div class="col-md-6">
 
                                                 </div>
