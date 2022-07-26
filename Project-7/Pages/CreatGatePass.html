@@ -69,18 +69,18 @@
 
         $(document).ready(function () {
 
-        U = JSON.parse(localStorage.getItem('User'));
+            U = JSON.parse(localStorage.getItem('User'));
 
 
-        document.getElementById("UserName").innerHTML = U.UserName;
-        if (U.IsAdmin == false) {
+            document.getElementById("UserName").innerHTML = U.UserName;
+            if (U.IsAdmin == false) {
 
-            $('#Price').hide();
-            $('#Dashboard').hide();
-            $('#CustomerAdmin').hide();
-            $('#Users').hide();
+                $('#Price').hide();
+                $('#Dashboard').hide();
+                $('#CustomerAdmin').hide();
+                $('#Users').hide();
 
-        }
+            }
         })
 
 
@@ -91,6 +91,7 @@
         function refreshtoken() {
 
             window.location.href = ("https://localhost:44311/Pages/HtmlPage1.html")
+
         }
 
         function GetToken() {
@@ -133,7 +134,7 @@
         //}
         function GetTokenErCB() {
 
-            alert("in testimErCB")
+            alert("הגדרת אסימון נכשלה")
             console.log()
 
         }
@@ -160,7 +161,7 @@
 
         function ErGetListOfMsgs_0() {
 
-            alert("in ErGetListOfMsgs_0")
+            alert("משיכת מייל נכשלה")
 
         }
 
@@ -199,7 +200,7 @@
 
                 function ErGetAttachment() {
 
-                    alert("in ErGetAttachment")
+                    alert("משיכת קובץ הגייטפאס נכשלה")
 
 
 
@@ -209,7 +210,7 @@
 
             function ErGetAttachId() {
 
-                alert("in ErGetAttachId")
+                alert("משיכת קובץ הגייטפאס נכשלה")
 
 
             }
@@ -219,7 +220,7 @@
 
         function ErGetListOfMsgs() {
 
-            alert(" in ERGETMSG ")
+            alert("משיכת מייל נכשלה")
 
         }
 
@@ -246,7 +247,7 @@
 
             document.getElementById("downloadurl").click()
 
-            runAfterNSeconds(5)
+            runAfterNSeconds(10)
         }
 
         function runAfterNSeconds(n) {
@@ -409,7 +410,7 @@
         }
         function errorResponseCB() {
 
-            alert("errorResponseCB")
+            alert("קריאה לרשות הנמילם נכשלה")
 
 
         }
@@ -445,11 +446,11 @@
         }
 
         function postErrorCB(err) {
-            alert(err);
-            }
+            alert("לא היה ניתן לשמור פרטי גייטפאס");
+        }
 
 
-      
+
     </script>
 
 </head>
@@ -525,12 +526,12 @@
         <div class="content-wrapper">
             <div></div>
             <div class="content-header row" style="">
-         
+
                 <div class="content-header-left col-md-6 col-12 mb-2">
                     <h3 class="content-header-title" style="margin-right:90%; width:300px"><b>יצירת גייטפס</b></h3>
                     <button id="refreshtoken" class="btn btn-info mr-1" onclick="refreshtoken()"> רענן אסימון</button>
                     <button id="gettoken" class="btn btn-danger mr-1" onclick="GetToken()"> הגדר אסימון</button>
-                    <button  class="btn btn-success" onclick="GetListOfMsgs_0()">התחל </button>
+                    <button class="btn btn-success" onclick="GetListOfMsgs_0()">התחל </button>
 
                     <div class="content-header-right col-md-6 col-12">
 
@@ -543,7 +544,7 @@
 
             <div class="content-body">
                 <!-- Basic form layout section start -->
-             
+
                 <section id="basic-form-layouts">
 
                     <div class="row">
