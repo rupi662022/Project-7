@@ -32,7 +32,7 @@ namespace PROJECT_7.Models
             var Ocr = new IronTesseract();
             Ocr.Language = OcrLanguage.HebrewBest;
             Ocr.AddSecondaryLanguage(OcrLanguage.EnglishBest);
-            var Input = new OcrInput("C:\\Users\\guyhe\\Desktop\\GMAIL\\" + filename);
+            var Input = new OcrInput("C:\\Users\\1itay\\Downloads\\" + filename);
             Input.Deskew();
             //Input.MinimumDPI = 250;
             //Input.TargetDPI = 300;
@@ -71,7 +71,7 @@ namespace PROJECT_7.Models
 
             }
 
-            File.Delete("C:\\Users\\guyhe\\Desktop\\GMAIL\\" + filename);
+            File.Delete("C:\\Users\\1itay\\Downloads\\" + filename);
 
             return ContNum;
 
